@@ -13,7 +13,6 @@ class HelpCenter extends StatelessWidget {
         child: Column(
           //
           children: [
-            Text('this is the help center page'),
             CircleAvatar(
               radius: 100,
               backgroundImage: AssetImage('assets/images/me.jpg'),

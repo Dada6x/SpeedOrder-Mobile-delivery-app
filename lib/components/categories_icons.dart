@@ -35,6 +35,35 @@ class ProjectCategoriesIcons extends StatelessWidget {
             ),
           )),
     );
-    
+  }
+}
+
+class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
+  final IconData icon;
+  const ProjectCategoriesIconsWithoutLabel({
+    super.key,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 10,
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          width: 70,
+          height: 70,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              icon,
+              color: Colors.white,
+              size: 40,
+            ),
+          )),
+    );
   }
 }

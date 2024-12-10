@@ -4,7 +4,6 @@ import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/cart_controller.dart';
 import 'package:mamamia_uniproject/language/local.dart';
 
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
 
 void main() {

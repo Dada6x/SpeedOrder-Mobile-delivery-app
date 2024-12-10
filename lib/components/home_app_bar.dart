@@ -8,8 +8,6 @@ PreferredSizeWidget ProjectAppBar_homePage() {
     child: Directionality(
       textDirection: TextDirection.ltr,
       child: AppBar(
-        //@ useful shit
-      
         scrolledUnderElevation: 0.0,
         surfaceTintColor: Colors.transparent,
         forceMaterialTransparency: true,

@@ -53,9 +53,9 @@ class CartPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Total:',
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    'Total:'.tr,
+                    style: const TextStyle(fontSize: 18),
                   ),
                   Text(
                     '\$${cartController.totalPrice.toStringAsFixed(2)}',
