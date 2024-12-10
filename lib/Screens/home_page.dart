@@ -7,7 +7,7 @@ import 'package:mamamia_uniproject/components/search_bar.dart';
 
 class HomeNeedToBeSlivered extends StatelessWidget {
   const HomeNeedToBeSlivered({super.key});
-
+// dis is the screen that appear with the sliver appbar in the action section
   @override
   Widget build(BuildContext context) {
     final pageController = PageController();
