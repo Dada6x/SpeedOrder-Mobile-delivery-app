@@ -20,83 +20,87 @@ class ProjectProductCartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            // the color of the card
-            color: Theme.of(context).colorScheme.secondary),
-        child: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 100,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image(
-                      //! the product image @cart
-                      image: AssetImage(imageAsset),
-                      fit: BoxFit.cover,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              // the color of the card
+              color: Theme.of(context).colorScheme.secondary),
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image(
+                        //! the product image @cart
+                        image: AssetImage(imageAsset),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      //! product name @cart
-                      productName,
-                      style: const TextStyle(color: Colors.white, fontSize: 25),
-                    ),
-                    Text(description),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        //! product price @cart
-                        '$price \$',
-                        style: TextStyle(
-                            color: MainPage.orangeColor,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        //! product name @cart
+                        productName,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 25),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    IconButton(
-                        style: IconButton.styleFrom(
-                          backgroundColor: MainPage.orangeColor,
-                          padding: const EdgeInsets.all(12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
+                      Text(description),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          //! product price @cart
+                          '$price \$',
+                          style: TextStyle(
+                              color: MainPage.orangeColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
-                        onPressed: () => mostlyDeleteButton(),
-                        icon: const Icon(
-                          Icons.delete_outline_outlined,
-                          color: Colors.black,
-                        ))
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      IconButton(
+                          style: IconButton.styleFrom(
+                            backgroundColor: MainPage.orangeColor,
+                            padding: const EdgeInsets.all(12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          onPressed: () => mostlyDeleteButton(),
+                          icon: const Icon(
+                            Icons.delete_outline_outlined,
+                            color: Colors.black,
+                          ))
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/Auth/login.dart';
+
 import 'package:mamamia_uniproject/main_page.dart';
+import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -122,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
               TextButton.icon(
                 onPressed: () {
                   //! logOutButton
-                  Get.to(const Login());
+                  Get.to(const LoginPage());
                 },
                 label: Text(
                   'Log out'.tr,
@@ -132,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: MainPage.orangeColor,
                 ),
               ),
-              //! theme toggle button 
+              //! theme toggle button
               const ThemeToggleButton(),
             ],
           ),

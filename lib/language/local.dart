@@ -36,7 +36,8 @@ const Map<String, String> english = {
   "Whats you're looking for?": "Whats you're looking for?",
   "Save": "Save",
   "Cancel": "Cancel",
-  "Light Mode":"Light Mode"
+  "Light Mode": "Light Mode",
+  "Total:": "Total :"
 };
 
 const Map<String, String> arabic = {
@@ -67,5 +68,6 @@ const Map<String, String> arabic = {
   "Change language": "تغيير اللغة",
   "Save": "حفظ",
   "Cancel": "الغاء",
-  "Light Mode":"الوضع الساطع"
+  "Light Mode": "الوضع الساطع",
+  "Total:": " المجموع : "
 };

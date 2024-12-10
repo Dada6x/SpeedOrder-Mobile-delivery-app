@@ -41,21 +41,24 @@ class HomeNeedToBeSlivered extends StatelessWidget {
             //! categories
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ProjectCategoriesIcons(
-                      icon: Icons.fastfood_outlined, categorie: 'Food'.tr),
-                  ProjectCategoriesIcons(
-                      icon: Icons.card_giftcard_sharp, categorie: 'Gifts'.tr),
-                  ProjectCategoriesIcons(
-                      icon: Icons.woman, categorie: 'Women'.tr),
-                  ProjectCategoriesIcons(
-                      icon: Icons.sports_kabaddi_sharp, categorie: 'Kids'.tr),
-                  //! when clicked the most popular must change and the product info below
-                  // i know its should not be static info but for now thats what i got :F
-                  //! enums??
-                ],
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ProjectCategoriesIcons(
+                        icon: Icons.fastfood_outlined, categorie: 'Food'.tr),
+                    ProjectCategoriesIcons(
+                        icon: Icons.card_giftcard_sharp, categorie: 'Gifts'.tr),
+                    ProjectCategoriesIcons(
+                        icon: Icons.woman, categorie: 'Women'.tr),
+                    ProjectCategoriesIcons(
+                        icon: Icons.sports_kabaddi_sharp, categorie: 'Kids'.tr),
+                    //! when clicked the most popular must change and the product info below
+                    // i know its should not be static info but for now thats what i got :F
+                    //! enums??
+                  ],
+                ),
               ),
             ),
             Align(
