@@ -23,7 +23,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             //! search Bar
-            ProjectSearchBar(),
+            ProjectSearchBar("directing"),
             //! Ads shit
             AdsIndicator(pageController),
             Align(

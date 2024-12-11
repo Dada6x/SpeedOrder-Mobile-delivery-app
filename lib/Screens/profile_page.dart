@@ -123,7 +123,8 @@ class _ProfilePageState extends State<ProfilePage> {
               TextButton.icon(
                 onPressed: () {
                   //! logOutButton
-                  Get.to(const LoginPage());
+                  Get.off(
+                      const LoginPage()); //ward: changed it cuz older one had an arrow back button
                 },
                 label: Text(
                   'Log out'.tr,

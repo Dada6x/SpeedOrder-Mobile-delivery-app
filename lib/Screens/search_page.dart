@@ -13,7 +13,7 @@ class SearchPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Center(child: ProjectSearchBar()),
+          Center(child: ProjectSearchBar("searching")),
         ],
       ),
     );
