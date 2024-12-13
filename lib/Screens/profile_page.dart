@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -96,7 +94,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.date_range),
                   destination: () {
                     //! make order history
-                    Get.to(const SettingsPage());
                   },
                 ),
                 MenuListItem(
@@ -111,7 +108,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.auto_graph_rounded),
                   destination: () {
                     //! make account details
-                    Get.to(const SettingsPage());
                   },
                 ),
               ],
@@ -122,8 +118,8 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               TextButton.icon(
                 onPressed: () {
-                  //! logOutButton
-                  Get.to(const LoginPage());
+                  //! logOutButton kick the user out
+                  Get.off(const LoginPage());
                 },
                 label: Text(
                   'Log out'.tr,
@@ -134,30 +130,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               //! theme toggle button
-              const ThemeToggleButton(),
             ],
-          ),
-          TextButton.icon(
-            onPressed: () {
-              Locale currentLocale = Get.locale ?? const Locale("en");
-              Get.updateLocale(currentLocale.languageCode == "en"
-                  ? const Locale("ar")
-                  : const Locale("en"));
-            },
-            label: Text(
-              'Change language'.tr,
-            ),
-            icon: Icon(
-              Icons.translate,
-              color: MainPage.orangeColor,
-            ),
           ),
         ],
       ),
     );
   }
-
-  //@ the used item in the list of settings
 }
 
 class MenuListItem extends StatelessWidget {

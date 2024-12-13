@@ -1,5 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
@@ -57,27 +59,47 @@ class _MainPageState extends State<MainPage> {
               // maybe if the light theme is so bright the colors needs to be switched
               Icon(
                 Icons.search,
-                color: index == 0 ? MainPage.orangeColor : Colors.white,
+                color: index == 0
+                    ? MainPage.orangeColor
+                    : Get.isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                 size: 30,
               ),
               Icon(
                 index == 1 ? Icons.shopping_cart : Icons.shopping_cart_outlined,
-                color: index == 1 ? MainPage.orangeColor : Colors.white,
+                color: index == 1
+                    ? MainPage.orangeColor
+                    : Get.isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                 size: 30,
               ),
               Icon(
                 index == 2 ? Icons.home : Icons.home_outlined,
-                color: index == 2 ? MainPage.orangeColor : Colors.white,
+                color: index == 2
+                    ? MainPage.orangeColor
+                    : Get.isDarkMode
+                        ? Colors.white
+                        : MainPage.orangeColor,
                 size: 30,
               ),
               Icon(
                 index == 3 ? Icons.favorite : Icons.favorite_border_outlined,
-                color: index == 3 ? MainPage.orangeColor : Colors.white,
+                color: index == 3
+                    ? MainPage.orangeColor
+                    : Get.isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                 size: 30,
               ),
               Icon(
                 index == 4 ? Icons.person : Icons.person_outline,
-                color: index == 4 ? MainPage.orangeColor : Colors.white,
+                color: index == 4
+                    ? MainPage.orangeColor
+                    : Get.isDarkMode
+                        ? Colors.white
+                        : Colors.black,
                 size: 30,
               ),
             ],

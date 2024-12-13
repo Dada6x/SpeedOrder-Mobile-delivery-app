@@ -22,7 +22,7 @@ class HelpCenter extends StatelessWidget {
               radius: 100,
               backgroundImage: AssetImage('assets/images/thebitches.jpg'),
             ),
-            Text('the bitches '),
+            Text('the bit*hes '),
           ],
         ),
       ),

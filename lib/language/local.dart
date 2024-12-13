@@ -69,5 +69,23 @@ const Map<String, String> arabic = {
   "Save": "حفظ",
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
-  "Total:": " المجموع : "
+  "Total:": " المجموع : ",
+  //!
+  "Sign in": "تسجيل الدخول",
+  "Sign Up": "انشاء حساب",
+  "Don`t Have an Account?": "ليس لديك حساب ؟",
+  "Our Socials": "تواصل معنا ",
+  "Enter Password": "كلمة المرور",
+  "Enter Number": "رقم الهاتف",
+  "Input should be 10 numbers": "يجب ادخال 10 ارقام",
+  "Number Should Start with \"09\"":"يجب ان تبدأ الارقام ب 09",
+  //signupFirst Name
+  "First Name": "الاسم الاول",
+  "Last Name": "الاسم الاخير ",
+  "Number": "رقم الهاتف",
+  "Password": "كلمة المرور",
+  "Enter your info":"ادخل معلوماتك",
+  "Next":"التالي",
+  "Already have an account ":"لديك حساب مسبقا",
+  "Login":"تسجيل الدخول"
 };

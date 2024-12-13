@@ -29,7 +29,7 @@ class SigninPageState extends State<LoginPage> {
         init: Model(),
         builder: (controller) => Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: NormalAppBar("Welcome !"),
+              appBar: NormalAppBar("Welcome Back !"),
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -63,11 +63,11 @@ class SigninPageState extends State<LoginPage> {
                             validator: (val) {
                               if (val!.length >= 2) {
                                 if (val[0] != '0' && val[1] != '9') {
-                                  return "Number Should Start with \"09\"";
+                                  return "Number Should Start with \"09\"".tr;
                                 }
                               }
                               if (val.length != 10 && val.isNotEmpty) {
-                                return "Input should be 10 numbers";
+                                return "Input should be 10 numbers".tr;
                               }
                               return null;
                             },
@@ -79,13 +79,16 @@ class SigninPageState extends State<LoginPage> {
                             keyboardType:
                                 const TextInputType.numberWithOptions(),
                             decoration: InputDecoration(
-                                fillColor: MainPage.greyColor,
+                                fillColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 filled: true,
-                                labelText: "Enter Number",
+                                labelText: "Enter Number".tr,
                                 labelStyle: const TextStyle(color: Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: MainPage.greyColor),
+                                  borderSide: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 ),
@@ -105,12 +108,14 @@ class SigninPageState extends State<LoginPage> {
                           enteredPass = val;
                         },
                         decoration: InputDecoration(
-                            fillColor: MainPage.greyColor,
+                            fillColor: Theme.of(context).colorScheme.secondary,
                             filled: true,
-                            labelText: "Enter Password",
+                            labelText: "Enter Password".tr,
                             labelStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MainPage.greyColor),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             ),
@@ -123,27 +128,27 @@ class SigninPageState extends State<LoginPage> {
                       // SizedBox(
                       //   height: controller.screenHeight(context) * 0.03,
                       // ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, left: 10, right: 10),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 15, left: 10, right: 10),
                         child: Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),
-                            Text('Our Socials'),
-                            Expanded(
+                            Text('Our Socials'.tr),
+                            const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),
                           ],
                         ),
                       ),
-
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Row(
@@ -165,22 +170,21 @@ class SigninPageState extends State<LoginPage> {
                         height: controller.screenHeight(context) * 0.02,
                       ),
                       ProjectButton(
-                        text: "Sign in ",
+                        text: "Sign in".tr,
                         width: controller.screenWidth(context),
                         function: () {
                           Get.off(const MainPage());
                         },
                       ),
-
                       SizedBox(
                         height: controller.screenHeight(context) * 0.01,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            "Don`t Have an Account?",
-                            style: TextStyle(
+                          Text(
+                            "Don`t Have an Account?".tr,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 color: Colors.grey),
                           ),
@@ -189,7 +193,7 @@ class SigninPageState extends State<LoginPage> {
                               Get.off(const SignupPage());
                             },
                             child: Text(
-                              "SignUp",
+                              "Sign Up".tr,
                               style: TextStyle(
                                   color: MainPage.orangeColor,
                                   fontWeight: FontWeight.w700),

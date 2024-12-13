@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:mamamia_uniproject/main_page.dart';
 
@@ -60,7 +61,7 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               icon,
-              color: Colors.white,
+              color: Get.isDarkMode ? Colors.white : MainPage.orangeColor,
               size: 40,
             ),
           )),

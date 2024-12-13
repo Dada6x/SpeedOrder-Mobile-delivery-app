@@ -26,12 +26,12 @@ class ThemeToggleButton extends StatelessWidget {
     return GetBuilder<ThemeController>(
       init: ThemeController(),
       builder: (controller) {
-        return TextButton.icon(
-          onPressed: controller.toggleTheme,
-          label: Text(
+        return ListTile(
+          onTap: controller.toggleTheme,
+          title: Text(
             controller.isDarkMode ? "Light Mode".tr : "Dark Mode".tr,
           ),
-          icon: Icon(
+          leading: Icon(
             controller.isDarkMode ? Icons.sunny : Icons.nightlight_round,
             color: MainPage.orangeColor,
           ),
