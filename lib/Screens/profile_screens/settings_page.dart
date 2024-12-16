@@ -45,7 +45,7 @@ class SettingsPage extends StatelessWidget {
 
   // ignore: non_constant_identifier_names
   Widget ProjectDivider() {
-    return Divider(
+    return const Divider(
       indent: 15,
       endIndent: 15,
     );

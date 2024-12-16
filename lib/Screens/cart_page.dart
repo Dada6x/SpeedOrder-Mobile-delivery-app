@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mamamia_uniproject/Screens/payment_page.dart';
 import 'package:mamamia_uniproject/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
@@ -74,7 +75,7 @@ class CartPage extends StatelessWidget {
                 text: 'Check Out'.tr,
                 width: screenWidth,
                 function: () {
-                  //! do the purchase
+                  Get.to(const PaymentPage());
                 },
               ),
             )
