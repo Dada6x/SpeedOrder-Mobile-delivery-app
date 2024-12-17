@@ -41,11 +41,12 @@ PreferredSizeWidget ProjectAppBar_homePage() {
                               children: [
                                 ListTile(
                                   onTap: () {},
-                                  title: Text("Change Location Automatically"),
+                                  title:
+                                      Text("Change Location Automatically".tr),
                                 ),
                                 ListTile(
                                   onTap: () {},
-                                  title: Text("Change Location Manualy"),
+                                  title: Text("Change Location Manualy".tr),
                                 )
                               ],
                             ),

@@ -19,7 +19,8 @@ Ad(Color color) {
     ),
   );
 }
-// the dots that moves under the ads 
+
+// the dots that moves under the ads
 Widget AdsIndicator(controller) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -34,7 +35,7 @@ Widget AdsIndicator(controller) {
                   controller: controller,
                   children: [
                     //! make the children takes String assets bruh
-                    //! the ads should be images 
+                    //! the ads should be images
                     Ad(MainPage.orangeColor), Ad(Colors.pink), Ad(Colors.teal),
                     Ad(Colors.blueGrey),
                   ],

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
-import 'package:mamamia_uniproject/Screens/search_page.dart';
 import 'package:mamamia_uniproject/Screens/cart_page.dart';
 import 'package:mamamia_uniproject/Screens/Home_Sliver_Bar.dart';
+import 'package:mamamia_uniproject/Screens/store_page.dart';
 
 class MainPage extends StatefulWidget {
   //! its bad idea to put the colors static coz it wont change until the next time its runned
@@ -25,7 +25,9 @@ class _MainPageState extends State<MainPage> {
   int index = 2;
 
   List<Widget> screens = [
-    const SearchPage(),
+    //removed the search page from here cuz i think this the list used for navigation bar pages
+    //search screen is in search_bar.dart;
+    const StoresPage(),
     const CartPage(),
     const Test(),
     const FavoritePage(),
@@ -56,7 +58,9 @@ class _MainPageState extends State<MainPage> {
               // toggle icons between selected and not selected
               // maybe if the light theme is so bright the colors needs to be switched
               Icon(
-                Icons.search,
+                index == 0
+                    ? Icons.store
+                    : Icons.store_outlined, //changed to store instead of search
                 color: index == 0 ? MainPage.orangeColor : Colors.white,
                 size: 30,
               ),

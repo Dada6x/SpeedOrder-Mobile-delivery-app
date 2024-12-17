@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
-import 'package:mamamia_uniproject/cart_controller.dart';
+import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
+import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class ProductPage extends StatelessWidget {
-  final String productImage;
-  final String productName;
-  final double price;
-
-  const ProductPage(
-      {super.key,
-      required this.productName,
-      required this.productImage,
-      required this.price});
+  final Product product;
+  const ProductPage({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +62,7 @@ class ProductPage extends StatelessWidget {
                     radius: 120,
                     backgroundColor: MainPage.orangeColor,
                     //! product image @productPage
-                    backgroundImage: AssetImage(productImage),
+                    backgroundImage: AssetImage(product.imageLink),
                   ),
                 ),
               )
@@ -78,7 +75,7 @@ class ProductPage extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    productName,
+                    product.name,
                     style: const TextStyle(fontSize: 30),
                   ),
                 ),
@@ -96,18 +93,16 @@ class ProductPage extends StatelessWidget {
             child: ProjectButton(
               function: () {
                 //! adding it to the Cart via cart controller
-                cartController.addToCart(CartItem(
-                  productName: productName,
-                  description: '',
-                  price: price,
-                  imageAsset: productImage,
-                ));
+                cartController.addToCart(product);
                 //! added snackbar notify
-                Get.snackbar(
-                    colorText: MainPage.orangeColor,
-                    'Success'.tr,
-                    '$productName added to the cart'.tr,
-                    snackPosition: SnackPosition.TOP);
+                product.isInCart
+                    ? Get.snackbar("Already in",
+                        "${product.name} is already in Your cart!")
+                    : Get.snackbar(
+                        colorText: MainPage.orangeColor,
+                        'Success'.tr,
+                        '${product.name} added to the cart'.tr,
+                        snackPosition: SnackPosition.TOP);
               },
               text: 'Add to Cart'.tr,
               width: screenWidth,

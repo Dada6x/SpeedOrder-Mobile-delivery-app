@@ -37,7 +37,12 @@ const Map<String, String> english = {
   "Save": "Save",
   "Cancel": "Cancel",
   "Light Mode": "Light Mode",
-  "Total:": "Total :"
+  "Total:": "Total :",
+  "Clothes": "Clothes",
+  "What are you looking for?": "What are you looking for?",
+  "Change Location Automatically": "Change Location Automatically",
+  "Change Location Manualy": "Change Location Manualy",
+  // "Where Quality and Efficiency Meet.": "Where Quality and Efficiency Meet."
 };
 
 const Map<String, String> arabic = {
@@ -69,5 +74,26 @@ const Map<String, String> arabic = {
   "Save": "حفظ",
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
-  "Total:": " المجموع : "
+  "Total:": " المجموع : ",
+  "Clothes": "ألبسة",
+  "What are you looking for?": "على ماذا تبحث؟",
+  "Change Location Automatically": "تغيير المكان تلقائيا",
+  "Change Location Manualy": "تغيير المكان يدويا",
+  "Where Quality and Efficiency Meet.": "حيث تجتمع الجودة و الكفاءة معا",
+  "Number": "رقم",
+  "Enter Number": " ادخل رقم",
+  "Enter Password": "ادخل كلمة السر",
+  "Sign in": "تسجيل دخول",
+  "Sign Up": "إنشاء حساب",
+  "Don`t Have an Account?": "ليس لديك حساب؟",
+  'Our Socials': "تواصل معنا",
+  "Welcome !": "اهلا !",
+  'Enter your info': "ادخل معلوماتك",
+  "First Name": "الاسم الاول",
+  "Last Name": "الاسم الأخير",
+  "Password": "كلمة السر",
+  "Next": "التالي",
+  "Already have an account ?": "لديك حساب؟",
+  "Devices": "أجهزة",
+  "Home": "مفروشات",
 };
