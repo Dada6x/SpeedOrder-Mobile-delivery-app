@@ -34,11 +34,14 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.6
+  http: ^1.2.2
   image_picker: ^1.1.2
   like_button: ^2.0.5
   lottie: null
   shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
+  solar_icons: ^0.0.5
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -58,7 +61,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
-    - assets/icons/
+    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

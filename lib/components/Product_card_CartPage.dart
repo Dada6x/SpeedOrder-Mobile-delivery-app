@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
+import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main_page.dart';
+
 // this is the product card in the cart page it have delete button to delete it
 
 class ProjectProductCartCard extends StatelessWidget {
-  final String imageAsset;
-  final String productName;
-  final String description;
-  final double price;
-  final Function mostlyDeleteButton;
-
-  const ProjectProductCartCard({
-    super.key,
-    required this.imageAsset,
-    required this.productName,
-    required this.description,
-    required this.price,
-    required this.mostlyDeleteButton,
-  });
+  final Product
+      product; //all the variables it required before are in the product so why not use it
+  const ProjectProductCartCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +34,7 @@ class ProjectProductCartCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       child: Image(
                         //! the product image @cart
-                        image: AssetImage(imageAsset),
+                        image: AssetImage(product.imageLink),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -57,16 +50,16 @@ class ProjectProductCartCard extends StatelessWidget {
                     children: [
                       Text(
                         //! product name @cart
-                        productName,
+                        product.name,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 25),
                       ),
-                      Text(description),
+                      Text(product.description),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           //! product price @cart
-                          '$price \$',
+                          '${product.price} \$',
                           style: TextStyle(
                               color: MainPage.orangeColor,
                               fontSize: 20,
@@ -90,7 +83,9 @@ class ProjectProductCartCard extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
-                          onPressed: () => mostlyDeleteButton(),
+                          onPressed: () {
+                            Get.find<CartController>().removeFromCart(product);
+                          },
                           icon: const Icon(
                             Icons.delete_outline_outlined,
                             color: Colors.black,

@@ -23,12 +23,40 @@ PreferredSizeWidget ProjectAppBar_homePage() {
             ),
           ),
         ),
-        title: Card(
-          elevation: 6,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-            child: Text('\' Location \''.tr),
-          ),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(elevation: 8),
+              onPressed: () {
+                Get.bottomSheet(
+                    isDismissible: true,
+                    BottomSheet(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0)),
+                        onClosing: () {},
+                        builder: (context) {
+                          return SizedBox(
+                            height: 120,
+                            child: ListView(
+                              children: [
+                                ListTile(
+                                  onTap: () {},
+                                  title:
+                                      Text("Change Location Automatically".tr),
+                                ),
+                                ListTile(
+                                  onTap: () {},
+                                  title: Text("Change Location Manualy".tr),
+                                )
+                              ],
+                            ),
+                          );
+                        }));
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text('\' Location \''.tr),
+              )),
         ),
       ),
     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -11,8 +11,39 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar('Favorites'.tr),
-      body: Column(
+        appBar: NormalAppBar('Favorites'.tr),
+        body: Obx(() {
+          if (Get.find<FavoriteController>().favoriteItems.isEmpty) {
+            return Center(
+                child: Column(
+              children: [
+                Center(
+                  child: Icon(
+                    Icons.favorite,
+                    size: 50,
+                    color: MainPage.orangeColor,
+                  ),
+                ),
+                const Center(
+                  child: Text('fav Page'),
+                ),
+              ],
+            ));
+          }
+          return Column(children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: Get.find<FavoriteController>().favoriteItems.length,
+                itemBuilder: (context, index) {
+                  return Get.find<FavoriteController>()
+                      .favoriteCardsList[index];
+                },
+              ),
+            ),
+          ]);
+        })
+
+        /* Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
@@ -26,7 +57,7 @@ class FavoritePage extends StatelessWidget {
             child: Text('fav Page'),
           ),
         ],
-      ),
-    );
+      ),*/
+        );
   }
 }

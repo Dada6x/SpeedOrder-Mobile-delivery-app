@@ -22,7 +22,7 @@ class SignUpPageState extends State<SignupPage> {
     return GetBuilder<Model>(
       builder: (controller) {
         return Scaffold(
-          appBar: NormalAppBar('Enter your info'),
+          appBar: NormalAppBar('Enter your info'.tr),
           body: Column(
             children: [
               Padding(
@@ -42,10 +42,12 @@ class SignUpPageState extends State<SignupPage> {
                           });
                     },
                     shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.add_a_photo,
-                      size: 50,
-                    ),
+                    child: Get.find<Model>().imageIspicked
+                        ? Get.find<Model>().pickedImage
+                        : const Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                          ),
                   ),
                 ),
               ),
@@ -57,7 +59,7 @@ class SignUpPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                           fillColor: MainPage.greyColor,
                           filled: true,
-                          hintText: "First Name",
+                          hintText: "First Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
@@ -82,7 +84,7 @@ class SignUpPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                           fillColor: MainPage.greyColor,
                           filled: true,
-                          hintText: "Last Name",
+                          hintText: "Last Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
@@ -108,7 +110,7 @@ class SignUpPageState extends State<SignupPage> {
                           fillColor: MainPage.greyColor,
                           filled: true,
                           prefixIcon: const Icon(Icons.call_outlined),
-                          hintText: "Number",
+                          hintText: "Number".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
@@ -131,7 +133,7 @@ class SignUpPageState extends State<SignupPage> {
                         fillColor: MainPage.greyColor,
                         filled: true,
                         prefixIcon: const Icon(Icons.key),
-                        hintText: "Password",
+                        hintText: "Password".tr,
                         hintStyle: const TextStyle(color: Colors.grey),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: MainPage.greyColor),
@@ -176,7 +178,7 @@ class SignUpPageState extends State<SignupPage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                 child: ProjectButton(
-                  text: 'Next',
+                  text: 'Next'.tr,
                   width: controller.screenWidth(context),
                   function: () {
                     Get.off(const SettingLocation());
@@ -186,9 +188,9 @@ class SignUpPageState extends State<SignupPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Already have an account ",
-                    style: TextStyle(
+                  Text(
+                    "Already have an account ?".tr,
+                    style: const TextStyle(
                         fontWeight: FontWeight.w700, color: Colors.grey),
                   ),
                   TextButton(
@@ -196,7 +198,7 @@ class SignUpPageState extends State<SignupPage> {
                       Get.off(const LoginPage());
                     },
                     child: Text(
-                      "Login",
+                      "Sign in".tr,
                       style: TextStyle(
                           color: MainPage.orangeColor,
                           fontWeight: FontWeight.w700),
