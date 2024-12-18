@@ -57,33 +57,56 @@ class _MainPageState extends State<MainPage> {
             items: [
               // toggle icons between selected and not selected
               // maybe if the light theme is so bright the colors needs to be switched
-              Icon(
-                index == 0
-                    ? Icons.store
-                    : Icons.store_outlined, //changed to store instead of search
-                color: index == 0 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 1 ? Icons.shopping_cart : Icons.shopping_cart_outlined,
-                color: index == 1 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 2 ? Icons.home : Icons.home_outlined,
-                color: index == 2 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 3 ? Icons.favorite : Icons.favorite_border_outlined,
-                color: index == 3 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 4 ? Icons.person : Icons.person_outline,
-                color: index == 4 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
+              index == 0
+                  ? Icon(
+                      size: 30,
+                      Icons.store,
+                      color: MainPage.orangeColor,
+                    )
+                  : const Icon(
+                      size: 30,
+                      Icons.store_outlined,
+                    ),
+              index == 1
+                  ? Icon(
+                      size: 30,
+                      Icons.shopping_cart,
+                      color: MainPage.orangeColor,
+                    )
+                  : const Icon(
+                      size: 30,
+                      Icons.shopping_cart_outlined,
+                    ),
+              index == 2
+                  ? Icon(
+                      size: 30,
+                      Icons.home,
+                      color: MainPage.orangeColor,
+                    )
+                  : const Icon(
+                      size: 30,
+                      Icons.home_outlined,
+                    ),
+              index == 3
+                  ? Icon(
+                      size: 30,
+                      Icons.favorite,
+                      color: MainPage.orangeColor,
+                    )
+                  : const Icon(
+                      size: 30,
+                      Icons.favorite_outline,
+                    ),
+              index == 4
+                  ? Icon(
+                      Icons.person,
+                      size: 30,
+                      color: MainPage.orangeColor,
+                    )
+                  : const Icon(
+                      Icons.person_2_outlined,
+                      size: 30,
+                    ),
             ],
           ),
         ),

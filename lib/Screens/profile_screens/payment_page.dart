@@ -13,7 +13,7 @@ class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar("Purchase order"),
+      appBar: NormalAppBar("Enter Your Card info".tr),
       body: GetBuilder(
           init: creditCardController(),
           builder: (controller) => Column(
@@ -24,9 +24,9 @@ class PaymentPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Choose a Provider:",
-                          style: TextStyle(
+                        Text(
+                          "Choose a Provider:".tr,
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w700),
                         ),
                         Card(
@@ -85,7 +85,7 @@ class PaymentPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20)),
                           prefixIcon: const Icon(Icons.credit_card),
                           hintText: "XXXX - XXXX - XXXX -XXXX",
-                          labelText: "Card Number"),
+                          labelText: "Card Number".tr),
                     ),
                   ),
                   Padding(
@@ -99,8 +99,8 @@ class PaymentPage extends StatelessWidget {
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)),
                           prefixIcon: const Icon(Icons.key),
-                          labelText: "Password",
-                          hintText: "Your Account Password"),
+                          labelText: "Password".tr,
+                          hintText: "Password".tr),
                     ),
                   ),
                   ElevatedButton(
@@ -112,8 +112,8 @@ class PaymentPage extends StatelessWidget {
                         Get.find<CartController>().removeAllFromCart();
                         Get.back();
                         Future.delayed(const Duration(seconds: 1), () {
-                          Get.snackbar("Success!",
-                              "Congartulations on Your Purchase,Enjoy!");
+                          Get.snackbar("Success!".tr,
+                              "Congartulations on Your Purchase,Enjoy!".tr);
                         });
                       },
                       child: Padding(
@@ -121,9 +121,9 @@ class PaymentPage extends StatelessWidget {
                             vertical: 10,
                             horizontal:
                                 Get.find<Model>().screenWidth(context) * 0.20),
-                        child: const Text(
-                          "Confirm Purchase",
-                          style: TextStyle(
+                        child: Text(
+                          "Confirm Purchase".tr,
+                          style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w700),
                         ),
                       )),
