@@ -49,7 +49,7 @@ const Map<String, String> arabic = {
   "Settings": "اعدادات",
   "Success": "تم بنجاح",
   "Check Out": "شراء",
-  "added to the cart": "تمت اضافته للسلة",
+  "added to the cart": "اضيف/ت الى سلة مشنرياتك !",
   "Add to Cart": "اضافة للسلة",
   "Order History": "تاريخ الطلبات ",
   "' Location '": "الموقع",
@@ -96,4 +96,18 @@ const Map<String, String> arabic = {
   "Already have an account ?": "لديك حساب؟",
   "Devices": "أجهزة",
   "Home": "مفروشات",
+  "Enter Your Card info": "ادخل معلومات بطاقتك",
+  "Choose a Provider:": "اختر مزود للبطاقة:",
+  "Card Number": "رقم البطاقة",
+  "Confirm Purchase": "تأكيد عملية الشراء",
+  "Success!": "تم بنجاح !",
+  "Congartulations on Your Purchase,Enjoy!":
+      "شكرا لك, نتمنى لك الاسمتمتاع بأغراضك!",
+  "Already in": "موجود",
+  "is already in Your cart!": "موجود في سلة مشترياتك !",
+  "Stores": "المتاجر",
+  "Location": "الموقع",
+  "Enter": "ادخل",
+  "back": "رجوع",
+  " Enter Location": "ادخل موقعك "
 };

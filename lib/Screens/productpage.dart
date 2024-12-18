@@ -96,12 +96,12 @@ class ProductPage extends StatelessWidget {
                 cartController.addToCart(product);
                 //! added snackbar notify
                 product.isInCart
-                    ? Get.snackbar("Already in",
-                        "${product.name} is already in Your cart!")
+                    ? Get.snackbar("Already in".tr,
+                        "${product.name}${"is already in Your cart!".tr}")
                     : Get.snackbar(
                         colorText: MainPage.orangeColor,
                         'Success'.tr,
-                        '${product.name} added to the cart'.tr,
+                        "${product.name}${ 'added to the cart'.tr}",
                         snackPosition: SnackPosition.TOP);
               },
               text: 'Add to Cart'.tr,
