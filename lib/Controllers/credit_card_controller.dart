@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 class creditCardController extends GetxController {
@@ -17,10 +16,6 @@ class creditCardController extends GetxController {
   }
 
   bool isVisa = false;
-  void changetoVisa() {
-    isVisa = !isVisa;
-    update();
-  }
 
   String s = "XXXX - XXXX - XXXX -XXXX";
   void changenumber(String string) {

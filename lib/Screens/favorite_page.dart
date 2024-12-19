@@ -16,6 +16,7 @@ class FavoritePage extends StatelessWidget {
           if (Get.find<FavoriteController>().favoriteItems.isEmpty) {
             return Center(
                 child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
                   child: Icon(
@@ -24,8 +25,8 @@ class FavoritePage extends StatelessWidget {
                     color: MainPage.orangeColor,
                   ),
                 ),
-                const Center(
-                  child: Text('fav Page'),
+                Center(
+                  child: Text("fav Page".tr),
                 ),
               ],
             ));

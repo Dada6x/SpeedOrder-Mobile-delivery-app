@@ -8,11 +8,14 @@ import 'package:mamamia_uniproject/main_page.dart';
 class ProjectCategoriesIcons extends StatelessWidget {
   final IconData icon;
   final String categorie;
-  const ProjectCategoriesIcons({
+  String? displayedCategory;
+  ProjectCategoriesIcons({
     super.key,
     required this.icon,
     required this.categorie,
-  });
+  }) {
+    displayedCategory = "${categorie}${" "}".tr;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,6 @@ class ProjectCategoriesIcons extends StatelessWidget {
         ));
       },
       child: Card(
-        elevation: 10,
         child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -41,7 +43,7 @@ class ProjectCategoriesIcons extends StatelessWidget {
                     size: 30,
                   ),
                   Center(
-                    child: Text(categorie),
+                    child: Text(displayedCategory!),
                   ),
                 ],
               ),
@@ -62,8 +64,8 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
         Get.find<Model>().UrlLauncher(name);
         print(name);
       },
@@ -78,7 +80,6 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
             height: 70,
             child: Icon(
               icon,
-              color: Colors.white,
               size: 40,
             )),
       ),

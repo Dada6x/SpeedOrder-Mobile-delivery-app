@@ -11,12 +11,12 @@ import 'package:mamamia_uniproject/Auth/model.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => SignUpPageState();
 }
 
 class SignUpPageState extends State<SignupPage> {
+  Image? img;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Model>(
@@ -30,9 +30,29 @@ class SignUpPageState extends State<SignupPage> {
                   vertical: controller.screenHeight(context) * 0.02,
                 ),
                 child: SizedBox(
-                  width: 120,
-                  height: 150,
-                  child: MaterialButton(
+                    width: 135,
+                    height: 150,
+                    child: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const ImagePickingDialog();
+                            });
+                        img = Image(
+                            fit: BoxFit.cover,
+                            image: FileImage(Get.find<Model>().pickedImage!));
+                      },
+                      child: Get.find<Model>().imageIspicked && img != null
+                          ? CircleAvatar(
+                              backgroundImage: img!.image,
+                            )
+                          : const Icon(
+                              Icons.add_a_photo,
+                              size: 50,
+                            ),
+                    )
+                    /*MaterialButton(
                     color: MainPage.greyColor,
                     onPressed: () {
                       showDialog(
@@ -48,8 +68,8 @@ class SignUpPageState extends State<SignupPage> {
                             Icons.add_a_photo,
                             size: 50,
                           ),
-                  ),
-                ),
+                  ),*/
+                    ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -57,10 +77,7 @@ class SignUpPageState extends State<SignupPage> {
                 child: SizedBox(
                   child: TextField(
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
-                          filled: true,
                           hintText: "First Name".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
                             borderRadius:
@@ -82,10 +99,7 @@ class SignUpPageState extends State<SignupPage> {
                 child: SizedBox(
                   child: TextField(
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
-                          filled: true,
                           hintText: "Last Name".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
                             borderRadius:
@@ -107,11 +121,8 @@ class SignUpPageState extends State<SignupPage> {
                   child: TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
-                          filled: true,
                           prefixIcon: const Icon(Icons.call_outlined),
                           hintText: "Number".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: MainPage.greyColor),
                             borderRadius:
@@ -130,11 +141,8 @@ class SignUpPageState extends State<SignupPage> {
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: TextField(
                     decoration: InputDecoration(
-                        fillColor: MainPage.greyColor,
-                        filled: true,
                         prefixIcon: const Icon(Icons.key),
                         hintText: "Password".tr,
-                        hintStyle: const TextStyle(color: Colors.grey),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: MainPage.greyColor),
                           borderRadius:
@@ -155,11 +163,9 @@ class SignUpPageState extends State<SignupPage> {
               //       horizontal: controller.screenWidth(context) * 0.05),
               //   child: TextField(
               //       decoration: InputDecoration(
-              //           fillColor: MainPage.greyColor,
-              //           filled: true,
+              //
               //           prefixIcon: const Icon(Icons.location_pin),
               //           hintText: "Location",
-              //           hintStyle: const TextStyle(color: Colors.grey),
               //           enabledBorder: OutlineInputBorder(
               //             borderSide: BorderSide(color: MainPage.greyColor),
               //             borderRadius:

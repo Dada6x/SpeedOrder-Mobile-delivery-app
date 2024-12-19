@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
@@ -28,11 +29,13 @@ class CreditCard extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 20, left: 20),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 20),
                                   child: Text(
                                     'Ward Ekhtiar',
                                     style: TextStyle(
+                                        color: MainPage.orangeColor,
                                         fontWeight: FontWeight.w800,
                                         fontSize: 20),
                                   ),

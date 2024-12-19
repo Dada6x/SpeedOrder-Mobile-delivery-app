@@ -64,7 +64,7 @@ const Map<String, String> arabic = {
   "Your Cart": "سلة مشترياتك ",
   "Your cart is empty !": "   اوميقاد سلتك فارغة !",
   "Search": "البحث",
-  "Food": "طعام",
+  "Food ": "طعام",
   "Gifts": "هدايا",
   "Women": "نساء",
   "Kids": "اطفال",
@@ -75,7 +75,7 @@ const Map<String, String> arabic = {
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
   "Total:": " المجموع : ",
-  "Clothes": "ألبسة",
+  "Clothes ": "ألبسة",
   "What are you looking for?": "على ماذا تبحث؟",
   "Change Location Automatically": "تغيير المكان تلقائيا",
   "Change Location Manualy": "تغيير المكان يدويا",
@@ -94,8 +94,8 @@ const Map<String, String> arabic = {
   "Password": "كلمة السر",
   "Next": "التالي",
   "Already have an account ?": "لديك حساب؟",
-  "Devices": "أجهزة",
-  "Home": "مفروشات",
+  "Devices ": "أجهزة",
+  "Home ": "مفروشات",
   "Enter Your Card info": "ادخل معلومات بطاقتك",
   "Choose a Provider:": "اختر مزود للبطاقة:",
   "Card Number": "رقم البطاقة",
@@ -109,5 +109,6 @@ const Map<String, String> arabic = {
   "Location": "الموقع",
   "Enter": "ادخل",
   "back": "رجوع",
-  " Enter Location": "ادخل موقعك "
+  " Enter Location": "ادخل موقعك ",
+  "fav Page": "المفضلة"
 };

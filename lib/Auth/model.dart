@@ -12,7 +12,6 @@ class Model extends GetxController {
     checkLoginStatus();
   }
   Future<bool?> checkLoginStatus() async {
-    
     SharedPreferences sp = await SharedPreferences.getInstance();
     loggedin = sp.getBool("login") ?? false;
     update();
@@ -42,13 +41,11 @@ class Model extends GetxController {
   // ignore: non_constant_identifier_names
   int Buttonindex = -1;
   bool imageIspicked = false;
-  var pickedImage;
+  File? pickedImage;
   void changeImage(File pickedImage) {
     imageIspicked = true;
-    this.pickedImage = Image.file(
-      pickedImage,
-      fit: BoxFit.contain,
-    );
+    this.pickedImage = pickedImage;
+
     update();
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Auth/allsetup.dart';
+import 'package:mamamia_uniproject/components/location_dialog.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class SettingLocation extends StatelessWidget {
@@ -39,11 +40,11 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const Allsetup());
+                Get.dialog(const LocationDialog());
               },
               child: const Text(
                 maxLines: 1,
-                'Use Current Location ',
+                'Enter Location ',
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
@@ -65,7 +66,7 @@ class SettingLocation extends StatelessWidget {
               },
               child: const Text(
                 maxLines: 1,
-                'Enter manually',
+                'Skip',
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),

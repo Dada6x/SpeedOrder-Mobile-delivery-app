@@ -44,6 +44,7 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
 
 //widget thats used in search
 class search extends SearchDelegate {
+  String get searchFieldLabel => 'Search'.tr;
   @override
   List<Widget>? buildActions(BuildContext context) {
     //app bar actions in search page
@@ -97,7 +98,9 @@ class search extends SearchDelegate {
       return ListView.builder(
           itemCount: Get.find<HomePageProductController>().productList().length,
           itemBuilder: (context, index) {
-            return Get.find<HomePageProductController>().productList()[index].homeCard;
+            return Get.find<HomePageProductController>()
+                .productList()[index]
+                .homeCard;
           });
     }
   }

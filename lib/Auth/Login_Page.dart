@@ -1,4 +1,3 @@
-
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,10 +79,7 @@ class SigninPageState extends State<LoginPage> {
                             keyboardType:
                                 const TextInputType.numberWithOptions(),
                             decoration: InputDecoration(
-                                fillColor: MainPage.greyColor,
-                                filled: true,
                                 labelText: "Enter Number".tr,
-                                labelStyle: const TextStyle(color: Colors.grey),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: MainPage.greyColor),
@@ -106,10 +102,7 @@ class SigninPageState extends State<LoginPage> {
                           enteredPass = val;
                         },
                         decoration: InputDecoration(
-                            fillColor: MainPage.greyColor,
-                            filled: true,
                             labelText: "Enter Password".tr,
-                            labelStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: MainPage.greyColor),
                               borderRadius:
@@ -199,7 +192,6 @@ class SigninPageState extends State<LoginPage> {
                           if (requestbody == "") {
                             Get.off(const MainPage());
                           }
-                          print("wardadnanekhtar");
                         },
                       ),
 

@@ -13,6 +13,7 @@ class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: NormalAppBar("Enter Your Card info".tr),
       body: GetBuilder(
           init: creditCardController(),
