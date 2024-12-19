@@ -83,8 +83,8 @@ class LocationDialog extends StatelessWidget {
           child: ListView(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0, left: 10, right: 10, bottom: 25),
+                padding: const EdgeInsets.only(
+                    top: 10.0, left: 10, right: 10, bottom: 25),
                 child: Text(
                   " Enter Location".tr,
                   style: TextStyle(
@@ -117,7 +117,7 @@ class LocationDialog extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
+                    TextButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),

@@ -1,4 +1,3 @@
-
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,19 +79,26 @@ class SigninPageState extends State<LoginPage> {
                             keyboardType:
                                 const TextInputType.numberWithOptions(),
                             decoration: InputDecoration(
-                                fillColor: MainPage.greyColor,
+                                fillColor:
+                                    Theme.of(context).colorScheme.secondary,
                                 filled: true,
+                                prefixIcon: const Icon(Icons.call_outlined,
+                                    color: Colors.grey),
                                 labelText: "Enter Number".tr,
                                 labelStyle: const TextStyle(color: Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: MainPage.greyColor),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: MainPage.greyColor),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 )),
@@ -106,17 +112,23 @@ class SigninPageState extends State<LoginPage> {
                           enteredPass = val;
                         },
                         decoration: InputDecoration(
-                            fillColor: MainPage.greyColor,
+                            fillColor: Theme.of(context).colorScheme.secondary,
                             filled: true,
+                            prefixIcon:
+                                const Icon(Icons.key, color: Colors.grey),
                             labelText: "Enter Password".tr,
                             labelStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MainPage.greyColor),
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MainPage.greyColor),
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             )),
@@ -146,25 +158,22 @@ class SigninPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.facebook,
-                              name: "facebook",
-                            ),
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.instagram,
-                              name: "instagram",
-                            ),
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.twitter,
-                              name: "twitter",
-                            ),
-                          ],
-                        ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.facebook,
+                            name: "facebook",
+                          ),
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.instagram,
+                            name: "instagram",
+                          ),
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.twitter,
+                            name: "twitter",
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: controller.screenHeight(context) * 0.02,

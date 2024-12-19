@@ -78,7 +78,7 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
             height: 70,
             child: Icon(
               icon,
-              color: Colors.white,
+              color: MainPage.orangeColor,
               size: 40,
             )),
       ),

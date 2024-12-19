@@ -42,6 +42,13 @@ const Map<String, String> english = {
   "What are you looking for?": "What are you looking for?",
   "Change Location Automatically": "Change Location Automatically",
   "Change Location Manualy": "Change Location Manualy",
+  " Enter Location": "Enter Location ",
+  "Grant Current Location": "Grant Current Location",
+  "this let us show nearby stores": "this let us show nearby stores",
+  "and you can order form ": "and you can order form ",
+  "Use Current Location ": "Use Current Location ",
+  "Enter manually": "Enter manually",
+  "You are all set Up ":"You are all set Up ",
   // "Where Quality and Efficiency Meet.": "Where Quality and Efficiency Meet."
 };
 
@@ -83,6 +90,7 @@ const Map<String, String> arabic = {
   "Number": "رقم",
   "Enter Number": " ادخل رقم",
   "Enter Password": "ادخل كلمة السر",
+  "Log in": "تسجيل دخول",
   "Sign in": "تسجيل دخول",
   "Sign Up": "إنشاء حساب",
   "Don`t Have an Account?": "ليس لديك حساب؟",
@@ -101,7 +109,7 @@ const Map<String, String> arabic = {
   "Card Number": "رقم البطاقة",
   "Confirm Purchase": "تأكيد عملية الشراء",
   "Success!": "تم بنجاح !",
-  "Congartulations on Your Purchase,Enjoy!":
+  "Congratulations on Your Purchase,Enjoy!":
       "شكرا لك, نتمنى لك الاسمتمتاع بأغراضك!",
   "Already in": "موجود",
   "is already in Your cart!": "موجود في سلة مشترياتك !",
@@ -109,5 +117,12 @@ const Map<String, String> arabic = {
   "Location": "الموقع",
   "Enter": "ادخل",
   "back": "رجوع",
-  " Enter Location": "ادخل موقعك "
+  //1
+  " Enter Location": "ادخل موقعك ",
+  "Grant Current Location": "الحصول على موقعك الحالي",
+  "this let us show nearby stores": "هذا يمكننا من عرض المتاجر القريبة",
+  "and you can order form ": "ويمكنك الطلب منها",
+  "Use Current Location ": "استخدام موقعي الحالي",
+  "Enter manually": "الادخال بشكل يدوي",
+  "You are all set Up ":"انت جاهز !F",
 };

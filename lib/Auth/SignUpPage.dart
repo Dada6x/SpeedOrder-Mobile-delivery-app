@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/Auth/setLocation.dart';
+import 'package:mamamia_uniproject/Auth/location/setLocation.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -23,190 +23,189 @@ class SignUpPageState extends State<SignupPage> {
       builder: (controller) {
         return Scaffold(
           appBar: NormalAppBar('Enter your info'.tr),
-          body: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: controller.screenHeight(context) * 0.02,
-                ),
-                child: SizedBox(
-                  width: 120,
-                  height: 150,
-                  child: MaterialButton(
-                    color: MainPage.greyColor,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const ImagePickingDialog();
-                          });
-                    },
-                    shape: const CircleBorder(),
-                    child: Get.find<Model>().imageIspicked
-                        ? Get.find<Model>().pickedImage
-                        : const Icon(
-                            Icons.add_a_photo,
-                            size: 50,
-                          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: controller.screenHeight(context) * 0.02,
+                  ),
+                  child: SizedBox(
+                    width: 120,
+                    height: 150,
+                    child: MaterialButton(
+                      color: Theme.of(context).colorScheme.secondary,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const ImagePickingDialog();
+                            });
+                      },
+                      shape: const CircleBorder(),
+                      child: Get.find<Model>().imageIspicked
+                          ? Get.find<Model>().pickedImage
+                          : const Icon(
+                              Icons.add_a_photo,
+                              size: 50,
+                            ),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: controller.screenWidth(context) * 0.05),
-                child: SizedBox(
-                  child: TextField(
-                      decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
-                          filled: true,
-                          hintText: "First Name".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ))),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: SizedBox(
+                    child: TextField(
+                        decoration: InputDecoration(
+                            fillColor: Theme.of(context).colorScheme.secondary,
+                            filled: true,
+                            hintText: "First Name".tr,
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ))),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: controller.screenHeight(context) * 0.03,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: controller.screenWidth(context) * 0.05),
-                child: SizedBox(
-                  child: TextField(
-                      decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
-                          filled: true,
-                          hintText: "Last Name".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ))),
+                SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
                 ),
-              ),
-              SizedBox(
-                height: controller.screenHeight(context) * 0.03,
-              ),
-              Padding(
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: SizedBox(
+                    child: TextField(
+                        decoration: InputDecoration(
+                            fillColor: Theme.of(context).colorScheme.secondary,
+                            filled: true,
+                            hintText: "Last Name".tr,
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ))),
+                  ),
+                ),
+                SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: controller.screenWidth(context) * 0.05),
+                    child: TextField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            fillColor: Theme.of(context).colorScheme.secondary,
+                            filled: true,
+                            prefixIcon: const Icon(Icons.call_outlined,
+                                color: Colors.grey),
+                            hintText: "Number".tr,
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                            )))),
+                SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
+                ),
+                Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: controller.screenWidth(context) * 0.05),
                   child: TextField(
-                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
+                          fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          prefixIcon: const Icon(Icons.call_outlined),
-                          hintText: "Number".tr,
-                          hintStyle: const TextStyle(color: Colors.grey),
+                          prefixIcon: const Icon(Icons.key, color: Colors.grey),
+                          hintText: "Password".tr,
+                          hintStyle: const TextStyle(
+                            color: Colors.grey,
+                          ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                          )))),
-              SizedBox(
-                height: controller.screenHeight(context) * 0.03,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: controller.screenWidth(context) * 0.05),
-                child: TextField(
-                    decoration: InputDecoration(
-                        fillColor: MainPage.greyColor,
-                        filled: true,
-                        prefixIcon: const Icon(Icons.key),
-                        hintText: "Password".tr,
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MainPage.greyColor),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MainPage.greyColor),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                        ))),
-              ),
-              SizedBox(
-                height: controller.screenHeight(context) * 0.03,
-              ),
-//! wards location
-              // Padding(
-              //   padding: EdgeInsets.symmetric(
-              //       horizontal: controller.screenWidth(context) * 0.05),
-              //   child: TextField(
-              //       decoration: InputDecoration(
-              //           fillColor: MainPage.greyColor,
-              //           filled: true,
-              //           prefixIcon: const Icon(Icons.location_pin),
-              //           hintText: "Location",
-              //           hintStyle: const TextStyle(color: Colors.grey),
-              //           enabledBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(color: MainPage.greyColor),
-              //             borderRadius:
-              //                 const BorderRadius.all(Radius.circular(10)),
-              //           ),
-              //           focusedBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(color: MainPage.greyColor),
-              //             borderRadius:
-              //                 const BorderRadius.all(Radius.circular(10)),
-              //           ))),
-              // ),
-              SizedBox(
-                height: Get.find<Model>().screenHeight(context) * 0.03,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                child: ProjectButton(
-                  text: 'Next'.tr,
-                  width: controller.screenWidth(context),
-                  function: () {
-                    Get.off(const SettingLocation());
-                  },
+                          ))),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account ?".tr,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w700, color: Colors.grey),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.off(const LoginPage());
+                SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
+                ),
+                //! wards location
+
+                SizedBox(
+                  height: Get.find<Model>().screenHeight(context) * 0.03,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                  child: ProjectButton(
+                    text: 'Next'.tr,
+                    width: controller.screenWidth(context),
+                    function: () {
+                      Get.off(const SettingLocation());
                     },
-                    child: Text(
-                      "Sign in".tr,
-                      style: TextStyle(
-                          color: MainPage.orangeColor,
-                          fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account ?".tr,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700, color: Colors.grey),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    TextButton(
+                      onPressed: () {
+                        Get.off(const LoginPage());
+                      },
+                      child: Text(
+                        "Log in".tr,
+                        style: TextStyle(
+                            color: MainPage.orangeColor,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       },

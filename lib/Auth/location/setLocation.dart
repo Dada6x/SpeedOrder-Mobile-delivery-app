@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/allsetup.dart';
+import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class SettingLocation extends StatelessWidget {
@@ -19,14 +19,14 @@ class SettingLocation extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-          const Center(
+          Center(
             child: Text(
-              'Grant Current Location',
+              'Grant Current Location'.tr,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-          const Center(child: Text('this let us show nearby stores')),
-          const Center(child: Text('and you can order form ')),
+          Center(child: Text('this let us show nearby stores'.tr)),
+          Center(child: Text('and you can order form '.tr)),
           const SizedBox(
             height: 20,
           ),
@@ -41,9 +41,9 @@ class SettingLocation extends StatelessWidget {
               onPressed: () {
                 Get.off(const Allsetup());
               },
-              child: const Text(
+              child: Text(
                 maxLines: 1,
-                'Use Current Location ',
+                'Use Current Location '.tr,
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
@@ -63,9 +63,9 @@ class SettingLocation extends StatelessWidget {
               onPressed: () {
                 Get.off(const Allsetup());
               },
-              child: const Text(
+              child: Text(
                 maxLines: 1,
-                'Enter manually',
+                'Enter manually'.tr,
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),

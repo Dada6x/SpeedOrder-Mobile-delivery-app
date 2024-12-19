@@ -19,8 +19,8 @@ class Allsetup extends StatelessWidget {
                   onPressed: () {
                     Get.off(const MainPage());
                   },
-                  child: const Text(
-                    'Next',
+                  child:  Text(
+                    'Next'.tr,
                   )),
             ),
           ),
@@ -37,8 +37,8 @@ class Allsetup extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-          const Text(
-            'You are all set Up ',
+           Text(
+            'You are all set Up '.tr,
             style: TextStyle(
               fontSize: 20,
             ),
