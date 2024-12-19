@@ -14,7 +14,7 @@ class ProjectCategoriesIcons extends StatelessWidget {
     required this.icon,
     required this.categorie,
   }) {
-    displayedCategory = "${categorie}${" "}".tr;
+    displayedCategory = "$categorie${" "}".tr;
   }
 
   @override

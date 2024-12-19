@@ -44,6 +44,7 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
 
 //widget thats used in search
 class search extends SearchDelegate {
+  @override
   String get searchFieldLabel => 'Search'.tr;
   @override
   List<Widget>? buildActions(BuildContext context) {
