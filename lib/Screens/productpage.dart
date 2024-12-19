@@ -33,10 +33,11 @@ class ProductPage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.share)),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: LikeButton(),
-              )
+              
+              // const Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: LikeButton(),
+              // )
             ],
           )
         ],
