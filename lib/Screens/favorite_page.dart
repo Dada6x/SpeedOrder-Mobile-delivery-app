@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -22,7 +21,7 @@ class FavoritePage extends StatelessWidget {
                   child: Icon(
                     Icons.favorite,
                     size: 50,
-                    color: MainPage.orangeColor,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 Center(

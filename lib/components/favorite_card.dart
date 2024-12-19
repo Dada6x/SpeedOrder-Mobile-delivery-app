@@ -4,7 +4,7 @@ import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 class FavoriteCard extends StatelessWidget {
   int? indexinList;
@@ -72,7 +72,7 @@ class FavoriteCard extends StatelessWidget {
                             //! product price @cart
                             '${product.price} \$',
                             style: TextStyle(
-                                color: MainPage.orangeColor,
+                                                              color: Theme.of(context).colorScheme.primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -96,7 +96,7 @@ class FavoriteCard extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.close,
-                              color: MainPage.orangeColor,
+                                                            color: Theme.of(context).colorScheme.primary,
                               size: 30,
                             ))
                       ],

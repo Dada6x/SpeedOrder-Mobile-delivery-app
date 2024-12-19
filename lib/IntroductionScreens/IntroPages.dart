@@ -56,7 +56,7 @@ class _IntroPagesState extends State<IntroPages> {
                 controller: _pageController,
                 count: 3,
                 effect: ExpandingDotsEffect(
-                  activeDotColor: Colors.grey.shade500,
+                  activeDotColor: Theme.of(context).colorScheme.primary,
                   dotColor: Colors.grey.shade300,
                 ),
               ),

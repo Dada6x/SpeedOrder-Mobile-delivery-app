@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 // this is the product card in the cart page it have delete button to delete it
 
@@ -61,7 +61,7 @@ class ProjectProductCartCard extends StatelessWidget {
                           //! product price @cart
                           '${product.price} \$',
                           style: TextStyle(
-                              color: MainPage.orangeColor,
+                              color: Theme.of(context).colorScheme.primary,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),
@@ -78,7 +78,8 @@ class ProjectProductCartCard extends StatelessWidget {
                     children: [
                       IconButton(
                           style: IconButton.styleFrom(
-                            backgroundColor: MainPage.orangeColor,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
                             padding: const EdgeInsets.all(12),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),

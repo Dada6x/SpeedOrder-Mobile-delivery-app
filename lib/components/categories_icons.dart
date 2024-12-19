@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/Categories_page.dart';
 
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 class ProjectCategoriesIcons extends StatelessWidget {
   final IconData icon;
@@ -39,7 +39,7 @@ class ProjectCategoriesIcons extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    color: MainPage.orangeColor,
+                    color: Theme.of(context).colorScheme.primary,
                     size: 30,
                   ),
                   Center(
@@ -80,6 +80,7 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
             height: 70,
             child: Icon(
               icon,
+              color: Theme.of(context).colorScheme.primary,
               size: 40,
             )),
       ),

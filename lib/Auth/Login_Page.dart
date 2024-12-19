@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
-import 'package:mamamia_uniproject/components/normal_appbar.dart';
+import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,7 +30,16 @@ class SigninPageState extends State<LoginPage> {
         init: Model(),
         builder: (controller) => Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: NormalAppBar("Welcome !".tr),
+              appBar: AppBar(
+                title: Text(
+                  "Welcome !".tr,
+                  style: const TextStyle(fontSize: 30),
+                ),
+                actions: const [
+                  ThemeToggleButtonIcon(),
+                  LanguageToggleButtonIcon(),
+                ],
+              ),
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -44,7 +54,7 @@ class SigninPageState extends State<LoginPage> {
                         child: Text(
                           "SpeedOrder",
                           style: TextStyle(
-                              color: MainPage.orangeColor,
+                              color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w800,
                               fontSize:
                                   controller.screenWidth(context) * 0.155),
@@ -79,16 +89,25 @@ class SigninPageState extends State<LoginPage> {
                             keyboardType:
                                 const TextInputType.numberWithOptions(),
                             decoration: InputDecoration(
+                                fillColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                filled: true,
+                                prefixIcon: const Icon(Icons.call_outlined,
+                                    color: Colors.grey),
                                 labelText: "Enter Number".tr,
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: MainPage.greyColor),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: MainPage.greyColor),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 )),
@@ -102,14 +121,22 @@ class SigninPageState extends State<LoginPage> {
                           enteredPass = val;
                         },
                         decoration: InputDecoration(
+                            fillColor: Theme.of(context).colorScheme.secondary,
+                            filled: true,
+                            prefixIcon:
+                                const Icon(Icons.key, color: Colors.grey),
                             labelText: "Enter Password".tr,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MainPage.greyColor),
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MainPage.greyColor),
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             )),
@@ -139,25 +166,22 @@ class SigninPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.facebook,
-                              name: "facebook",
-                            ),
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.instagram,
-                              name: "instagram",
-                            ),
-                            ProjectCategoriesIconsWithoutLabel(
-                              icon: FontAwesomeIcons.twitter,
-                              name: "twitter",
-                            ),
-                          ],
-                        ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.facebook,
+                            name: "facebook",
+                          ),
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.instagram,
+                            name: "instagram",
+                          ),
+                          ProjectCategoriesIconsWithoutLabel(
+                            icon: FontAwesomeIcons.twitter,
+                            name: "twitter",
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: controller.screenHeight(context) * 0.02,
@@ -214,7 +238,7 @@ class SigninPageState extends State<LoginPage> {
                             child: Text(
                               "Sign Up".tr,
                               style: TextStyle(
-                                  color: MainPage.orangeColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.w700),
                             ),
                           )

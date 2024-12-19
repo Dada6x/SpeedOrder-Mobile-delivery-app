@@ -4,6 +4,7 @@ import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
+
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
 
@@ -19,6 +20,7 @@ class CreditCard extends StatelessWidget {
                       top: Get.find<Model>().screenHeight(context) * 0.1),
                   child: Card(
                     elevation: 15,
+                    color: Theme.of(context).colorScheme.primary,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(
@@ -34,6 +36,7 @@ class CreditCard extends StatelessWidget {
                                       const EdgeInsets.only(top: 20, left: 20),
                                   child: Text(
                                     'Ward Ekhtiar',
+                                    //! should be the user name
                                     style: TextStyle(
                                         color: MainPage.orangeColor,
                                         fontWeight: FontWeight.w800,
@@ -46,11 +49,12 @@ class CreditCard extends StatelessWidget {
                                     child: SizedBox(
                                         height: 30,
                                         width: 60,
-                                        child: Image.asset(Get.find<
-                                                    creditCardController>()
-                                                .isVisa
-                                            ? "assets/images/visa.png"
-                                            : "assets/images/mastercard.png")))
+                                        child: Image.asset(
+                                          Get.find<creditCardController>()
+                                                  .isVisa
+                                              ? "assets/images/visa.png"
+                                              : "assets/images/mastercard.png",
+                                        )))
                               ],
                             ),
                             Padding(

@@ -20,6 +20,7 @@ PreferredSizeWidget ProjectAppBar_homePage() {
             onTap: () => Get.to(const ProfilePage()),
             child: const CircleAvatar(
               radius: 10,
+              //! THE USER IMAGE
               backgroundImage: AssetImage('assets/images/weekend.png'),
             ),
           ),

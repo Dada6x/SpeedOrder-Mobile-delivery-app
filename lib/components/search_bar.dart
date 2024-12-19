@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 class ProjectSearchBar extends StatefulWidget {
   const ProjectSearchBar({super.key});
@@ -27,7 +27,7 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
                   hintText: "What are you looking for?".tr,
                   hintStyle: const TextStyle(color: Colors.grey),
                   prefixIcon: const Icon(Icons.search),
-                  prefixIconColor: MainPage.orangeColor,
+                  prefixIconColor: Theme.of(context).colorScheme.primary,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                   focusedBorder: OutlineInputBorder(
