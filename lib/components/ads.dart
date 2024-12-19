@@ -24,47 +24,52 @@ Ad(String adimageassets) {
 }
 
 // the dots that moves under the ads
-Widget AdsIndicator(controller) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: SizedBox(
-      height: 120,
-      child: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                PageView(
-                  controller: controller,
-                  children: [
-                    //! make the children takes String assets bruh
-                    //! the ads should be images
-                    Ad("assets/images/clothesPoster.jpg"),
-                    Ad("assets/images/furniturePoster.jpg"),
-                    Ad("assets/images/clothesPoster.jpg"),
-                    Ad("assets/images/clothesPoster.jpg"),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: SmoothPageIndicator(
-                controller: controller,
-                count: 4,
-                effect: ExpandingDotsEffect(
-                    activeDotColor: MainPage.orangeColor,
-                    dotHeight: 10,
-                    dotWidth: 10,
-                    dotColor: Colors.grey),
+class AdsIndicator extends StatelessWidget {
+  PageController controller;
+  AdsIndicator({super.key, required this.controller});
+
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: 120,
+        child: Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  PageView(
+                    controller: controller,
+                    children: [
+                      //! make the children takes String assets bruh
+                      //! the ads should be images
+                      Ad("assets/images/clothesPoster.jpg"),
+                      Ad("assets/images/furniturePoster.jpg"),
+                      Ad("assets/images/clothesPoster.jpg"),
+                      Ad("assets/images/furniturePoster.jpg"),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: SmoothPageIndicator(
+                  controller: controller,
+                  count: 4,
+                  effect: ExpandingDotsEffect(
+                      activeDotColor: Theme.of(context).colorScheme.primary,
+                      dotHeight: 10,
+                      dotWidth: 10,
+                      dotColor: Colors.grey),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

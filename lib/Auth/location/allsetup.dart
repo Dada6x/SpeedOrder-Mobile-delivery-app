@@ -39,7 +39,7 @@ class Allsetup extends StatelessWidget {
           ),
            Text(
             'You are all set Up '.tr,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
             ),
           ),

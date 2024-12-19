@@ -24,7 +24,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
           //! search Bar
           const ProjectSearchBar(),
           //! Ads shit
-          AdsIndicator(pageController),
+          AdsIndicator(controller: pageController,),
           Align(
             alignment: Get.locale?.languageCode == 'ar'
                 ? Alignment.centerRight // Align right for Arabic
@@ -48,7 +48,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                   ProjectCategoriesIcons(
                       icon: Icons.fastfood_outlined, categorie: 'Food'.tr),
                   ProjectCategoriesIcons(
-                      icon: SolarIconsBold.tShirt, categorie: 'Clothes'.tr),
+                      icon: SolarIconsOutline.tShirt, categorie: 'Clothes'.tr),
                   ProjectCategoriesIcons(
                       icon: Icons.monitor, categorie: 'Devices'.tr),
                   ProjectCategoriesIcons(
