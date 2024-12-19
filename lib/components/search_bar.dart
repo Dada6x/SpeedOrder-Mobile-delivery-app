@@ -27,7 +27,7 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
                   hintText: "What are you looking for?".tr,
                   hintStyle: const TextStyle(color: Colors.grey),
                   prefixIcon: const Icon(Icons.search),
-                  prefixIconColor: MainPage.orangeColor,
+                  prefixIconColor: Theme.of(context).colorScheme.primary,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                   focusedBorder: OutlineInputBorder(
@@ -97,7 +97,9 @@ class search extends SearchDelegate {
       return ListView.builder(
           itemCount: Get.find<HomePageProductController>().productList().length,
           itemBuilder: (context, index) {
-            return Get.find<HomePageProductController>().productList()[index].homeCard;
+            return Get.find<HomePageProductController>()
+                .productList()[index]
+                .homeCard;
           });
     }
   }

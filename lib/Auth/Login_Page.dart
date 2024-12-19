@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
+import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,7 +31,17 @@ class SigninPageState extends State<LoginPage> {
         init: Model(),
         builder: (controller) => Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: NormalAppBar("Welcome !".tr),
+              // appBar: NormalAppBar("Welcome !".tr),
+              appBar: AppBar(
+                title: Text(
+                  "Welcome !".tr,
+                  style: const TextStyle(fontSize: 30),
+                ),
+                actions: const [
+                  ThemeToggleButtonIcon(),
+                  LanguageToggleButtonIcon(),
+                ],
+              ),
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -44,7 +56,7 @@ class SigninPageState extends State<LoginPage> {
                         child: Text(
                           "SpeedOrder",
                           style: TextStyle(
-                              color: MainPage.orangeColor,
+                              color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w800,
                               fontSize:
                                   controller.screenWidth(context) * 0.155),
@@ -231,7 +243,7 @@ class SigninPageState extends State<LoginPage> {
                             child: Text(
                               "Sign Up".tr,
                               style: TextStyle(
-                                  color: MainPage.orangeColor,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.w700),
                             ),
                           )

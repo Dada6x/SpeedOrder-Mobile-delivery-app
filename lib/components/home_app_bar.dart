@@ -89,7 +89,7 @@ class LocationDialog extends StatelessWidget {
                   " Enter Location".tr,
                   style: TextStyle(
                       fontSize: 20,
-                      color: MainPage.orangeColor,
+                                                    color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w800),
                 ),
               ),
@@ -99,7 +99,7 @@ class LocationDialog extends StatelessWidget {
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.location_pin,
-                        color: MainPage.orangeColor,
+                                                      color: Theme.of(context).colorScheme.primary,
                       ),
                       hintText: "Location".tr,
                       hintStyle: const TextStyle(
@@ -131,7 +131,7 @@ class LocationDialog extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             foregroundColor: Colors.white,
-                            backgroundColor: MainPage.orangeColor),
+                            backgroundColor: Theme.of(context).colorScheme.primary),
                         onPressed: () {},
                         child: Text("Enter".tr)),
                   ],

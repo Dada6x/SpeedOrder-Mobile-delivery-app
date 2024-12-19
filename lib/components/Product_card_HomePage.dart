@@ -8,7 +8,6 @@ import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
-
 class Product {
   //added a class of products,might add a product id if the backend wants it
   String imageLink;
@@ -141,7 +140,9 @@ class ProjectProductCartCardHome extends StatelessWidget {
                                     icon: product.isFavored
                                         ? Icon(
                                             Icons.favorite,
-                                            color: MainPage.orangeColor,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           )
                                         : const Icon(Icons.favorite_outline))),
                             Padding(
@@ -150,7 +151,8 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               child: Text(
                                 '${product.price}\$',
                                 style: TextStyle(
-                                    color: MainPage.orangeColor,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),

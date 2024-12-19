@@ -72,7 +72,7 @@ class FavoriteCard extends StatelessWidget {
                             //! product price @cart
                             '${product.price} \$',
                             style: TextStyle(
-                                color: MainPage.orangeColor,
+                                                              color: Theme.of(context).colorScheme.primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -96,7 +96,7 @@ class FavoriteCard extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.close,
-                              color: MainPage.orangeColor,
+                                                            color: Theme.of(context).colorScheme.primary,
                               size: 30,
                             ))
                       ],

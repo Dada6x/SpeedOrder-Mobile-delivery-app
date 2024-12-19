@@ -37,7 +37,7 @@ class ProjectCategoriesIcons extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    color: MainPage.orangeColor,
+                    color: Theme.of(context).colorScheme.primary,
                     size: 30,
                   ),
                   Center(
@@ -78,7 +78,7 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
             height: 70,
             child: Icon(
               icon,
-              color: MainPage.orangeColor,
+              color: Theme.of(context).colorScheme.primary,
               size: 40,
             )),
       ),

@@ -7,13 +7,16 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 //the images will be static for the program the user never use them
 // maybe  just the admin
 
-Ad(Color color) {
+Ad(String adimageassets) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
       decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(adimageassets),
+          fit: BoxFit.fill,
+        ),
         borderRadius: BorderRadius.circular(15),
-        color: color,
       ),
       height: 100,
     ),
@@ -36,8 +39,10 @@ Widget AdsIndicator(controller) {
                   children: [
                     //! make the children takes String assets bruh
                     //! the ads should be images
-                    Ad(MainPage.orangeColor), Ad(Colors.pink), Ad(Colors.teal),
-                    Ad(Colors.blueGrey),
+                    Ad("assets/images/clothesPoster.jpg"),
+                    Ad("assets/images/furniturePoster.jpg"),
+                    Ad("assets/images/clothesPoster.jpg"),
+                    Ad("assets/images/clothesPoster.jpg"),
                   ],
                 ),
               ],

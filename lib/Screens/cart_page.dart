@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/payment_page.dart';
+import 'package:mamamia_uniproject/Screens/payment_page.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 

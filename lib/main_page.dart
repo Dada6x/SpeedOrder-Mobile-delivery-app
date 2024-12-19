@@ -61,8 +61,7 @@ class _MainPageState extends State<MainPage> {
                   ? Icon(
                       size: 30,
                       Icons.store,
-                      color: MainPage.orangeColor,
-                    )
+                      color: Theme.of(context).colorScheme.primary)
                   : const Icon(
                       size: 30,
                       Icons.store_outlined,
@@ -71,8 +70,7 @@ class _MainPageState extends State<MainPage> {
                   ? Icon(
                       size: 30,
                       Icons.shopping_cart,
-                      color: MainPage.orangeColor,
-                    )
+                      color: Theme.of(context).colorScheme.primary)
                   : const Icon(
                       size: 30,
                       Icons.shopping_cart_outlined,
@@ -81,8 +79,7 @@ class _MainPageState extends State<MainPage> {
                   ? Icon(
                       size: 30,
                       Icons.home,
-                      color: MainPage.orangeColor,
-                    )
+                      color: Theme.of(context).colorScheme.primary)
                   : const Icon(
                       size: 30,
                       Icons.home_outlined,
@@ -91,18 +88,14 @@ class _MainPageState extends State<MainPage> {
                   ? Icon(
                       size: 30,
                       Icons.favorite,
-                      color: MainPage.orangeColor,
-                    )
+                      color: Theme.of(context).colorScheme.primary)
                   : const Icon(
                       size: 30,
                       Icons.favorite_outline,
                     ),
               index == 4
-                  ? Icon(
-                      Icons.person,
-                      size: 30,
-                      color: MainPage.orangeColor,
-                    )
+                  ? Icon(Icons.person,
+                      size: 30, color: Theme.of(context).colorScheme.primary)
                   : const Icon(
                       Icons.person_2_outlined,
                       size: 30,

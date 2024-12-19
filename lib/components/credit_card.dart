@@ -19,7 +19,7 @@ class CreditCard extends StatelessWidget {
                       top: Get.find<Model>().screenHeight(context) * 0.1),
                   child: Card(
                     elevation: 15,
-                    color: MainPage.orangeColor,
+                    color: Theme.of(context).colorScheme.primary,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(

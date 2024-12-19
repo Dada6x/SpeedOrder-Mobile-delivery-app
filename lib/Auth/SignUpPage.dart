@@ -198,7 +198,7 @@ class SignUpPageState extends State<SignupPage> {
                       child: Text(
                         "Log in".tr,
                         style: TextStyle(
-                            color: MainPage.orangeColor,
+                            color: Theme.of(context).colorScheme.primary,
                             fontWeight: FontWeight.w700),
                       ),
                     )

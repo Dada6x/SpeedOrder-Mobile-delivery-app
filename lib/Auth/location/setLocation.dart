@@ -35,7 +35,7 @@ class SettingLocation extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(290, 45),
-                  backgroundColor: MainPage.orangeColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
@@ -57,7 +57,7 @@ class SettingLocation extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(290, 45),
-                  backgroundColor: MainPage.orangeColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {

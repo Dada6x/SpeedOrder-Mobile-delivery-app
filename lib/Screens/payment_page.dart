@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -120,15 +121,16 @@ class PaymentPage extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
-                            backgroundColor: MainPage.orangeColor),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary),
                         onPressed: () {
                           Get.find<CartController>().removeAllFromCart();
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {
                             Get.snackbar(
+                              colorText: Theme.of(context).colorScheme.primary,
                               "Success!".tr,
-                              "Congratulations on Your Purchase,Enjoy!".tr,
-                              colorText: MainPage.orangeColor,
+                              "Congartulations on Your Purchase,Enjoy!".tr,
                             );
                           });
                         },
