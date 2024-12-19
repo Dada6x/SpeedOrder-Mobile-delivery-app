@@ -8,6 +8,7 @@ import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
+
 class Product {
   //added a class of products,might add a product id if the backend wants it
   String imageLink;

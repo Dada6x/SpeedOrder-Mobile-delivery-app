@@ -30,7 +30,7 @@ PreferredSizeWidget ProjectAppBar_homePage() {
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(elevation: 8),
               onPressed: () {
-                Get.dialog(barrierDismissible: false, LocationDialog());
+                Get.dialog(barrierDismissible: false, const LocationDialog());
                 /*Get.bottomSheet(
                     isDismissible: true,
                     BottomSheet(
@@ -84,7 +84,7 @@ class LocationDialog extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(top: 10.0, left: 10, right: 10, bottom: 25),
+                    const EdgeInsets.only(top: 10.0, left: 10, right: 10, bottom: 25),
                 child: Text(
                   " Enter Location".tr,
                   style: TextStyle(
@@ -103,12 +103,12 @@ class LocationDialog extends StatelessWidget {
                       ),
                       hintText: "Location".tr,
                       hintStyle: const TextStyle(
-                          color: const Color.fromARGB(170, 158, 158, 158)),
+                          color: Color.fromARGB(170, 158, 158, 158)),
                       enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(20)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(20))),
                 ),
               ),
