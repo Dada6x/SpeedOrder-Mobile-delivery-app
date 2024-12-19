@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -20,11 +19,11 @@ class SettingsPage extends StatelessWidget {
           ProjectDivider(),
           //! changing the language button
           Padding(
-            padding: const EdgeInsets.only(left: 12,right: 12),
+            padding: const EdgeInsets.only(left: 12, right: 12),
             child: ListTile(
               leading: Icon(
                 Icons.translate,
-                  color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primary,
               ),
               title: Text(
                 "Change language".tr,

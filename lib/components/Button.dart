@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 // this is button that takes string and width and function
 class ProjectButton extends StatelessWidget {

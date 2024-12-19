@@ -27,6 +27,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> screens = [
     //removed the search page from here cuz i think this the list used for navigation bar pages
     //search screen is in search_bar.dart;
+    //yahea: Good Job !!
     const StoresPage(),
     const CartPage(),
     const Test(),
@@ -37,7 +38,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  😠###########
+        //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  ###########
         bottomNavigationBar: Directionality(
           textDirection: TextDirection.ltr,
           child: CurvedNavigationBar(

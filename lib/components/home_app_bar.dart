@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 PreferredSizeWidget ProjectAppBar_homePage() {
   return PreferredSize(
@@ -21,6 +21,7 @@ PreferredSizeWidget ProjectAppBar_homePage() {
             onTap: () => Get.to(const ProfilePage()),
             child: const CircleAvatar(
               radius: 10,
+              //! THE USER IMAGE
               backgroundImage: AssetImage('assets/images/weekend.png'),
             ),
           ),

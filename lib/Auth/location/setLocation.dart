@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 class SettingLocation extends StatelessWidget {
   const SettingLocation({super.key});

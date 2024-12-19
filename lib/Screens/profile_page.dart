@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/theme/theme_controller.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

@@ -5,7 +5,6 @@ import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
 import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
-import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +30,6 @@ class SigninPageState extends State<LoginPage> {
         init: Model(),
         builder: (controller) => Scaffold(
               resizeToAvoidBottomInset: false,
-              // appBar: NormalAppBar("Welcome !".tr),
               appBar: AppBar(
                 title: Text(
                   "Welcome !".tr,
