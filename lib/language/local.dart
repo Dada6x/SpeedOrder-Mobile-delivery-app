@@ -48,7 +48,7 @@ const Map<String, String> english = {
   "and you can order form ": "and you can order form ",
   "Use Current Location ": "Use Current Location ",
   "Enter manually": "Enter manually",
-  "You are all set Up ":"You are all set Up ",
+  "You are all set Up ": "You are all set Up ",
   // "Where Quality and Efficiency Meet.": "Where Quality and Efficiency Meet."
 };
 
@@ -118,12 +118,13 @@ const Map<String, String> arabic = {
   "Enter": "ادخل",
   "back": "رجوع",
   "fav Page": "المفضلة",
-  
+  "Skip": "تخطي",
   " Enter Location": "ادخل موقعك ",
   "Grant Current Location": "الحصول على موقعك الحالي",
   "this let us show nearby stores": "هذا يمكننا من عرض المتاجر القريبة",
   "and you can order form ": "ويمكنك الطلب منها",
   "Use Current Location ": "استخدام موقعي الحالي",
   "Enter manually": "الادخال بشكل يدوي",
-  "You are all set Up ":"انت جاهز !F",
+  "You are all set Up ": "انت جاهز !",
+  "Enter Card info": "ادخل معلومات بطاقتك",
 };

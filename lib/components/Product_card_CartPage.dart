@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
-
 // this is the product card in the cart page it have delete button to delete it
 
 class ProjectProductCartCard extends StatelessWidget {
@@ -51,8 +50,7 @@ class ProjectProductCartCard extends StatelessWidget {
                       Text(
                         //! product name @cart
                         product.name,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       ),
                       Text(product.description),
                       Padding(
