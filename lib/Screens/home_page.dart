@@ -46,13 +46,13 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ProjectCategoriesIcons(
-                      icon: Icons.fastfood_outlined, categorie: 'Food'.tr),
+                      icon: Icons.fastfood_outlined, categorie: 'Food'),
                   ProjectCategoriesIcons(
                       icon: SolarIconsOutline.tShirt, categorie: 'Clothes'.tr),
                   ProjectCategoriesIcons(
-                      icon: Icons.monitor, categorie: 'Devices'.tr),
+                      icon: Icons.monitor, categorie: 'Devices'),
                   ProjectCategoriesIcons(
-                      icon: SolarIconsOutline.home1, categorie: 'Home'.tr),
+                      icon: SolarIconsOutline.home1, categorie: 'Home'),
                   //! when clicked the most popular must change and the product info below
                   // i know its should not be static info but for now thats what i got :F
                   //! enums??

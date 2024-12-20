@@ -16,11 +16,13 @@ class CategoriesPage extends StatelessWidget {
         .where(
             (element) => element.category.isCaseInsensitiveContains(Category))
         .toList();
+    print(Category);
   }
   @override
   Widget build(BuildContext context) {
+    String chosenCategory = "$Category${" "}".tr;
     return Scaffold(
-      appBar: NormalAppBar(Category),
+      appBar: NormalAppBar(chosenCategory),
       body: ListView.builder(
           itemCount: filteredList!.length,
           itemBuilder: (context, index) {

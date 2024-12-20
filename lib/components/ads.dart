@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -28,6 +27,7 @@ class AdsIndicator extends StatelessWidget {
   PageController controller;
   AdsIndicator({super.key, required this.controller});
 
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),

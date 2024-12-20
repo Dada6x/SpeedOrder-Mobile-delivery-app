@@ -5,7 +5,6 @@ import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class Product {
