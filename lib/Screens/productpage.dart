@@ -72,25 +72,26 @@ class ProductPage extends StatelessWidget {
             ]),
           ),
           Expanded(
-              //! the product info @productPage
-              child: Container(
-            child: Column(
-              children: [
-                Center(
-                  child: Text(
-                    productName,
-                    style: const TextStyle(fontSize: 30),
+            //! the product info @productPage
+            child: Container(
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      productName,
+                      style: const TextStyle(fontSize: 30),
+                    ),
                   ),
-                ),
-                const Divider(
-                  indent: 10,
-                  endIndent: 10,
-                ),
-                const Text('description and price goes here')
-                //! description and the rest of the shit and price and etc
-              ],
+                  const Divider(
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  const Text('description and price goes here')
+                  //! description and the rest of the shit and price and etc
+                ],
+              ),
             ),
-          )),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
             child: ProjectButton(

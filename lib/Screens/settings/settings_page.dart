@@ -8,7 +8,7 @@ import 'package:mamamia_uniproject/components/settings/settings_section.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
-  Locale currentLocale = Get.locale ?? const Locale("en");
+  final Locale currentLocale = Get.locale ?? const Locale("en");
 
 // location
 // themes
