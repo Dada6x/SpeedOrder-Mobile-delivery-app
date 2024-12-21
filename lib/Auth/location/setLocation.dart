@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
 
 
@@ -39,7 +40,8 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const Allsetup());
+                Get.off(const MapScreen());
+
               },
               child: Text(
                 maxLines: 1,
@@ -61,7 +63,7 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const Allsetup());
+                Get.off(const MapScreen());
               },
               child: Text(
                 maxLines: 1,
