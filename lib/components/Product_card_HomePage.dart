@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 import 'package:mamamia_uniproject/Screens/product_page.dart';
+import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 /// this is the product card in the [HomePage] it has price and fav button
@@ -27,7 +28,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: GestureDetector(
         onTap: () {
-          Get.to(ZProductPage(
+          Get.to(ProductPage(
             productName: productName,
             productImage: imageAsset,
             price: price,

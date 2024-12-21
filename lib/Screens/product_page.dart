@@ -34,7 +34,7 @@ class ZProductPage extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                ProductBackgroundImage(),
+                const ProductBackgroundImage(),
                 ProductImage(
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
@@ -51,7 +51,7 @@ class ZProductPage extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 10, bottom: 15),
+                        padding: const EdgeInsets.only(left: 10, bottom: 15),
                         child: ProjectButton(
                           function: () {
                             //! adding it to the Cart via cart controller
@@ -134,16 +134,16 @@ class ProductInfoCardPage extends StatelessWidget {
         children: [
           Text(
             '\$' + price.toString(),
-            style: TextStyle(),
+            // style: const TextStyle(),
           ),
           Text(
             productName,
-            style: TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text(
+          const Text(
             "f your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, if your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, ",
             style: const TextStyle(color: Colors.black87),
             overflow: TextOverflow.ellipsis,
