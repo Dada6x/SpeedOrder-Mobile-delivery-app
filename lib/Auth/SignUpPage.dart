@@ -38,13 +38,10 @@ class SignUpPageState extends State<SignupPage> {
                           builder: (context) {
                             return const ImagePickingDialog();
                           });
-                      img = Image(
-                          fit: BoxFit.cover,
-                          image: FileImage(Get.find<Model>().pickedImage!));
                     },
-                    child: Get.find<Model>().imageIspicked && img != null
+                    child: Get.find<Model>().imageIspicked 
                         ? CircleAvatar(
-                            backgroundImage: img!.image,
+                            backgroundImage:Get.find<Model>().pickedImage 
                           )
                         : const Icon(
                             Icons.add_a_photo,
@@ -52,6 +49,9 @@ class SignUpPageState extends State<SignupPage> {
                           ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: controller.screenHeight(context) * 0.01,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -61,7 +61,9 @@ class SignUpPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                           fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          hintText: "First Name".tr,
+                          prefixIcon: const Icon(Icons.person_2_outlined),
+                          prefixIconColor: Colors.grey,
+                          hintText: "Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -77,10 +79,10 @@ class SignUpPageState extends State<SignupPage> {
                           ))),
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
-              Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: SizedBox(
@@ -103,7 +105,7 @@ class SignUpPageState extends State<SignupPage> {
                                 const BorderRadius.all(Radius.circular(10)),
                           ))),
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
@@ -219,22 +221,20 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnedImage == null) return;
-
-    setState(() {
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
+    ;
   }
 
   Future pickImageFromCamera() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnedImage == null) return;
-    setState(() {
+
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
-  }
+    }
+    
 
   void giveselectedImage(File img) {
     Get.find<Model>().changeImage(img);
