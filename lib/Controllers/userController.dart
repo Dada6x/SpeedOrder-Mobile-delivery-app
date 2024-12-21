@@ -9,11 +9,13 @@ class User {
   String? imageLink;
   List<Product>? favProducts;
   List<Product>? cartProducts;
-  User(this.username, this.number, this.password, this.location, this.imageLink,
-      this.cartProducts, this.favProducts) {
+  User.signUp(this.username, this.number, this.password, this.location,
+      {this.imageLink});
+  User.signIn(this.username, this.number, this.password, this.location,
+      this.imageLink, this.cartProducts, this.favProducts) {
     /*if (favProducts!.isNotEmpty) {
       for (Product p in favProducts!) {
-        Get.find<FavoriteController>().addToCart(p);
+`        Get.find<FavoriteController>().addToCart(p);
       }
     }
     if (cartProducts!.isNotEmpty) {

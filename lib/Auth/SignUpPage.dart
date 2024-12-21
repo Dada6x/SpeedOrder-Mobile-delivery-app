@@ -53,6 +53,9 @@ class SignUpPageState extends State<SignupPage> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: controller.screenHeight(context) * 0.01,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: controller.screenWidth(context) * 0.05),
@@ -61,7 +64,9 @@ class SignUpPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                           fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          hintText: "First Name".tr,
+                          prefixIcon: const Icon(Icons.person_2_outlined),
+                          prefixIconColor: Colors.grey,
+                          hintText: "Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -77,10 +82,10 @@ class SignUpPageState extends State<SignupPage> {
                           ))),
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
-              Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: SizedBox(
@@ -103,7 +108,7 @@ class SignUpPageState extends State<SignupPage> {
                                 const BorderRadius.all(Radius.circular(10)),
                           ))),
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
