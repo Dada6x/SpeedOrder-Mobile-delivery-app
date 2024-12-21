@@ -38,13 +38,10 @@ class SignUpPageState extends State<SignupPage> {
                           builder: (context) {
                             return const ImagePickingDialog();
                           });
-                      img = Image(
-                          fit: BoxFit.cover,
-                          image: FileImage(Get.find<Model>().pickedImage!));
                     },
-                    child: Get.find<Model>().imageIspicked && img != null
+                    child: Get.find<Model>().imageIspicked 
                         ? CircleAvatar(
-                            backgroundImage: img!.image,
+                            backgroundImage:Get.find<Model>().pickedImage 
                           )
                         : const Icon(
                             Icons.add_a_photo,
@@ -224,22 +221,20 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnedImage == null) return;
-
-    setState(() {
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
+    ;
   }
 
   Future pickImageFromCamera() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnedImage == null) return;
-    setState(() {
+
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
-  }
+    }
+    
 
   void giveselectedImage(File img) {
     Get.find<Model>().changeImage(img);

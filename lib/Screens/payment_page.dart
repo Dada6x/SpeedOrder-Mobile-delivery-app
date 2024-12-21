@@ -6,7 +6,6 @@ import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 
-
 class PaymentPage extends StatelessWidget {
   PaymentPage({super.key});
   TextEditingController textEditingController = TextEditingController();
@@ -127,9 +126,8 @@ class PaymentPage extends StatelessWidget {
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {
                             Get.snackbar(
-                              colorText: Theme.of(context).colorScheme.primary,
                               "Success!".tr,
-                              "Congartulations on Your Purchase,Enjoy!".tr,
+                              "Congratulations on Your Purchase,Enjoy!".tr,
                             );
                           });
                         },
