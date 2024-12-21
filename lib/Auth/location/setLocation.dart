@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
-import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
 import 'package:mamamia_uniproject/components/location_dialog.dart';
 
 class SettingLocation extends StatelessWidget {
