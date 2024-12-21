@@ -5,7 +5,6 @@ import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class Product {
@@ -34,29 +33,29 @@ class Product {
 class ProjectProductCartCardHome extends StatelessWidget {
   Product product;
   ProjectProductCartCardHome({super.key, required this.product});
-  Icon? iconType(String type) {
+  Icon? iconType(BuildContext context, String type) {
     if (type == "food") {
       return Icon(
         Icons.fastfood_outlined,
-        color: MainPage.orangeColor,
+        color: Theme.of(context).colorScheme.primary,
       );
     }
     if (type == "clothes") {
       return Icon(
         SolarIconsOutline.tShirt,
-        color: MainPage.orangeColor,
+        color: Theme.of(context).colorScheme.primary,
       );
     }
     if (type == "devices") {
       return Icon(
         Icons.monitor,
-        color: MainPage.orangeColor,
+        color: Theme.of(context).colorScheme.primary,
       );
     }
     if (type == "home") {
       return Icon(
         SolarIconsOutline.home1,
-        color: MainPage.orangeColor,
+        color: Theme.of(context).colorScheme.primary,
       );
     }
     return null;
@@ -116,7 +115,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
                                 Row(
                                   children: [
                                     //! the product category
-                                    iconType(product.category)!,
+                                    iconType(context, product.category)!,
                                   ],
                                 ),
                               ],

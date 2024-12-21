@@ -95,7 +95,6 @@ class SigninPageState extends State<LoginPage> {
                                 prefixIcon: const Icon(Icons.call_outlined,
                                     color: Colors.grey),
                                 labelText: "Enter Number".tr,
-                                labelStyle: const TextStyle(color: Colors.grey),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Theme.of(context)
@@ -127,7 +126,6 @@ class SigninPageState extends State<LoginPage> {
                             prefixIcon:
                                 const Icon(Icons.key, color: Colors.grey),
                             labelText: "Enter Password".tr,
-                            labelStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color:
@@ -218,7 +216,6 @@ class SigninPageState extends State<LoginPage> {
                           if (requestbody == "") {
                             Get.off(const MainPage());
                           }
-                          print("wardadnanekhtar");
                         },
                       ),
 

@@ -5,7 +5,6 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class Model extends GetxController {
   get logged => loggedin;
   bool loggedin = false;
@@ -13,7 +12,6 @@ class Model extends GetxController {
     checkLoginStatus();
   }
   Future<bool?> checkLoginStatus() async {
-    
     SharedPreferences sp = await SharedPreferences.getInstance();
     loggedin = sp.getBool("login") ?? false;
     update();
@@ -43,13 +41,11 @@ class Model extends GetxController {
   // ignore: non_constant_identifier_names
   int Buttonindex = -1;
   bool imageIspicked = false;
-  var pickedImage;
+  ImageProvider? pickedImage;
   void changeImage(File pickedImage) {
     imageIspicked = true;
-    this.pickedImage = Image.file(
-      pickedImage,
-      fit: BoxFit.contain,
-    );
+    print("Image is picked");
+    this.pickedImage = Image(image: FileImage(pickedImage)).image;
     update();
   }
 

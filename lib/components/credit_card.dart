@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 
-
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
 
