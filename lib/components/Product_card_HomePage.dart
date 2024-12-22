@@ -4,6 +4,7 @@ import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
+import 'package:mamamia_uniproject/components/favorite_button.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -127,23 +128,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
                             Padding(
                                 //! the product like button
                                 padding: const EdgeInsets.all(8.0),
-                                child: IconButton(
-                                    onPressed: () {
-                                      controller.productisFavored(product);
-                                      product.isFavored
-                                          ? Get.find<FavoriteController>()
-                                              .addToFavorite(product)
-                                          : Get.find<FavoriteController>()
-                                              .removeFromCart(product);
-                                    },
-                                    icon: product.isFavored
-                                        ? Icon(
-                                            Icons.favorite,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          )
-                                        : const Icon(Icons.favorite_outline))),
+                                child: FavoriteButton(product: product)),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               //! the product price

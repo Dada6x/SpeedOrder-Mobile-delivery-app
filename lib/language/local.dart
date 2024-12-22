@@ -126,4 +126,13 @@ const Map<String, String> arabic = {
   "Enter manually": "الادخال بشكل يدوي",
   "You are all set Up ": "انت جاهز !",
   "Enter Card info": "ادخل معلومات بطاقتك",
+  "First Name": "الاسم الأول",
+  "Last Name": "الاسم الأخير",
+  "General": "الاعدادات العامة",
+  "Account": "حساب",
+  "Phone Number": "رقم الهاتف",
+  "Notifications": "إشعارات",
+  "Enable Notifications": "تفعيل الإشعارات",
+  "English": "عربي",
+  "Language": "اللغة"
 };

@@ -16,7 +16,7 @@ class LanguageToggleButtonIcon extends StatelessWidget {
                 ? const Locale("ar")
                 : const Locale("en"));
           },
-          icon: Icon(SolarIconsBold.global,
+          icon: Icon(Icons.language_sharp,
               color: Theme.of(context).colorScheme.primary)),
     );
   }
