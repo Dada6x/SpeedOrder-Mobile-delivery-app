@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 
@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: 'Settings'.tr,
                   icon: const Icon(Icons.settings),
                   destination: () {
-                    Get.to(const SettingsPage());
+                    Get.to(SettingsPage());
                   },
                 ),
                 MenuListItem(

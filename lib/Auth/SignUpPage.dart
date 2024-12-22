@@ -70,7 +70,7 @@ class SignUpPageState extends State<SignupPage> {
                             filled: true,
                             prefixIcon: const Icon(Icons.person_2_outlined),
                             prefixIconColor: Colors.grey,
-                            hintText: "Name".tr,
+                            hintText: "First Name".tr,
                             hintStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -88,33 +88,37 @@ class SignUpPageState extends State<SignupPage> {
                             ))),
                   ),
                 ),
-                /*SizedBox(
+                SizedBox(
                   height: controller.screenHeight(context) * 0.03,
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: controller.screenWidth(context) * 0.05),
                   child: SizedBox(
                     child: TextField(
                         decoration: InputDecoration(
+                            prefixIconColor: Colors.grey,
+                            prefixIcon: Icon(Icons.account_box),
                             fillColor: Theme.of(context).colorScheme.secondary,
                             filled: true,
                             hintText: "Last Name".tr,
                             hintStyle: const TextStyle(color: Colors.grey),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Theme.of(context).colorScheme.secondary),
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Theme.of(context).colorScheme.secondary),
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
                             ))),
                   ),
-                ),*/
+                ),
                 SizedBox(
                   height: controller.screenHeight(context) * 0.03,
                 ),
