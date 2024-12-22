@@ -21,7 +21,7 @@ class SettingLocation extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'Grant Current Location'.tr,
+              'Let Us Know Where You Are'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
@@ -43,7 +43,7 @@ class SettingLocation extends StatelessWidget {
               },
               child: Text(
                 maxLines: 1,
-                ' Enter Location'.tr,
+                'Use Current Location '.tr,
                 style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
@@ -65,7 +65,7 @@ class SettingLocation extends StatelessWidget {
               },
               child: Text(
                 maxLines: 1,
-                'Skip'.tr,
+                'Enter manually'.tr,
                 style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),

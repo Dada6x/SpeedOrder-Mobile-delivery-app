@@ -53,7 +53,7 @@ class LocationDialog extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
+                    TextButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5)),
@@ -62,7 +62,7 @@ class LocationDialog extends StatelessWidget {
                           Get.back();
                         },
                         child: Text("back".tr)),
-                    ElevatedButton(
+                    TextButton(
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),

@@ -18,9 +18,9 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: NormalAppBar('Profile'.tr),
       body: Column(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 80,
-            backgroundImage: AssetImage(''),
+            backgroundImage: Get.find<Model>().pickedImage,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
