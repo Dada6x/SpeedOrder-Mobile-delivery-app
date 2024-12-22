@@ -98,7 +98,7 @@ class SignUpPageState extends State<SignupPage> {
                     child: TextField(
                         decoration: InputDecoration(
                             prefixIconColor: Colors.grey,
-                            prefixIcon: Icon(Icons.account_box),
+                            prefixIcon: const Icon(Icons.account_box),
                             fillColor: Theme.of(context).colorScheme.secondary,
                             filled: true,
                             hintText: "Last Name".tr,

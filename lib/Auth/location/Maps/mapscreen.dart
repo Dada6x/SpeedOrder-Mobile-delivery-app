@@ -25,6 +25,7 @@ class _MapScreenState extends State<MapScreen> {
   LatLng? _myLocation;
   List<dynamic> _searchResults = [];
   bool _isSearching = false;
+  bool _isGettingLocation = false; // Track location loading state
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -80,6 +81,10 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void showCurrentLocation() async {
+    setState(() {
+      _isGettingLocation = true; // Show loading spinner when fetching location
+    });
+
     try {
       Position position = await _determinePosition();
       LatLng currentLatLng = LatLng(position.latitude, position.longitude);
@@ -92,6 +97,11 @@ class _MapScreenState extends State<MapScreen> {
       _showBottomSheet(context);
     } catch (e) {
       print("Error fetching current location: $e");
+    } finally {
+      setState(() {
+        _isGettingLocation =
+            false; // Hide loading spinner after location is fetched
+      });
     }
   }
 
@@ -291,7 +301,7 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                     ),
                   ),
-                if (_isSearching)
+                if (_isSearching || _isGettingLocation) // Show loader
                   const Center(child: CircularProgressIndicator()),
               ],
             ),

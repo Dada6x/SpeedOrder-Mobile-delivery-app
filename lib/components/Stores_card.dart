@@ -24,7 +24,7 @@ class StoresCard extends StatelessWidget {
                     height: 100,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(45),
-                      child: Image(
+                      child: const Image(
                         //! the product image @cart
                         image: AssetImage("assets/images/weekend.png"),
                         fit: BoxFit.cover,

@@ -17,6 +17,7 @@ void main() {
   Get.put(Model());
   Get.put(CartController());
   Get.put(LocationController());
+  // Get.put(NetworkController());
   runApp(GetMaterialApp(
     //! languges
     translations: MyLocal(),

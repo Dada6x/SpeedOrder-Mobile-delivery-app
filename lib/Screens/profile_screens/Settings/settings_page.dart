@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_comps.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page.dart';
@@ -85,7 +86,7 @@ class SettingsPage extends StatelessWidget {
                 title: "Location".tr,
                 icon: const Icon(Icons.map),
                 destination: () {
-                  Get.to(const LoginPage());
+                  Get.to(const MapScreen());
                 },
               ),
               SettingsSection(title: "Notifications".tr),

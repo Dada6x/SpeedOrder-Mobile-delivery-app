@@ -41,7 +41,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
           ListTile(
             leading: const Text(
               "Notifications",
-              style: TextStyle(fontSize: 20, color: Colors.black87),
+              style: TextStyle(fontSize: 20,),
             ),
             trailing: Switch(
               value: isswitched,
