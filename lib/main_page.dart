@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
     //yahea: Good Job !!
     const StoresPage(),
     const CartPage(),
-    const Test(),
+    const HomeSliver(),// this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location 
     const FavoritePage(),
     const ProfilePage(),
   ];

@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/location/Maps/locationController.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;
@@ -58,10 +59,15 @@ class _MapScreenState extends State<MapScreen> {
       );
       if (placemarks.isNotEmpty) {
         Placemark place = placemarks.first;
+        String address =
+            "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+        String supaddress = "${place.administrativeArea}, ${place.country}";
         setState(() {
-          selectedAddress =
-              "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+          selectedAddress = address;
         });
+
+        // Update the location in the GetX controller
+        Get.find<LocationController>().updateLocation(supaddress);
       } else {
         setState(() {
           selectedAddress = "No address available";
