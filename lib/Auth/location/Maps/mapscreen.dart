@@ -8,7 +8,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
-import 'package:mamamia_uniproject/components/search_bar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;
 
@@ -177,7 +176,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.orange,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {
           showCurrentLocation();
         },
@@ -221,58 +220,56 @@ class _MapScreenState extends State<MapScreen> {
                 ),
             ],
           ),
-          Align(
-            alignment: const Alignment(0, -0.9),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 30, left: 10, right: 10, bottom: 20),
-                    child: Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      elevation: 5,
-                      child: TextField(
-                        onChanged: (query) {
-                          _searchPlaces(query);
-                        },
-                        // readOnly: true,
-                        decoration: InputDecoration(
-                            hintText: "Where are you ?".tr,
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            prefixIcon: const Icon(Icons.search),
-                            prefixIconColor:
-                                Theme.of(context).colorScheme.primary,
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        // onTap: () {
-                        //   showSearch(
-                        //       context: context,
-                        //       delegate:
-                        //           search()); //removed search page and used search delegate instead
-                        // },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.048,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 30, left: 10, right: 10, bottom: 20),
+                  child: Material(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    elevation: 5,
+                    child: TextField(
+                      onChanged: (query) {
+                        _searchPlaces(query);
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Where are you ?".tr,
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(Icons.search),
+                        prefixIconColor: Theme.of(context).colorScheme.primary,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
                     ),
                   ),
-                  if (_searchResults.isNotEmpty)
-                    Container(
-                      color: Colors.white,
-                      height: 200,
+                ),
+                if (_searchResults.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary,
+                          borderRadius: BorderRadius.circular(8)),
+                      height: 170,
                       child: ListView.builder(
                         itemCount: _searchResults.length,
                         itemBuilder: (context, index) {
                           final result = _searchResults[index];
                           return ListTile(
-                            title: Text(
-                                style: const TextStyle(color: Colors.black),
-                                result['display_name'] ?? ''),
+                            leading: Icon(
+                              Icons.location_on_outlined,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            title: Text(result['display_name'] ?? ''),
                             onTap: () {
                               final lat = double.parse(result['lat']);
                               final lon = double.parse(result['lon']);
@@ -288,10 +285,10 @@ class _MapScreenState extends State<MapScreen> {
                         },
                       ),
                     ),
-                  if (_isSearching)
-                    const Center(child: CircularProgressIndicator()),
-                ],
-              ),
+                  ),
+                if (_isSearching)
+                  const Center(child: CircularProgressIndicator()),
+              ],
             ),
           ),
         ],
