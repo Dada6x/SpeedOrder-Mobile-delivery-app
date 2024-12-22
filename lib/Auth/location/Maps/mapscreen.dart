@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
 import 'package:mamamia_uniproject/components/search_bar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
+import 'package:http/http.dart' as http;
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -22,8 +24,9 @@ class _MapScreenState extends State<MapScreen> {
   LatLng? selectedPosition;
   String? selectedAddress;
   LatLng? _myLocation;
+  List<dynamic> _searchResults = [];
+  bool _isSearching = false;
 
-  // Get the current position
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -48,7 +51,6 @@ class _MapScreenState extends State<MapScreen> {
     return Geolocator.getCurrentPosition();
   }
 
-  // Reverse geocoding to get address from coordinates
   Future<void> _getAddressFromLatLng(LatLng position) async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
@@ -69,12 +71,10 @@ class _MapScreenState extends State<MapScreen> {
     } catch (e) {
       setState(() {
         selectedAddress = "Error fetching address";
-        print(e);
       });
     }
   }
 
-  // Show current location
   void showCurrentLocation() async {
     try {
       Position position = await _determinePosition();
@@ -85,7 +85,7 @@ class _MapScreenState extends State<MapScreen> {
         selectedPosition = currentLatLng;
       });
       await _getAddressFromLatLng(currentLatLng);
-      _showBottomSheet(context); // Show the bottom sheet
+      _showBottomSheet(context);
     } catch (e) {
       print("Error fetching current location: $e");
     }
@@ -142,6 +142,37 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
+  Future<void> _searchPlaces(String query) async {
+    if (query.isEmpty) {
+      setState(() {
+        _searchResults = [];
+      });
+      return;
+    }
+
+    setState(() {
+      _isSearching = true;
+    });
+
+    final url =
+        "https://nominatim.openstreetmap.org/search?q=$query&format=json&limit=5";
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final data = json.decode(response.body);
+      setState(() {
+        _searchResults = data;
+        _isSearching = false;
+      });
+    } catch (e) {
+      setState(() {
+        _searchResults = [];
+        _isSearching = false;
+      });
+      print("Error during search: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,7 +195,7 @@ class _MapScreenState extends State<MapScreen> {
                   selectedPosition = point;
                 });
                 _getAddressFromLatLng(point).then((_) {
-                  _showBottomSheet(context); // Show bottom sheet after clicking
+                  _showBottomSheet(context);
                 });
               },
             ),
@@ -190,12 +221,79 @@ class _MapScreenState extends State<MapScreen> {
                 ),
             ],
           ),
-          const Align(
-              alignment: Alignment(0, -0.9),
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ProjectSearchBar(),
-              ))
+          Align(
+            alignment: const Alignment(0, -0.9),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 30, left: 10, right: 10, bottom: 20),
+                    child: Material(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      elevation: 5,
+                      child: TextField(
+                        onChanged: (query) {
+                          _searchPlaces(query);
+                        },
+                        // readOnly: true,
+                        decoration: InputDecoration(
+                            hintText: "Where are you ?".tr,
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            prefixIcon: const Icon(Icons.search),
+                            prefixIconColor:
+                                Theme.of(context).colorScheme.primary,
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        // onTap: () {
+                        //   showSearch(
+                        //       context: context,
+                        //       delegate:
+                        //           search()); //removed search page and used search delegate instead
+                        // },
+                      ),
+                    ),
+                  ),
+                  if (_searchResults.isNotEmpty)
+                    Container(
+                      color: Colors.white,
+                      height: 200,
+                      child: ListView.builder(
+                        itemCount: _searchResults.length,
+                        itemBuilder: (context, index) {
+                          final result = _searchResults[index];
+                          return ListTile(
+                            title: Text(
+                                style: const TextStyle(color: Colors.black),
+                                result['display_name'] ?? ''),
+                            onTap: () {
+                              final lat = double.parse(result['lat']);
+                              final lon = double.parse(result['lon']);
+                              LatLng selectedLatLng = LatLng(lat, lon);
+                              _mapController.move(selectedLatLng, 15);
+                              setState(() {
+                                selectedPosition = selectedLatLng;
+                                _searchResults = [];
+                              });
+                              _getAddressFromLatLng(selectedLatLng);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  if (_isSearching)
+                    const Center(child: CircularProgressIndicator()),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

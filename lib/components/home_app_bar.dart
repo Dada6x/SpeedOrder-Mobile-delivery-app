@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
-import 'package:mamamia_uniproject/components/location_dialog.dart';
+
 
 PreferredSizeWidget ProjectAppBar_homePage() {
   return PreferredSize(
