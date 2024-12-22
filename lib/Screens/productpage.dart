@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:like_button/like_button.dart';
-import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
-import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/components/favorite_button.dart';
@@ -39,7 +35,7 @@ class ProductPage extends StatelessWidget {
                     icon: const Icon(Icons.share)),
               ),
               Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: FavoriteButton(product: product))
             ],
           )
@@ -51,7 +47,7 @@ class ProductPage extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(left: 30.0),
               child: ElevatedButton(
-                  onPressed: () {}, child: Icon(Icons.arrow_downward))),
+                  onPressed: () {}, child: const Icon(Icons.arrow_downward))),
           ProjectButton(
             function: () {
               cartController.addToCart(product);
@@ -146,7 +142,7 @@ class ProductInfoCardPage extends StatelessWidget {
             flex: 1,
           ),
           Text(
-            '\$' + product.price.toString(),
+            '\$${product.price}',
             style: TextStyle(
                 fontSize: 25,
                 color: Theme.of(context).colorScheme.primary,
