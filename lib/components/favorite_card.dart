@@ -6,6 +6,7 @@ import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 
+// ignore: must_be_immutable
 class FavoriteCard extends StatelessWidget {
   int? indexinList;
   FavoriteCard({

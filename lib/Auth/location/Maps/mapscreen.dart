@@ -1,10 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/main_page.dart'; // For reverse geocoding
+import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
+import 'package:mamamia_uniproject/components/search_bar.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -16,7 +20,7 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final MapController _mapController = MapController();
   LatLng? selectedPosition;
-  String? selectedAddress; // To store the human-readable address
+  String? selectedAddress;
   LatLng? _myLocation;
 
   // Get the current position
@@ -80,29 +84,88 @@ class _MapScreenState extends State<MapScreen> {
         _myLocation = currentLatLng;
         selectedPosition = currentLatLng;
       });
-      await _getAddressFromLatLng(currentLatLng); // Fetch address
-    // ignore: empty_catches
-    } catch (e) {}
+      await _getAddressFromLatLng(currentLatLng);
+      _showBottomSheet(context); // Show the bottom sheet
+    } catch (e) {
+      print("Error fetching current location: $e");
+    }
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Selected Location",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: MainPage.orangeColor),
+            ),
+            const SizedBox(height: 8),
+            if (selectedAddress != null)
+              Text(
+                "Address: $selectedAddress",
+                style: const TextStyle(fontSize: 16),
+              ),
+            const SizedBox(height: 8),
+            if (selectedPosition != null)
+              Text(
+                "Coordinates: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}",
+                style: const TextStyle(fontSize: 16),
+              ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Back"),
+                ),
+                TextButton(
+                  onPressed: () => Get.off(const AllSetup()),
+                  child: const Text("Set Location"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar('Enter your location'),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.orange,
+        onPressed: () {
+          showCurrentLocation();
+        },
+        child: const Icon(Icons.my_location),
+      ),
       body: Stack(
         children: [
           FlutterMap(
             mapController: _mapController,
             options: MapOptions(
               initialZoom: 13.0,
-              //!starts usually at the Uk
               initialCenter: const LatLng(51.5, -0.09),
               onTap: (tapPosition, point) {
                 setState(() {
                   selectedPosition = point;
                 });
-                _getAddressFromLatLng(
-                    point); 
+                _getAddressFromLatLng(point).then((_) {
+                  _showBottomSheet(context); // Show bottom sheet after clicking
+                });
               },
             ),
             children: [
@@ -127,47 +190,12 @@ class _MapScreenState extends State<MapScreen> {
                 ),
             ],
           ),
-          //! Floating action button
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                backgroundColor: MainPage.orangeColor,
-                onPressed: () {
-                  showCurrentLocation();
-                },
-                child: const Icon(Icons.my_location),
-              ),
-            ),
-          ),
-          if (selectedPosition != null)
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Text(
-                  selectedAddress ?? "Fetching address...",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-              ),
-            ),
+          const Align(
+              alignment: Alignment(0, -0.9),
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ProjectSearchBar(),
+              ))
         ],
       ),
     );

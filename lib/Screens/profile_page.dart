@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -19,9 +19,9 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: NormalAppBar('Profile'.tr),
       body: Column(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 80,
-            backgroundImage: AssetImage(''),
+            backgroundImage: Get.find<Model>().pickedImage,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
