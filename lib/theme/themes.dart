@@ -5,7 +5,7 @@ class Themes {
       colorScheme: const ColorScheme.light(
     surface: Colors.white,
     brightness: Brightness.light,
-    primary: Color(0xFFEC6335),
+    primary: Color.fromARGB(255, 3, 132, 191),
     secondary: Color.fromARGB(255, 230, 228, 228),
   ));
 

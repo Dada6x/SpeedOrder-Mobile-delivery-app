@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
-import 'package:mamamia_uniproject/Screens/search_page.dart';
 import 'package:mamamia_uniproject/Screens/cart_page.dart';
 import 'package:mamamia_uniproject/Screens/Home_Sliver_Bar.dart';
+import 'package:mamamia_uniproject/Screens/store_page.dart';
 
 class MainPage extends StatefulWidget {
   //! its bad idea to put the colors static coz it wont change until the next time its runned
@@ -25,7 +25,10 @@ class _MainPageState extends State<MainPage> {
   int index = 2;
 
   List<Widget> screens = [
-    const SearchPage(),
+    //removed the search page from here cuz i think this the list used for navigation bar pages
+    //search screen is in search_bar.dart;
+    //yahea: Good Job !!
+    const StoresPage(),
     const CartPage(),
     const Test(),
     const FavoritePage(),
@@ -35,7 +38,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  😠###########
+        //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  ###########
         bottomNavigationBar: Directionality(
           textDirection: TextDirection.ltr,
           child: CurvedNavigationBar(
@@ -55,31 +58,49 @@ class _MainPageState extends State<MainPage> {
             items: [
               // toggle icons between selected and not selected
               // maybe if the light theme is so bright the colors needs to be switched
-              Icon(
-                Icons.search,
-                color: index == 0 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 1 ? Icons.shopping_cart : Icons.shopping_cart_outlined,
-                color: index == 1 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 2 ? Icons.home : Icons.home_outlined,
-                color: index == 2 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 3 ? Icons.favorite : Icons.favorite_border_outlined,
-                color: index == 3 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
-              Icon(
-                index == 4 ? Icons.person : Icons.person_outline,
-                color: index == 4 ? MainPage.orangeColor : Colors.white,
-                size: 30,
-              ),
+              index == 0
+                  ? Icon(
+                      size: 30,
+                      Icons.store,
+                      color: Theme.of(context).colorScheme.primary)
+                  : const Icon(
+                      size: 30,
+                      Icons.store_outlined,
+                    ),
+              index == 1
+                  ? Icon(
+                      size: 30,
+                      Icons.shopping_cart,
+                      color: Theme.of(context).colorScheme.primary)
+                  : const Icon(
+                      size: 30,
+                      Icons.shopping_cart_outlined,
+                    ),
+              index == 2
+                  ? Icon(
+                      size: 30,
+                      Icons.home,
+                      color: Theme.of(context).colorScheme.primary)
+                  : const Icon(
+                      size: 30,
+                      Icons.home_outlined,
+                    ),
+              index == 3
+                  ? Icon(
+                      size: 30,
+                      Icons.favorite,
+                      color: Theme.of(context).colorScheme.primary)
+                  : const Icon(
+                      size: 30,
+                      Icons.favorite_outline,
+                    ),
+              index == 4
+                  ? Icon(Icons.person,
+                      size: 30, color: Theme.of(context).colorScheme.primary)
+                  : const Icon(
+                      Icons.person_2_outlined,
+                      size: 30,
+                    ),
             ],
           ),
         ),

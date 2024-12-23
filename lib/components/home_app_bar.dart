@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
+import 'package:mamamia_uniproject/components/location_dialog.dart';
 
 PreferredSizeWidget ProjectAppBar_homePage() {
   return PreferredSize(
@@ -19,16 +20,22 @@ PreferredSizeWidget ProjectAppBar_homePage() {
             onTap: () => Get.to(const ProfilePage()),
             child: const CircleAvatar(
               radius: 10,
+              //! THE USER IMAGE
               backgroundImage: AssetImage('assets/images/weekend.png'),
             ),
           ),
         ),
-        title: Card(
-          elevation: 6,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-            child: Text('\' Location \''.tr),
-          ),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(elevation: 8),
+              onPressed: () {
+                Get.dialog(barrierDismissible: false, const LocationDialog());
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text('\' Location \''.tr),
+              )),
         ),
       ),
     ),

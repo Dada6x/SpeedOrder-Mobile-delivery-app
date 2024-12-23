@@ -3,26 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/Auth/setLocation.dart';
+import 'package:mamamia_uniproject/Auth/location/setLocation.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => SignUpPageState();
 }
 
 class SignUpPageState extends State<SignupPage> {
+  Image? img;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Model>(
       builder: (controller) {
         return Scaffold(
-          appBar: NormalAppBar('Enter your info'),
+          appBar: NormalAppBar('Enter your info'.tr),
           body: Column(
             children: [
               Padding(
@@ -30,72 +29,83 @@ class SignUpPageState extends State<SignupPage> {
                   vertical: controller.screenHeight(context) * 0.02,
                 ),
                 child: SizedBox(
-                  width: 120,
+                  width: 135,
                   height: 150,
-                  child: MaterialButton(
-                    color: MainPage.greyColor,
-                    onPressed: () {
+                  child: GestureDetector(
+                    onTap: () {
                       showDialog(
                           context: context,
                           builder: (context) {
                             return const ImagePickingDialog();
                           });
                     },
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.add_a_photo,
-                      size: 50,
-                    ),
+                    child: Get.find<Model>().imageIspicked 
+                        ? CircleAvatar(
+                            backgroundImage:Get.find<Model>().pickedImage 
+                          )
+                        : const Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                          ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: controller.screenHeight(context) * 0.01,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: SizedBox(
                   child: TextField(
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
+                          fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          hintText: "First Name",
+                          prefixIcon: const Icon(Icons.person_2_outlined),
+                          prefixIconColor: Colors.grey,
+                          hintText: "Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ))),
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
-              Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: SizedBox(
                   child: TextField(
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
+                          fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          hintText: "Last Name",
+                          hintText: "Last Name".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ))),
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
@@ -105,18 +115,21 @@ class SignUpPageState extends State<SignupPage> {
                   child: TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                          fillColor: MainPage.greyColor,
+                          fillColor: Theme.of(context).colorScheme.secondary,
                           filled: true,
-                          prefixIcon: const Icon(Icons.call_outlined),
-                          hintText: "Number",
+                          prefixIcon: const Icon(Icons.call_outlined,
+                              color: Colors.grey),
+                          hintText: "Number".tr,
                           hintStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MainPage.greyColor),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.secondary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
                           )))),
@@ -128,18 +141,22 @@ class SignUpPageState extends State<SignupPage> {
                     horizontal: controller.screenWidth(context) * 0.05),
                 child: TextField(
                     decoration: InputDecoration(
-                        fillColor: MainPage.greyColor,
+                        fillColor: Theme.of(context).colorScheme.secondary,
                         filled: true,
-                        prefixIcon: const Icon(Icons.key),
-                        hintText: "Password",
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(Icons.key, color: Colors.grey),
+                        hintText: "Password".tr,
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                        ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MainPage.greyColor),
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary),
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MainPage.greyColor),
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary),
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
                         ))),
@@ -147,28 +164,8 @@ class SignUpPageState extends State<SignupPage> {
               SizedBox(
                 height: controller.screenHeight(context) * 0.03,
               ),
-//! wards location
-              // Padding(
-              //   padding: EdgeInsets.symmetric(
-              //       horizontal: controller.screenWidth(context) * 0.05),
-              //   child: TextField(
-              //       decoration: InputDecoration(
-              //           fillColor: MainPage.greyColor,
-              //           filled: true,
-              //           prefixIcon: const Icon(Icons.location_pin),
-              //           hintText: "Location",
-              //           hintStyle: const TextStyle(color: Colors.grey),
-              //           enabledBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(color: MainPage.greyColor),
-              //             borderRadius:
-              //                 const BorderRadius.all(Radius.circular(10)),
-              //           ),
-              //           focusedBorder: OutlineInputBorder(
-              //             borderSide: BorderSide(color: MainPage.greyColor),
-              //             borderRadius:
-              //                 const BorderRadius.all(Radius.circular(10)),
-              //           ))),
-              // ),
+              //! wards location
+
               SizedBox(
                 height: Get.find<Model>().screenHeight(context) * 0.03,
               ),
@@ -176,7 +173,7 @@ class SignUpPageState extends State<SignupPage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                 child: ProjectButton(
-                  text: 'Next',
+                  text: 'Next'.tr,
                   width: controller.screenWidth(context),
                   function: () {
                     Get.off(const SettingLocation());
@@ -186,9 +183,9 @@ class SignUpPageState extends State<SignupPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Already have an account ",
-                    style: TextStyle(
+                  Text(
+                    "Already have an account ?".tr,
+                    style: const TextStyle(
                         fontWeight: FontWeight.w700, color: Colors.grey),
                   ),
                   TextButton(
@@ -196,9 +193,9 @@ class SignUpPageState extends State<SignupPage> {
                       Get.off(const LoginPage());
                     },
                     child: Text(
-                      "Login",
+                      "Log in".tr,
                       style: TextStyle(
-                          color: MainPage.orangeColor,
+                          color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.w700),
                     ),
                   )
@@ -224,22 +221,20 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnedImage == null) return;
-
-    setState(() {
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
+    ;
   }
 
   Future pickImageFromCamera() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnedImage == null) return;
-    setState(() {
+
       _selectedImage = File(returnedImage.path);
       giveselectedImage(_selectedImage!);
-    });
-  }
+    }
+    
 
   void giveselectedImage(File img) {
     Get.find<Model>().changeImage(img);

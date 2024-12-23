@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+
 
 // this is button that takes string and width and function
 class ProjectButton extends StatelessWidget {
@@ -20,7 +20,7 @@ class ProjectButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          backgroundColor: MainPage.orangeColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Get.isDarkMode ? Colors.white : Colors.black,
           fixedSize: Size(width, 10)),
       onPressed: () {

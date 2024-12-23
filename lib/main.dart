@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
+import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
+import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
-import 'package:mamamia_uniproject/cart_controller.dart';
 import 'package:mamamia_uniproject/language/local.dart';
-
 import 'package:mamamia_uniproject/theme/themes.dart';
 
 void main() {
+  Get.put(creditCardController());
+  Get.put(FavoriteController());
+  Get.put(HomePageProductController());
+  Get.put(Model());
   Get.put(CartController());
   runApp(GetMaterialApp(
     //! languges

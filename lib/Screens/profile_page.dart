@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/Screens/settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-
-import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/theme/theme_controller.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -69,14 +67,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     //! Image Picker########## above ##############
                     //! username changer############
                   },
-                  icon: Icon(
-                    Icons.edit,
-                    color: MainPage.orangeColor,
-                  ))
+                  icon: Icon(Icons.edit,
+                      color: Theme.of(context).colorScheme.primary))
             ],
           ),
           Divider(
-            color: MainPage.orangeColor,
+            color: Theme.of(context).colorScheme.primary,
             indent: 15,
             endIndent: 15,
           ),
@@ -96,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.date_range),
                   destination: () {
                     //! make order history
-                    Get.to(SettingsPage());
                   },
                 ),
                 MenuListItem(
@@ -111,46 +106,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.auto_graph_rounded),
                   destination: () {
                     //! make account details
-                    Get.to(SettingsPage());
                   },
                 ),
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  //! logOutButton
-                  Get.to(const LoginPage());
-                },
-                label: Text(
-                  'Log out'.tr,
-                ),
-                icon: Icon(
-                  Icons.login_rounded,
-                  color: MainPage.orangeColor,
-                ),
-              ),
-              //! theme toggle button
-              const ThemeToggleButton(),
-            ],
-          ),
           TextButton.icon(
             onPressed: () {
-              Locale currentLocale = Get.locale ?? const Locale("en");
-              Get.updateLocale(currentLocale.languageCode == "en"
-                  ? const Locale("ar")
-                  : const Locale("en"));
+              //! logOutButton
+              Get.off(
+                  const LoginPage()); //ward: changed it cuz older one had an arrow back button
+              //yahea: np baby
             },
             label: Text(
-              'Change language'.tr,
+              'Log out'.tr,
             ),
-            icon: Icon(
-              Icons.translate,
-              color: MainPage.orangeColor,
-            ),
+            icon: Icon(Icons.login_rounded,
+                color: Theme.of(context).colorScheme.primary),
           ),
         ],
       ),
@@ -173,7 +145,7 @@ class MenuListItem extends StatelessWidget {
       color: Theme.of(context).colorScheme.secondary,
       child: ListTile(
         onTap: () => destination(),
-        iconColor: MainPage.orangeColor,
+        iconColor: Theme.of(context).colorScheme.primary,
         title: Text(title),
         leading: icon,
         trailing: const Icon(

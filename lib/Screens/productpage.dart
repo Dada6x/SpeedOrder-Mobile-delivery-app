@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
-import 'package:mamamia_uniproject/cart_controller.dart';
+import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
+import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
-class ProductPage extends StatelessWidget {
-  final String productImage;
-  final String productName;
-  final double price;
-
-  const ProductPage(
-      {super.key,
-      required this.productName,
-      required this.productImage,
-      required this.price});
+class ZProductPage extends StatelessWidget {
+  final Product product;
+  const ZProductPage({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,24 +61,23 @@ class ProductPage extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 120,
                     backgroundColor: MainPage.orangeColor,
-                    //! product image @productPage
-                    backgroundImage: AssetImage(productImage),
+                    //! product image @ZproductPage
+                    backgroundImage: AssetImage(product.imageLink),
                   ),
                 ),
               )
             ]),
           ),
           Expanded(
-            //! the product info @productPage
-            child: Container(
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      productName,
-                      style: const TextStyle(fontSize: 30),
-                    ),
-                  ),
+              //! the product info @ZproductPage
+              child: Container(
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    product.name,
+                    style: const TextStyle(fontSize: 30),
+                  ),),
                   const Divider(
                     indent: 10,
                     endIndent: 10,
@@ -97,18 +93,19 @@ class ProductPage extends StatelessWidget {
             child: ProjectButton(
               function: () {
                 //! adding it to the Cart via cart controller
-                cartController.addToCart(CartItem(
-                  productName: productName,
-                  description: '',
-                  price: price,
-                  imageAsset: productImage,
-                ));
+                cartController.addToCart(product);
                 //! added snackbar notify
-                Get.snackbar(
-                    colorText: MainPage.orangeColor,
-                    'Success'.tr,
-                    '$productName added to the cart'.tr,
-                    snackPosition: SnackPosition.TOP);
+                product.isInCart
+                    ? Get.snackbar(
+                        "Already in",
+                        "${product.name} is already in Your cart!",
+                        colorText: Theme.of(context).colorScheme.primary,
+                      )
+                    : Get.snackbar(
+                        colorText: Theme.of(context).colorScheme.primary,
+                        'Success'.tr,
+                        '${product.name} added to the cart'.tr,
+                        snackPosition: SnackPosition.TOP);
               },
               text: 'Add to Cart'.tr,
               width: screenWidth,

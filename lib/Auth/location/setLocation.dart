@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/allsetup.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
+import 'package:mamamia_uniproject/components/location_dialog.dart';
 
 class SettingLocation extends StatelessWidget {
   const SettingLocation({super.key});
@@ -19,14 +19,14 @@ class SettingLocation extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-          const Center(
+          Center(
             child: Text(
-              'Grant Current Location',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              'Grant Current Location'.tr,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-          const Center(child: Text('this let us show nearby stores')),
-          const Center(child: Text('and you can order form ')),
+          Center(child: Text('this let us show nearby stores'.tr)),
+          Center(child: Text('and you can order form '.tr)),
           const SizedBox(
             height: 20,
           ),
@@ -35,16 +35,16 @@ class SettingLocation extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(290, 45),
-                  backgroundColor: MainPage.orangeColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const Allsetup());
+                Get.dialog(const LocationDialog());
               },
-              child: const Text(
+              child: Text(
                 maxLines: 1,
-                'Use Current Location ',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+                ' Enter Location'.tr,
+                style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
           ),
@@ -57,16 +57,16 @@ class SettingLocation extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(290, 45),
-                  backgroundColor: MainPage.orangeColor,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
                 Get.off(const Allsetup());
               },
-              child: const Text(
+              child: Text(
                 maxLines: 1,
-                'Enter manually',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+                'Skip'.tr,
+                style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
           ),
