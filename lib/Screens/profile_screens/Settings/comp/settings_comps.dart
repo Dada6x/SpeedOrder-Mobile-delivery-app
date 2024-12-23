@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 
 class SettingsComps extends StatelessWidget {
   final String title;

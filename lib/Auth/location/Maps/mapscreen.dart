@@ -8,6 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/location/Maps/locationController.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
+import 'package:mamamia_uniproject/Auth/location/connection/network_controller.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,6 +21,9 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   final MapController _mapController = MapController();
+
+  NetworkController networkController = Get.find();
+
   LatLng? selectedPosition;
   String? selectedAddress;
   LatLng? _myLocation;
@@ -306,6 +310,12 @@ class _MapScreenState extends State<MapScreen> {
               ],
             ),
           ),
+          //! testing 
+          Center(
+            child: Container(
+              child: Text(networkController.connectivity.toString()),
+            ),
+          )
         ],
       ),
     );

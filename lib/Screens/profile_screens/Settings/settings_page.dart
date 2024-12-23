@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_comps.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_section.dart';
