@@ -123,31 +123,32 @@ class SignUpPageState extends State<SignupPage> {
                   height: controller.screenHeight(context) * 0.03,
                 ),
                 Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: controller.screenWidth(context) * 0.05),
-                    child: TextField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            fillColor: Theme.of(context).colorScheme.secondary,
-                            filled: true,
-                            prefixIcon: const Icon(Icons.call_outlined,
-                                color: Colors.grey),
-                            hintText: "Number".tr,
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            )))),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      fillColor: Theme.of(context).colorScheme.secondary,
+                      filled: true,
+                      prefixIcon:
+                          const Icon(Icons.call_outlined, color: Colors.grey),
+                      hintText: "Number".tr,
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: controller.screenHeight(context) * 0.03,
                 ),

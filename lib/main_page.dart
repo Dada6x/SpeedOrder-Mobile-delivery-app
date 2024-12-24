@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
             animationDuration: const Duration(milliseconds: 250),
             index: index,
             onTap: (value) {
-              // how to not use set state with the bottom navigation
+
               setState(() {
                 index = value;
               });

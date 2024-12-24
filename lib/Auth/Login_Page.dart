@@ -188,7 +188,7 @@ class SigninPageState extends State<LoginPage> {
                       ),
 
                       ProjectButton(
-                        text: "Sign in".tr,
+                        text: "Log in".tr,
                         width: controller.screenWidth(context),
                         function: () async {
                           /* Get.dialog(const SimpleDialog(
