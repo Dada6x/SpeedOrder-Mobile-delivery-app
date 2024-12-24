@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/map.dart';
+import 'package:mamamia_uniproject/Location/Maps/map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class NetworkStatus extends StatefulWidget {
@@ -36,11 +36,11 @@ class _NetworkStatusState extends State<NetworkStatus> {
             isConnectedToInternet = false;
           });
           break;
-        default:
-          setState(() {
-            isConnectedToInternet = false;
-          });
-          break;
+        // default:
+        //   setState(() {
+        //     isConnectedToInternet = false;
+        //   });
+        //   break;
       }
     });
   }
@@ -56,6 +56,18 @@ class _NetworkStatusState extends State<NetworkStatus> {
     return isConnectedToInternet
         ? const MapScreen()
         : Scaffold(
+            appBar: AppBar(
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Get.offAll(const MainPage());
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Set Later"),
+                    ))
+              ],
+            ),
             body: Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

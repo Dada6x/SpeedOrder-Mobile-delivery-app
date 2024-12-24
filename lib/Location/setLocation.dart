@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/network_status.dart';
-import 'package:mamamia_uniproject/components/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
+import 'package:mamamia_uniproject/Location/Maps/location_dialog.dart';
 
 class SettingLocation extends StatelessWidget {
   const SettingLocation({super.key});

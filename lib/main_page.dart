@@ -1,7 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
+import 'package:mamamia_uniproject/Screens/notifications_Drawer.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/Screens/cart_page.dart';
 import 'package:mamamia_uniproject/Screens/Home_Sliver_Bar.dart';
@@ -42,18 +44,12 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
         key: MainPage.scaffoldKey,
         //! notifications drawer
-        endDrawer: Drawer(
+        endDrawer: const Drawer(
           child: SafeArea(
-            child: Scaffold(
-              appBar: AppBar(
-                title: const Text(
-                  'Notifications',
-                ),
-              ),
-            ),
+            //! notifi
+            child: NotificationsDrawer(),
           ),
         ),
-        //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  ###########
         bottomNavigationBar: Directionality(
           textDirection: TextDirection.ltr,
           child: CurvedNavigationBar(

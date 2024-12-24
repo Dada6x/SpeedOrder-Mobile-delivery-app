@@ -7,8 +7,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Controllers/locationController.dart';
-import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
+import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
+import 'package:mamamia_uniproject/Location/allsetup.dart';
 
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;

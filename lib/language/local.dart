@@ -49,10 +49,11 @@ const Map<String, String> english = {
   "Use Current Location ": "Use Current Location ",
   "Enter manually": "Enter manually",
   "You are all set Up ": "You are all set Up ",
-  "  You\'re Offline :(": "  You\'re Offline :(",
-  "Please Make Sure You\'re Connected To The Internet":
-      "Please Make Sure You\'re Connected To The Internet",
+  "  You're Offline :(": "  You're Offline :(",
+  "Please Make Sure You're Connected To The Internet":
+      "Please Make Sure You're Connected To The Internet",
   //
+  "Let Us Know Where You Are": "Let Us Know Where You Are",
   "No address available": "No address available",
   "Error fetching address": "Error fetching address",
   "Selected Location": "Selected Location",
@@ -60,10 +61,18 @@ const Map<String, String> english = {
   "Set Location": "Set Location",
   "Where are you ?": "Where are you ?",
   "Address:": "Address:",
+  "Done": "Done",
+  "Notifications": "Notifications",
+    "Auto":"Auto",
+      "Manually":"Manually",
+
 };
 
 const Map<String, String> arabic = {
   "Settings": "اعدادات",
+  "Manually":"يدوي",
+  "Auto":"تلقائي",
+  "Where are you ?":"اين انت ؟",
   "Success": "تم بنجاح",
   "Check Out": "شراء",
   "added to the cart": "اضيف/ت الى سلة مشنرياتك !",
@@ -89,6 +98,8 @@ const Map<String, String> arabic = {
   "Whats you're looking for?": "ما الذي تبحث عنه ؟",
   "Change language": "تغيير اللغة",
   "Save": "حفظ",
+  "Done": "تم",
+  "Back": "الرجوع",
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
   "Total:": " المجموع : ",
@@ -120,6 +131,7 @@ const Map<String, String> arabic = {
   "Success!": "تم بنجاح !",
   "Congratulations on Your Purchase,Enjoy!":
       "شكرا لك, نتمنى لك الاسمتمتاع بأغراضك!",
+  "Notifications": "الاشعارات",
   "Already in": "موجود",
   "is already in Your cart!": "موجود في سلة مشترياتك !",
   "Stores": "المتاجر",
@@ -141,12 +153,12 @@ const Map<String, String> arabic = {
   "General": "الاعدادات العامة",
   "Account": "حساب",
   "Phone Number": "رقم الهاتف",
-  "Notifications": "إشعارات",
   "Enable Notifications": "تفعيل الإشعارات",
   "English": "عربي",
   "Language": "اللغة",
+  "Let Us Know Where You Are": "دعنا نعرف اين انت ",
   //
-  "  You\'re Offline :(": "انت غير متصل :(",
-  "Please Make Sure You\'re Connected To The Internet":
+  "  You're Offline :(": "انت غير متصل :(",
+  "Please Make Sure You're Connected To The Internet":
       "تاكد من انك متصل بالانترنت ",
 };

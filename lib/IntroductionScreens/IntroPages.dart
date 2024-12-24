@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -66,12 +67,15 @@ class _IntroPagesState extends State<IntroPages> {
                       onTap: () {
                         Get.off(const LoginPage());
                       },
-                      child: const Text('Done'),
+                      child: Text(
+                        'Done',
+                        style: TextStyle(color: MainPage.orangeColor),
+                      ),
                     )
                   : GestureDetector(
                       onTap: () {
                         _pageController.nextPage(
-                            duration: const Duration(milliseconds: 400),
+                            duration: const Duration(milliseconds: 100),
                             curve: Curves.easeIn);
                       },
                       child: const Text('Next'),

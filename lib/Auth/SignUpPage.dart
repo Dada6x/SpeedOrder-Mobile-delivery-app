@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/Auth/location/setLocation.dart';
+import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';

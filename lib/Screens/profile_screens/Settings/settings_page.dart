@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:mamamia_uniproject/Auth/location/Maps/network_status.dart';
+import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_comps.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page.dart';

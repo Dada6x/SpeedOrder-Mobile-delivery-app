@@ -151,14 +151,14 @@ class SigninPageState extends State<LoginPage> {
                           children: [
                             const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),
                             Text('Our Socials'.tr),
                             const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),

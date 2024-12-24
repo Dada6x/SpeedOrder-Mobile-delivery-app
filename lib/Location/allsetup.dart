@@ -17,7 +17,6 @@ class AllSetup extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: TextButton(
                   onPressed: () {
-                    //! of all pay attention niger
                     Get.offAll(const MainPage());
                   },
                   child: Text(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Controllers/locationController.dart';
+import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
-import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/language/local.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
 
 void main() {
@@ -27,6 +27,7 @@ void main() {
     //! i know its places wrong but i want the default theme to be the dark theme
     darkTheme: Themes().lightMode,
     theme: Themes().darkMode,
-    home: const IntroPages(),
+    home: const MainPage(),
+    // intropage
   ));
 }
