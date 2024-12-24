@@ -46,6 +46,7 @@ dependencies:
   geolocator: ^13.0.2
   latlong2: ^0.9.1
   geocoding: ^2.0.4
+  background_app_bar: ^2.1.0
 
 
 dev_dependencies:

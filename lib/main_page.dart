@@ -5,7 +5,7 @@ import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/Screens/cart_page.dart';
 import 'package:mamamia_uniproject/Screens/Home_Sliver_Bar.dart';
-import 'package:mamamia_uniproject/Screens/store_page.dart';
+import 'package:mamamia_uniproject/Screens/Stores/store_page.dart';
 
 class MainPage extends StatefulWidget {
   //! its bad idea to put the colors static coz it wont change until the next time its runned

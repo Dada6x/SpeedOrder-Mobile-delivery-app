@@ -21,6 +21,7 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor: Colors.black26,
         elevation: 0,
         actions: [

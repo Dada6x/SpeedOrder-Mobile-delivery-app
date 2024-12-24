@@ -11,7 +11,7 @@ class StoresPage extends StatelessWidget {
     return Scaffold(
       appBar: NormalAppBar("Stores".tr),
       body: ListView(
-        children: [StoresCard()],
+        children: const [StoresCard()],
       ),
     );
   }
