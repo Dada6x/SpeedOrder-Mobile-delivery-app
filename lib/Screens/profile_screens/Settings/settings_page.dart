@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_comps.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_section.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page.dart';
+import 'package:mamamia_uniproject/components/settings_comps.dart';
+import 'package:mamamia_uniproject/components/settings_section.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page_thesettings.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 

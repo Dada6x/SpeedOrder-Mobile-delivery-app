@@ -42,10 +42,12 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
         key: MainPage.scaffoldKey,
         //! notifications drawer
-        endDrawer: const Drawer(
-          child: SafeArea(
-            //! notifi
-            child: NotificationsDrawer(),
+        endDrawer: const Directionality(
+          textDirection: TextDirection.ltr,
+          child: Drawer(
+            child: SafeArea(
+              child: NotificationsDrawer(),
+            ),
           ),
         ),
         bottomNavigationBar: Directionality(
@@ -59,7 +61,6 @@ class _MainPageState extends State<MainPage> {
             animationDuration: const Duration(milliseconds: 250),
             index: index,
             onTap: (value) {
-
               setState(() {
                 index = value;
               });
