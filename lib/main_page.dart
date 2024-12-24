@@ -1,7 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/notifications_Drawer.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
