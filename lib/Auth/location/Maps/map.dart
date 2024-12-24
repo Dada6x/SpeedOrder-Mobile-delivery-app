@@ -1,14 +1,15 @@
 import 'dart:convert';
 
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/locationController.dart';
+import 'package:mamamia_uniproject/Controllers/locationController.dart';
 import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
-import 'package:mamamia_uniproject/Auth/location/connection/network_controller.dart';
+
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,11 +23,8 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final MapController _mapController = MapController();
 
-  NetworkController networkController = Get.find();
-
   LatLng? selectedPosition;
   String? selectedAddress;
-  LatLng? _myLocation;
   List<dynamic> _searchResults = [];
   bool _isSearching = false;
   bool _isGettingLocation = false; // Track location loading state
@@ -74,12 +72,12 @@ class _MapScreenState extends State<MapScreen> {
         Get.find<LocationController>().updateLocation(supaddress);
       } else {
         setState(() {
-          selectedAddress = "No address available";
+          selectedAddress = "No address available".tr;
         });
       }
     } catch (e) {
       setState(() {
-        selectedAddress = "Error fetching address";
+        selectedAddress = "Error fetching address".tr;
       });
     }
   }
@@ -94,7 +92,6 @@ class _MapScreenState extends State<MapScreen> {
       LatLng currentLatLng = LatLng(position.latitude, position.longitude);
       _mapController.move(currentLatLng, 15);
       setState(() {
-        _myLocation = currentLatLng;
         selectedPosition = currentLatLng;
       });
       await _getAddressFromLatLng(currentLatLng);
@@ -103,8 +100,7 @@ class _MapScreenState extends State<MapScreen> {
       print("Error fetching current location: $e");
     } finally {
       setState(() {
-        _isGettingLocation =
-            false; // Hide loading spinner after location is fetched
+        _isGettingLocation = false;
       });
     }
   }
@@ -115,46 +111,49 @@ class _MapScreenState extends State<MapScreen> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Selected Location",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: MainPage.orangeColor),
-            ),
-            const SizedBox(height: 8),
-            if (selectedAddress != null)
+      builder: (context) => Directionality(
+        textDirection: TextDirection.ltr,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Text(
-                "Address: $selectedAddress",
-                style: const TextStyle(fontSize: 16),
+                "Selected Location".tr,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: MainPage.orangeColor),
               ),
-            const SizedBox(height: 8),
-            if (selectedPosition != null)
-              Text(
-                "Coordinates: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}",
-                style: const TextStyle(fontSize: 16),
+              const SizedBox(height: 8),
+              if (selectedAddress != null)
+                Text(
+                  "Address:" "$selectedAddress".tr,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              const SizedBox(height: 8),
+              if (selectedPosition != null)
+                Text(
+                  "Coordinates: ${selectedPosition!.latitude}, ${selectedPosition!.longitude}",
+                  style: const TextStyle(fontSize: 16),
+                ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text("Back".tr),
+                  ),
+                  TextButton(
+                    onPressed: () => Get.off(const AllSetup()),
+                    child: Text("Set Location".tr),
+                  ),
+                ],
               ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Back"),
-                ),
-                TextButton(
-                  onPressed: () => Get.off(const AllSetup()),
-                  child: const Text("Set Location"),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -194,6 +193,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MainPage.orangeColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {
@@ -230,7 +230,7 @@ class _MapScreenState extends State<MapScreen> {
                       height: 80,
                       point: selectedPosition!,
                       child: const Icon(
-                        Icons.location_on,
+                        Icons.location_on_sharp,
                         color: Colors.red,
                         size: 45,
                       ),
@@ -239,6 +239,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
             ],
           ),
+          //! the search box
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -250,6 +251,7 @@ class _MapScreenState extends State<MapScreen> {
                   padding: const EdgeInsets.only(
                       top: 30, left: 10, right: 10, bottom: 20),
                   child: Material(
+                    color: Theme.of(context).colorScheme.secondary,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     elevation: 5,
@@ -260,7 +262,7 @@ class _MapScreenState extends State<MapScreen> {
                       decoration: InputDecoration(
                         hintText: "Where are you ?".tr,
                         hintStyle: const TextStyle(color: Colors.grey),
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(FontAwesomeIcons.search),
                         prefixIconColor: Theme.of(context).colorScheme.primary,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20)),
@@ -310,12 +312,6 @@ class _MapScreenState extends State<MapScreen> {
               ],
             ),
           ),
-          //! testing 
-          Center(
-            child: Container(
-              child: Text(networkController.connectivity.toString()),
-            ),
-          )
         ],
       ),
     );

@@ -49,7 +49,17 @@ const Map<String, String> english = {
   "Use Current Location ": "Use Current Location ",
   "Enter manually": "Enter manually",
   "You are all set Up ": "You are all set Up ",
-  // "Where Quality and Efficiency Meet.": "Where Quality and Efficiency Meet."
+  "  You\'re Offline :(": "  You\'re Offline :(",
+  "Please Make Sure You\'re Connected To The Internet":
+      "Please Make Sure You\'re Connected To The Internet",
+  //
+  "No address available": "No address available",
+  "Error fetching address": "Error fetching address",
+  "Selected Location": "Selected Location",
+  "Back": "Back",
+  "Set Location": "Set Location",
+  "Where are you ?": "Where are you ?",
+  "Address:": "Address:",
 };
 
 const Map<String, String> arabic = {
@@ -134,5 +144,9 @@ const Map<String, String> arabic = {
   "Notifications": "إشعارات",
   "Enable Notifications": "تفعيل الإشعارات",
   "English": "عربي",
-  "Language": "اللغة"
+  "Language": "اللغة",
+  //
+  "  You\'re Offline :(": "انت غير متصل :(",
+  "Please Make Sure You\'re Connected To The Internet":
+      "تاكد من انك متصل بالانترنت ",
 };

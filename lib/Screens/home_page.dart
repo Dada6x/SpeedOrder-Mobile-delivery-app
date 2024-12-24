@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/locationController.dart';
+import 'package:mamamia_uniproject/Controllers/locationController.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/components/ads.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
 import 'package:mamamia_uniproject/components/search_bar.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class HomeNeedToBeSlivered extends StatelessWidget {
@@ -15,10 +16,8 @@ class HomeNeedToBeSlivered extends StatelessWidget {
   Widget build(BuildContext context) {
     String location = Get.find<LocationController>().getCurrentLocation();
 
-
     final pageController = PageController();
     return Scaffold(
-      //@ useful shit
       extendBody: true,
       //! appbar
       appBar: PreferredSize(
@@ -26,6 +25,20 @@ class HomeNeedToBeSlivered extends StatelessWidget {
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: AppBar(
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    onPressed: () {
+                      MainPage.scaffoldKey.currentState?.openEndDrawer();
+                    },
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Theme.of(context).colorScheme.primary,
+                      size: 30,
+                    )),
+              )
+            ],
             scrolledUnderElevation: 0.0,
             surfaceTintColor: Colors.transparent,
             forceMaterialTransparency: true,
@@ -49,7 +62,6 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                   onPressed: () {},
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    //! i want the location to be here
                     child: Center(child: Text(location)),
                   )),
             ),
@@ -83,24 +95,41 @@ class HomeNeedToBeSlivered extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Directionality(
               textDirection: TextDirection.ltr,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ProjectCategoriesIcons(
-                      icon: Icons.fastfood_outlined, categorie: 'Food'),
-                  ProjectCategoriesIcons(
-                      icon: SolarIconsOutline.tShirt, categorie: 'Clothes'.tr),
-                  ProjectCategoriesIcons(
-                      icon: Icons.monitor, categorie: 'Devices'),
-                  ProjectCategoriesIcons(
-                      icon: SolarIconsOutline.home1, categorie: 'Home'),
-                  //! when clicked the most popular must change and the product info below
-                  // i know its should not be static info but for now thats what i got :F
-                  //! enums??
-                ],
+              child: SingleChildScrollView(
+                scrollDirection:
+                    Axis.horizontal, // Make it horizontally scrollable
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .spaceEvenly, // Ensure the Row starts from the left
+                    children: [
+                      //TODO WARD ADD MORE CATEGORIES 💋
+                      ProjectCategoriesIcons(
+                          icon: Icons.fastfood_outlined, categorie: 'Food'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.tShirt,
+                          categorie: 'Clothes'.tr),
+                      ProjectCategoriesIcons(
+                          icon: Icons.monitor, categorie: 'Devices'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.home1, categorie: 'Home'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.home1, categorie: 'Home'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.home1, categorie: 'Home'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.home1, categorie: 'Home'),
+                      ProjectCategoriesIcons(
+                          icon: SolarIconsOutline.home1, categorie: 'Home'),
+                      // Add more categories if needed
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
+
           Align(
             alignment: Get.locale?.languageCode == 'ar'
                 ? Alignment.centerRight // Align right for Arabic

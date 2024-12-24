@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
+
+import 'package:mamamia_uniproject/Auth/location/Maps/network_status.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_comps.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/comp/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
+// ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
   bool isEn = false;
-// location
-// themes
-// idk :D
   @override
   Widget build(BuildContext context) {
-    final theme = Get.theme;
+    // final theme = Get.theme;
     return Scaffold(
         appBar: NormalAppBar("Settings".tr),
         body: GetBuilder(
@@ -85,7 +84,7 @@ class SettingsPage extends StatelessWidget {
                 title: "Location".tr,
                 icon: const Icon(Icons.map),
                 destination: () {
-                  Get.to(const MapScreen());
+                  Get.to(const NetworkStatus());
                 },
               ),
               SettingsSection(title: "Notifications".tr),

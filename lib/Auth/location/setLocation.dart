@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/location/Maps/mapscreen.dart';
+import 'package:mamamia_uniproject/Auth/location/Maps/network_status.dart';
 import 'package:mamamia_uniproject/components/location_dialog.dart';
 
 class SettingLocation extends StatelessWidget {
@@ -61,7 +61,7 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const MapScreen());
+                Get.off(const NetworkStatus());
               },
               child: Text(
                 maxLines: 1,

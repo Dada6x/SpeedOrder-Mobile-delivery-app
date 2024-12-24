@@ -15,6 +15,8 @@ class MainPage extends StatefulWidget {
   static Color greyColor = const Color(0xFF191919);
   static Color darkgreyColor = const Color(0xFF131217);
 
+  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   const MainPage({super.key});
 
   @override
@@ -30,7 +32,7 @@ class _MainPageState extends State<MainPage> {
     //yahea: Good Job !!
     const StoresPage(),
     const CartPage(),
-    const HomeSliver(),// this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location 
+    const HomeSliver(), // this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location
     const FavoritePage(),
     const ProfilePage(),
   ];
@@ -38,6 +40,19 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: MainPage.scaffoldKey,
+        //! notifications drawer
+        endDrawer: Drawer(
+          child: SafeArea(
+            child: Scaffold(
+              appBar: AppBar(
+                title: const Text(
+                  'Notifications',
+                ),
+              ),
+            ),
+          ),
+        ),
         //! ########################### GET RID OF THEIS GIANT BTM NAVIGATION BAR U STUPID NIGGER  ###########
         bottomNavigationBar: Directionality(
           textDirection: TextDirection.ltr,

@@ -23,53 +23,14 @@ class _ProfilePageState extends State<ProfilePage> {
             radius: 80,
             backgroundImage: Get.find<Model>().pickedImage,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('User Name'.tr),
-              IconButton(
-                  onPressed: () {
-                    Get.bottomSheet(Container(
-                      //! fix the bug when the keyboard everything overflows
-                      color: Theme.of(context).colorScheme.secondary,
-                      height: 600,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const TextField(),
-                            const CircleAvatar(
-                              //  i think showing the image is not necessary so
-                              // so im putting button later
-                              radius: 90,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: Text('Cancel'.tr)),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      //! update the user Name
-                                    },
-                                    child: Text('Save'.tr))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ));
-                    //! Image Picker########## above ##############
-                    //! username changer############
-                  },
-                  icon: Icon(Icons.edit,
-                      color: Theme.of(context).colorScheme.primary))
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('User Name'.tr),
+              ],
+            ),
           ),
           Divider(
             color: Theme.of(context).colorScheme.primary,
