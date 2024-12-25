@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,13 +36,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar("Notifications"),
+      appBar: NormalAppBar("Notifications".tr),
       body: Column(
         children: [
           ListTile(
-            leading: const Text(
-              "Notifications",
-              style: TextStyle(fontSize: 20,),
+            leading: Text(
+              "Notifications".tr,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
             trailing: Switch(
               value: isswitched,
@@ -62,10 +65,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: isswitched == true
-                ? const Text(
-                    "Disable notifications to stop receiving updates about orders, promotions, and alerts. ")
-                : const Text(
-                    "Enable notifications to stay updated with order status, special offers, and important updates."),
+                ? Text(
+                    "Disable notifications to stop receiving updates about orders, promotions, and alerts. "
+                        .tr)
+                :  Text(
+                    "Enable notifications to stay updated with order status, special offers, and important updates.".tr),
           ),
         ],
       ),

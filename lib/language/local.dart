@@ -62,18 +62,31 @@ const Map<String, String> english = {
   "Where are you ?": "Where are you ?",
   "Address:": "Address:",
   "Done": "Done",
-    "Change Theme":"Change Theme",
+  "Change Theme": "Change Theme",
   "Notifications": "Notifications",
-    "Auto":"Auto",
-      "Manually":"Manually",
+  "Auto": "Auto",
+  "Manually": "Manually",
+  "New Number": "New Number",
+  "Edit Phone Number": "Edit Phone Number",
+  "Edit Password": "Edit Password",
+  "New Password": "New Password",
+  "Edit UserName": "Edit UserName",
 
+  "Enable notifications to stay updated with order status, special offers, and important updates.":
+      "Enable notifications to stay updated with order status, special offers, and important updates.",
+
+  "New UserName": "New UserName",
+  "Disable notifications to stop receiving updates about orders, promotions, and alerts. ":
+      "Disable notifications to stop receiving updates about orders, promotions, and alerts. "
 };
 
 const Map<String, String> arabic = {
   "Settings": "اعدادات",
-  "Manually":"يدوي",
-  "Auto":"تلقائي",
-  "Where are you ?":"اين انت ؟",
+  "Manually": "يدوي",
+  "Auto": "تلقائي",
+  "Where are you ?": "اين انت ؟",
+  "New UserName": "اسم المستخدم الجديد",
+  "Edit UserName": "تعديل اسم المستخدم",
   "Success": "تم بنجاح",
   "Check Out": "شراء",
   "added to the cart": "اضيف/ت الى سلة مشنرياتك !",
@@ -100,6 +113,7 @@ const Map<String, String> arabic = {
   "Change language": "تغيير اللغة",
   "Save": "حفظ",
   "Done": "تم",
+  "New Number": "الرقم الجديد",
   "Back": "الرجوع",
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
@@ -110,7 +124,7 @@ const Map<String, String> arabic = {
   "Change Location Manualy": "تغيير المكان يدويا",
   "Where Quality and Efficiency Meet.": "حيث تجتمع الجودة و الكفاءة معا",
   "Number": "رقم",
-  "Change Theme":"تغيير الوضع",
+  "Change Theme": "تغيير الوضع",
   "Enter Number": " ادخل رقم",
   "Enter Password": "ادخل كلمة السر",
   "Log in": "تسجيل دخول",
@@ -163,4 +177,9 @@ const Map<String, String> arabic = {
   "  You're Offline :(": "انت غير متصل :(",
   "Please Make Sure You're Connected To The Internet":
       "تاكد من انك متصل بالانترنت ",
+  "Edit Phone Number": "تعديل رقم الهاتف",
+  "Edit Password": "تعديل كلمة المرور",
+  "New Password": "كلمة المرور الجديدة ",
+
+
 };

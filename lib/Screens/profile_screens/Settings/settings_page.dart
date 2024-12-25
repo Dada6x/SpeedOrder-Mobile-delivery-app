@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
-import 'package:mamamia_uniproject/Location/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/dialogs/location_dialog.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_name_dialog.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_password_dialog.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_phonenNumber_dialog.dart';
 import 'package:mamamia_uniproject/components/settings_comps.dart';
 import 'package:mamamia_uniproject/components/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page_thesettings.dart';
@@ -15,95 +18,105 @@ class SettingsPage extends StatelessWidget {
   bool isEn = false;
   @override
   Widget build(BuildContext context) {
-    // final theme = Get.theme;
     return Scaffold(
         appBar: NormalAppBar("Settings".tr),
         body: GetBuilder(
           init: ThemeController(),
-          builder: (controller) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SettingsSection(
-                title: "General".tr,
-              ),
-              SettingsComps(
-                title: "Language".tr,
-                icon: const Icon(Icons.language_sharp),
-                destination: () {
-                  Locale currentLocale = Get.locale ?? const Locale("en");
-                  Get.updateLocale(currentLocale.languageCode == "en"
-                      ? const Locale("ar")
-                      : const Locale("en"));
-                },
-                trailing: Text(
-                  "English".tr,
-                  style: SettingsTextStyle(context),
+          builder: (controller) => SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SettingsSection(
+                  title: "General".tr,
                 ),
-              ),
-              SettingsComps(
-                title: "Change Theme".tr,
-                destination: () {
-                  controller.toggleTheme();
-                },
-                icon: Icon(
-                  controller.isDarkMode ? Icons.sunny : Icons.nightlight_round,
-                ),
-                trailing: Text(
-                  controller.isDarkMode ? "Light Mode".tr : "Dark Mode".tr,
-                  style: SettingsTextStyle(context),
-                ),
-              ),
-              const SettingsSection(title: "Account"),
-              SettingsComps(
-                title: "User Name".tr,
-                icon: const Icon(Icons.person),
-                destination: () {},
-                trailing: Text(
-                  'Name'.tr,
-                  style: SettingsTextStyle(context),
-                ),
-              ),
-              SettingsComps(
-                title: "Phone Number".tr,
-                icon: const Icon(Icons.phone),
-                destination: () {},
-                trailing: Text(
-                  'Number'.tr,
-                  style: SettingsTextStyle(context),
-                ),
-              ),
-              SettingsComps(
-                title: "Password".tr,
-                icon: const Icon(Icons.lock),
-                destination: () {},
-                trailing: Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: Text(
-                    '+963 09** *** ***',
+                SettingsComps(
+                  title: "Language".tr,
+                  icon: const Icon(Icons.language_sharp),
+                  destination: () {
+                    Locale currentLocale = Get.locale ?? const Locale("en");
+                    Get.updateLocale(currentLocale.languageCode == "en"
+                        ? const Locale("ar")
+                        : const Locale("en"));
+                  },
+                  trailing: Text(
+                    "English".tr,
                     style: SettingsTextStyle(context),
                   ),
                 ),
-              ),
-              SettingsComps(
-                title: "Location".tr,
-                icon: const Icon(Icons.map),
-                trailing: Text(style: SettingsTextStyle(context), location),
-                destination: () {
-                  Get.dialog(const LocationDialog());
-                },
-              ),
-              SettingsSection(title: "Notifications".tr),
-              SettingsComps(
-                  title: "Enable Notifications".tr,
-                  icon: const Icon(Icons.notifications),
+                SettingsComps(
+                  title: "Change Theme".tr,
                   destination: () {
-                    Get.to(const NotificationsPage());
-                  }),
-            ],
+                    controller.toggleTheme();
+                  },
+                  icon: Icon(
+                    controller.isDarkMode
+                        ? Icons.sunny
+                        : Icons.nightlight_round,
+                  ),
+                  trailing: Text(
+                    controller.isDarkMode ? "Light Mode".tr : "Dark Mode".tr,
+                    style: SettingsTextStyle(context),
+                  ),
+                ),
+                const SettingsSection(title: "Account"),
+                SettingsComps(
+                  title: "User Name".tr,
+                  icon: const Icon(Icons.person),
+                  destination: () {
+                    Get.dialog(const EditNameDialog());
+                  },
+                  trailing: Text(
+                    'Name'.tr,
+                    style: SettingsTextStyle(context),
+                  ),
+                ),
+                SettingsComps(
+                  title: "Phone Number".tr,
+                  icon: const Icon(Icons.phone),
+                  destination: () {
+                    Get.dialog(const EditNumberDialog());
+                  },
+                  trailing: Text(
+                    'Number'.tr,
+                    style: SettingsTextStyle(context),
+                  ),
+                ),
+                SettingsComps(
+                  title: "Password".tr,
+                  icon: const Icon(Icons.lock),
+                  destination: () {
+                    Get.dialog(const EditPasswordDialog());
+                  },
+                  trailing: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(
+                      '+963 09** *** ***',
+                      style: SettingsTextStyle(context),
+                    ),
+                  ),
+                ),
+                SettingsComps(
+                  title: "Location".tr,
+                  icon: const Icon(Icons.map),
+                  trailing: Text(style: SettingsTextStyle(context), location),
+                  destination: () {
+                    Get.dialog(const LocationDialog());
+                  },
+                ),
+                SettingsSection(title: "Notifications".tr),
+                SettingsComps(
+                    title: "Enable Notifications".tr,
+                    icon: const Icon(Icons.notifications),
+                    destination: () {
+                      Get.to(const NotificationsPage());
+                    }),
+              ],
+            ),
           ),
         ));
   }
 
+  // ignore: non_constant_identifier_names
   TextStyle SettingsTextStyle(BuildContext context) =>
       TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 15);
 }

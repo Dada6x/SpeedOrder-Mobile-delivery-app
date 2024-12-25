@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Location/Maps/map.dart';
+import 'package:mamamia_uniproject/Location/maps/map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class NetworkStatus extends StatefulWidget {
