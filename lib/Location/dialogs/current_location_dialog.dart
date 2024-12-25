@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:mamamia_uniproject/Location/maps/current_location_map.dart';
+import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/current_location_map.dart';
+import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/network_status_Current_location.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
@@ -26,7 +27,7 @@ class CurrentLocationDialog extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
-                      child: Currentlocationmap()),
+                      child: Networkstatus2()),
                 )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

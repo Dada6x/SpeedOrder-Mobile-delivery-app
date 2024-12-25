@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Location/maps/map.dart';
+import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/current_location_map.dart';
+import 'package:mamamia_uniproject/Location/maps/manuallLocation/map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
-class NetworkStatus extends StatefulWidget {
+class Networkstatus2 extends StatefulWidget {
   //! this is the class the determine that the scaffold going to show damn man or error message
-  const NetworkStatus({super.key});
+  const Networkstatus2({super.key});
 
   @override
-  State<NetworkStatus> createState() => _NetworkStatusState();
+  State<Networkstatus2> createState() => _NetworkStatusState();
 }
 
-class _NetworkStatusState extends State<NetworkStatus> {
+class _NetworkStatusState extends State<Networkstatus2> {
   bool isConnectedToInternet = false;
 
   StreamSubscription? _internetConnectionStreamSubscription;
@@ -54,21 +55,8 @@ class _NetworkStatusState extends State<NetworkStatus> {
   @override
   Widget build(BuildContext context) {
     return isConnectedToInternet
-        ? const MapScreen()
+        ? const Currentlocationmap()
         : Scaffold(
-            appBar: AppBar(
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Get.offAll(const MainPage());
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Set Later"),
-                  ),
-                )
-              ],
-            ),
             body: Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -85,15 +73,6 @@ class _NetworkStatusState extends State<NetworkStatus> {
                             'assets/animations/dinolightmode.json')),
                 Text(
                   '  You\'re Offline :(',
-                  style: TextStyle(
-                    color: MainPage.orangeColor,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Please Make Sure You\'re Connected To The Internet',
                   style: TextStyle(
                     color: MainPage.orangeColor,
                   ),

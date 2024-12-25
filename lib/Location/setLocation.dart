@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Location/maps/network_status_offlinePage.dart';
+import 'package:mamamia_uniproject/Location/maps/manuallLocation/network_status_for_ManuallLocation.dart';
 import 'package:mamamia_uniproject/Location/dialogs/current_location_dialog.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 

@@ -51,7 +51,7 @@ void main() async {
           page: () => const MainPage(),
         ),
       ],
-      home: const IntroPages(),
+      // home: const IntroPages(),
     ),
   );
 }
