@@ -5,7 +5,6 @@ import 'package:mamamia_uniproject/Screens/settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
   @override
@@ -95,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ),
                 MenuListItem(
-                  title: 'Help Center'.tr,
+                  title: 'FAQ'.tr,
                   icon: const Icon(Icons.help),
                   destination: () {
                     Get.to(const HelpCenter());
