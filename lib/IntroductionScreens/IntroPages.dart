@@ -61,7 +61,7 @@ class _IntroPagesState extends State<IntroPages> {
                   dotColor: Colors.grey.shade300,
                 ),
               ),
-              //ternary operator
+
               onLastPage
                   ? GestureDetector(
                       onTap: () {
