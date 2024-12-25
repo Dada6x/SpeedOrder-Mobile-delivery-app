@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
+import 'package:mamamia_uniproject/Location/Maps/network_status_offlinePage.dart';
 import 'package:mamamia_uniproject/Location/current_location_dialog.dart';
 
 class LocationDialog extends StatelessWidget {

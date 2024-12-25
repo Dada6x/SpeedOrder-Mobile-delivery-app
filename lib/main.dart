@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
+import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/language/local.dart';
+import 'package:mamamia_uniproject/main_page.dart';
+import 'package:mamamia_uniproject/middlewares/middleware.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //middleware
-SharedPreferences? sharepref;
+SharedPreferences? sharedPref;
+
 void main() async {
   Get.put(creditCardController());
   Get.put(FavoriteController());
@@ -20,8 +25,8 @@ void main() async {
   Get.put(CartController());
   Get.put(LocationController());
   //middleware
-  // sharepref = await SharedPreferences.getInstance();
-  // WidgetsFlutterBinding.ensureInitialized();
+  sharedPref = await SharedPreferences.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     //! languges
     translations: MyLocal(),
@@ -32,12 +37,15 @@ void main() async {
     //! i know its places wrong but i want the default theme to be the dark theme
     darkTheme: Themes().lightMode,
     theme: Themes().darkMode,
-    //middlewares
-    // initialRoute: '/',
-    // getPages: [
-    //   GetPage(name: '/', page: () => const IntroPages()),
-    //   GetPage(name: '/HomePage', page: () => const MainPage()),
-    // ],
-    // home: const MainPage(),
+    // middlewares
+    initialRoute: '/',
+    getPages: [
+      GetPage(name: '/', page: () => const IntroPages(), middlewares: [
+        MiddlewareAuth(),
+      ]),
+      GetPage(name: '/login', page: () => const LoginPage()),
+      GetPage(name: '/mainPage', page: () => const MainPage(),),
+    ],
+    // home: const IntroPages(),
   ));
 }

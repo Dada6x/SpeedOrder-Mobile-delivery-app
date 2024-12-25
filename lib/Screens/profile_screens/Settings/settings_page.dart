@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
+import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
+import 'package:mamamia_uniproject/Location/location_dialog.dart';
 import 'package:mamamia_uniproject/components/settings_comps.dart';
 import 'package:mamamia_uniproject/components/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page_thesettings.dart';
@@ -11,6 +11,7 @@ import 'package:mamamia_uniproject/theme/theme_controller.dart';
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
+  String location = Get.find<LocationController>().getCurrentLocation();
   bool isEn = false;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               SettingsComps(
-                title: "Change Theme",
+                title: "Change Theme".tr,
                 destination: () {
                   controller.toggleTheme();
                 },
@@ -75,16 +76,20 @@ class SettingsPage extends StatelessWidget {
                 title: "Password".tr,
                 icon: const Icon(Icons.lock),
                 destination: () {},
-                trailing: Text(
-                  '+963 09** *** ***',
-                  style: SettingsTextStyle(context),
+                trailing: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Text(
+                    '+963 09** *** ***',
+                    style: SettingsTextStyle(context),
+                  ),
                 ),
               ),
               SettingsComps(
                 title: "Location".tr,
                 icon: const Icon(Icons.map),
+                trailing: Text(style: SettingsTextStyle(context), location),
                 destination: () {
-                  Get.to(const NetworkStatus());
+                  Get.dialog(const LocationDialog());
                 },
               ),
               SettingsSection(title: "Notifications".tr),

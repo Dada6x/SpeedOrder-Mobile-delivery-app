@@ -39,81 +39,84 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: MainPage.scaffoldKey,
-        //! notifications drawer
-        endDrawer: const Directionality(
-          textDirection: TextDirection.ltr,
-          child: Drawer(
-            child: SafeArea(
-              child: NotificationsDrawer(),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+          key: MainPage.scaffoldKey,
+          //! notifications drawer
+          endDrawer: const Directionality(
+            textDirection: TextDirection.ltr,
+            child: Drawer(
+              child: SafeArea(
+                child: NotificationsDrawer(),
+              ),
             ),
           ),
-        ),
-        bottomNavigationBar: Directionality(
-          textDirection: TextDirection.ltr,
-          child: CurvedNavigationBar(
-            height: 60,
-            // buttonBackgroundColor: MainPage.greyColor
-            color: Theme.of(context).colorScheme.secondary,
-            backgroundColor: Colors.transparent,
-            animationCurve: Curves.easeInOut,
-            animationDuration: const Duration(milliseconds: 250),
-            index: index,
-            onTap: (value) {
-              setState(() {
-                index = value;
-              });
-            },
-            items: [
-              // toggle icons between selected and not selected
-              // maybe if the light theme is so bright the colors needs to be switched
-              index == 0
-                  ? Icon(
-                      size: 30,
-                      Icons.store,
-                      color: Theme.of(context).colorScheme.primary)
-                  : const Icon(
-                      size: 30,
-                      Icons.store_outlined,
-                    ),
-              index == 1
-                  ? Icon(
-                      size: 30,
-                      Icons.shopping_cart,
-                      color: Theme.of(context).colorScheme.primary)
-                  : const Icon(
-                      size: 30,
-                      Icons.shopping_cart_outlined,
-                    ),
-              index == 2
-                  ? Icon(
-                      size: 30,
-                      Icons.home,
-                      color: Theme.of(context).colorScheme.primary)
-                  : const Icon(
-                      size: 30,
-                      Icons.home_outlined,
-                    ),
-              index == 3
-                  ? Icon(
-                      size: 30,
-                      Icons.favorite,
-                      color: Theme.of(context).colorScheme.primary)
-                  : const Icon(
-                      size: 30,
-                      Icons.favorite_outline,
-                    ),
-              index == 4
-                  ? Icon(Icons.person,
-                      size: 30, color: Theme.of(context).colorScheme.primary)
-                  : const Icon(
-                      Icons.person_2_outlined,
-                      size: 30,
-                    ),
-            ],
+          bottomNavigationBar: Directionality(
+            textDirection: TextDirection.ltr,
+            child: CurvedNavigationBar(
+              height: 60,
+              // buttonBackgroundColor: MainPage.greyColor
+              color: Theme.of(context).colorScheme.secondary,
+              backgroundColor: Colors.transparent,
+              animationCurve: Curves.easeInOut,
+              animationDuration: const Duration(milliseconds: 250),
+              index: index,
+              onTap: (value) {
+                setState(() {
+                  index = value;
+                });
+              },
+              items: [
+                // toggle icons between selected and not selected
+                // maybe if the light theme is so bright the colors needs to be switched
+                index == 0
+                    ? Icon(
+                        size: 30,
+                        Icons.store,
+                        color: Theme.of(context).colorScheme.primary)
+                    : const Icon(
+                        size: 30,
+                        Icons.store_outlined,
+                      ),
+                index == 1
+                    ? Icon(
+                        size: 30,
+                        Icons.shopping_cart,
+                        color: Theme.of(context).colorScheme.primary)
+                    : const Icon(
+                        size: 30,
+                        Icons.shopping_cart_outlined,
+                      ),
+                index == 2
+                    ? Icon(
+                        size: 30,
+                        Icons.home,
+                        color: Theme.of(context).colorScheme.primary)
+                    : const Icon(
+                        size: 30,
+                        Icons.home_outlined,
+                      ),
+                index == 3
+                    ? Icon(
+                        size: 30,
+                        Icons.favorite,
+                        color: Theme.of(context).colorScheme.primary)
+                    : const Icon(
+                        size: 30,
+                        Icons.favorite_outline,
+                      ),
+                index == 4
+                    ? Icon(Icons.person,
+                        size: 30, color: Theme.of(context).colorScheme.primary)
+                    : const Icon(
+                        Icons.person_2_outlined,
+                        size: 30,
+                      ),
+              ],
+            ),
           ),
-        ),
-        body: screens[index]);
+          body: screens[index]),
+    );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Location/Maps/network_status.dart';
-import 'package:mamamia_uniproject/Location/Maps/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/Maps/network_status_offlinePage.dart';
+import 'package:mamamia_uniproject/Location/current_location_dialog.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class SettingLocation extends StatelessWidget {
   const SettingLocation({super.key});
@@ -10,6 +11,19 @@ class SettingLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAll(const MainPage());
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Set Later"),
+            ),
+          )
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -39,7 +53,7 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.dialog(const LocationDialog());
+                Get.dialog(const CurrentLocationDialog());
               },
               child: Text(
                 maxLines: 1,

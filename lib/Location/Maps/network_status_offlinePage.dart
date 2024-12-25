@@ -59,13 +59,14 @@ class _NetworkStatusState extends State<NetworkStatus> {
             appBar: AppBar(
               actions: [
                 TextButton(
-                    onPressed: () {
-                      Get.offAll(const MainPage());
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("Set Later"),
-                    ))
+                  onPressed: () {
+                    Get.offAll(const MainPage());
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Set Later"),
+                  ),
+                )
               ],
             ),
             body: Center(

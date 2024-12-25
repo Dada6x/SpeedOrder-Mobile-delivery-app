@@ -7,6 +7,7 @@ import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -193,6 +194,7 @@ class SignUpPageState extends State<SignupPage> {
                     width: controller.screenWidth(context),
                     function: () {
                       Get.off(const SettingLocation());
+                      sharedPref!.setString("id", "1");
                     },
                   ),
                 ),

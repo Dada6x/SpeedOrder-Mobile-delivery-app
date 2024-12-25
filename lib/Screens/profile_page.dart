@@ -5,6 +5,7 @@ import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_pag
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -75,8 +76,9 @@ class _ProfilePageState extends State<ProfilePage> {
           TextButton.icon(
             onPressed: () {
               //! logOutButton
-              Get.off(
-                  const LoginPage()); //ward: changed it cuz older one had an arrow back button
+              Get.off(const LoginPage());
+              sharedPref!.clear();
+              //ward: changed it cuz older one had an arrow back button
               //yahea: np baby
             },
             label: Text(

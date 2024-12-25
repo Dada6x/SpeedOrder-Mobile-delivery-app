@@ -5,7 +5,7 @@ import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/components/ads.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
-import 'package:mamamia_uniproject/Location/Maps/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/location_dialog.dart';
 import 'package:mamamia_uniproject/components/search_bar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
@@ -23,52 +23,49 @@ class HomeNeedToBeSlivered extends StatelessWidget {
       //! appbar
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: AppBar(
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () {
-                      MainPage.scaffoldKey.currentState?.openEndDrawer();
-                    },
-                    icon: Icon(
-                      Icons.notifications,
-                      color: Theme.of(context).colorScheme.primary,
-                      size: 30,
-                    )),
-              )
-            ],
-            scrolledUnderElevation: 0.0,
-            surfaceTintColor: Colors.transparent,
-            forceMaterialTransparency: true,
-            elevation: 0,
-            centerTitle: true,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: GestureDetector(
-                onTap: () => Get.to(const ProfilePage()),
-                child: CircleAvatar(
-                  radius: 10,
-                  //! THE USER IMAGE
-                  backgroundImage: Get.find<Model>().pickedImage,
-                ),
+        child: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: () {
+                    MainPage.scaffoldKey.currentState?.openEndDrawer();
+                  },
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Theme.of(context).colorScheme.primary,
+                    size: 30,
+                  )),
+            )
+          ],
+          scrolledUnderElevation: 0.0,
+          surfaceTintColor: Colors.transparent,
+          forceMaterialTransparency: true,
+          elevation: 0,
+          centerTitle: true,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: GestureDetector(
+              onTap: () => Get.to(const ProfilePage()),
+              child: CircleAvatar(
+                radius: 10,
+                //! THE USER IMAGE
+                backgroundImage: Get.find<Model>().pickedImage,
               ),
             ),
-            //! location in the homepage
-            title: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(elevation: 2),
-                  onPressed: () {
-                    Get.dialog(const LocationDialog());
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Center(child: Text(location)),
-                  )),
-            ),
+          ),
+          //! location in the homepage########
+          title: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(elevation: 2),
+                onPressed: () {
+                  Get.dialog(const LocationDialog());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(child: Text(location)),
+                )),
           ),
         ),
       ),

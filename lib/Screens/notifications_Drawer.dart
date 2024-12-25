@@ -13,14 +13,15 @@ class NotificationsDrawer extends StatelessWidget {
         ),
       ),
       body: ListView(
-        children: const [
+        children: [
           ListTile(
             title: Text('notification'),
           ),
           ListTile(title: Text('notification')),
           ListTile(title: Text('notification')),
           ListTile(title: Text('notification')),
-          ListTile(title: Text('notification'))
+          ListTile(title: Text('notification')),
+          TextButton(onPressed: () {}, child: const Text('Clear')),
         ],
       ),
     );
