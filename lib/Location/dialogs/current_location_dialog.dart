@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/current_location_map.dart';
 import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/network_status_Current_location.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/main_page.dart';
