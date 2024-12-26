@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 // this is button that takes string and width and function
 class ProjectButton extends StatelessWidget {
   final String text;
@@ -21,7 +20,7 @@ class ProjectButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           backgroundColor: Theme.of(context).colorScheme.primary,
-          foregroundColor: Get.isDarkMode ? Colors.white : Colors.black,
+          foregroundColor: Get.isDarkMode ? Colors.black : Colors.white,
           fixedSize: Size(width, 10)),
       onPressed: () {
         function!();

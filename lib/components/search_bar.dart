@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
-
 class ProjectSearchBar extends StatefulWidget {
   const ProjectSearchBar({super.key});
 
@@ -15,30 +14,29 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:
-            const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 20),
-        child: Material(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          elevation: 5,
-          child: TextField(
-              readOnly: true,
-              decoration: InputDecoration(
-                  hintText: "What are you looking for?".tr,
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  prefixIcon: const Icon(Icons.search),
-                  prefixIconColor: Theme.of(context).colorScheme.primary,
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              onTap: () {
-                showSearch(
-                    context: context,
-                    delegate:
-                        search()); //removed search page and used search delegate instead
-              }),
-        ));
+      padding: const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 20),
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        elevation: 5,
+        child: TextField(
+            readOnly: true,
+            decoration: InputDecoration(
+                hintText: "What are you looking for?".tr,
+                hintStyle: const TextStyle(color: Colors.grey),
+                prefixIcon: const Icon(Icons.search),
+                prefixIconColor: Theme.of(context).colorScheme.primary,
+                enabledBorder:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20))),
+            onTap: () {
+              showSearch(
+                  context: context,
+                  delegate:
+                      search()); //removed search page and used search delegate instead
+            }),
+      ),
+    );
   }
 }
 

@@ -5,6 +5,7 @@ import 'package:mamamia_uniproject/Screens/Categories_page.dart';
 
 
 
+// ignore: must_be_immutable
 class ProjectCategoriesIcons extends StatelessWidget {
   final IconData icon;
   final String categorie;

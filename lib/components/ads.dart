@@ -23,6 +23,7 @@ Ad(String adimageassets) {
 }
 
 // the dots that moves under the ads
+// ignore: must_be_immutable
 class AdsIndicator extends StatelessWidget {
   PageController controller;
   AdsIndicator({super.key, required this.controller});

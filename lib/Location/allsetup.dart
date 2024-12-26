@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
-class Allsetup extends StatelessWidget {
-  const Allsetup({super.key});
+class AllSetup extends StatelessWidget {
+  const AllSetup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class Allsetup extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: TextButton(
                   onPressed: () {
-                    Get.off(const MainPage());
+                    Get.offAll(const MainPage());
                   },
-                  child:  Text(
+                  child: Text(
                     'Next'.tr,
                   )),
             ),
@@ -37,7 +37,7 @@ class Allsetup extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-           Text(
+          Text(
             'You are all set Up '.tr,
             style: const TextStyle(
               fontSize: 20,

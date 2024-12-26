@@ -88,4 +88,7 @@ class Model extends GetxController {
       _openTwitter();
     }
   }
+
+
+  
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:solar_icons/solar_icons.dart';
 
 class LanguageToggleButtonIcon extends StatelessWidget {
   const LanguageToggleButtonIcon({super.key});
@@ -16,7 +15,7 @@ class LanguageToggleButtonIcon extends StatelessWidget {
                 ? const Locale("ar")
                 : const Locale("en"));
           },
-          icon: Icon(SolarIconsBold.global,
+          icon: Icon(Icons.language_sharp,
               color: Theme.of(context).colorScheme.primary)),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mamamia_uniproject/Auth/location/allsetup.dart';
-import 'package:mamamia_uniproject/components/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/maps/manuallLocation/network_status_for_ManuallLocation.dart';
+import 'package:mamamia_uniproject/Location/dialogs/current_location_dialog.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class SettingLocation extends StatelessWidget {
   const SettingLocation({super.key});
@@ -10,6 +11,19 @@ class SettingLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAll(const MainPage());
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Set Later"),
+            ),
+          )
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -21,7 +35,7 @@ class SettingLocation extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'Grant Current Location'.tr,
+              'Let Us Know Where You Are'.tr,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
@@ -39,11 +53,11 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.dialog(const LocationDialog());
+                Get.dialog(const CurrentLocationDialog());
               },
               child: Text(
                 maxLines: 1,
-                ' Enter Location'.tr,
+                'Use Current Location '.tr,
                 style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
@@ -61,11 +75,11 @@ class SettingLocation extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
               onPressed: () {
-                Get.off(const Allsetup());
+                Get.off(const NetworkStatus());
               },
               child: Text(
                 maxLines: 1,
-                'Skip'.tr,
+                'Enter manually'.tr,
                 style: const TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),

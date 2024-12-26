@@ -151,14 +151,14 @@ class SigninPageState extends State<LoginPage> {
                           children: [
                             const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),
                             Text('Our Socials'.tr),
                             const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 10),
                                 child: Divider(),
                               ),
                             ),
@@ -188,25 +188,9 @@ class SigninPageState extends State<LoginPage> {
                       ),
 
                       ProjectButton(
-                        text: "Sign in".tr,
+                        text: "Log in".tr,
                         width: controller.screenWidth(context),
                         function: () async {
-                          /* Get.dialog(const SimpleDialog(
-                            children: [
-                              Center(
-                                  child: Text(
-                                "Checking Info ....",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              )),
-                              Padding(
-                                padding: const EdgeInsets.all(50.0),
-                                child: LinearProgressIndicator(),
-                              )
-                            ],
-                          ));*/
-                          //Get.off(const MainPage());
                           final request =
                               await http.post(Uri.parse(""), body: {});
                           var requestbody = request.body;

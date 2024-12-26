@@ -49,11 +49,44 @@ const Map<String, String> english = {
   "Use Current Location ": "Use Current Location ",
   "Enter manually": "Enter manually",
   "You are all set Up ": "You are all set Up ",
-  // "Where Quality and Efficiency Meet.": "Where Quality and Efficiency Meet."
+  "  You're Offline :(": "  You're Offline :(",
+  "Please Make Sure You're Connected To The Internet":
+      "Please Make Sure You're Connected To The Internet",
+  //
+  "Let Us Know Where You Are": "Let Us Know Where You Are",
+  "No address available": "No address available",
+  "Error fetching address": "Error fetching address",
+  "Selected Location": "Selected Location",
+  "Back": "Back",
+  "Edit Location": "Edit Location",
+  "Where are you ?": "Where are you ?",
+  "Address:": "Address:",
+  "Done": "Done",
+  "Change Theme": "Change Theme",
+  "Notifications": "Notifications",
+  "Auto": "Auto",
+  "Manually": "Manually",
+  "New Number": "New Number",
+  "Edit Phone Number": "Edit Phone Number",
+  "Edit Password": "Edit Password",
+  "New Password": "New Password",
+  "Edit UserName": "Edit UserName",
+
+  "Enable notifications to stay updated with order status, special offers, and important updates.":
+      "Enable notifications to stay updated with order status, special offers, and important updates.",
+
+  "New UserName": "New UserName",
+  "Disable notifications to stop receiving updates about orders, promotions, and alerts. ":
+      "Disable notifications to stop receiving updates about orders, promotions, and alerts. "
 };
 
 const Map<String, String> arabic = {
   "Settings": "اعدادات",
+  "Manually": "يدوي",
+  "Auto": "تلقائي",
+  "Where are you ?": "اين انت ؟",
+  "New UserName": "اسم المستخدم الجديد",
+  "Edit UserName": "تعديل اسم المستخدم",
   "Success": "تم بنجاح",
   "Check Out": "شراء",
   "added to the cart": "اضيف/ت الى سلة مشنرياتك !",
@@ -79,6 +112,9 @@ const Map<String, String> arabic = {
   "Whats you're looking for?": "ما الذي تبحث عنه ؟",
   "Change language": "تغيير اللغة",
   "Save": "حفظ",
+  "Done": "تم",
+  "New Number": "الرقم الجديد",
+  "Back": "الرجوع",
   "Cancel": "الغاء",
   "Light Mode": "الوضع الساطع",
   "Total:": " المجموع : ",
@@ -88,6 +124,7 @@ const Map<String, String> arabic = {
   "Change Location Manualy": "تغيير المكان يدويا",
   "Where Quality and Efficiency Meet.": "حيث تجتمع الجودة و الكفاءة معا",
   "Number": "رقم",
+  "Change Theme": "تغيير الوضع",
   "Enter Number": " ادخل رقم",
   "Enter Password": "ادخل كلمة السر",
   "Log in": "تسجيل دخول",
@@ -110,6 +147,7 @@ const Map<String, String> arabic = {
   "Success!": "تم بنجاح !",
   "Congratulations on Your Purchase,Enjoy!":
       "شكرا لك, نتمنى لك الاسمتمتاع بأغراضك!",
+  "Notifications": "الاشعارات",
   "Already in": "موجود",
   "is already in Your cart!": "موجود في سلة مشترياتك !",
   "Stores": "المتاجر",
@@ -118,7 +156,7 @@ const Map<String, String> arabic = {
   "back": "رجوع",
   "fav Page": "المفضلة",
   "Skip": "تخطي",
-  " Enter Location": "ادخل موقعك ",
+  " Edit Location": "تعديل موقعك ",
   "Grant Current Location": "الحصول على موقعك الحالي",
   "this let us show nearby stores": "هذا يمكننا من عرض المتاجر القريبة",
   "and you can order form ": "ويمكنك الطلب منها",
@@ -126,4 +164,22 @@ const Map<String, String> arabic = {
   "Enter manually": "الادخال بشكل يدوي",
   "You are all set Up ": "انت جاهز !",
   "Enter Card info": "ادخل معلومات بطاقتك",
+  "First Name": "الاسم الأول",
+  "Last Name": "الاسم الأخير",
+  "General": "الاعدادات العامة",
+  "Account": "حساب",
+  "Phone Number": "رقم الهاتف",
+  "Enable Notifications": "تفعيل الإشعارات",
+  "English": "عربي",
+  "Language": "اللغة",
+  "Let Us Know Where You Are": "دعنا نعرف اين انت ",
+  //
+  "  You're Offline :(": "انت غير متصل :(",
+  "Please Make Sure You're Connected To The Internet":
+      "تاكد من انك متصل بالانترنت ",
+  "Edit Phone Number": "تعديل رقم الهاتف",
+  "Edit Password": "تعديل كلمة المرور",
+  "New Password": "كلمة المرور الجديدة ",
+
+
 };

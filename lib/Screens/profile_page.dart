@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/FAQ/FAQ_page.dart';
-import 'package:mamamia_uniproject/Screens/settings/settings_page.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,57 +20,18 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: NormalAppBar('Profile'.tr),
       body: Column(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 80,
-            backgroundImage: AssetImage(''),
+            backgroundImage: Get.find<Model>().pickedImage,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('User Name'.tr),
-              IconButton(
-                  onPressed: () {
-                    Get.bottomSheet(Container(
-                      //! fix the bug when the keyboard everything overflows
-                      color: Theme.of(context).colorScheme.secondary,
-                      height: 600,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const TextField(),
-                            const CircleAvatar(
-                              //  i think showing the image is not necessary so
-                              // so im putting button later
-                              radius: 90,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    child: Text('Cancel'.tr)),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      //! update the user Name
-                                    },
-                                    child: Text('Save'.tr))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ));
-                    //! Image Picker########## above ##############
-                    //! username changer############
-                  },
-                  icon: Icon(Icons.edit,
-                      color: Theme.of(context).colorScheme.primary))
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('User Name'.tr),
+              ],
+            ),
           ),
           Divider(
             color: Theme.of(context).colorScheme.primary,
@@ -113,8 +76,9 @@ class _ProfilePageState extends State<ProfilePage> {
           TextButton.icon(
             onPressed: () {
               //! logOutButton
-              Get.off(
-                  const LoginPage()); //ward: changed it cuz older one had an arrow back button
+              Get.off(const LoginPage());
+              sharedPref!.clear();
+              //ward: changed it cuz older one had an arrow back button
               //yahea: np baby
             },
             label: Text(

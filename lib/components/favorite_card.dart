@@ -6,7 +6,7 @@ import 'package:mamamia_uniproject/Screens/product_page.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
-
+// ignore: must_be_immutable
 class FavoriteCard extends StatelessWidget {
   int? indexinList;
   FavoriteCard({
@@ -63,8 +63,7 @@ class FavoriteCard extends StatelessWidget {
                         Text(
                           //! product name @cart
                           product.name,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 25),
+                          style: const TextStyle(fontSize: 25),
                         ),
                         Text(product.description),
                         Padding(
@@ -73,7 +72,7 @@ class FavoriteCard extends StatelessWidget {
                             //! product price @cart
                             '${product.price} \$',
                             style: TextStyle(
-                                                              color: Theme.of(context).colorScheme.primary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -97,7 +96,7 @@ class FavoriteCard extends StatelessWidget {
                             },
                             icon: Icon(
                               Icons.close,
-                                                            color: Theme.of(context).colorScheme.primary,
+                              color: Theme.of(context).colorScheme.primary,
                               size: 30,
                             ))
                       ],

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:like_button/like_button.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/main_page.dart';
+import 'package:mamamia_uniproject/components/favorite_button.dart';
 
 class ZProductPage extends StatelessWidget {
   final Product product;
@@ -16,9 +15,14 @@ class ZProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartController cartController = Get.find();
+
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.black26,
+        elevation: 0,
         actions: [
           Row(
             children: [
@@ -30,88 +34,162 @@ class ZProductPage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.share)),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: LikeButton(),
-              )
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FavoriteButton(product: product))
             ],
+          )
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: ElevatedButton(
+                  onPressed: () {}, child: const Icon(Icons.arrow_downward))),
+          ProjectButton(
+            function: () {
+              cartController.addToCart(product);
+              product.isInCart
+                  ? Get.snackbar(
+                      "Already in",
+                      "${product.name} is already in Your cart!",
+                      colorText: Theme.of(context).colorScheme.primary,
+                    )
+                  : Get.snackbar(
+                      colorText: Theme.of(context).colorScheme.primary,
+                      'Success'.tr,
+                      '${product.name} added to the cart'.tr,
+                      snackPosition: SnackPosition.TOP);
+            },
+            text: 'Add to Cart'.tr,
+            width: double.infinity,
           )
         ],
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Stack(children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  height: 127,
-                  width: screenWidth,
-                  //! Background image icon
-                  'assets/images/food2.png',
-                  color: Colors.grey,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CircleAvatar(
-                    radius: 120,
-                    backgroundColor: MainPage.orangeColor,
-                    //! product image @ZproductPage
-                    backgroundImage: AssetImage(product.imageLink),
-                  ),
-                ),
-              )
-            ]),
-          ),
           Expanded(
-              //! the product info @ZproductPage
-              child: Container(
-            child: Column(
+            child: Stack(
               children: [
-                Center(
-                  child: Text(
-                    product.name,
-                    style: const TextStyle(fontSize: 30),
-                  ),),
-                  const Divider(
-                    indent: 10,
-                    endIndent: 10,
-                  ),
-                  const Text('description and price goes here')
-                  //! description and the rest of the shit and price and etc
-                ],
-              ),
+                const ProductBackgroundImage(),
+                ProductImage(
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  productImage: product.imageLink,
+                ),
+                ProductInfoCardPage(
+                  screenHeight: screenHeight,
+                  product: product,
+                ),
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 15),
-            child: ProjectButton(
-              function: () {
-                //! adding it to the Cart via cart controller
-                cartController.addToCart(product);
-                //! added snackbar notify
-                product.isInCart
-                    ? Get.snackbar(
-                        "Already in",
-                        "${product.name} is already in Your cart!",
-                        colorText: Theme.of(context).colorScheme.primary,
-                      )
-                    : Get.snackbar(
-                        colorText: Theme.of(context).colorScheme.primary,
-                        'Success'.tr,
-                        '${product.name} added to the cart'.tr,
-                        snackPosition: SnackPosition.TOP);
-              },
-              text: 'Add to Cart'.tr,
-              width: screenWidth,
-            ),
-          )
         ],
+      ),
+    );
+  }
+}
+
+class ProductInfoCardPage extends StatelessWidget {
+  const ProductInfoCardPage(
+      {super.key, required this.screenHeight, required this.product});
+
+  final double screenHeight;
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: screenHeight / 3 - 20, left: 20, right: 20),
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      height: screenHeight / 2,
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            product.name,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          ProjectProductCartCardHome(product: product)
+              .iconType(context, product.category)!,
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "f your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, if your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, ",
+            overflow: TextOverflow.ellipsis,
+            maxLines: 10,
+          ),
+          const Spacer(
+            flex: 1,
+          ),
+          Text(
+            '\$${product.price}',
+            style: TextStyle(
+                fontSize: 25,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProductImage extends StatelessWidget {
+  const ProductImage({
+    super.key,
+    required this.screenHeight,
+    required this.screenWidth,
+    required this.productImage,
+  });
+  final String productImage;
+  final double screenHeight;
+  final double screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      height: screenHeight / 3,
+      width: screenWidth,
+      //! Background image icon
+      productImage,
+      fit: BoxFit.cover,
+    );
+  }
+}
+
+class ProductBackgroundImage extends StatelessWidget {
+  const ProductBackgroundImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Image.asset(
+        'assets/images/food2.png',
+        color: Colors.black12,
+        repeat: ImageRepeat.repeat,
+        height: double.infinity,
       ),
     );
   }
