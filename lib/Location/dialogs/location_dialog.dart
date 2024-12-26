@@ -32,25 +32,6 @@ class LocationDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              //   child: TextField(
-              //     decoration: InputDecoration(
-              //         prefixIcon: Icon(
-              //           Icons.location_pin,
-              //           color: Theme.of(context).colorScheme.primary,
-              //         ),
-              //         hintText: "Location".tr,
-              //         hintStyle: const TextStyle(
-              //             color: Color.fromARGB(170, 158, 158, 158)),
-              //         enabledBorder: OutlineInputBorder(
-              //             borderSide: const BorderSide(color: Colors.grey),
-              //             borderRadius: BorderRadius.circular(20)),
-              //         focusedBorder: OutlineInputBorder(
-              //             borderSide: const BorderSide(color: Colors.grey),
-              //             borderRadius: BorderRadius.circular(20))),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -60,19 +41,26 @@ class LocationDialog extends StatelessWidget {
                         onPressed: () {
                           Get.off(const NetworkStatus());
                         },
-                        child:  Column(
+                        child: Column(
                           children: [
-                            const Icon(Icons.edit_location_alt_outlined,size: 32,),
+                            const Icon(
+                              Icons.edit_location_alt_outlined,
+                              size: 32,
+                            ),
                             Text("Manually".tr),
                           ],
                         )), //go to the full map
                     TextButton(
                         onPressed: () {
+                          Get.back();
                           Get.dialog(const CurrentLocationDialog());
                         },
-                        child:  Column(
+                        child: Column(
                           children: [
-                            const Icon(Icons.auto_fix_high_sharp,size: 32,),
+                            const Icon(
+                              Icons.auto_fix_high_sharp,
+                              size: 32,
+                            ),
                             Text("Auto".tr),
                           ],
                         )) // go to smaller one
