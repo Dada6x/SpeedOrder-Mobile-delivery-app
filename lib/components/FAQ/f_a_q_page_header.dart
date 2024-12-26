@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FAQheader extends StatelessWidget {
-  const FAQheader({super.key, required this.header});
+class FAQPageHeader extends StatelessWidget {
+  const FAQPageHeader({super.key, required this.header});
   final String header;
   @override
   Widget build(BuildContext context) {

@@ -7,6 +7,7 @@ import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
+// ignore: must_be_immutable
 class PaymentPage extends StatelessWidget {
   PaymentPage({super.key});
   TextEditingController textEditingController = TextEditingController();

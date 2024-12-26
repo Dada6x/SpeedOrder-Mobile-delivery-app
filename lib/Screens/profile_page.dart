@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
+import 'package:mamamia_uniproject/Screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -97,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: 'FAQ'.tr,
                   icon: const Icon(Icons.help),
                   destination: () {
-                    Get.to(const HelpCenter());
+                    Get.to(FAQPage());
                   },
                 ),
                 MenuListItem(

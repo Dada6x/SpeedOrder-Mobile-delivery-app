@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/Controllers/f_a_q_cotroller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
@@ -15,6 +16,7 @@ void main() {
   Get.put(HomePageProductController());
   Get.put(Model());
   Get.put(CartController());
+  Get.put(FaqCotroller());
   runApp(GetMaterialApp(
     //! languges
     translations: MyLocal(),
