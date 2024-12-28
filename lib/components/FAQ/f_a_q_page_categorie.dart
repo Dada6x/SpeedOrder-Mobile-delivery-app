@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Screens/FAQ/categories_page.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/categories_page.dart';
 
 class FAQPageCategorie extends StatelessWidget {
   const FAQPageCategorie({

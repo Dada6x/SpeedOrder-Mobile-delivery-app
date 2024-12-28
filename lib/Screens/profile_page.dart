@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:mamamia_uniproject/Screens/FAQ/FAQ_page.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -20,10 +21,33 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: NormalAppBar('Profile'.tr),
       body: Column(
         children: [
-          CircleAvatar(
-            radius: 80,
-            backgroundImage: Get.find<Model>().pickedImage,
-          ),
+          Stack(children: [
+            CircleAvatar(
+              radius: 80,
+              backgroundImage: Get.find<Model>().pickedImage,
+            ),
+            Positioned(
+                bottom: 1,
+                right: -10,
+                height: 50,
+                child: RawMaterialButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const ImagePickingDialog();
+                        });
+                  },
+                  elevation: 2.0,
+                  fillColor: Theme.of(context).colorScheme.secondary,
+                  child: Icon(
+                    Icons.camera_alt_outlined,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  padding: const EdgeInsets.all(15.0),
+                  shape: const CircleBorder(),
+                )),
+          ]),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

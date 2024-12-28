@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Screens/FAQ/question_page.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/question_page.dart';
 import 'package:mamamia_uniproject/model/f_a_q_item.dart';
 
 class QuestionTile extends StatelessWidget {
