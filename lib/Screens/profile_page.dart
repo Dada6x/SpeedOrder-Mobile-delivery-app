@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: 'Settings'.tr,
                   icon: const Icon(Icons.settings),
                   destination: () {
-                    Get.to(SettingsPage());
+                    Get.to(const SettingsPage());
                   },
                 ),
                 MenuListItem(

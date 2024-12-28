@@ -8,7 +8,6 @@ import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/language/local.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/middlewares/middleware.dart';
@@ -18,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //middleware
 SharedPreferences? sharedPref;
 
+double ScreenWIdthddww = 333;
 void main() async {
   Get.put(creditCardController());
   Get.put(FavoriteController());

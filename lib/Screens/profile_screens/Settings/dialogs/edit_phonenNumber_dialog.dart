@@ -28,7 +28,7 @@ class EditNumberDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextField(
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).colorScheme.secondary,
                     filled: true,

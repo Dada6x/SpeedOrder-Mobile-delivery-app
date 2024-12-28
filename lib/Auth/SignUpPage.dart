@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +17,10 @@ class SignupPage extends StatefulWidget {
 }
 
 class SignUpPageState extends State<SignupPage> {
+//-------------------------Controllers
+
+
+  //---------------------------------------------------------
   Image? img;
   @override
   Widget build(BuildContext context) {
@@ -26,6 +31,7 @@ class SignUpPageState extends State<SignupPage> {
           body: SingleChildScrollView(
             child: Column(
               children: [
+                //! image
                 Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: controller.screenHeight(context) * 0.02,
@@ -34,156 +40,85 @@ class SignUpPageState extends State<SignupPage> {
                     width: 135,
                     height: 150,
                     child: GestureDetector(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const ImagePickingDialog();
-                              });
-                        },
-                        child: Get.find<Model>().imageIspicked
-                            ? CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                backgroundImage: Get.find<Model>().pickedImage,
-                              )
-                            : CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                child: const Icon(
-                                  Icons.add_a_photo,
-                                  size: 40,
-                                  color: Colors.white,
-                                ),
-                              )),
-                  ),
-                ),
-                SizedBox(
-                  height: controller.screenHeight(context) * 0.01,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: controller.screenWidth(context) * 0.05),
-                  child: SizedBox(
-                    child: TextField(
-                        decoration: InputDecoration(
-                            fillColor: Theme.of(context).colorScheme.secondary,
-                            filled: true,
-                            prefixIcon: const Icon(Icons.person_2_outlined),
-                            prefixIconColor: Colors.grey,
-                            hintText: "First Name".tr,
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const ImagePickingDialog();
+                            });
+                      },
+                      child: Get.find<Model>().imageIspicked
+                          ? CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              backgroundImage: Get.find<Model>().pickedImage,
+                            )
+                          : CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              child: const Icon(
+                                Icons.add_a_photo,
+                                size: 40,
+                                color: Colors.white,
+                              ),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            ))),
-                  ),
-                ),
-                SizedBox(
-                  height: controller.screenHeight(context) * 0.03,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: controller.screenWidth(context) * 0.05),
-                  child: SizedBox(
-                    child: TextField(
-                        decoration: InputDecoration(
-                            prefixIconColor: Colors.grey,
-                            prefixIcon: const Icon(Icons.account_box),
-                            fillColor: Theme.of(context).colorScheme.secondary,
-                            filled: true,
-                            hintText: "Last Name".tr,
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            ))),
-                  ),
-                ),
-                SizedBox(
-                  height: controller.screenHeight(context) * 0.03,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: controller.screenWidth(context) * 0.05),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      fillColor: Theme.of(context).colorScheme.secondary,
-                      filled: true,
-                      prefixIcon:
-                          const Icon(Icons.call_outlined, color: Colors.grey),
-                      hintText: "Number".tr,
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.secondary),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.secondary),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                      ),
                     ),
                   ),
                 ),
+                //! first Name
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: SizedBox(
+                    child: TextField(
+                        decoration: inputDecoration(context,
+                            hint: "First Name",
+                            icon: const Icon(Icons.person_2_outlined))),
+                  ),
+                ),
+                //! Last Name
                 SizedBox(
                   height: controller.screenHeight(context) * 0.03,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: controller.screenWidth(context) * 0.05),
-                  child: TextField(
-                      decoration: InputDecoration(
-                          fillColor: Theme.of(context).colorScheme.secondary,
-                          filled: true,
-                          prefixIcon: const Icon(Icons.key, color: Colors.grey),
-                          hintText: "Password".tr,
-                          hintStyle: const TextStyle(
-                            color: Colors.grey,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.secondary),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.secondary),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ))),
+                  child: SizedBox(
+                    child: TextField(
+                        decoration: inputDecoration(context,
+                            hint: "Last Name",
+                            icon: const Icon(Icons.account_box))),
+                  ),
                 ),
                 SizedBox(
                   height: controller.screenHeight(context) * 0.03,
                 ),
-                //! wards location
-
+                //! phone Number
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: TextField(
+                      keyboardType: TextInputType.number,
+                      decoration: inputDecoration(context,
+                          hint: "Number",
+                          icon: const Icon(Icons.call_outlined))),
+                ),
                 SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
+                ),
+                //! Password
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: controller.screenWidth(context) * 0.05),
+                  child: TextField(
+                      decoration: inputDecoration(context,
+                          hint: "Password", icon: const Icon(Icons.key))),
+                ),
+                SizedBox(
+                  height: controller.screenHeight(context) * 0.03,
+                ),
+                SizedBox(
+                  //!  to ward change this
                   height: Get.find<Model>().screenHeight(context) * 0.03,
                 ),
                 Padding(
@@ -228,6 +163,26 @@ class SignUpPageState extends State<SignupPage> {
   }
 }
 
+InputDecoration inputDecoration(BuildContext context,
+    {required String hint, required Icon icon}) {
+  return InputDecoration(
+    fillColor: Theme.of(context).colorScheme.secondary,
+    filled: true,
+    prefixIcon: icon,
+    iconColor: Colors.grey,
+    hintText: hint.tr,
+    hintStyle: const TextStyle(color: Colors.grey),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+    ),
+  );
+}
+
 class ImagePickingDialog extends StatefulWidget {
   const ImagePickingDialog({super.key});
 
@@ -270,10 +225,14 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
                   contentPadding: const EdgeInsets.all(0),
                   children: [
                     ListTile(
+                      iconColor: Theme.of(context).colorScheme.primary,
+                      leading: const Icon(FontAwesomeIcons.image),
                       title: const Text("Gallery Image"),
                       onTap: pickImageFromGallery,
                     ),
                     ListTile(
+                      iconColor: Theme.of(context).colorScheme.primary,
+                      leading: const Icon(FontAwesomeIcons.camera),
                       title: const Text("Camera Image"),
                       onTap: pickImageFromCamera,
                     ),

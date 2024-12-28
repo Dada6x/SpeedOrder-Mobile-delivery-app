@@ -18,10 +18,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class SigninPageState extends State<LoginPage> {
-  final formkey = GlobalKey<FormState>();
-  List userList = [
-    {"number": "0931754165", "pass": "ward"}
-  ];
+  final numberController = TextEditingController();
+  final passwordController = TextEditingController();
+  // final formkey = GlobalKey<FormState>();
   String? enteredNumber;
   String? enteredPass;
   @override
@@ -56,7 +55,7 @@ class SigninPageState extends State<LoginPage> {
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w800,
-                              fontSize:
+                              fontSize: //yahea:WTF IS THAT WARD??
                                   controller.screenWidth(context) * 0.155),
                         ),
                       ),
@@ -67,83 +66,44 @@ class SigninPageState extends State<LoginPage> {
                           style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
+                      //! NUMBER TEXT FIELD
                       Form(
-                          key: formkey,
-                          child: TextFormField(
-                            validator: (val) {
-                              if (val!.length >= 2) {
-                                if (val[0] != '0' && val[1] != '9') {
-                                  return "Number Should Start with \"09\"";
-                                }
+                        child: TextFormField(
+                          validator: (val) {
+                            if (val!.length >= 2) {
+                              if (val[0] != '0' && val[1] != '9') {
+                                return "Number Should Start with \"09\"";
                               }
-                              if (val.length != 10 && val.isNotEmpty) {
-                                return "Input should be 10 numbers";
-                              }
-                              return null;
-                            },
-                            onChanged: (val) {
-                              enteredNumber = val;
-                              formkey.currentState!.validate();
-                            },
-                            maxLength: 10,
-                            keyboardType:
-                                const TextInputType.numberWithOptions(),
-                            decoration: InputDecoration(
-                                fillColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                filled: true,
-                                prefixIcon: const Icon(Icons.call_outlined,
-                                    color: Colors.grey),
-                                labelText: "Enter Number".tr,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                )),
-                          )),
+                            }
+                            if (val.length != 10 && val.isNotEmpty) {
+                              return "Input should be 10 numbers";
+                            }
+                            return null;
+                          },
+                          onChanged: (val) {
+                            enteredNumber = val;
+                          },
+                          maxLength: 10,
+                          keyboardType: const TextInputType.numberWithOptions(),
+                          decoration: inputDecoration(context),
+                          //!
+                          controller: numberController,
+                        ),
+                      ),
                       SizedBox(
                         height: controller.screenHeight(context) * 0.015,
                       ),
+                      //! Password TEXT FIELD
                       Form(
-                          child: TextFormField(
-                        onChanged: (val) {
-                          enteredPass = val;
-                        },
-                        decoration: InputDecoration(
-                            fillColor: Theme.of(context).colorScheme.secondary,
-                            filled: true,
-                            prefixIcon:
-                                const Icon(Icons.key, color: Colors.grey),
-                            labelText: "Enter Password".tr,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                            )),
-                      )),
-                      // SizedBox(
-                      //   height: controller.screenHeight(context) * 0.03,
-                      // ),
+                        child: TextFormField(
+                          onChanged: (val) {
+                            enteredPass = val;
+                          },
+                          decoration: inputDecoration(context),
+                          controller: passwordController,
+                        ),
+                      ),
+                      //!
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 15, left: 10, right: 10),
@@ -165,7 +125,6 @@ class SigninPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
-
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -186,23 +145,16 @@ class SigninPageState extends State<LoginPage> {
                       SizedBox(
                         height: controller.screenHeight(context) * 0.02,
                       ),
-
                       ProjectButton(
                         text: "Log in".tr,
                         width: controller.screenWidth(context),
-                        function: () async {
-                          final request =
-                              await http.post(Uri.parse(""), body: {});
-                          var requestbody = request.body;
-                          // ignore: avoid_print
-                          print("requestBody");
-                          if (requestbody != "") {}
-                          if (requestbody == "") {
-                            Get.off(const MainPage());
-                          }
+                        function: () {
+                          //! idk what to do yet
+                          LoginFun(numberController.text, passwordController.text);
+                          //! if successful go to main page
+                          Get.off(const MainPage());
                         },
                       ),
-
                       SizedBox(
                         height: controller.screenHeight(context) * 0.01,
                       ),
@@ -233,5 +185,39 @@ class SigninPageState extends State<LoginPage> {
                 ),
               ),
             ));
+  }
+
+// text decoration for each text field
+  InputDecoration inputDecoration(BuildContext context) {
+    return InputDecoration(
+      fillColor: Theme.of(context).colorScheme.secondary,
+      filled: true,
+      prefixIcon: const Icon(Icons.key, color: Colors.grey),
+      labelText: "Enter Password".tr,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+    );
+  }
+
+//! LOGIN FUNCTION
+  Future LoginFun(String UserPhoneNumber, String passwrod) async {
+    var request = await http.post(
+        Uri.parse(
+            'http://127.0.0.1:8000/api/auth/login?password=1234567890&user_phone=0987654321 '),
+        body: <String, String>{
+          "user_phone": UserPhoneNumber,
+          "password": passwrod
+        });
+    if (request.statusCode == 200) {
+      //! token shit?
+    } else {
+      print("sorry");
+    }
   }
 }
