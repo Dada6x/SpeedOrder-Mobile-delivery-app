@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/model/f_a_q_item.dart';
 
-class FaqCotroller extends GetxController {
+class FAQController extends GetxController {
   FAQItem q1 = FAQItem(
       question: "what do you think of the ongoing war in mars?",
       answer: "Allegadly they have reached intercheecks travel.",

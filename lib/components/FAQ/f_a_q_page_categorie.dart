@@ -5,16 +5,16 @@ import 'package:mamamia_uniproject/Screens/FAQ/categories_page.dart';
 class FAQPageCategorie extends StatelessWidget {
   const FAQPageCategorie({
     super.key,
-    required this.categorie,
+    required this.category,
     required this.icon,
   });
-  final String categorie;
+  final String category;
   final IconData icon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(FAQCateogriePage(categorie: categorie));
+        Get.to(FAQCateogryPage(category: category));
       },
       child: Card(
         child: Container(
@@ -28,17 +28,17 @@ class FAQPageCategorie extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    backgroundColor: const Color(0xFF6EA7F2),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
                     // maxRadius: 15,
                     radius: 14,
                     child: Icon(
                       icon,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   Center(
                     child: Text(
-                      categorie,
+                      category.tr,
                       style: const TextStyle(color: Colors.white70),
                     ),
                   ),

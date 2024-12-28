@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:like_button/like_button.dart';
+// import 'package:like_button/like_button.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
@@ -35,10 +35,10 @@ class ProductPage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.share)),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: LikeButton(),
-              )
+              // const Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: LikeButton(),
+              // )
             ],
           )
         ],

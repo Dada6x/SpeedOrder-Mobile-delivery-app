@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:mamamia_uniproject/Controllers/f_a_q_cotroller.dart';
+import 'package:mamamia_uniproject/Controllers/f_a_q_controller.dart';
 import 'package:mamamia_uniproject/components/FAQ/f_a_q_page_categorie.dart';
 import 'package:mamamia_uniproject/components/FAQ/f_a_q_page_header.dart';
 import 'package:mamamia_uniproject/components/FAQ/question_tile.dart';
@@ -12,7 +12,7 @@ class FAQPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<FAQItem> faqItems = Get.find<FaqCotroller>().QuestionList();
+    List<FAQItem> faqItems = Get.find<FAQController>().QuestionList();
 
     return Scaffold(
       appBar: AppBar(
@@ -31,19 +31,19 @@ class FAQPage extends StatelessWidget {
             shrinkWrap: true,
             children: const [
               FAQPageCategorie(
-                categorie: "Account",
+                category: "Account",
                 icon: Icons.person,
               ),
               FAQPageCategorie(
-                categorie: "Privacy Policy",
+                category: "Privacy Policy",
                 icon: Icons.security,
               ),
               FAQPageCategorie(
-                categorie: "Payment",
+                category: "Payment",
                 icon: Icons.sticky_note_2,
               ),
               FAQPageCategorie(
-                categorie: "Pateron",
+                category: "Pateron",
                 icon: Icons.propane,
               ),
             ],
