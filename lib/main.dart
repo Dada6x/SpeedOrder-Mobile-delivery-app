@@ -8,6 +8,7 @@ import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/f_a_q_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
+import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/language/local.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -25,6 +26,7 @@ void main() async {
   Get.put(Model());
   Get.put(CartController());
   Get.put(FAQController());
+  Get.put(OrdersController());
   runApp(GetMaterialApp(
     //! languges
     translations: MyLocal(),

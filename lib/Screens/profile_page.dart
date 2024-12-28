@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -78,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.date_range),
                   destination: () {
                     //! make order history
+                    Get.to(OrdersPage());
                   },
                 ),
                 MenuListItem(
@@ -87,13 +89,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     Get.to(FAQPage());
                   },
                 ),
-                MenuListItem(
-                  title: 'Account Details'.tr,
-                  icon: const Icon(Icons.auto_graph_rounded),
-                  destination: () {
-                    //! make account details
-                  },
-                ),
+                // MenuListItem(
+                //   title: 'Account Details'.tr,
+                //   icon: const Icon(Icons.auto_graph_rounded),
+                //   destination: () {
+                //     //! make account details
+                //   },
+                // ),
               ],
             ),
           ),
