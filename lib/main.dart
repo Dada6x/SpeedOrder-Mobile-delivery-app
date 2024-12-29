@@ -7,17 +7,21 @@ import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
-import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
+import 'package:mamamia_uniproject/IntroductionScreens/splash_screen.dart';
 import 'package:mamamia_uniproject/language/local.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/middlewares/middleware.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//middleware
+//!-----------------------------shared pref
 SharedPreferences? sharedPref;
-
-double ScreenWIdthddww = 333;
+SharedPreferences? prefs;
+//!----------------------------
+//!!!!--------------------
+double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+//!----------------------------
 void main() async {
   Get.put(creditCardController());
   Get.put(FavoriteController());
@@ -27,6 +31,8 @@ void main() async {
   Get.put(LocationController());
   //middleware
   sharedPref = await SharedPreferences.getInstance();
+  prefs = await SharedPreferences.getInstance();
+
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
@@ -42,16 +48,17 @@ void main() async {
       // middlewares
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const IntroPages(), middlewares: [
+        GetPage(name: '/', page: () => const SplashScreen(), middlewares: [
           MiddlewareAuth(),
         ]),
         GetPage(name: '/login', page: () => const LoginPage()),
-        GetPage(
-          name: '/mainPage',
-          page: () => const MainPage(),
-        ),
+        GetPage(name: '/mainPage', page: () => const MainPage()),
       ],
-      // home: const IntroPages(),
+      //$ home: const IntroPages(),
     ),
   );
 }
+// about the introduction screens
+// make splash then store a shared pref when "Done " button is pressed
+// then decide if going straight to login/signup or to introduction screen
+// access introduction screens via deleting chace memory
