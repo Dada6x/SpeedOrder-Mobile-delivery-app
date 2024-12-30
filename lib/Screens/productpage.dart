@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/components/favorite_button.dart';
 
-class ZProductPage extends StatelessWidget {
+class ProductPage extends StatelessWidget {
   final Product product;
-  const ZProductPage({
+  const ProductPage({
     super.key,
     required this.product,
   });
@@ -21,7 +21,7 @@ class ZProductPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           Row(
@@ -34,9 +34,10 @@ class ZProductPage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.share)),
               ),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FavoriteButton(product: product))
+              // const Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: LikeButton(),
+              // )
             ],
           )
         ],
@@ -46,8 +47,7 @@ class ZProductPage extends StatelessWidget {
         children: [
           Padding(
               padding: const EdgeInsets.only(left: 30.0),
-              child: ElevatedButton(
-                  onPressed: () {}, child: const Icon(Icons.arrow_downward))),
+              child: ElevatedButton(onPressed: () {}, child: Text("details"))),
           ProjectButton(
             function: () {
               cartController.addToCart(product);
@@ -105,7 +105,7 @@ class ProductInfoCardPage extends StatelessWidget {
       margin: EdgeInsets.only(top: screenHeight / 3 - 20, left: 20, right: 20),
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(25),
         boxShadow: const [
           BoxShadow(
@@ -125,7 +125,7 @@ class ProductInfoCardPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           ProjectProductCartCardHome(product: product)
@@ -135,6 +135,7 @@ class ProductInfoCardPage extends StatelessWidget {
           ),
           const Text(
             "f your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, if your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, ",
+            style: const TextStyle(color: Colors.black87),
             overflow: TextOverflow.ellipsis,
             maxLines: 10,
           ),
@@ -142,11 +143,8 @@ class ProductInfoCardPage extends StatelessWidget {
             flex: 1,
           ),
           Text(
-            '\$${product.price}',
-            style: TextStyle(
-                fontSize: 25,
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w700),
+            '\$' + product.price.toString(),
+            style: const TextStyle(fontSize: 18),
           ),
         ],
       ),

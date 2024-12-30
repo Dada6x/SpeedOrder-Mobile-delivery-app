@@ -11,8 +11,10 @@ class FAQPageHeader extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Text(
           header,
-          style: const TextStyle(
-              color: Colors.black54, fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+              fontSize: 18,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );

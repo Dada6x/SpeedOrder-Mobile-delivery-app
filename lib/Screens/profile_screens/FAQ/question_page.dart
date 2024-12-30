@@ -27,8 +27,8 @@ class QuestionPage extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Text(
                 FAQ.answer,
-                style: const TextStyle(
-                  color: Colors.black54,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
                   fontSize: 18,
                 ),
               ),
