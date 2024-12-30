@@ -54,7 +54,7 @@ void main() async {
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/mainPage', page: () => const MainPage()),
       ],
-      //$ home: const IntroPages(),
+      home: const SplashScreen(),
     ),
   );
 }

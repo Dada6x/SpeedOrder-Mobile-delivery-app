@@ -88,11 +88,6 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: Icon(Icons.login_rounded,
                 color: Theme.of(context).colorScheme.primary),
           ),
-          TextButton(
-              onPressed: () {
-                prefs?.setBool('isFirstOpen', false);
-              },
-              child: const Text('data'))
         ],
       ),
     );
