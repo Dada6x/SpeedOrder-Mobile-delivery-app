@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 prefs?.setBool('isFirstOpen', false);
               },
-              child: Text('data'))
+              child: const Text('data'))
         ],
       ),
     );
