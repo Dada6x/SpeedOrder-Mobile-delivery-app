@@ -12,7 +12,7 @@ import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({super.key});
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

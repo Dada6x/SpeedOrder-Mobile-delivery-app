@@ -8,7 +8,7 @@ import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class CurrentLocationMap extends StatefulWidget {
-  const CurrentLocationMap({Key? key}) : super(key: key);
+  const CurrentLocationMap({super.key});
 
   @override
   State<CurrentLocationMap> createState() => _CurrentLocationMapState();
