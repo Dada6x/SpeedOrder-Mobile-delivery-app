@@ -1,120 +1,121 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart'; // Import for reverse geocoding
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
-class Currentlocationmap extends StatefulWidget {
-  const Currentlocationmap({super.key});
+class CurrentLocationMap extends StatefulWidget {
+  const CurrentLocationMap({super.key});
 
   @override
-  State<Currentlocationmap> createState() => _MapScreenState();
+  State<CurrentLocationMap> createState() => _CurrentLocationMapState();
 }
 
-class _MapScreenState extends State<Currentlocationmap> {
+class _CurrentLocationMapState extends State<CurrentLocationMap> {
   final MapController _mapController = MapController();
-
-  LatLng? selectedPosition;
-  String? selectedAddress;
-  bool _isGettingLocation = false;
+  LatLng? currentLocation;
+  String? address;
+  bool isLoading = false;
+  String? errorMessage;
 
   @override
   void initState() {
     super.initState();
-    showCurrentLocation();
+    _checkLocationServicesAndPermissions();
   }
 
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  Future<void> _checkLocationServicesAndPermissions() async {
+    setState(() => errorMessage = null); // Clear any previous error
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled');
+      setState(() {
+        errorMessage =
+            "Location services are disabled. Please enable them to use this feature.";
+      });
+      return;
     }
 
-    permission = await Geolocator.checkPermission();
+    LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Location services are denied');
+        setState(() {
+          errorMessage =
+              "Location permission is denied. Please allow location access to use this feature.";
+        });
+        return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location services are permanently denied');
+      setState(() {
+        errorMessage =
+            "Location permission is permanently denied. Please enable it in settings.";
+      });
+      return;
     }
 
-    return Geolocator.getCurrentPosition();
-  }
-
-  void showCurrentLocation() async {
     setState(() {
-      _isGettingLocation = true;
+      errorMessage = null; // Clear error if all checks pass
     });
 
-    try {
-      Position position = await _determinePosition();
-      LatLng currentLatLng = LatLng(position.latitude, position.longitude);
+    _fetchCurrentLocation();
+  }
 
-      // Reverse geocoding to get address
+  Future<void> _fetchCurrentLocation() async {
+    setState(() => isLoading = true);
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      LatLng positionLatLng = LatLng(position.latitude, position.longitude);
+
       List<Placemark> placemarks = await placemarkFromCoordinates(
         position.latitude,
         position.longitude,
       );
 
-      if (placemarks.isNotEmpty) {
-        Placemark place = placemarks[0];
-        String supaddress = "${place.administrativeArea}, ${place.country}";
-        setState(() {
-          selectedAddress = supaddress;
-        });
+      String formattedAddress = placemarks.isNotEmpty
+          ? "${placemarks[0].administrativeArea}, ${placemarks[0].country}"
+          : "Unknown Location";
 
-        // Send the address to the LocationController
-        Get.find<LocationController>().updateLocation(supaddress);
-      }
-
-      _mapController.move(currentLatLng, 15);
       setState(() {
-        selectedPosition = currentLatLng;
+        currentLocation = positionLatLng;
+        address = formattedAddress;
       });
+      Get.find<LocationController>().updateLocation(formattedAddress);
+      _mapController.move(positionLatLng, 15);
     } catch (e) {
-      print("Error fetching current location: $e");
+      print("Error: $e");
     } finally {
-      setState(() {
-        _isGettingLocation = false;
-      });
+      setState(() => isLoading = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainPage.orangeColor,
       body: Stack(
         children: [
           FlutterMap(
             mapController: _mapController,
-            options: MapOptions(
+            options: const MapOptions(
               initialZoom: 13.0,
-              initialCenter: const LatLng(51.5, -0.09),
-              onTap: (tapPosition, point) {},
+              initialCenter: LatLng(51.5, -0.09),
             ),
             children: [
               TileLayer(
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
               ),
-              if (selectedPosition != null)
+              if (currentLocation != null)
                 MarkerLayer(
                   markers: [
                     Marker(
                       width: 80,
                       height: 80,
-                      point: selectedPosition!,
+                      point: currentLocation!,
                       child: const Icon(
                         Icons.location_on_sharp,
                         color: Colors.red,
@@ -125,16 +126,38 @@ class _MapScreenState extends State<Currentlocationmap> {
                 ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (_isGettingLocation)
-                  const Center(child: CircularProgressIndicator()),
-              ],
+          if (isLoading) const Center(child: CircularProgressIndicator()),
+          if (errorMessage != null)
+            Center(
+              child: Container(
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                padding: const EdgeInsets.all(16.0),
+                child: Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.location_off_outlined,
+                        color: MainPage.orangeColor,
+                      ),
+                      Text(
+                        errorMessage!,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: MainPage.orangeColor, fontSize: 16),
+                      ),
+                      const SizedBox(height: 16),
+                      IconButton(
+                          onPressed: _checkLocationServicesAndPermissions,
+                          icon: Icon(
+                            Icons.loop,
+                            color: MainPage.orangeColor,
+                          )),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
         ],
       ),
     );

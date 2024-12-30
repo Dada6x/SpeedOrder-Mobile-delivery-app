@@ -12,11 +12,9 @@ import 'package:solar_icons/solar_icons.dart';
 
 class HomeNeedToBeSlivered extends StatelessWidget {
   const HomeNeedToBeSlivered({super.key});
-// dis is the screen that appear with the sliver appbar in the action section
+  // This is the screen that appears with the sliver appbar in the action section
   @override
   Widget build(BuildContext context) {
-    String location = Get.find<LocationController>().getCurrentLocation();
-
     final pageController = PageController();
     return Scaffold(
       extendBody: true,
@@ -58,14 +56,31 @@ class HomeNeedToBeSlivered extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(elevation: 2),
-                onPressed: () {
-                  Get.dialog(const LocationDialog());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(child: Text(location)),
-                )),
+              style: ElevatedButton.styleFrom(elevation: 2),
+              onPressed: () {
+                Get.dialog(const LocationDialog());
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Obx(
+                  () {
+                    String location =
+                        Get.find<LocationController>().getCurrentLocation();
+                    return RichText(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 15,
+                        ),
+                        text: location,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -75,7 +90,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
         children: [
           //! search Bars
           const ProjectSearchBar(),
-          //! Ads shit
+          //! Ads
           AdsIndicator(
             controller: pageController,
           ),
@@ -120,7 +135,6 @@ class HomeNeedToBeSlivered extends StatelessWidget {
               ),
             ),
           ),
-
           Align(
             alignment: Get.locale?.languageCode == 'ar'
                 ? Alignment.centerRight // Align right for Arabic

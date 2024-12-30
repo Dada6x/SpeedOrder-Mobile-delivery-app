@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class NotificationsDrawer extends StatelessWidget {
   const NotificationsDrawer({super.key});
@@ -11,6 +12,8 @@ class NotificationsDrawer extends StatelessWidget {
         title: Text(
           'Notifications'.tr,
         ),
+        shape:
+            Border(bottom: BorderSide(color: MainPage.orangeColor, width: 1.2)),
       ),
       body: ListView(
         children: [

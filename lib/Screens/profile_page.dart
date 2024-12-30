@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: 'Settings'.tr,
                   icon: const Icon(Icons.settings),
                   destination: () {
-                    Get.to(SettingsPage());
+                    Get.to(const SettingsPage());
                   },
                 ),
                 MenuListItem(
@@ -77,7 +77,8 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               //! logOutButton
               Get.off(const LoginPage());
-              sharedPref!.clear();
+              sharedPref!.remove('id'); // Clear only the login-related data
+
               //ward: changed it cuz older one had an arrow back button
               //yahea: np baby
             },
@@ -87,6 +88,11 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: Icon(Icons.login_rounded,
                 color: Theme.of(context).colorScheme.primary),
           ),
+          TextButton(
+              onPressed: () {
+                prefs?.setBool('isFirstOpen', false);
+              },
+              child: const Text('data'))
         ],
       ),
     );

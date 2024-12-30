@@ -11,13 +11,12 @@ import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notification
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
-// ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
-  SettingsPage({super.key});
-  String location = Get.find<LocationController>().getCurrentLocation();
-  bool isEn = false;
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
+    // We no longer need to store 'location' locally here
     return Scaffold(
         appBar: NormalAppBar("Settings".tr),
         body: GetBuilder(
@@ -95,14 +94,41 @@ class SettingsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SettingsComps(
-                  title: "Location".tr,
-                  icon: const Icon(Icons.map),
-                  trailing: Text(style: SettingsTextStyle(context), location),
-                  destination: () {
-                    Get.dialog(const LocationDialog());
-                  },
+                //! location
+                //! new setting
+                Card(
+                  margin: const EdgeInsets.all(0.0),
+                  child: ListTile(
+                    tileColor: Theme.of(context).colorScheme.secondary,
+                    onTap: () => Get.dialog(const LocationDialog()),
+                    title: const Expanded(
+                      child: Text(
+                        "Location",
+                        style: TextStyle(),
+                      ),
+                    ),
+                    isThreeLine: false,
+                    leading: const Icon(Icons.map),
+                    iconColor: Theme.of(context).colorScheme.primary,
+                    trailing: SizedBox(
+                      width: 150,
+                      child: Obx(() {
+                        // Use Obx to reactively display the location
+                        String location = Get.find<LocationController>().getCurrentLocation();
+                        return RichText(
+                          textAlign: TextAlign.end,
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                          text: TextSpan(
+                            style: SettingsTextStyle(context),
+                            text: location,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
                 ),
+                //! notifications
                 SettingsSection(title: "Notifications".tr),
                 SettingsComps(
                     title: "Enable Notifications".tr,
@@ -116,7 +142,6 @@ class SettingsPage extends StatelessWidget {
         ));
   }
 
-  // ignore: non_constant_identifier_names
   TextStyle SettingsTextStyle(BuildContext context) =>
       TextStyle(color: Theme.of(context).colorScheme.primary, fontSize: 15);
 }

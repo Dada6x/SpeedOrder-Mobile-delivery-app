@@ -7,15 +7,15 @@ import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/current_location_map.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
-class Networkstatus2 extends StatefulWidget {
+class NetworkStatus2 extends StatefulWidget {
   //! this is the class the determine that the scaffold going to show damn man or error message
-  const Networkstatus2({super.key});
+  const NetworkStatus2({super.key});
 
   @override
-  State<Networkstatus2> createState() => _NetworkStatusState();
+  State<NetworkStatus2> createState() => _NetworkStatusState();
 }
 
-class _NetworkStatusState extends State<Networkstatus2> {
+class _NetworkStatusState extends State<NetworkStatus2> {
   bool isConnectedToInternet = false;
 
   StreamSubscription? _internetConnectionStreamSubscription;
@@ -54,7 +54,7 @@ class _NetworkStatusState extends State<Networkstatus2> {
   @override
   Widget build(BuildContext context) {
     return isConnectedToInternet
-        ? const Currentlocationmap()
+        ? const CurrentLocationMap()
         : Scaffold(
             body: Center(
                 child: Column(
