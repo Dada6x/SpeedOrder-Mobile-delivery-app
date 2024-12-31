@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class SigninPageState extends State<LoginPage> {
-  //!-------------------controllers 
+  //!-------------------controllers-------------------------
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
   //!--------------------------------------------------------
@@ -153,7 +153,7 @@ class SigninPageState extends State<LoginPage> {
                         function: () {
                           //! idk what to do yet
                           LoginFun(numberController.text, passwordController.text);
-                          //! if successful go to main page
+                          //! if Login  successful go to main page
                           Get.off(const MainPage());
                         },
                       ),
@@ -208,13 +208,13 @@ class SigninPageState extends State<LoginPage> {
   }
 
 //! LOGIN FUNCTION
-  Future LoginFun(String UserPhoneNumber, String passwrod) async {
+  Future LoginFun(String UserPhoneNumber, String UserPasswrod) async {
     var request = await http.post(
         Uri.parse(
-            'http://127.0.0.1:8000/api/auth/login?password=1234567890&user_phone=0987654321 '),
+            'http://192.168.198.117:8000/api/auth/login?password=1234567890&user_phone=0987654321'),
         body: <String, String>{
           "user_phone": UserPhoneNumber,
-          "password": passwrod
+          "password": UserPasswrod
         });
     if (request.statusCode == 200) {
       //! token shit?

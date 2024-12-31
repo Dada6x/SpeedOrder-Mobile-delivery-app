@@ -22,7 +22,7 @@ class SignUpPageState extends State<SignupPage> {
   final lastNameController = TextEditingController();
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
-//$---------------------------------------------------------
+//$-----------------------------------------------------------
   Image? img;
   @override
   Widget build(BuildContext context) {
@@ -191,6 +191,7 @@ InputDecoration inputDecoration(BuildContext context,
 }
 
 //! yahea : image picker needs to be in independent class
+
 class ImagePickingDialog extends StatefulWidget {
   const ImagePickingDialog({super.key});
 
@@ -199,12 +200,14 @@ class ImagePickingDialog extends StatefulWidget {
 }
 
 class _ImagePickingDialogState extends State<ImagePickingDialog> {
+//! Close the dialog after image is selected
   Future pickImageFromGallery() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnedImage == null) return;
     _selectedImage = File(returnedImage.path);
     giveselectedImage(_selectedImage!);
+    Navigator.pop(context);
   }
 
   Future pickImageFromCamera() async {
@@ -214,6 +217,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
 
     _selectedImage = File(returnedImage.path);
     giveselectedImage(_selectedImage!);
+    Navigator.pop(context);
   }
 
   void giveselectedImage(File img) {

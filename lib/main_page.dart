@@ -42,6 +42,7 @@ class _MainPageState extends State<MainPage> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
+        
           key: MainPage.scaffoldKey,
           //! notifications drawer
           endDrawer: const Directionality(
