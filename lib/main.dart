@@ -5,8 +5,11 @@ import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/Controllers/f_a_q_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
+import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
+import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/splash_screen.dart';
 import 'package:mamamia_uniproject/language/local.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -28,6 +31,20 @@ void main() async {
   Get.put(HomePageProductController());
   Get.put(Model());
   Get.put(CartController());
+  Get.put(FAQController());
+  Get.put(OrdersController());
+  runApp(GetMaterialApp(
+    //! languges
+    translations: MyLocal(),
+    locale: const Locale("en"),
+    fallbackLocale: const Locale("en"),
+    //!
+    debugShowCheckedModeBanner: false,
+    //! i know its places wrong but i want the default theme to be the dark theme
+    darkTheme: Themes().lightMode,
+    theme: Themes().darkMode,
+    home: const IntroPages(),
+  ));
   Get.put(LocationController());
   //middleware
   sharedPref = await SharedPreferences.getInstance();
@@ -36,7 +53,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
-      //! languges
+      // ! languges
       translations: MyLocal(),
       locale: const Locale("en"),
       fallbackLocale: const Locale("en"),
@@ -54,7 +71,7 @@ void main() async {
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/mainPage', page: () => const MainPage()),
       ],
-      //$ home: const IntroPages(),
+      home: const SplashScreen(),
     ),
   );
 }

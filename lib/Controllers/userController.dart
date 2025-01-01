@@ -9,6 +9,7 @@ class User {
   String? imageLink;
   List<Product>? favProducts;
   List<Product>? cartProducts;
+  List<Product>? pastProducts;
   User.signUp(this.username, this.number, this.password, this.location,
       {this.imageLink});
   User.signIn(this.username, this.number, this.password, this.location,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/main.dart';
-
+import 'package:mamamia_uniproject/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,13 +20,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initialize() async {
-    Future.delayed(const Duration(seconds: 3), () {
-      if (prefs?.getBool('isFirstOpen') == true) {
-        Get.off(() => const LoginPage());
-      } else {
-        Get.off(() => const IntroPages());
-      }
-    });
+    await Future.delayed(const Duration(seconds: 3)); // Wait for splash screen
+
+    if (sharedPref?.getString("id") != null) {
+      // If user is logged in
+      Get.off(() => const MainPage());
+    } else if (prefs?.getBool('isFirstOpen') == true) {
+      // If first time is already completed, go to login
+      Get.off(() => const LoginPage());
+    } else {
+      // Otherwise, show the introduction pages
+      Get.off(() => const IntroPages());
+    }
   }
 
   @override

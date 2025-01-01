@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
+import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
+import 'package:mamamia_uniproject/components/favorite_button.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -12,14 +14,18 @@ class Product {
   double price;
   String description;
   String category;
+  String? purchaseDate;
   bool isFavored = false;
   bool isInCart = false;
   ProjectProductCartCard? cartCard;
   ProjectProductCartCardHome? homeCard;
+  ProjectProductOrdersCard? orderCard;
   FavoriteCard? favoriteCard;
   Product(
+
       this.name, this.price, this.description, this.imageLink, this.category);
-}
+
+
 
 /// this is the product card in the [HomePage] it has price and fav button
 
