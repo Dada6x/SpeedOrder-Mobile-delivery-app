@@ -10,19 +10,5 @@ class HomePageProductController extends GetxController {
     update();
   }
 
-  Product p1 = Product(
-      'the weekend  ',
-      57.53,
-      'the arabic weekend limited edition',
-      'assets/images/weekend.png',
-      "food");
-  Product p2 = Product(' قلابية ', 57.53, 'بيضة ملبوسة مستعملة',
-      'assets/images/weekend.png', "clothes");
-  Product p3 = Product(' Gucci ', 57.53, 'بيضة ملبوسة مستعملة',
-      'assets/images/weekend.png', "clothes");
-  Product p4 = Product(' louis ', 57.53, 'بيضة ملبوسة مستعملة',
-      'assets/images/weekend.png', "clothes");
-  List<Product> productList() {
-    return [p1, p2, p3, p4];
-  }
+  List productList = [];
 }

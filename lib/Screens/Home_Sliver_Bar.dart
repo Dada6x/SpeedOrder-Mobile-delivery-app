@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
+import 'package:mamamia_uniproject/Models/products.dart';
 import 'package:mamamia_uniproject/Screens/home_page.dart';
+import 'package:mamamia_uniproject/main_page.dart';
 
 class HomeSliver extends StatelessWidget {
   const HomeSliver({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(
@@ -24,10 +26,13 @@ class HomeSliver extends StatelessWidget {
           //! the Products List NOW its fixed
           SliverList(
               delegate: SliverChildListDelegate([
-            Get.find<HomePageProductController>().p1.homeCard!,
-            Get.find<HomePageProductController>().p2.homeCard!,
-            Get.find<HomePageProductController>().p3.homeCard!,
-            Get.find<HomePageProductController>().p4.homeCard!,
+            Divider(
+              height: 1,
+              indent: Get.find<Model>().screenWidth(context) * 0.4,
+              endIndent: Get.find<Model>().screenWidth(context) * 0.4,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const Productsgetter()
           ]))
         ],
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
-import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
 import 'package:mamamia_uniproject/components/favorite_button.dart';
@@ -23,19 +22,26 @@ class Product {
   ProjectProductOrdersCard? orderCard;
   FavoriteCard? favoriteCard;
   Product(
-      this.name, this.price, this.description, this.imageLink, this.category,) {
-    homeCard = ProjectProductCartCardHome(
-      product: this,
-    );
-  }
-}
+
+      this.name, this.price, this.description, this.imageLink, this.category);
+
+
 
 /// this is the product card in the [HomePage] it has price and fav button
 
 // ignore: must_be_immutable
 class ProjectProductCartCardHome extends StatelessWidget {
-  Product product;
-  ProjectProductCartCardHome({super.key, required this.product});
+  String imageLink;
+  String name;
+  var price;
+  String category;
+  ProjectProductCartCardHome({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imageLink,
+    required this.category,
+  });
   Icon? iconType(BuildContext context, String type) {
     if (type == "food") {
       return Icon(
@@ -43,13 +49,19 @@ class ProjectProductCartCardHome extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       );
     }
-    if (type == "clothes") {
+    if (type.contains("jew")) {
+      return Icon(
+        Icons.diamond_outlined,
+        color: Theme.of(context).colorScheme.primary,
+      );
+    }
+    if (type.contains("cloth")) {
       return Icon(
         SolarIconsOutline.tShirt,
         color: Theme.of(context).colorScheme.primary,
       );
     }
-    if (type == "devices") {
+    if (type == "electronics") {
       return Icon(
         Icons.monitor,
         color: Theme.of(context).colorScheme.primary,
@@ -74,7 +86,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
               textDirection: TextDirection.ltr,
               child: GestureDetector(
                 onTap: () {
-                  Get.to(ProductPage(product: product));
+                  // Get.to(ProductPage(product: product));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -95,7 +107,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image(
-                                  image: AssetImage(product.imageLink),
+                                  image: NetworkImage(imageLink),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -111,14 +123,14 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               children: [
                                 //! the product name
                                 Text(
-                                  product.name,
+                                  name,
                                   style: const TextStyle(fontSize: 20),
                                 ),
-                                Text(product.description),
+                                //  Text(description),
                                 Row(
                                   children: [
                                     //! the product category
-                                    iconType(context, product.category)!,
+                                    iconType(context, category)!,
                                   ],
                                 ),
                               ],
@@ -127,15 +139,15 @@ class ProjectProductCartCardHome extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Padding(
+                            /* Padding(
                                 //! the product like button
                                 padding: const EdgeInsets.all(8.0),
-                                child: FavoriteButton(product: product)),
+                                child: FavoriteButton(product: product)),*/
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               //! the product price
                               child: Text(
-                                '${product.price}\$',
+                                '$price\$',
                                 style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.primary,

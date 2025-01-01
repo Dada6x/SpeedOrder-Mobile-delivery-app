@@ -128,8 +128,8 @@ class ProductInfoCardPage extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
-          ProjectProductCartCardHome(product: product)
-              .iconType(context, product.category)!,
+        /*  ProjectProductCartCardHome(product: product)
+              .iconType(context, product.category)!,*/
           const SizedBox(
             height: 10,
           ),

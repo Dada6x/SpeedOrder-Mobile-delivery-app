@@ -30,7 +30,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                     MainPage.scaffoldKey.currentState?.openEndDrawer();
                   },
                   icon: Icon(
-                    Icons.notifications,
+                    Icons.delivery_dining_outlined,
                     color: Theme.of(context).colorScheme.primary,
                     size: 30,
                   )),
@@ -111,36 +111,26 @@ class HomeNeedToBeSlivered extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Directionality(
               textDirection: TextDirection.ltr,
-              child: SingleChildScrollView(
-                scrollDirection:
-                    Axis.horizontal, // Make it horizontally scrollable
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .spaceEvenly, // Ensure the Row starts from the left
-                    children: [
-                      //TODO WARD ADD MORE CATEGORIES 💋
-                      ProjectCategoriesIcons(
-                          icon: Icons.fastfood_outlined, categorie: 'Food'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.tShirt,
-                          categorie: 'Clothes'.tr),
-                      ProjectCategoriesIcons(
-                          icon: Icons.monitor, categorie: 'Devices'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.home1, categorie: 'Home'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.home1, categorie: 'Home'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.home1, categorie: 'Home'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.home1, categorie: 'Home'),
-                      ProjectCategoriesIcons(
-                          icon: SolarIconsOutline.home1, categorie: 'Home'),
-                      // Add more categories if needed
-                    ],
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .spaceEvenly, // Ensure the Row starts from the left
+                  children: [
+                    //TODO WARD ADD MORE CATEGORIES 💋
+                    //NO WE DONT HAVE THE TIME BITCH ASS LIGNLING
+                    ProjectCategoriesIcons(
+                        icon: Icons.fastfood_outlined, categorie: 'Food'),
+                    ProjectCategoriesIcons(
+                        icon: SolarIconsOutline.tShirt,
+                        categorie: 'Clothes'.tr),
+                    ProjectCategoriesIcons(
+                        icon: Icons.monitor, categorie: 'Devices'),
+                    ProjectCategoriesIcons(
+                        icon: SolarIconsOutline.home1, categorie: 'Home'),
+
+                    // Add more categories if needed
+                  ],
                 ),
               ),
             ),
