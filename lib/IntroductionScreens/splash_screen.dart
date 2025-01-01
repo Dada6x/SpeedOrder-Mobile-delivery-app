@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initialize() async {
-    await Future.delayed(const Duration(seconds: 3)); // Wait for splash screen
+    await Future.delayed(const Duration(seconds: 3)); 
 
     if (sharedPref?.getString("id") != null) {
       // If user is logged in

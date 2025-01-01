@@ -32,7 +32,6 @@ void main() async {
   //middleware
   sharedPref = await SharedPreferences.getInstance();
   prefs = await SharedPreferences.getInstance();
-
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
