@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Location/maps/manuallLocation/network_status_for_ManuallLocation.dart';
 import 'package:mamamia_uniproject/Location/dialogs/current_location_dialog.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class LocationDialog extends StatelessWidget {
   const LocationDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = Get.find<Model>().screenWidth(context);
-    double screenHeight = Get.find<Model>().screenHeight(context);
+    // double screenWidth = Get.find<Model>().screenWidth(context);
+    // double screenHeight = Get.find<Model>().screenHeight(context);
 
     return Center(
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: SizedBox(
-          width: screenWidth * 0.8,
-          height: screenHeight * 0.22,
+          width: screenWidth(context) * 0.8,
+          height: screenHeight(context) * 0.22,
           child: Column(
             children: [
               Padding(

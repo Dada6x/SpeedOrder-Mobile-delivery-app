@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class ImagePickingDialog extends StatefulWidget {
   const ImagePickingDialog({super.key});
@@ -15,7 +15,6 @@ class ImagePickingDialog extends StatefulWidget {
 }
 
 class _ImagePickingDialogState extends State<ImagePickingDialog> {
-//! Close the dialog after image is selected
   Future pickImageFromGallery() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -46,11 +45,11 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
         init: Model(),
         builder: (controller) => Dialog(
               child: SizedBox(
-                width: controller.screenWidth(context) * 0.5,
-                height: controller.screenHeight(context) * 0.25,
+                width: screenWidth(context) * 0.5,
+                height: screenHeight(context) * 0.25,
                 child: SimpleDialog(
                   contentPadding: const EdgeInsets.all(0),
-                  children: [ 
+                  children: [
                     ListTile(
                       iconColor: Theme.of(context).colorScheme.primary,
                       leading: const Icon(FontAwesomeIcons.image),

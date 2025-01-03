@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/Categories_page.dart';
 
 
@@ -67,7 +67,7 @@ class ProjectCategoriesIconsWithoutLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.find<Model>().UrlLauncher(name);
+        Get.find<Model>().urlLauncher(name);
         print(name);
       },
       child: Card(

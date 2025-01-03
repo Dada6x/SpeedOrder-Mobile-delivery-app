@@ -1,13 +1,14 @@
-import 'package:awesome_icons/awesome_icons.dart';
+// import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
-import 'package:mamamia_uniproject/components/categories_icons.dart';
 import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
-import 'package:mamamia_uniproject/main_page.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/components/ourSocials.dart';
+import 'package:mamamia_uniproject/main.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+// import 'package:http/http.dart' as http;
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,11 +19,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class SigninPageState extends State<LoginPage> {
-  //!-------------------controllers-------------------------
+  //!-------------------controllers--------------------------
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
   //!--------------------------------------------------------
-  // final formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+  bool isPasswordVisible = false;
   String? enteredNumber;
   String? enteredPass;
   @override
@@ -48,7 +50,7 @@ class SigninPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: controller.screenHeight(context) * 0.015,
+                        height: screenHeight(context) * 0.015,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -58,7 +60,7 @@ class SigninPageState extends State<LoginPage> {
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w800,
                               fontSize: //yahea:WTF IS THAT WARD??
-                                  controller.screenWidth(context) * 0.155),
+                                  screenWidth(context) * 0.155),
                         ),
                       ),
                       Padding(
@@ -70,40 +72,51 @@ class SigninPageState extends State<LoginPage> {
                       ),
                       //! NUMBER TEXT FIELD
                       Form(
+                        key: formKey,
                         child: TextFormField(
                           validator: (val) {
-                            if (val!.length >= 2) {
-                              if (val[0] != '0' && val[1] != '9') {
-                                return "Number Should Start with \"09\"";
-                              }
+                            if (val == null || val.isEmpty) {
+                              return "Number is required";
                             }
-                            if (val.length != 10 && val.isNotEmpty) {
+                            if (val.length != 10) {
                               return "Input should be 10 numbers";
+                            }
+                            if (!val.startsWith('09')) {
+                              return "Number should start with '09'";
                             }
                             return null;
                           },
                           onChanged: (val) {
                             enteredNumber = val;
+                            formKey.currentState!.validate();
                           },
                           maxLength: 10,
-                          keyboardType: const TextInputType.numberWithOptions(),
-                          decoration: inputDecoration(context),
-                          //!
+                          keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          decoration: inputDecoration(
+                            isPassword: false,
+                            context: context,
+                            hint: "Enter Number",
+                            icon: const Icon(Icons.phone),
+                          ),
                           controller: numberController,
                         ),
                       ),
                       SizedBox(
-                        height: controller.screenHeight(context) * 0.015,
+                        height: screenHeight(context) * 0.015,
                       ),
-                      //! Password TEXT FIELD
-                      Form(
-                        child: TextFormField(
-                          onChanged: (val) {
-                            enteredPass = val;
-                          },
-                          decoration: inputDecoration(context),
-                          controller: passwordController,
-                        ),
+                      //! Password
+                      TextFormField(
+                        obscureText: !isPasswordVisible,
+                        // forceErrorText: '',
+                        decoration: inputDecoration(
+                            isPassword: true,
+                            context: context,
+                            hint: "Enter Password",
+                            icon: const Icon(Icons.key)),
+                        controller: passwordController,
                       ),
                       //!
                       Padding(
@@ -127,38 +140,41 @@ class SigninPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ProjectCategoriesIconsWithoutLabel(
-                            icon: FontAwesomeIcons.facebook,
-                            name: "facebook",
-                          ),
-                          ProjectCategoriesIconsWithoutLabel(
-                            icon: FontAwesomeIcons.instagram,
-                            name: "instagram",
-                          ),
-                          ProjectCategoriesIconsWithoutLabel(
-                            icon: FontAwesomeIcons.twitter,
-                            name: "twitter",
-                          ),
-                        ],
-                      ),
+                      const Oursocials(),
                       SizedBox(
-                        height: controller.screenHeight(context) * 0.02,
+                        height: screenHeight(context) * 0.02,
                       ),
                       ProjectButton(
                         text: "Log in".tr,
-                        width: controller.screenWidth(context),
+                        width: screenWidth(context),
                         function: () {
-                          //! idk what to do yet
-                          LoginFun(numberController.text, passwordController.text);
-                          //! if Login  successful go to main page
-                          Get.off(const MainPage());
+                          if (passwordController.text.isEmpty ||
+                              numberController.text.isEmpty) {
+                            Get.snackbar(
+                              "Error",
+                              "All fields are required !",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                            return;
+                          } else if (formKey.currentState?.validate() ==
+                              false) {
+                            Get.snackbar(
+                              "Error",
+                              "Please insert 10 numbers ",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                          } else {
+                            controller.login(
+                                numberController.text, passwordController.text);
+                          }
                         },
                       ),
                       SizedBox(
-                        height: controller.screenHeight(context) * 0.01,
+                        height: screenHeight(context) * 0.01,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -189,13 +205,28 @@ class SigninPageState extends State<LoginPage> {
             ));
   }
 
-// text decoration for each text field
-  InputDecoration inputDecoration(BuildContext context) {
+  InputDecoration inputDecoration(
+      {required BuildContext context,
+      required String hint,
+      required Icon icon,
+      required bool isPassword}) {
     return InputDecoration(
+      suffixIcon: isPassword
+          ? IconButton(
+              color: Colors.grey[800],
+              onPressed: () {
+                setState(() {
+                  isPasswordVisible = !isPasswordVisible;
+                });
+              },
+              icon: isPasswordVisible
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility))
+          : null,
       fillColor: Theme.of(context).colorScheme.secondary,
       filled: true,
-      prefixIcon: const Icon(Icons.key, color: Colors.grey),
-      labelText: "Enter Password".tr,
+      prefixIcon: icon,
+      labelText: hint.tr,
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -205,21 +236,5 @@ class SigninPageState extends State<LoginPage> {
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
     );
-  }
-
-//! LOGIN FUNCTION
-  Future LoginFun(String UserPhoneNumber, String UserPasswrod) async {
-    var request = await http.post(
-        Uri.parse(
-            'http://192.168.198.117:8000/api/auth/login?password=1234567890&user_phone=0987654321'),
-        body: <String, String>{
-          "user_phone": UserPhoneNumber,
-          "password": UserPasswrod
-        });
-    if (request.statusCode == 200) {
-      //! token shit?
-    } else {
-      print("sorry");
-    }
   }
 }

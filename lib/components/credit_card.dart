@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class CreditCard extends StatelessWidget {
   const CreditCard({super.key});
@@ -14,16 +14,15 @@ class CreditCard extends StatelessWidget {
               textDirection: TextDirection.ltr,
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      top: Get.find<Model>().screenHeight(context) * 0.1),
+                  padding: EdgeInsets.only(top: screenHeight(context) * 0.1),
                   child: Card(
                     elevation: 15,
                     color: Theme.of(context).colorScheme.primary,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox(
-                        height: Get.find<Model>().screenHeight(context) * 0.2,
-                        width: Get.find<Model>().screenWidth(context) * 0.90,
+                        height: screenHeight(context) * 0.2,
+                        width: screenWidth(context) * 0.90,
                         child: Column(
                           children: [
                             Row(

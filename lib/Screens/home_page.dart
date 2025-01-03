@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/components/ads.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
@@ -13,6 +13,7 @@ import 'package:solar_icons/solar_icons.dart';
 class HomeNeedToBeSlivered extends StatelessWidget {
   const HomeNeedToBeSlivered({super.key});
   // This is the screen that appears with the sliver appbar in the action section
+  // if image is not picked then the image will be the default image
   @override
   Widget build(BuildContext context) {
     final pageController = PageController();
@@ -45,14 +46,15 @@ class HomeNeedToBeSlivered extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15),
             child: GestureDetector(
               onTap: () => Get.to(const ProfilePage()),
-              child: CircleAvatar(
-                radius: 10,
-                //! THE USER IMAGE
-                backgroundImage: Get.find<Model>().pickedImage,
-              ),
+              child: Get.find<Model>().imageIsPicked
+                  ? CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      backgroundImage: Get.find<Model>().pickedImage,
+                    )
+                  : const CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/Person.png")),
             ),
           ),
-          //! location in the homepage########
           title: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
             child: ElevatedButton(

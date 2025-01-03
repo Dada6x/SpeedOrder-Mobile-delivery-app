@@ -113,8 +113,8 @@ class SettingsPage extends StatelessWidget {
                     trailing: SizedBox(
                       width: 150,
                       child: Obx(() {
-                        // Use Obx to reactively display the location
-                        String location = Get.find<LocationController>().getCurrentLocation();
+                        String location =
+                            Get.find<LocationController>().getCurrentLocation();
                         return RichText(
                           textAlign: TextAlign.end,
                           maxLines: 2,
