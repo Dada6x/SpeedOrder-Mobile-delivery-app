@@ -15,9 +15,6 @@ class FavoriteButton extends StatelessWidget {
         builder: (controller) => IconButton(
             onPressed: () {
               controller.productisFavored(product);
-              product.isFavored
-                  ? Get.find<FavoriteController>().addToFavorite(product)
-                  : Get.find<FavoriteController>().removeFromCart(product);
             },
             icon: product.isFavored
                 ? Icon(

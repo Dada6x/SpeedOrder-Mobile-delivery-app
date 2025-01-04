@@ -2,27 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
-import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 // ignore: must_be_immutable
 class FavoriteCard extends StatelessWidget {
-  int? indexinList;
+var id;
+  String imageLink;
+  String name;
+  var price;
+  String category;
   FavoriteCard({
     super.key,
-    required this.product,
+  required this.id,
+    required this.name,
+    required this.price,
+    required this.imageLink,
+    required this.category,
   }); //default constructor
-  FavoriteCard.inList(
-      {super.key,
-      required this.product,
-      required this.indexinList}); //comstructor used for list
-  Product product;
+ //comstructor used for list
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(ProductPage(product: product));
+        //Get.to(ProductPage(product: product));
       },
       child: Directionality(
         textDirection: TextDirection.ltr,
@@ -45,7 +48,7 @@ class FavoriteCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         child: Image(
                           //! the product image @cart
-                          image: AssetImage(product.imageLink),
+                          image: AssetImage(imageLink),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -61,15 +64,14 @@ class FavoriteCard extends StatelessWidget {
                       children: [
                         Text(
                           //! product name @cart
-                          product.name,
+                          name,
                           style: const TextStyle(fontSize: 25),
                         ),
-                        Text(product.description),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            //! product price @cart
-                            '${product.price} \$',
+                            //! producct price @cart
+                            '${price} \$',
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontSize: 20,
@@ -88,10 +90,7 @@ class FavoriteCard extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Get.find<FavoriteController>()
-                                  .removeFromCart(product);
-                              Get.find<HomePageProductController>()
-                                  .productisFavored(product);
+                              
                             },
                             icon: Icon(
                               Icons.close,

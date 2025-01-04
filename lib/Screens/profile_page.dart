@@ -41,12 +41,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   elevation: 2.0,
                   fillColor: Theme.of(context).colorScheme.secondary,
+                  padding: const EdgeInsets.all(15.0),
+                  shape: const CircleBorder(),
                   child: Icon(
                     Icons.camera_alt_outlined,
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  padding: const EdgeInsets.all(15.0),
-                  shape: const CircleBorder(),
                 )),
           ]),
           Padding(
@@ -79,14 +79,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: const Icon(Icons.date_range),
                   destination: () {
                     //! make order history
-                    Get.to(OrdersPage());
+                    Get.to(const OrdersPage());
                   },
                 ),
                 MenuListItem(
                   title: 'FAQ'.tr,
                   icon: const Icon(Icons.help),
                   destination: () {
-                    Get.to(FAQPage());
+                    Get.to(const FAQPage());
                   },
                 ),
                 // MenuListItem(

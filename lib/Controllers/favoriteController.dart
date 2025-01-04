@@ -6,7 +6,7 @@ class FavoriteController extends GetxController {
   var favoriteItems = <Product>[].obs;
   var favoriteCardsList = <FavoriteCard>[].obs;
 
-  void addToFavorite(Product p) {
+ /* void addToFavorite(Product p) {
     print("listLength is :${favoriteItems.length + 1}");
     bool isFavorite = isAfavoriteAlr(p);
     if (!isFavorite) {
@@ -32,5 +32,5 @@ class FavoriteController extends GetxController {
     } else {
       return false;
     }
-  }
+  }*/
 }

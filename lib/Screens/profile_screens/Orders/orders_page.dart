@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 

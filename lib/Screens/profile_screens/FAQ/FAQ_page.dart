@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/Controllers/f_a_q_controller.dart';
 import 'package:mamamia_uniproject/components/FAQ/f_a_q_page_categorie.dart';
 import 'package:mamamia_uniproject/components/FAQ/f_a_q_page_header.dart';
@@ -8,7 +7,7 @@ import 'package:mamamia_uniproject/components/FAQ/question_tile.dart';
 import 'package:mamamia_uniproject/model/f_a_q_item.dart';
 
 class FAQPage extends StatelessWidget {
-  FAQPage({super.key});
+  const FAQPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class FAQPage extends StatelessWidget {
           ),
           const FAQPageHeader(header: "Recently Answered Questions"),
           ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: faqItems.length,
             itemBuilder: (context, index) {

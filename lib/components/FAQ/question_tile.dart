@@ -19,7 +19,7 @@ class QuestionTile extends StatelessWidget {
           },
           title: Text(
             FAQ.question,
-            style: TextStyle(color: Colors.black54),
+            style: const TextStyle(color: Colors.black54),
           ),
           tileColor: const Color(0xffEBEFF6),
           shape: const RoundedRectangleBorder(
