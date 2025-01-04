@@ -6,7 +6,7 @@ import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 class CartController extends GetxController {
   var cartItems = <Product>[].obs;
   var cartCardsList = <ProjectProductCartCard>[].obs;
-  double get totalPrice => cartItems.fold(0.0, (sum, item) => sum + item.price);
+ // double get totalPrice => cartItems.fold(0.0, (sum, item) => sum + item.price);
 
   void addToCart(Product p) {
     p.isInCart = inList(p);

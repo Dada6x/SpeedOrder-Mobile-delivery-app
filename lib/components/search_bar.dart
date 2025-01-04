@@ -45,7 +45,13 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
 //widget thats used in search
 class Search extends SearchDelegate {
   Future<List> getFilteredList(String search) async {
-    final response = await http.post(Uri.parse(""), body: {"search": search});
+    final response = await http.post(
+        Uri.parse("http://192.168.1.110:8000/api/auth/search_in_products"),
+        body: {
+          "token":
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
+          "search": search
+        });
     List list = jsonDecode(response.body);
     return list;
   }
@@ -101,10 +107,11 @@ class Search extends SearchDelegate {
                     itemCount: datalength,
                     itemBuilder: (context, index) {
                       return ProjectProductCartCardHome(
-                        name: data[index]["title"],
+                        name: data[index]["name"],
+                        id: data[index]["id"],
                         price: data[index]["price"],
-                        imageLink: data[index]["image"],
-                        category: data[index]["category"],
+                        imageLink: "assets/images/product.png",
+                        category: "food",
                       );
                     });
               }

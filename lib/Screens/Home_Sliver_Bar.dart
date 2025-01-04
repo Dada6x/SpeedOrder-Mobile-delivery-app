@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/model.dart';
-import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Models/products.dart';
 import 'package:mamamia_uniproject/Screens/home_page.dart';
-import 'package:mamamia_uniproject/main_page.dart';
 
 class HomeSliver extends StatelessWidget {
   const HomeSliver({super.key});

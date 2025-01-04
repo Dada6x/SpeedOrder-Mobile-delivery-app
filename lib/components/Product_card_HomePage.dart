@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
+import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
@@ -8,32 +9,36 @@ import 'package:solar_icons/solar_icons.dart';
 
 class Product {
   //added a class of products,might add a product id if the backend wants it
+  var id;
   String imageLink;
   String name;
-  double price;
+  var price;
   String description;
-  String category;
+  String? category;
+  String company;
+  var count;
   String? purchaseDate;
   bool isFavored = false;
   bool isInCart = false;
   ProjectProductCartCard? cartCard;
-  ProjectProductCartCardHome? homeCard;
-  ProjectProductOrdersCard? orderCard;
   FavoriteCard? favoriteCard;
-  Product(
-      this.name, this.price, this.description, this.imageLink, this.category);
+  ProjectProductOrdersCard? orderCard;
+  Product(this.id, this.name, this.price, this.description, this.imageLink,
+      this.company, this.count);
 }
 
 /// this is the product card in the [HomePage] it has price and fav button
 
 // ignore: must_be_immutable
 class ProjectProductCartCardHome extends StatelessWidget {
+  var id;
   String imageLink;
   String name;
   var price;
   String category;
   ProjectProductCartCardHome({
     super.key,
+    required this.id,
     required this.name,
     required this.price,
     required this.imageLink,
@@ -83,7 +88,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
               textDirection: TextDirection.ltr,
               child: GestureDetector(
                 onTap: () {
-                  // Get.to(ProductPage(product: product));
+                  Get.to(ProductPage(id: id));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -104,8 +109,10 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image(
-                                  image: NetworkImage(imageLink),
-                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                    imageLink,
+                                  ),
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
