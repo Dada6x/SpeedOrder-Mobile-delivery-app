@@ -2,7 +2,7 @@ name: mamamia_uniproject
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -44,14 +44,14 @@ dependencies:
   solar_icons: ^0.0.5
   http: ^1.2.2
   url_launcher: ^6.3.1
-  #for the map 
+  #for the map
   flutter_map: ^7.0.2
   geolocator: ^13.0.2
   latlong2: ^0.9.1
   geocoding: ^2.0.4
   # for the internet connection
   internet_connection_checker_plus: ^2.6.0
-
+  pin_code_fields: any
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -62,7 +62,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

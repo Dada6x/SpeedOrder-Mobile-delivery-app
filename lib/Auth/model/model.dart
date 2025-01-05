@@ -102,14 +102,11 @@ class Model extends GetxController {
           "Success",
           "Signup Successfully",
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
           colorText: Colors.white,
         );
         Get.off(const SettingLocation());
         sharedPref!.setString("id", "1");
-        // Handle token or other success actions if needed
       } else {
-        // Check for specific error messages like 'user_phone'
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
           Get.snackbar(
@@ -120,7 +117,6 @@ class Model extends GetxController {
             colorText: Colors.white,
           );
         } else {
-          // Generic error message
           Get.snackbar(
             "Error",
             "An unexpected error occurred",
@@ -200,6 +196,11 @@ class Model extends GetxController {
     }
   }
 
+//!-#######################################(------UploadImage------)#########################################
+// requires token
+// there is a file in the body of this request
+
+//!-#######################################(------Change Password ------)#########################################
 //! url launcher
   Future<void> _openUrl(String url) async {
     final uri = Uri.parse(url.trim());
@@ -209,7 +210,6 @@ class Model extends GetxController {
       print('Could not launch $url');
     }
   }
-
 
   Future<void> openTwitter() async => _openUrl("https://x.com/");
   Future<void> openFacebook() async => _openUrl("https://facebook.com/");

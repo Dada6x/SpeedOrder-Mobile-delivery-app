@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
+import 'package:mamamia_uniproject/Auth/validation/forgetPassword.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
 import 'package:mamamia_uniproject/components/ourSocials.dart';
@@ -118,15 +119,33 @@ class SigninPageState extends State<LoginPage> {
                             icon: const Icon(Icons.key)),
                         controller: passwordController,
                       ),
+                      Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Get.to(CodeVerificationPage());
+                              },
+                              child: const Text(
+                                'Forget Password',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.grey),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       //!
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 15, left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 6, right: 6),
                         child: Row(
                           children: [
                             const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 5),
                                 child: Divider(),
                               ),
                             ),
@@ -139,6 +158,9 @@ class SigninPageState extends State<LoginPage> {
                             ),
                           ],
                         ),
+                      ),
+                      SizedBox(
+                        height: screenHeight(context) * 0.01,
                       ),
                       const Oursocials(),
                       SizedBox(
@@ -169,7 +191,7 @@ class SigninPageState extends State<LoginPage> {
                             );
                           } else {
                             controller.login(
-                                numberController.text, passwordController.text);
+                                passwordController.text, numberController.text);
                           }
                         },
                       ),
