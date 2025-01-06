@@ -22,7 +22,7 @@ class Model extends GetxController {
         Uri.parse(
             //! change the ip if emulator
             // emulator :10.0.2.2
-            // physical device  the normal ip if host ⟶ ipv4 if apache 127.0.0.1
+            // physical device  the device ipv4 if host ⟶ ipv4 if apache 127.0.0.1
             'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
         body: {
           'password': password,
@@ -41,7 +41,7 @@ class Model extends GetxController {
         );
         //! going to mainPage and active
         Get.off(() => const MainPage());
-        sharedPref!.setString("id", "1");
+        middleWarePref!.setString("id", "1");
         // the token
         print('API Response: $decodedResponse');
       } else {
@@ -98,14 +98,21 @@ class Model extends GetxController {
       print('API Response: $decodedResponse');
 
       if (response.statusCode == 200) {
+        if (decodedResponse is Map<String, dynamic> &&
+            decodedResponse.containsKey('token')) {
+          tokenPref?.setString('token', decodedResponse['token']);
+          print('Token saved: ${decodedResponse['token']}');
+        }
+
         Get.snackbar(
           "Success",
           "Signup Successfully",
           snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
           colorText: Colors.white,
         );
         Get.off(const SettingLocation());
-        sharedPref!.setString("id", "1");
+        middleWarePref!.setString("id", "1");
       } else {
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
@@ -139,63 +146,7 @@ class Model extends GetxController {
   }
 
 //!-#######################################(------LogOut------)#########################################
-
-  Future<void> logOut(String token) async {
-    try {
-      final response = await http.post(
-        Uri.parse(
-          'http://10.0.2.2:8000/api/auth/logout?token=$token',
-        ),
-        body: {
-          'token': token,
-        },
-      );
-      final decodedResponse = jsonDecode(response.body);
-      print('API Response: $decodedResponse');
-      if (response.statusCode == 200) {
-        Get.snackbar(
-          "Success",
-          "LogOut successfully",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
-        Get.off(const LoginPage());
-        sharedPref!.remove('id');
-      } else {
-        // Check for specific error messages like 'user_phone'
-        if (decodedResponse is Map<String, dynamic> &&
-            decodedResponse.containsKey('user_phone')) {
-          Get.snackbar(
-            "Error",
-            decodedResponse['user_phone'].toString(),
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
-        } else {
-          // Generic error message
-          Get.snackbar(
-            "Error",
-            "An unexpected error occurred",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
-        }
-      }
-    } catch (e) {
-      Get.snackbar(
-        "Exception",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-      print('Error: $e');
-    }
-  }
-
+ 
 //!-#######################################(------UploadImage------)#########################################
 // requires token
 // there is a file in the body of this request

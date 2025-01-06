@@ -66,7 +66,7 @@ class _IntroPagesState extends State<IntroPages> {
               onLastPage
                   ? GestureDetector(
                       onTap: () {
-                        prefs?.setBool('isFirstOpen', true);
+                        splashPref?.setBool('isFirstOpen', true);
                         Get.off(const LoginPage());
                       },
                       child: Text(

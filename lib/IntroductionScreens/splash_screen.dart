@@ -20,12 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _initialize() async {
-    await Future.delayed(const Duration(seconds: 3)); 
+    await Future.delayed(const Duration(seconds: 3));
 
-    if (sharedPref?.getString("id") != null) {
+    if (middleWarePref?.getString("id") != null) {
       // If user is logged in
       Get.off(() => const MainPage());
-    } else if (prefs?.getBool('isFirstOpen') == true) {
+    } else if (splashPref?.getBool('isFirstOpen') == true) {
       // If first time is already completed, go to login
       Get.off(() => const LoginPage());
     } else {

@@ -15,8 +15,9 @@ import 'package:mamamia_uniproject/theme/themes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //!-----------------------------shared pref
-SharedPreferences? sharedPref;
-SharedPreferences? prefs;
+SharedPreferences? middleWarePref;
+SharedPreferences? splashPref;
+SharedPreferences? tokenPref;
 //!----------------------------
 //!!!!--------------------
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
@@ -30,8 +31,9 @@ void main() async {
   Get.put(CartController());
   Get.put(LocationController());
   //middleware
-  sharedPref = await SharedPreferences.getInstance();
-  prefs = await SharedPreferences.getInstance();
+  middleWarePref = await SharedPreferences.getInstance();
+  tokenPref = await SharedPreferences.getInstance();
+  splashPref = await SharedPreferences.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
@@ -57,7 +59,3 @@ void main() async {
     ),
   );
 }
-// about the introduction screens
-// make splash then store a shared pref when "Done " button is pressed
-// then decide if going straight to login/signup or to introduction screen
-// access introduction screens via deleting chace memory
