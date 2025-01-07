@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
@@ -12,7 +13,6 @@ import 'package:mamamia_uniproject/language/local.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:mamamia_uniproject/middlewares/middleware.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 //!-----------------------------shared pref
 SharedPreferences? middleWarePref;

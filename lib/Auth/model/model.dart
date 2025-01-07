@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:mamamia_uniproject/main.dart';
@@ -70,7 +68,7 @@ class Model extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Exception",
-        messageText: Text("${jsonEncode(e)}"),
+        messageText: Text(jsonEncode(e)),
         "",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
@@ -146,7 +144,60 @@ class Model extends GetxController {
   }
 
 //!-#######################################(------LogOut------)#########################################
- 
+  Future<void> logOut() async {
+    try {
+      final response = await http.post(
+        Uri.parse(
+          'http://10.0.2.2:8000/api/auth/logout?token=$tokenPref',
+        ),
+        body: {},
+      );
+      final decodedResponse = jsonDecode(response.body);
+      print('API Response: $decodedResponse');
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "Success",
+          "LogOut successfully",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        Get.off(const LoginPage());
+        middleWarePref!.remove('id');
+      } else {
+        // Check for specific error messages like 'user_phone'
+        if (decodedResponse is Map<String, dynamic> &&
+            decodedResponse.containsKey('user_phone')) {
+          Get.snackbar(
+            "Error",
+            decodedResponse['user_phone'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        } else {
+          // Generic error message
+          Get.snackbar(
+            "Error",
+            "An unexpected error occurred",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Exception",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      print('Error: $e');
+    }
+  }
+
 //!-#######################################(------UploadImage------)#########################################
 // requires token
 // there is a file in the body of this request
