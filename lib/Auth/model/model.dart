@@ -363,18 +363,34 @@ class Model extends GetxController {
   Future<void> uploadImageRequest(File image) async {
     try {
       String? tokenImg = await getToken();
-      final response = await http.post(
-        Uri.parse(
-          'http://127.0.0.1:8000/api/auth/uploadImage?token=$tokenImg',
-        ),
-        body: {},
+
+      // Use your machine's IP address instead of 127.0.0.1
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse('http://10.0.2.2:8000/api/auth/uploadImage?token=$tokenImg'),
       );
+
+      // Add the image file to the request
+      request.files.add(await http.MultipartFile.fromPath(
+        'photo', // This should match the key expected by your server
+        image.path,
+      ));
+
+      // Send the request
+      var response = await request.send();
+
+      // Read the response
+      var responseBody = await response.stream.bytesToString();
+
+      // Log the response status and body
+      print('Status Code: ${response.statusCode}');
+      print('Response Body: $responseBody');
+
+      // Check the response status
       if (response.statusCode == 200) {
-        print("image upload test");
-        print(tokenImg);
         Get.snackbar(
           "Success",
-          "image uploaded successfully !",
+          "Image uploaded successfully!",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -382,7 +398,7 @@ class Model extends GetxController {
       } else {
         Get.snackbar(
           "Error",
-          "An unexpected error occurred",
+          "An unexpected error occurred: ${response.statusCode}",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -399,7 +415,6 @@ class Model extends GetxController {
       print('Error: $e');
     }
   }
-
 //$-#######################################(------Change Password ------)#########################################
 
 //! url launcher

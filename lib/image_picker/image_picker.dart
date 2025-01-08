@@ -15,39 +15,80 @@ class ImagePickingDialog extends StatefulWidget {
 }
 
 class _ImagePickingDialogState extends State<ImagePickingDialog> {
-  Future pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  File? _selectedImage;
 
-    if (returnedImage == null) return;
-    _selectedImage = File(returnedImage.path);
-    giveselectedImage(_selectedImage!);
-    Navigator.pop(context);
+  Future<void> pickImageFromGallery() async {
+    try {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (returnedImage == null) return;
+      setState(() {
+        _selectedImage = File(returnedImage.path);
+      });
+      giveselectedImage(_selectedImage!);
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        "Failed to pick image from gallery: ${e.toString()}",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
-  Future pickImageFromCamera() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (returnedImage == null) return;
-
-    _selectedImage = File(returnedImage.path);
-    giveselectedImage(_selectedImage!);
-    Navigator.pop(context);
+  Future<void> pickImageFromCamera() async {
+    try {
+      final returnedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (returnedImage == null) return;
+      setState(() {
+        _selectedImage = File(returnedImage.path);
+      });
+      giveselectedImage(_selectedImage!);
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        "Failed to capture image from camera: ${e.toString()}",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   void giveselectedImage(File img) {
+    // Update the Model with the selected image
     Get.find<Model>().changeImage(img);
+    // Call the upload method
+    Get.find<Model>().uploadImageRequest(img);
+    // Close the dialog
+    Navigator.pop(context);
   }
 
-  File? _selectedImage;
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: Model(),
-        builder: (controller) => Dialog(
-              child: SizedBox(
-                width: screenWidth(context) * 0.5,
-                height: screenHeight(context) * 0.25,
+      init: Model(),
+      builder: (controller) => Dialog(
+        child: SizedBox(
+          width: screenWidth(context) * 0.5,
+          height: _selectedImage == null
+              ? screenHeight(context) * 0.25
+              : screenHeight(context) * 0.4,
+          child: Column(
+            children: [
+              if (_selectedImage != null)
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: Image.file(
+                    _selectedImage!,
+                    height: screenHeight(context) * 0.15,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              Expanded(
                 child: SimpleDialog(
                   contentPadding: const EdgeInsets.all(0),
                   children: [
@@ -62,11 +103,14 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
                       leading: const Icon(FontAwesomeIcons.camera),
                       title: const Text("Camera Image"),
                       onTap: pickImageFromCamera,
-                      // controller.uploadImageRequest(image);
                     ),
                   ],
                 ),
               ),
-            ));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
