@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
+import 'package:mamamia_uniproject/Auth/validation/forgetPassword.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
 import 'package:mamamia_uniproject/components/ourSocials.dart';
@@ -124,7 +125,7 @@ class SigninPageState extends State<LoginPage> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                // Get.to(const CodeVerificationPage());
+                                Get.to(CodeVerificationPage());
                               },
                               child: const Text(
                                 'Forget Password',

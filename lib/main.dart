@@ -26,7 +26,7 @@ SharedPreferences? tokenPref;
 //!-------------------------------------------------------
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
-//!----------------------------
+//!-------------------------------------------------------
 void main() async {
 //?-----------------------Controllers---------------------
   Get.put(creditCardController());
@@ -36,19 +36,8 @@ void main() async {
   Get.put(CartController());
   Get.put(FAQController());
   Get.put(OrdersController());
-  runApp(GetMaterialApp(
-    //! languges
-    translations: MyLocal(),
-    locale: const Locale("en"),
-    fallbackLocale: const Locale("en"),
-    //!
-    debugShowCheckedModeBanner: false,
-    //! i know its places wrong but i want the default theme to be the dark theme
-    darkTheme: Themes().lightMode,
-    theme: Themes().darkMode,
-    home: const IntroPages(),
-  ));
   Get.put(LocationController());
+//!-------------------------------------------------------
   middleWarePref = await SharedPreferences.getInstance();
   tokenPref = await SharedPreferences.getInstance();
   splashPref = await SharedPreferences.getInstance();

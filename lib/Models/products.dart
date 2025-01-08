@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart ' as http;
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class Productsgetter extends StatefulWidget {
   const Productsgetter({super.key});
@@ -15,12 +16,13 @@ class Productsgetter extends StatefulWidget {
 
 class _ProductsgetterState extends State<Productsgetter> {
   Future<List> getProducts() async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_products"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M"
-        });
+      Uri.parse("http://10.0.2.2:8000/api/auth/get_products"),
+      body: {
+        "token": token,
+      },
+    );
     print(response.body);
     List productList = jsonDecode(response.body);
     Get.find<HomePageProductController>().productList.addAll(productList);
@@ -55,8 +57,8 @@ class _ProductsgetterState extends State<Productsgetter> {
                       );
                     } else {
                       return SizedBox(
-                        width: Get.find<Model>().screenWidth(context),
-                        height: Get.find<Model>().screenHeight(context) * 0.9,
+                        width: screenWidth(context),
+                        height: screenHeight(context) * 0.9,
                         child: ListView.builder(
                             itemCount: datalength,
                             itemBuilder: (context, index) {
@@ -74,8 +76,8 @@ class _ProductsgetterState extends State<Productsgetter> {
                 }),
           )
         : SizedBox(
-            width: Get.find<Model>().screenWidth(context),
-            height: Get.find<Model>().screenHeight(context) * 0.9,
+            width: screenWidth(context),
+            height: screenHeight(context) * 0.9,
             child: RefreshIndicator(
               onRefresh: _refresh,
               child: ListView.builder(

@@ -1,24 +1,26 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/components/Stores_card.dart';
 import 'package:mamamia_uniproject/components/company_products.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: must_be_immutable
 class StoreAboutPage extends StatelessWidget {
   Company company;
   StoreAboutPage({super.key, required this.company});
   Future<List> getProudctsInStore(var id) async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_products_of_company"),
-        body: {
-          "company_id": "$id",
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M"
-        });
+      Uri.parse("http://10.0.2.2:8000/api/auth/get_products_of_company"),
+      body: {
+        "company_id": "$id",
+        "token": token,
+      },
+    );
     List about = jsonDecode(response.body);
     return about;
   }
@@ -131,14 +133,14 @@ class StoreAboutPage extends StatelessWidget {
                             } else {
                               return SizedBox(
                                 height: 120,
-                                width: Get.find<Model>().screenWidth(context),
+                                width: screenWidth,
                                 child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: datalength,
                                     itemBuilder: (context, index) {
                                       return ProducInCompanyPage(
-                                          id:data[index]["id"],
-                                          text:data[index]["name"]);
+                                          id: data[index]["id"],
+                                          text: data[index]["name"]);
                                     }),
                               );
                             }
