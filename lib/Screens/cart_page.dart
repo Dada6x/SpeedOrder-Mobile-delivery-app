@@ -39,10 +39,10 @@ class CartPage extends StatelessWidget {
                       'Total:'.tr,
                       style: const TextStyle(fontSize: 18),
                     ),
-                    Text(
+                   /* Text(
                       '\$${Get.find<CartController>().totalPrice.toStringAsFixed(2)}',
                       style: const TextStyle(fontSize: 18),
-                    ),
+                    ),*/
                   ],
                 ),
               ),

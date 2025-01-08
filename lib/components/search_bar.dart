@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
+import 'package:mamamia_uniproject/Models/products.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:http/http.dart' as http;
 
 class ProjectSearchBar extends StatefulWidget {
   const ProjectSearchBar({super.key});
@@ -33,7 +35,7 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
               showSearch(
                   context: context,
                   delegate:
-                      search()); //removed search page and used search delegate instead
+                      Search()); //removed search page and used search delegate instead
             }),
       ),
     );
@@ -41,7 +43,19 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
 }
 
 //widget thats used in search
-class search extends SearchDelegate {
+class Search extends SearchDelegate {
+  Future<List> getFilteredList(String search) async {
+    final response = await http.post(
+        Uri.parse("http://192.168.1.110:8000/api/auth/search_in_products"),
+        body: {
+          "token":
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
+          "search": search
+        });
+    List list = jsonDecode(response.body);
+    return list;
+  }
+
   @override
   String get searchFieldLabel => 'Search'.tr;
   @override
@@ -69,38 +83,42 @@ class search extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     //app bar body after pressing the search icon on keyborad
-    List<Product> filteredList = Get.find<HomePageProductController>()
-        .productList()
-        .where((element) => element.name.isCaseInsensitiveContains(query))
-        .toList();
-    return ListView.builder(
-        itemCount: filteredList.length,
-        itemBuilder: (context, index) {
-          return filteredList[index].homeCard;
-        });
+    return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     //app bar body before pressing search icon on keyboard
     if (query != "") {
-      List<Product> filteredList = Get.find<HomePageProductController>()
-          .productList()
-          .where((element) => element.name.isCaseInsensitiveContains(query))
-          .toList();
-      return ListView.builder(
-          itemCount: filteredList.length,
-          itemBuilder: (context, index) {
-            return filteredList[index].homeCard;
+      return FutureBuilder(
+          future: getFilteredList(query),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: LinearProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: datalength,
+                    itemBuilder: (context, index) {
+                      return ProjectProductCartCardHome(
+                        name: data[index]["name"],
+                        id: data[index]["id"],
+                        price: data[index]["price"],
+                        imageLink: "assets/images/product.png",
+                        category: "food",
+                      );
+                    });
+              }
+            }
           });
     } else {
-      return ListView.builder(
-          itemCount: Get.find<HomePageProductController>().productList().length,
-          itemBuilder: (context, index) {
-            return Get.find<HomePageProductController>()
-                .productList()[index]
-                .homeCard;
-          });
+      return const Productsgetter();
     }
   }
 }

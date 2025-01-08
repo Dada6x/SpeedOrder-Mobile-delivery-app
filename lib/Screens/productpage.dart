@@ -1,27 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
-import 'package:mamamia_uniproject/components/favorite_button.dart';
+import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/main_page.dart';
 
+// ignore: must_be_immutable
 class ProductPage extends StatelessWidget {
-  final Product product;
-  const ProductPage({
-    super.key,
-    required this.product,
-  });
+  var id;
+  ProductPage({super.key, required this.id});
+  Future<List> getDetails(var id) async {
+    final response = await http.post(
+        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
+        body: {
+          "token":
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
+          "id": "$id"
+        });
+    List product = [];
+    product.add(jsonDecode(response.body));
+    print(product[0]);
+    return product;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final CartController cartController = Get.find();
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           Row(
@@ -34,60 +46,66 @@ class ProductPage extends StatelessWidget {
                     },
                     icon: const Icon(Icons.share)),
               ),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FavoriteButton(product: product))
+              // const Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: LikeButton(),
+              // )
             ],
           )
         ],
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 30.0),
-              child: ElevatedButton(
-                  onPressed: () {}, child: const Icon(Icons.arrow_downward))),
-          ProjectButton(
-            function: () {
-              cartController.addToCart(product);
-              product.isInCart
-                  ? Get.snackbar(
-                      "Already in",
-                      "${product.name} is already in Your cart!",
-                      colorText: Theme.of(context).colorScheme.primary,
-                    )
-                  : Get.snackbar(
-                      colorText: Theme.of(context).colorScheme.primary,
-                      'Success'.tr,
-                      '${product.name} added to the cart'.tr,
-                      snackPosition: SnackPosition.TOP);
-            },
-            text: 'Add to Cart'.tr,
-            width: double.infinity,
-          )
-        ],
+      floatingActionButton: ProjectButton(
+        function: () async {
+          final response =
+              http.post(Uri.parse(""), body: {"token": "", "product_id": id});
+        },
+        text: 'Add to Cart'.tr,
+        width: double.infinity,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Stack(
-              children: [
-                const ProductBackgroundImage(),
-                ProductImage(
-                  screenHeight: screenHeight,
-                  screenWidth: screenWidth,
-                  productImage: product.imageLink,
-                ),
-                ProductInfoCardPage(
-                  screenHeight: screenHeight,
-                  product: product,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: FutureBuilder<List>(
+          future: getDetails(id),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                Product product = Product(
+                    data[0]["id"],
+                    data[0]["name"],
+                    data[0]["price"],
+                    data[0]["details"],
+                    data[0]["photo_path"],
+                    data[0]["company_name"],
+                    data[0]["count"]);
+                return Column(
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          const ProductBackgroundImage(),
+                          ProductImage(
+                            screenHeight: screenHeight,
+                            screenWidth: screenWidth,
+                            productImage: "assets/images/product.png",
+                          ),
+                          ProductInfoCardPage(
+                            screenHeight: screenHeight,
+                            product: product,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+            }
+          }),
     );
   }
 }
@@ -128,27 +146,46 @@ class ProductInfoCardPage extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
-          ProjectProductCartCardHome(product: product)
-              .iconType(context, product.category)!,
+          /*  ProjectProductCartCardHome(product: product)
+              .iconType(context, product.category)!,*/
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            "f your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, if your assignment asks you to take a position or develop a claim about a subject, you may need to convey that position or claim in a thesis statement near the beginning of your draft. The assignment may not explicitly state that you need a thesis statement because your instructor may assume you will include one. When in doubt, ask your instructor if the assignment requires a thesis statement. When an assignment asks you to analyze, to interpret, to compare and contrast, to demonstrate cause and effect, or to take a stand on an issue, ",
+          Text(
+            product.description,
             overflow: TextOverflow.ellipsis,
             maxLines: 10,
           ),
           const Spacer(
             flex: 1,
           ),
-          Text(
-            '\$${product.price}',
-            style: TextStyle(
-                fontSize: 25,
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w700),
-          ),
+          ExtraInfo(leading: "Company:", title: product.company),
+          ExtraInfo(leading: "Available offers:", title: "${product.count}"),
+          ExtraInfo(leading: "Price:", title: "${product.price} \$"),
         ],
+      ),
+    );
+  }
+}
+
+class ExtraInfo extends StatelessWidget {
+  String leading;
+  String title;
+  ExtraInfo({super.key, required this.leading, required this.title});
+  TextStyle leadingtextStyle =
+      const TextStyle(fontSize: 18, fontWeight: FontWeight.w700);
+  TextStyle titletextStyle = TextStyle(
+      fontSize: 18, fontWeight: FontWeight.w700, color: MainPage.orangeColor);
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Text(
+        leading,
+        style: leadingtextStyle,
+      ),
+      title: Text(
+        title,
+        style: titletextStyle,
       ),
     );
   }
@@ -172,7 +209,7 @@ class ProductImage extends StatelessWidget {
       width: screenWidth,
       //! Background image icon
       productImage,
-      fit: BoxFit.cover,
+      fit: BoxFit.contain,
     );
   }
 }

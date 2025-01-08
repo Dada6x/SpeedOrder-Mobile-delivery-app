@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
+import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main.dart';
@@ -123,6 +124,7 @@ class PaymentPage extends StatelessWidget {
                             backgroundColor:
                                 Theme.of(context).colorScheme.primary),
                         onPressed: () {
+                          Get.find<OrdersController>().addToHistory();
                           Get.find<CartController>().removeAllFromCart();
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {

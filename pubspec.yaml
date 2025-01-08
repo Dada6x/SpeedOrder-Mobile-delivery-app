@@ -53,6 +53,8 @@ dependencies:
   internet_connection_checker_plus: ^2.6.0
   pin_code_fields: any
   path: ^1.8.0
+  auto_size_text: ^3.0.0
+
 
 dev_dependencies:
   flutter_lints: ^4.0.0
