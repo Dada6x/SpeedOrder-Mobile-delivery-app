@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/IntroductionScreens/IntroPages.dart';
+import 'package:mamamia_uniproject/Screens/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
@@ -16,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    print(tokenPref?.getString("access_token"));
     _initialize();
   }
 

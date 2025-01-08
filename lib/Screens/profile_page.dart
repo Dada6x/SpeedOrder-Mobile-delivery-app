@@ -6,8 +6,6 @@ import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/help_center.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/main.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -78,10 +76,8 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              //! logOutButton
-              // logOut();
-              Get.off(const LoginPage());
-              middleWarePref!.remove('id');
+              Get.find<Model>().logOut();
+              //! maybe i should delete the token
             },
             label: Text(
               'Log out'.tr,

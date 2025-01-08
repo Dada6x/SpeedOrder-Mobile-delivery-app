@@ -18,6 +18,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
   Future pickImageFromGallery() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
+
     if (returnedImage == null) return;
     _selectedImage = File(returnedImage.path);
     giveselectedImage(_selectedImage!);
@@ -61,6 +62,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
                       leading: const Icon(FontAwesomeIcons.camera),
                       title: const Text("Camera Image"),
                       onTap: pickImageFromCamera,
+                      // controller.uploadImageRequest(image);
                     ),
                   ],
                 ),
