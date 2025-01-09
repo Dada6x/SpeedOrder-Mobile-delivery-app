@@ -120,14 +120,14 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                     //TODO WARD ADD MORE CATEGORIES 💋
                     //NO WE DONT HAVE THE TIME BITCH ASS LIGNLING
                     ProjectCategoriesIcons(
-                        icon: Icons.fastfood_outlined, categorie: 'Food'),
+                        icon: Icons.fastfood_outlined, categorie: 'food'),
                     ProjectCategoriesIcons(
                         icon: SolarIconsOutline.tShirt,
-                        categorie: 'Clothes'.tr),
+                        categorie: 'clothes'.tr),
                     ProjectCategoriesIcons(
-                        icon: Icons.monitor, categorie: 'Devices'),
+                        icon: Icons.monitor, categorie: 'devices'),
                     ProjectCategoriesIcons(
-                        icon: SolarIconsOutline.home1, categorie: 'Home'),
+                        icon: SolarIconsOutline.home1, categorie: 'home'),
 
                     // Add more categories if needed
                   ],

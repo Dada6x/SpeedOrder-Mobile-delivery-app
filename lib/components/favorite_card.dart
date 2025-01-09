@@ -71,7 +71,7 @@ var id;
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             //! producct price @cart
-                            '${price} \$',
+                            '$price \$',
                             style: TextStyle(
                                 color: Theme.of(context).colorScheme.primary,
                                 fontSize: 20,

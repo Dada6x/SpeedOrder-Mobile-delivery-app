@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:http/http.dart' as http;
@@ -14,10 +13,11 @@ class ProductPage extends StatelessWidget {
   ProductPage({super.key, required this.id});
   Future<List> getDetails(var id) async {
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
+        Uri.parse(
+            "http://192.168.151.48:8000/api/auth/get_details-for-product"),
         body: {
           "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xNTEuNDg6ODAwMC9hcGkvcmVnaXN0ZXIiLCJpYXQiOjE3MzYyNDA5NzksImV4cCI6MTczNjI0NDU3OSwibmJmIjoxNzM2MjQwOTc5LCJqdGkiOiJiTTI1bUNBbjhEZDg4OHRBIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.6tXFc7bEr97OQ0e_Wx2CgOgRBJ-iIgEagW_aI4yzIBA",
           "id": "$id"
         });
     List product = [];
