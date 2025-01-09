@@ -1,5 +1,6 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:mamamia_uniproject/Screens/IntroductionScreens/IntroPages.dart';
+import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -43,26 +44,28 @@ void main() async {
   splashPref = await SharedPreferences.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    GetMaterialApp(
-//!----------------------- localization -------------------
-      // ! languges
-      translations: MyLocal(),
-      locale: const Locale("en"),
-      fallbackLocale: const Locale("en"),
-      debugShowCheckedModeBanner: false,
-//@----------------------- themes -------------------------
-      darkTheme: Themes().lightMode,
-      theme: Themes().darkMode,
-//*----------------------- middle wares -------------------
-      initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => const SplashScreen(), middlewares: [
-          MiddlewareAuth(),
-        ]),
-        GetPage(name: '/login', page: () => const LoginPage()),
-        GetPage(name: '/mainPage', page: () => const MainPage()),
-      ],
-      home: const SplashScreen(),
+    ThemeProvider(
+      initTheme: Themes().lightMode,
+      builder: (p0, theme) => GetMaterialApp(
+        //!----------------------- localization -------------------
+        // ! languges
+        translations: MyLocal(),
+        locale: const Locale("en"),
+        fallbackLocale: const Locale("en"),
+        debugShowCheckedModeBanner: false,
+        //@----------------------- themes -------------------------
+        theme: theme,
+        //*----------------------- middle wares -------------------
+        initialRoute: '/',
+        getPages: [
+          GetPage(name: '/', page: () => const SplashScreen(), middlewares: [
+            MiddlewareAuth(),
+          ]),
+          GetPage(name: '/login', page: () => const LoginPage()),
+          GetPage(name: '/mainPage', page: () => const MainPage()),
+        ],
+        home: const SplashScreen(),
+      ),
     ),
   );
 }
