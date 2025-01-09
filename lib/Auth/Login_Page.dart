@@ -7,6 +7,7 @@ import 'package:mamamia_uniproject/Auth/validation/forgetPassword.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/language_toggle_button_icon.dart';
 import 'package:mamamia_uniproject/components/ourSocials.dart';
+import 'package:mamamia_uniproject/components/themSwitcher.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
@@ -58,33 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               style: const TextStyle(fontSize: 30),
             ),
             actions: [
-              ThemeSwitcher(
-                clipper: const ThemeSwitcherCircleClipper(),
-                builder: (context) {
-                  return IconButton(
-                    icon: Icon(
-                      color: Theme.of(context).colorScheme.primary,
-                      ThemeModelInheritedNotifier.of(context)
-                                  .theme
-                                  .brightness ==
-                              Brightness.light
-                          ? Icons.dark_mode
-                          : Icons.light_mode,
-                    ),
-                    onPressed: () {
-                      var brightness = ThemeModelInheritedNotifier.of(context)
-                          .theme
-                          .brightness;
-                      ThemeSwitcher.of(context).changeTheme(
-                        theme: brightness == Brightness.light
-                            ? darkTheme
-                            : lightTheme,
-                        isReversed: brightness == Brightness.light,
-                      );
-                    },
-                  );
-                },
-              ),
+              telegramSwitchButton(),
               const LanguageToggleButtonIcon(),
             ],
           ),
@@ -194,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Log in".tr,
                     width: screenWidth(context),
                     function: () {
+                      //! LOGIN
                       if (passwordController.text.isEmpty ||
                           numberController.text.isEmpty) {
                         Get.snackbar(
@@ -217,9 +193,8 @@ class _LoginPageState extends State<LoginPage> {
                           passwordController.text,
                           numberController.text,
                         );
-                        //! for testing
-                        // Get.off(() => const MainPage());
-                        // middleWarePref!.setString("id", "1");
+
+                        userInfo?.setString("number", numberController.text);
                       }
                     },
                   ),

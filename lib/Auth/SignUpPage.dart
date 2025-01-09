@@ -179,6 +179,8 @@ class SignUpPageState extends State<SignupPage> {
                         } else {
                           controller.signUp(nameController.text,
                               passwordController.text, numberController.text);
+                          userInfo?.setString("name", nameController.text);
+                          userInfo?.setString("number", numberController.text);
                         }
                       },
                     ),

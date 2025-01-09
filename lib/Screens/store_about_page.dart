@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/components/Stores_card.dart';
 import 'package:mamamia_uniproject/components/company_products.dart';

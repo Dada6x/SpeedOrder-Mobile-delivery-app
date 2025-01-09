@@ -1,6 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -24,10 +23,12 @@ import 'package:mamamia_uniproject/theme/themes.dart';
 SharedPreferences? middleWarePref;
 SharedPreferences? splashPref;
 SharedPreferences? tokenPref;
+SharedPreferences? userInfo;
+SharedPreferences? themeChoice;
 //!-------------------------------------------------------
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
-//!-------------------------------------------------------
+//!---------------------------MAIN------------------------
 void main() async {
 //?-----------------------Controllers---------------------
   Get.put(creditCardController());
@@ -42,10 +43,12 @@ void main() async {
   middleWarePref = await SharedPreferences.getInstance();
   tokenPref = await SharedPreferences.getInstance();
   splashPref = await SharedPreferences.getInstance();
+  userInfo = await SharedPreferences.getInstance();
+  themeChoice = await SharedPreferences.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ThemeProvider(
-      initTheme: Themes().lightMode,
+      initTheme: Themes().darkMode,
       builder: (p0, theme) => GetMaterialApp(
         //!----------------------- localization -------------------
         // ! languges

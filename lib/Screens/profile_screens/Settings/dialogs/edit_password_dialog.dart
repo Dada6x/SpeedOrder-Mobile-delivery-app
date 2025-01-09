@@ -17,7 +17,7 @@ class EditPasswordDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: SizedBox(
           width: screenWidth(context) * 0.8,
-          height: screenHeight(context) * 0.5,
+          height: screenWidth(context) * 0.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

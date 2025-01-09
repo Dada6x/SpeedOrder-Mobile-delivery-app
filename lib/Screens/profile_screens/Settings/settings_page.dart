@@ -9,6 +9,7 @@ import 'package:mamamia_uniproject/components/settings_comps.dart';
 import 'package:mamamia_uniproject/components/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page_thesettings.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
+import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -65,7 +66,7 @@ class SettingsPage extends StatelessWidget {
                     Get.dialog(const EditNameDialog());
                   },
                   trailing: Text(
-                    'Name'.tr,
+                    userInfo!.getString("name").toString(),
                     style: SettingsTextStyle(context),
                   ),
                 ),
@@ -76,7 +77,7 @@ class SettingsPage extends StatelessWidget {
                     Get.dialog(const EditNumberDialog());
                   },
                   trailing: Text(
-                    'Number'.tr,
+                    userInfo!.getString("number").toString(),
                     style: SettingsTextStyle(context),
                   ),
                 ),
@@ -89,7 +90,7 @@ class SettingsPage extends StatelessWidget {
                   trailing: Directionality(
                     textDirection: TextDirection.ltr,
                     child: Text(
-                      '+963 09** *** ***',
+                      '****** *** ***',
                       style: SettingsTextStyle(context),
                     ),
                   ),

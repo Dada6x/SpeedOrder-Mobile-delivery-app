@@ -50,8 +50,8 @@ class _ProductsgetterState extends State<Productsgetter> {
                   if (data == null) {
                     return const Center(child: LinearProgressIndicator());
                   } else {
-                    var datalength = data.length;
-                    if (datalength == 0) {
+                    var dataLength = data.length;
+                    if (dataLength == 0) {
                       return const Center(
                         child: Text('no data found'),
                       );
@@ -60,7 +60,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                         width: screenWidth(context),
                         height: screenHeight(context) * 0.9,
                         child: ListView.builder(
-                            itemCount: datalength,
+                            itemCount: dataLength,
                             itemBuilder: (context, index) {
                               return ProjectProductCartCardHome(
                                 name: data[index]["name"],

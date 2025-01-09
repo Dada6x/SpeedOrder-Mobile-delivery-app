@@ -11,13 +11,13 @@ class EditNameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // double screenWidth = Get.find<Model>().screenWidth(context);
-
+    final nameController = TextEditingController();
     return Center(
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: SizedBox(
           width: screenWidth(context) * 0.8,
-          height: screenHeight(context) * 0.5,
+          height: screenWidth(context) * 0.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -46,6 +46,7 @@ class EditNameDialog extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
+                  controller: nameController,
                 ),
               ),
               Row(

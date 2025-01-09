@@ -1,8 +1,5 @@
-// import 'dart:convert';
-// import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
@@ -57,7 +54,11 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('User Name'.tr),
+                //! the name taken from the signup shit
+                Text(
+                  userInfo!.getString("name").toString(),
+                  style: const TextStyle(fontSize: 20),
+                ),
               ],
             ),
           ),
@@ -104,9 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              // Get.find<Model>().logOut();
-              Get.off(const LoginPage());
-              middleWarePref!.remove('id');
+              Get.find<Model>().logOut();
               //! maybe i should delete the token
             },
             label: Text(

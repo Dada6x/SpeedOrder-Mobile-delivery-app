@@ -11,8 +11,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 class Model extends GetxController {
-
-
   Model();
 //! to get token or u can use the shared
   Future<String?> getToken() async {
@@ -176,6 +174,8 @@ class Model extends GetxController {
         );
         Get.off(const LoginPage());
         middleWarePref!.remove('id');
+        userInfo!.remove("name");
+        userInfo!.remove("number");
       } else {
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
@@ -457,12 +457,4 @@ class Model extends GetxController {
     print("Image is picked");
     update();
   }
-
-
-
-
-
-
-
-
 }

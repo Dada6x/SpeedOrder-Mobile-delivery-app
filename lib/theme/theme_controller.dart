@@ -17,7 +17,6 @@ class ThemeController extends GetxController {
   }
 }
 
-// should be in the components shit not here
 class ThemeToggleButton extends StatelessWidget {
   const ThemeToggleButton({super.key});
 
