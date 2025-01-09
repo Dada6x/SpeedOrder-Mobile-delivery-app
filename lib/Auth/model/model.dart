@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 
 class Model extends GetxController {
   Model();
-//! to get token or u can use the shared
   Future<String?> getToken() async {
     tokenPref = await SharedPreferences.getInstance();
     return tokenPref!.getString('access_token');
@@ -161,7 +160,6 @@ class Model extends GetxController {
         body: {},
       );
       final decodedResponse = jsonDecode(response.body);
-      // print('API Response: $decodedResponse');
       if (response.statusCode == 200) {
         print('logout test');
         print(token);
@@ -309,37 +307,28 @@ class Model extends GetxController {
     "updated_at": "2025-01-01T12:24:01.000000Z"
     //! should be taken to the profile page
   */
-
-//$-#######################################(------edit Profile------)#############################################
-
-  Future<void> editProfileRequest(String name, String lastName) async {
+//$-#######################################(------edit Profile------)###############################################
+//$-################################################################################################################
+//@ ################# First Name
+  Future<void> editUserFirstNameRequest(String firstName) async {
     try {
-      //! location
-      // maybe edit the toString()
-      String userLocation =
-          Get.find<LocationController>().getCurrentLocation().toString();
       //! token
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/edit?name$name&last_name=$lastName&user_location=$userLocation&token=$editProfileToken'),
-        body: {
-          'name': name,
-          'last_name': lastName,
-          // 'user_location': userLocation,
-          // i dont think i should pass the token like that
-        },
+            'http://10.0.2.2:8000/api/auth/edit?name$firstName&token=$editProfileToken'),
+        body: {'name': firstName},
       );
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success",
-          "Changes updated ",
+          "  First name Changes updated ",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        print('Edit Profile tst');
+        print('Edit name tst');
       } else {
         Get.snackbar(
           "Error",
@@ -360,13 +349,96 @@ class Model extends GetxController {
       );
     }
   }
-//!-#######################################(------UploadImage------)##############################################
 
+//@ ###################LastName
+  Future<void> editUserLastNameRequest(String lastName) async {
+    try {
+      String? editProfileToken = await getToken();
+      final response = await http.post(
+        Uri.parse(
+            'http://10.0.2.2:8000/api/auth/edit?last_name=$lastName&token=$editProfileToken'),
+        body: {'name': lastName},
+      );
+      final decodedResponse = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "Success",
+          "  Last Name Changes updated ",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        print('Edit name tst');
+      } else {
+        Get.snackbar(
+          "Error",
+          decodedResponse['error'].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Exception",
+        messageText: Text(jsonEncode(e)),
+        "",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+//@ #######################LOCATION
+//todo when to call this bitch
+  Future<void> editUserLocationRequest() async {
+    try {
+      String userLocation =
+          Get.find<LocationController>().getCurrentLocation().toString();
+      //! token
+      String? editProfileToken = await getToken();
+      final response = await http.post(
+        Uri.parse(
+            'http://10.0.2.2:8000/api/auth/edit?user_location=$userLocation&token=$editProfileToken'),
+        body: {},
+      );
+      final decodedResponse = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "Success",
+          " name Changes updated ",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        print('Edit name tst');
+      } else {
+        Get.snackbar(
+          "Error",
+          decodedResponse['error'].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Exception",
+        messageText: Text(jsonEncode(e)),
+        "",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+//!-#######################################(------UploadImage------)##############################################
   Future<void> uploadImageRequest(File image) async {
     try {
       String? tokenImg = await getToken();
 
-      // Use your machine's IP address instead of 127.0.0.1
       var request = http.MultipartRequest(
         'POST',
         Uri.parse('http://10.0.2.2:8000/api/auth/uploadImage?token=$tokenImg'),
@@ -417,8 +489,55 @@ class Model extends GetxController {
       print('Error: $e');
     }
   }
-//$-#######################################(------Change Password ------)#########################################
 
+//$-#######################################(------Change Password ------)#########################################
+  Future<void> editUserPasswordRequest(
+      String userPhone, String oldPassword, String newPassword) async {
+    try {
+      //! token
+      String? editProfileToken = await getToken();
+      final response = await http.post(
+        Uri.parse(
+            'http://10.0.2.2:8000/api/auth/change_password?user_phone=$userPhone&password=$oldPassword&new_password=$newPassword&token=$editProfileToken'),
+        body: {
+          'user_phone': userPhone,
+          'password': oldPassword,
+          'new_password': newPassword,
+          
+        },
+      );
+      final decodedResponse = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "Success",
+          "password changed",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        print('Edit Password tst');
+      } else {
+        Get.snackbar(
+          "Error",
+          decodedResponse['error'].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Exception",
+        messageText: Text(jsonEncode(e)),
+        "",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+//$-#######################################(------  ------)#########################################
 //! url launcher
   Future<void> _openUrl(String url) async {
     final uri = Uri.parse(url.trim());

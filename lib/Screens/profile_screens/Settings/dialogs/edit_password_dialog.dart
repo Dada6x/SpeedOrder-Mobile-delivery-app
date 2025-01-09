@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/main_page.dart';
@@ -10,6 +11,9 @@ class EditPasswordDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberController = TextEditingController();
+    final oldPasswordController = TextEditingController();
+    final newPasswordController = TextEditingController();
     // double screenWidth = Get.find<Model>().screenWidth(context);
 
     return Center(
@@ -17,13 +21,61 @@ class EditPasswordDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: SizedBox(
           width: screenWidth(context) * 0.8,
-          height: screenWidth(context) * 0.5,
+          height: screenHeight(context) * 0.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 "Edit Password".tr,
                 style: TextStyle(color: MainPage.orangeColor),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Theme.of(context).colorScheme.secondary,
+                    filled: true,
+                    prefixIcon: const Icon(Icons.phone),
+                    prefixIconColor: Colors.grey,
+                    hintText: "Phone Number".tr,
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                  ),
+                  controller: numberController,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Theme.of(context).colorScheme.secondary,
+                    filled: true,
+                    prefixIcon: const Icon(Icons.password),
+                    prefixIconColor: Colors.grey,
+                    hintText: "Old password".tr,
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                  ),
+                  controller: oldPasswordController,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
@@ -46,6 +98,7 @@ class EditPasswordDialog extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
+                  controller: newPasswordController,
                 ),
               ),
               Row(
@@ -59,7 +112,13 @@ class EditPasswordDialog extends StatelessWidget {
                   ProjectButton(
                     text: 'Save'.tr,
                     width: 100,
-                    function: () {},
+                    function: () {
+                      Get.find<Model>().editUserPasswordRequest(
+                        numberController.text,
+                        oldPasswordController.text,
+                        newPasswordController.text,
+                      );
+                    },
                   ),
                 ],
               ),

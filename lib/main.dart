@@ -24,7 +24,6 @@ SharedPreferences? middleWarePref;
 SharedPreferences? splashPref;
 SharedPreferences? tokenPref;
 SharedPreferences? userInfo;
-SharedPreferences? themeChoice;
 //!-------------------------------------------------------
 double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
 double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -44,7 +43,6 @@ void main() async {
   tokenPref = await SharedPreferences.getInstance();
   splashPref = await SharedPreferences.getInstance();
   userInfo = await SharedPreferences.getInstance();
-  themeChoice = await SharedPreferences.getInstance();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ThemeProvider(

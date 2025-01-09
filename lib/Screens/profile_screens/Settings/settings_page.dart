@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Location/dialogs/location_dialog.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_name_dialog.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_first_name_dialog.dart';
+import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_last_name_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_password_dialog.dart';
-import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_phonenNumber_dialog.dart';
 import 'package:mamamia_uniproject/components/settings_comps.dart';
 import 'package:mamamia_uniproject/components/settings_section.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notifications_page_thesettings.dart';
@@ -17,7 +17,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // We no longer need to store 'location' locally here
     return Scaffold(
         appBar: NormalAppBar("Settings".tr),
         body: GetBuilder(
@@ -60,10 +59,10 @@ class SettingsPage extends StatelessWidget {
                 ),
                 const SettingsSection(title: "Account"),
                 SettingsComps(
-                  title: "User Name".tr,
+                  title: "First Name".tr,
                   icon: const Icon(Icons.person),
                   destination: () {
-                    Get.dialog(const EditNameDialog());
+                    Get.dialog(const EditFirstNameDialog());
                   },
                   trailing: Text(
                     userInfo!.getString("name").toString(),
@@ -71,10 +70,21 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
                 SettingsComps(
+                  title: "Last Name".tr,
+                  icon: const Icon(Icons.person),
+                  destination: () {
+                    Get.dialog(const EditLastNameDialog());
+                  },
+                  trailing: Text(
+                    '',
+                    style: SettingsTextStyle(context),
+                  ),
+                ),
+                SettingsComps(
                   title: "Phone Number".tr,
                   icon: const Icon(Icons.phone),
                   destination: () {
-                    Get.dialog(const EditNumberDialog());
+                    // Get.dialog(const EditNumberDialog());
                   },
                   trailing: Text(
                     userInfo!.getString("number").toString(),

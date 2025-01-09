@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:http/http.dart' as http;
@@ -12,13 +13,10 @@ class ProductPage extends StatelessWidget {
   var id;
   ProductPage({super.key, required this.id});
   Future<List> getDetails(var id) async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
-          "id": "$id"
-        });
+        Uri.parse("http://10.0.2.2:8000/api/auth/get_details-for-product"),
+        body: {"token": token, "id": "$id"});
     List product = [];
     product.add(jsonDecode(response.body));
     print(product[0]);
@@ -39,11 +37,8 @@ class ProductPage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () {
-                      //! share extention here
-                    },
-                    icon: const Icon(Icons.share)),
+                child:
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
               ),
               // const Padding(
               //   padding: EdgeInsets.all(8.0),
