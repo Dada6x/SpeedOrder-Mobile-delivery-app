@@ -19,14 +19,14 @@ class QuestionTile extends StatelessWidget {
           },
           title: Text(
             FAQ.question,
-            style: const TextStyle(color: Colors.black54),
+            // style: const TextStyle(color: Colors.black54),
           ),
-          tileColor: const Color(0xffEBEFF6),
+          tileColor: Theme.of(context).colorScheme.secondary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
           trailing: const Icon(Icons.arrow_forward_rounded),
-          iconColor: Colors.black45,
+          // iconColor: Colors.black45,
         ),
       ),
     );

@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart ' as http;
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class Productsgetter extends StatefulWidget {
   const Productsgetter({super.key});
@@ -15,12 +16,13 @@ class Productsgetter extends StatefulWidget {
 
 class _ProductsgetterState extends State<Productsgetter> {
   Future<List> getProducts() async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.151.48:8000/api/auth/get_products"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xNTEuNDg6ODAwMC9hcGkvcmVnaXN0ZXIiLCJpYXQiOjE3MzYyNDA5NzksImV4cCI6MTczNjI0NDU3OSwibmJmIjoxNzM2MjQwOTc5LCJqdGkiOiJiTTI1bUNBbjhEZDg4OHRBIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.6tXFc7bEr97OQ0e_Wx2CgOgRBJ-iIgEagW_aI4yzIBA"
-        });
+      Uri.parse("http://10.0.2.2:8000/api/auth/get_products"),
+      body: {
+        "token": token,
+      },
+    );
     print(response.body);
     List productList = jsonDecode(response.body);
     Get.find<HomePageProductController>().productList.addAll(productList);
@@ -48,17 +50,17 @@ class _ProductsgetterState extends State<Productsgetter> {
                   if (data == null) {
                     return const Center(child: LinearProgressIndicator());
                   } else {
-                    var datalength = data.length;
-                    if (datalength == 0) {
+                    var dataLength = data.length;
+                    if (dataLength == 0) {
                       return const Center(
                         child: Text('no data found'),
                       );
                     } else {
                       return SizedBox(
-                        width: Get.find<Model>().screenWidth(context),
-                        height: Get.find<Model>().screenHeight(context) * 0.9,
+                        width: screenWidth(context),
+                        height: screenHeight(context) * 0.9,
                         child: ListView.builder(
-                            itemCount: datalength,
+                            itemCount: dataLength,
                             itemBuilder: (context, index) {
                               return ProjectProductCartCardHome(
                                 name: data[index]["name"],
@@ -74,8 +76,8 @@ class _ProductsgetterState extends State<Productsgetter> {
                 }),
           )
         : SizedBox(
-            width: Get.find<Model>().screenWidth(context),
-            height: Get.find<Model>().screenHeight(context) * 0.9,
+            width: screenWidth(context),
+            height: screenHeight(context) * 0.9,
             child: RefreshIndicator(
               onRefresh: _refresh,
               child: ListView.builder(

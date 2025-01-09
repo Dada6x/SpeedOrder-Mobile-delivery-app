@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/SignUpPage.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_page.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/main.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -54,7 +54,11 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('User Name'.tr),
+                //! the name taken from the signup shit
+                Text(
+                  userInfo!.getString("name").toString(),
+                  style: const TextStyle(fontSize: 20),
+                ),
               ],
             ),
           ),
@@ -101,17 +105,13 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              //! logOutButton
-              Get.off(const LoginPage());
-              sharedPref!.remove('id'); // Clear only the login-related data
-
-              //ward: changed it cuz older one had an arrow back button
-              //yahea: np baby
+              Get.find<Model>().logOut();
+              //! maybe i should delete the token
             },
             label: Text(
               'Log out'.tr,
             ),
-            icon: Icon(Icons.login_rounded,
+            icon: Icon(Icons.logout_outlined,
                 color: Theme.of(context).colorScheme.primary),
           ),
         ],

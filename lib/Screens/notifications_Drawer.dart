@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 
 class NotificationsDrawer extends StatelessWidget {
@@ -12,6 +13,9 @@ class NotificationsDrawer extends StatelessWidget {
         title: Text(
           'Notifications'.tr,
         ),
+        actions: [
+          Container(child: Lottie.asset("assets/animations/Mario.json")),
+        ],
         shape:
             Border(bottom: BorderSide(color: MainPage.orangeColor, width: 1.2)),
       ),

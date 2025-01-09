@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Models/products.dart';
 import 'package:mamamia_uniproject/Screens/home_page.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class HomeSliver extends StatelessWidget {
   const HomeSliver({super.key});
@@ -26,8 +25,8 @@ class HomeSliver extends StatelessWidget {
               delegate: SliverChildListDelegate([
             Divider(
               height: 1,
-              indent: Get.find<Model>().screenWidth(context) * 0.4,
-              endIndent: Get.find<Model>().screenWidth(context) * 0.4,
+              indent: screenWidth(context) * 0.4,
+              endIndent: screenWidth(context) * 0.4,
               color: Theme.of(context).colorScheme.primary,
             ),
             const Productsgetter()

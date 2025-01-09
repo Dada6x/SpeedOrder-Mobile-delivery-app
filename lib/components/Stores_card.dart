@@ -7,9 +7,10 @@ class Company {
   String name;
   String location;
   String phoneNumber;
-  Company(this.name, this.id,this.phoneNumber , this.location);
+  Company(this.name, this.id, this.phoneNumber, this.location);
 }
 
+// ignore: must_be_immutable
 class StoresCard extends StatelessWidget {
   var id;
   String location;
@@ -29,8 +30,10 @@ class StoresCard extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: GestureDetector(
           onTap: () {
-            Company company = Company(name, id, phoneNumber,location);
-            Get.to(StoreAboutPage(company: company,));
+            Company company = Company(name, id, phoneNumber, location);
+            Get.to(StoreAboutPage(
+              company: company,
+            ));
           },
           child: Container(
             width: double.infinity,
