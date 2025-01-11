@@ -1,14 +1,15 @@
-import 'dart:io';
-import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
-import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+import 'package:mamamia_uniproject/image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/main.dart';
+
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -18,12 +19,14 @@ class SignupPage extends StatefulWidget {
 
 class SignUpPageState extends State<SignupPage> {
 //$-------------------------Controllers-----------------------
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
+  final nameController = TextEditingController();
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
-//$---------------------------------------------------------
+//$-----------------------------------------------------------
+  final formKey = GlobalKey<FormState>();
+  bool isPasswordVisible = false;
   Image? img;
+  String? enteredNumber;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Model>(
@@ -38,7 +41,7 @@ class SignUpPageState extends State<SignupPage> {
                   //! image
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: controller.screenHeight(context) * 0.02,
+                      vertical: screenHeight(context) * 0.02,
                     ),
                     child: SizedBox(
                       width: 135,
@@ -51,7 +54,7 @@ class SignUpPageState extends State<SignupPage> {
                                 return const ImagePickingDialog();
                               });
                         },
-                        child: Get.find<Model>().imageIspicked
+                        child: Get.find<Model>().imageIsPicked
                             ? CircleAvatar(
                                 backgroundColor:
                                     Theme.of(context).colorScheme.secondary,
@@ -72,52 +75,73 @@ class SignUpPageState extends State<SignupPage> {
                   //! first name
                   Padding(
                     padding: EdgeInsets.only(
-                      top: controller.screenHeight(context) * 0.01,
+                      top: screenHeight(context) * 0.01,
                     ),
                     child: TextField(
-                      controller: firstNameController,
-                      decoration: inputDecoration(context,
-                          hint: "First Name",
-                          icon: const Icon(Icons.person_2_outlined,
-                              color: Colors.grey)),
-                    ),
-                  ),
-                  //! Last Name
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: controller.screenHeight(context) * 0.03,
-                    ),
-                    child: TextField(
-                      controller: lastNameController,
-                      decoration: inputDecoration(context,
-                          hint: "Last Name",
-                          icon: const Icon(Icons.account_box,
-                              color: Colors.grey)),
+                      controller: nameController,
+                      decoration: inputDecoration(
+                          isPassword: false,
+                          context: context,
+                          hint: "FullName",
+                          //make trim
+                          icon: const Icon(Icons.person, color: Colors.grey)),
                     ),
                   ),
                   //! phone Number
                   Padding(
                     padding: EdgeInsets.only(
-                      top: controller.screenHeight(context) * 0.03,
+                      top: screenHeight(context) * 0.03,
                     ),
-                    child: TextField(
-                      controller: numberController,
-                      keyboardType: TextInputType.number,
-                      decoration: inputDecoration(context,
-                          hint: "Number",
-                          icon: const Icon(Icons.call_outlined,
-                              color: Colors.grey)),
+                    child: Form(
+                      key: formKey,
+                      child: TextFormField(
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "Number is required";
+                          }
+                          if (val.length != 10) {
+                            return "Input should be 10 numbers";
+                          }
+                          if (!val.startsWith('09')) {
+                            return "Number should start with '09'";
+                          }
+                          return null;
+                        },
+                        onChanged: (val) {
+                          enteredNumber = val;
+                          formKey.currentState!.validate();
+                        },
+                        maxLength: 10,
+                        keyboardType: TextInputType.phone,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: inputDecoration(
+                          isPassword: false,
+                          context: context,
+                          hint: "Enter Number",
+                          icon: const Icon(
+                            Icons.phone,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        controller: numberController,
+                      ),
                     ),
                   ),
                   //! Password
                   Padding(
                     padding: EdgeInsets.only(
-                      bottom: controller.screenHeight(context) * 0.05,
-                      top: controller.screenHeight(context) * 0.03,
+                      bottom: screenHeight(context) * 0.05,
+                      top: screenHeight(context) * 0.03,
                     ),
                     child: TextField(
+                        maxLength: 24,
+                        obscureText: !isPasswordVisible,
                         controller: passwordController,
-                        decoration: inputDecoration(context,
+                        decoration: inputDecoration(
+                            isPassword: true,
+                            context: context,
                             hint: "Password",
                             icon: const Icon(
                               Icons.key,
@@ -126,14 +150,38 @@ class SignUpPageState extends State<SignupPage> {
                   ),
                   //! register button
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                    ),
                     child: ProjectButton(
                       text: 'Next'.tr,
-                      width: controller.screenWidth(context),
+                      width: screenWidth(context),
                       function: () {
-                        Get.off(const SettingLocation());
-                        sharedPref!.setString("id", "1");
+                        if (nameController.text.isEmpty ||
+                            passwordController.text.isEmpty ||
+                            numberController.text.isEmpty) {
+                          Get.snackbar(
+                            "Error",
+                            "All fields are required!",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                          return;
+                        } else if (formKey.currentState?.validate() == false) {
+                          Get.snackbar(
+                            "Error",
+                            "Please insert 10 numbers ",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                        } else {
+                          controller.signUp(nameController.text,
+                              passwordController.text, numberController.text);
+                          userInfo?.setString("name", nameController.text);
+                          userInfo?.setString("number", numberController.text);
+                        }
                       },
                     ),
                   ),
@@ -148,7 +196,7 @@ class SignUpPageState extends State<SignupPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.off(const LoginPage());
+                          Get.off(() => const LoginPage());
                         },
                         child: Text(
                           "Log in".tr,
@@ -167,86 +215,60 @@ class SignUpPageState extends State<SignupPage> {
       },
     );
   }
+
+  InputDecoration inputDecoration({
+    required bool isPassword,
+    required BuildContext context,
+    required String hint,
+    required Icon icon,
+  }) {
+    return InputDecoration(
+      fillColor: Theme.of(context).colorScheme.secondary,
+      filled: true,
+      prefixIcon: icon,
+      suffixIcon: isPassword
+          ? IconButton(
+              color: Colors.grey[800],
+              onPressed: () {
+                setState(() {
+                  isPasswordVisible = !isPasswordVisible;
+                });
+              },
+              icon: isPasswordVisible
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility))
+          : null,
+      iconColor: Colors.grey,
+      hintText: hint.tr,
+      hintStyle: const TextStyle(color: Colors.grey),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+    );
+  }
 }
 
-// fun input decoration for the text fields
-InputDecoration inputDecoration(BuildContext context,
-    {required String hint, required Icon icon}) {
-  return InputDecoration(
-    fillColor: Theme.of(context).colorScheme.secondary,
-    filled: true,
-    prefixIcon: icon,
-    iconColor: Colors.grey,
-    hintText: hint.tr,
-    hintStyle: const TextStyle(color: Colors.grey),
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
-    ),
-  );
-}
+//!
+/*
+// not all fields are filled 
+image picker is optional 
+// starts with 09
+// password max 24
+local host for emulator is 10.0.2.2
+show messages for 
+                  taken phone number 
+                  user already exist
+                  network error 
+                  success\
+  the body of the request is user_phone //! the errors
+token
+*/
 
 //! yahea : image picker needs to be in independent class
-class ImagePickingDialog extends StatefulWidget {
-  const ImagePickingDialog({super.key});
-
-  @override
-  State<ImagePickingDialog> createState() => _ImagePickingDialogState();
-}
-
-class _ImagePickingDialogState extends State<ImagePickingDialog> {
-  Future pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (returnedImage == null) return;
-    _selectedImage = File(returnedImage.path);
-    giveselectedImage(_selectedImage!);
-  }
-
-  Future pickImageFromCamera() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (returnedImage == null) return;
-
-    _selectedImage = File(returnedImage.path);
-    giveselectedImage(_selectedImage!);
-  }
-
-  void giveselectedImage(File img) {
-    Get.find<Model>().changeImage(img);
-  }
-
-  File? _selectedImage;
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder(
-        init: Model(),
-        builder: (controller) => Dialog(
-              child: SizedBox(
-                width: controller.screenWidth(context) * 0.5,
-                height: controller.screenHeight(context) * 0.25,
-                child: SimpleDialog(
-                  contentPadding: const EdgeInsets.all(0),
-                  children: [
-                    ListTile(
-                      iconColor: Theme.of(context).colorScheme.primary,
-                      leading: const Icon(FontAwesomeIcons.image),
-                      title: const Text("Gallery Image"),
-                      onTap: pickImageFromGallery,
-                    ),
-                    ListTile(
-                      iconColor: Theme.of(context).colorScheme.primary,
-                      leading: const Icon(FontAwesomeIcons.camera),
-                      title: const Text("Camera Image"),
-                      onTap: pickImageFromCamera,
-                    ),
-                  ],
-                ),
-              ),
-            ));
-  }
-}
+//! yahea : Done baby i got you(myself),
+//help me im going insane :P

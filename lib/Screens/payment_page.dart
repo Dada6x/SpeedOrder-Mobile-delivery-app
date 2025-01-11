@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Auth/model.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 // ignore: must_be_immutable
 class PaymentPage extends StatelessWidget {
@@ -137,9 +137,7 @@ class PaymentPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10,
-                              horizontal:
-                                  Get.find<Model>().screenWidth(context) *
-                                      0.20),
+                              horizontal: screenWidth(context) * 0.20),
                           child: Text(
                             "Confirm Purchase".tr,
                             style: const TextStyle(

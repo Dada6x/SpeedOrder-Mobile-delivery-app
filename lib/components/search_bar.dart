@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Models/products.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:http/http.dart' as http;
@@ -45,13 +46,11 @@ class _ProjectSearchBarState extends State<ProjectSearchBar> {
 //widget thats used in search
 class Search extends SearchDelegate {
   Future<List> getFilteredList(String search) async {
+    String? token = await Get.find<Model>().getToken();
+    //! i made some changes
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/search_in_products"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
-          "search": search
-        });
+        Uri.parse("http://10.0.2.2:8000/api/auth/search_in_products"),
+        body: {"token": token, "search": search});
     List list = jsonDecode(response.body);
     return list;
   }
@@ -122,4 +121,3 @@ class Search extends SearchDelegate {
     }
   }
 }
-//! make the searchBar logic for search for the shit

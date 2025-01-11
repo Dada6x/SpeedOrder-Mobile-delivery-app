@@ -52,7 +52,6 @@ const Map<String, String> english = {
   "  You're Offline :(": "  You're Offline :(",
   "Please Make Sure You're Connected To The Internet":
       "Please Make Sure You're Connected To The Internet",
-  //
   "Let Us Know Where You Are": "Let Us Know Where You Are",
   "No address available": "No address available",
   "Error fetching address": "Error fetching address",
@@ -71,10 +70,8 @@ const Map<String, String> english = {
   "Edit Password": "Edit Password",
   "New Password": "New Password",
   "Edit UserName": "Edit UserName",
-
   "Enable notifications to stay updated with order status, special offers, and important updates.":
       "Enable notifications to stay updated with order status, special offers, and important updates.",
-
   "New UserName": "New UserName",
   "Disable notifications to stop receiving updates about orders, promotions, and alerts. ":
       "Disable notifications to stop receiving updates about orders, promotions, and alerts. "
@@ -173,7 +170,6 @@ const Map<String, String> arabic = {
   "English": "عربي",
   "Language": "اللغة",
   "Let Us Know Where You Are": "دعنا نعرف اين انت ",
-  //
   "  You're Offline :(": "انت غير متصل :(",
   "Please Make Sure You're Connected To The Internet":
       "تاكد من انك متصل بالانترنت ",

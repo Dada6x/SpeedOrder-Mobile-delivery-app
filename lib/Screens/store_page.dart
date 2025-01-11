@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/components/Stores_card.dart';
-import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:http/http.dart' as http;
 
 class StoresPage extends StatefulWidget {
@@ -21,12 +20,13 @@ class _StoresPageState extends State<StoresPage> {
   }
 
   Future<List> getStores() async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_companies"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M"
-        });
+      Uri.parse("http://10.0.2.2:8000/api/auth/get_companies"),
+      body: {
+        "token": token,
+      },
+    );
 
     List list = jsonDecode(response.body);
     Get.find<HomePageProductController>().storeList.addAll(list);
@@ -110,13 +110,14 @@ class _StoresPageState extends State<StoresPage> {
 class searchStores extends SearchDelegate {
   @override
   Future<List> getFilteredList(String search) async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/search_in_companies"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xLjExMDo4MDAwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzM1ODQ0Mzg0LCJleHAiOjE3MzU5MDQzODQsIm5iZiI6MTczNTg0NDM4NCwianRpIjoiZm9RRjV1V0tRUzVBR01jcSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8Dbt2Y5i237OAm7tcvB4MOPkTiebEdCLGdLU1iuEj3M",
-          "search": search
-        });
+      Uri.parse("http://10.0.2.2:8000/api/auth/search_in_companies"),
+      body: {
+        "token": token,
+        "search": search,
+      },
+    );
     List list = jsonDecode(response.body);
     return list;
   }
