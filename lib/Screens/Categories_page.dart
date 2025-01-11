@@ -45,6 +45,7 @@ class CategoriesPage extends StatelessWidget {
                   child: Text('no data found'),
                 );
               } else {
+                print(data);
                 return ListView.builder(
                     itemCount: datalength,
                     itemBuilder: (context, index) {
@@ -53,7 +54,7 @@ class CategoriesPage extends StatelessWidget {
                         id: data[index]["id"],
                         price: data[index]["price"],
                         imageLink: "assets/images/product.png",
-                        category: "food",
+                        category: data[index]["category"],
                       );
                     });
               }
