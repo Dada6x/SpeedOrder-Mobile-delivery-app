@@ -63,7 +63,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       );
     }
-    if (type == "electronics") {
+    if (type == "devices") {
       return Icon(
         Icons.monitor,
         color: Theme.of(context).colorScheme.primary,

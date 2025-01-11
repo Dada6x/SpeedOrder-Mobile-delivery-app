@@ -67,7 +67,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                                 id: data[index]["id"],
                                 price: data[index]["price"],
                                 imageLink: "assets/images/product.png",
-                                category: "food",
+                                category: data[index]["category"],
                               );
                             }),
                       );
