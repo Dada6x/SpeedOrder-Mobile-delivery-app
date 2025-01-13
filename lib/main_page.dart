@@ -1,5 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/favorite_page.dart';
 import 'package:mamamia_uniproject/Screens/notifications_Drawer.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
@@ -30,7 +34,7 @@ class _MainPageState extends State<MainPage> {
     //removed the search page from here cuz i think this the list used for navigation bar pages
     //search screen is in search_bar.dart;
     //yahea: Good Job !!
-     const StoresPage(),
+    const StoresPage(),
     const CartPage(),
     const HomeSliver(), // this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location
     const FavoritePage(),
@@ -38,11 +42,16 @@ class _MainPageState extends State<MainPage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Get.find<Model>().profileRequest();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-        
           key: MainPage.scaffoldKey,
           //! notifications drawer
           endDrawer: const Directionality(

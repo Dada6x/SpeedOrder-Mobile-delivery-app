@@ -5,7 +5,7 @@ import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Screens/profile_page.dart';
 import 'package:mamamia_uniproject/components/ads.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
-import 'package:mamamia_uniproject/Location/dialogs/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/dialogs/location_method_dialog.dart';
 import 'package:mamamia_uniproject/components/search_bar.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';

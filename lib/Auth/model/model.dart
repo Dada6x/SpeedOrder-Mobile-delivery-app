@@ -19,14 +19,14 @@ class Model extends GetxController {
   //or use this tokenPref!.getString('access_token');
 
 //!-#######################################(------Login------)#########################################
-  Future<void> login(String password, String number) async {
+  Future<void> loginRequest(String password, String number) async {
     try {
       final response = await http.post(
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
         body: {
-          'password': password,
-          'user_phone': number,
+          // 'password': password,
+          // 'user_phone': number,
         },
       );
       final decodedResponse = jsonDecode(response.body);
@@ -83,16 +83,17 @@ class Model extends GetxController {
   }
 
 //$-#######################################(------SignUp------)#########################################
-  Future<void> signUp(String name, String password, String number) async {
+  Future<void> signUpRequest(
+      String name, String password, String number) async {
     try {
       final response = await http.post(
         Uri.parse(
           'http://10.0.2.2:8000/api/register?name=$name&password=$password&user_phone=$number',
         ),
         body: {
-          'name': name,
-          'password': password,
-          'user_phone': number,
+          // 'name': name,
+          // 'password': password,
+          // 'user_phone': number,
         },
       );
 
@@ -150,7 +151,7 @@ class Model extends GetxController {
   }
 
   //!-#######################################(------LogOut------)#########################################
-  Future<void> logOut() async {
+  Future<void> logOutRequest() async {
     try {
       String? token = await getToken();
       final response = await http.post(
@@ -161,8 +162,8 @@ class Model extends GetxController {
       );
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print('logout test');
-        print(token);
+        // print('logout test');
+        // print(token);
         Get.snackbar(
           "Success",
           "LogOut successfully",
@@ -172,7 +173,8 @@ class Model extends GetxController {
         );
         Get.off(const LoginPage());
         middleWarePref!.remove('id');
-        userInfo!.remove("name");
+        userInfo!.remove("first_name");
+        userInfo!.remove("last_name");
         userInfo!.remove("number");
       } else {
         if (decodedResponse is Map<String, dynamic> &&
@@ -249,90 +251,72 @@ class Model extends GetxController {
   }
 
 //!-#######################################(------Profile------)#########################################
-// noo need for snack bars
-  // Future<void> profileRequest() async {
-  //   try {
-  //     String? token = await getToken();
-  //     final response = await http.post(
-  //       Uri.parse(
-  //         'http://10.0.2.2:8000/api/auth/me?$token',
-  //       ),
-  //       body: {},
-  //     );
-  //     final decodedResponse = jsonDecode(response.body);
-  //     // print('API Response: $decodedResponse');
-  //     if (response.statusCode == 200) {
-  //       print(token);
-  //       Get.snackbar(
-  //         "Success",
-  //         "Profile request ",
-  //         snackPosition: SnackPosition.BOTTOM,
-  //         backgroundColor: Colors.green,
-  //         colorText: Colors.white,
-  //       );
-  //     } else {
-  //       Get.snackbar(
-  //         "Error",
-  //         "An unexpected error occurred",
-  //         snackPosition: SnackPosition.BOTTOM,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white,
-  //       );
-  //     }
-  //   } catch (e) {
-  //     Get.snackbar(
-  //       "Exception",
-  //       e.toString(),
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       backgroundColor: Colors.red,
-  //       colorText: Colors.white,
-  //     );
-  //     print('Error: $e');
-  //   }
-  // }
 
+  Future<void> profileRequest() async {
+    try {
+      String? token = await getToken();
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2:8000/api/auth/me?token=$token'),
+        body: {},
+      );
+
+      final decodedResponse = jsonDecode(response.body);
+      print('profile request  test : $decodedResponse');
+
+      if (response.statusCode == 200) {
+        // String name = decodedResponse['name'];
+        // String userPhone = decodedResponse['user_phone'];
+        // String lastName = decodedResponse['last_name'];
+        userInfo?.setString("first_name", decodedResponse['name']);
+        userInfo?.setString("number", decodedResponse['user_phone']);
+        userInfo?.setString("last_name", decodedResponse['last_name']);
+        // print('Name: $name');
+        // print('Phone: $userPhone');
+        // print("LastName:$lastName ");
+      } else {}
+    } catch (e) {
+      print('Exception: $e');
+    }
+  }
+
+  //! api response
   /*
-    //! api response
-    "id": 2,
     "name": "mohammed",
-    "email": null,
-    "email_verified_at": null,
     "last_name": null,
     "user_location": null,
     "user_phone": "0987654321",
     "photo_path": null,
-    "is_admin": 0,
-    "language": "english",
-    "created_at": "2025-01-01T12:24:01.000000Z",
-    "updated_at": "2025-01-01T12:24:01.000000Z"
-    //! should be taken to the profile page
+    //! file
   */
+
 //$-#######################################(------edit Profile------)###############################################
-//$-################################################################################################################
-//@ ################# First Name
+//@ First Name
   Future<void> editUserFirstNameRequest(String firstName) async {
     try {
-      //! token
       String? editProfileToken = await getToken();
       final response = await http.post(
-        Uri.parse(
-            'http://10.0.2.2:8000/api/auth/edit?name$firstName&token=$editProfileToken'),
-        body: {'name': firstName},
+        Uri.parse('http://10.0.2.2:8000/api/auth/edit'),
+        body: {
+          'name': firstName,
+          'token': editProfileToken,
+        },
       );
-      final decodedResponse = jsonDecode(response.body);
+      // final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success",
-          "  First name Changes updated ",
+          "First name updated successfully",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        print('Edit name tst');
+        // the user successfully updated the name
+        userInfo?.setString("first_name", firstName);
       } else {
         Get.snackbar(
           "Error",
-          decodedResponse['error'].toString(),
+          'eeee',
+          // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -341,8 +325,7 @@ class Model extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Exception",
-        messageText: Text(jsonEncode(e)),
-        "",
+        e.toString(),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -350,16 +333,19 @@ class Model extends GetxController {
     }
   }
 
-//@ ###################LastName
+//@ LastName
   Future<void> editUserLastNameRequest(String lastName) async {
     try {
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/edit?last_name=$lastName&token=$editProfileToken'),
-        body: {'name': lastName},
+        body: {
+          'name': userInfo!.getString("first_name").toString(),
+          'last_name': lastName
+        },
       );
-      final decodedResponse = jsonDecode(response.body);
+      // final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success",
@@ -368,11 +354,14 @@ class Model extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        // the user successfully updated the last name
+        userInfo?.setString("last_name", lastName);
         print('Edit name tst');
       } else {
         Get.snackbar(
           "Error",
-          decodedResponse['error'].toString(),
+          'weeeee',
+          // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -390,10 +379,10 @@ class Model extends GetxController {
     }
   }
 
-//@ #######################LOCATION
-//todo when to call this bitch
+//@ LOCATION
   Future<void> editUserLocationRequest() async {
     try {
+      //! location
       String userLocation =
           Get.find<LocationController>().getCurrentLocation().toString();
       //! token
@@ -401,7 +390,10 @@ class Model extends GetxController {
       final response = await http.post(
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/edit?user_location=$userLocation&token=$editProfileToken'),
-        body: {},
+        body: {
+          // i know its false but i🇩🇰
+          'name': userInfo!.getString("first_name").toString(),
+        },
       );
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
@@ -464,7 +456,7 @@ class Model extends GetxController {
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success",
-          "Image uploaded successfully!",
+          "Image uploaded successfully!, Looks Great",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -499,27 +491,22 @@ class Model extends GetxController {
       final response = await http.post(
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/change_password?user_phone=$userPhone&password=$oldPassword&new_password=$newPassword&token=$editProfileToken'),
-        body: {
-          'user_phone': userPhone,
-          'password': oldPassword,
-          'new_password': newPassword,
-          
-        },
+        body: {},
       );
-      final decodedResponse = jsonDecode(response.body);
+
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success",
-          "password changed",
+          "Password Changed",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        print('Edit Password tst');
       } else {
         Get.snackbar(
           "Error",
-          decodedResponse['error'].toString(),
+          " Something Went Wrong ",
+          // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -551,7 +538,6 @@ class Model extends GetxController {
   Future<void> openTwitter() async => _openUrl("https://x.com/");
   Future<void> openFacebook() async => _openUrl("https://facebook.com/");
   Future<void> openInstagram() async => _openUrl("https://www.instagram.com/");
-
   void urlLauncher(String type) {
     switch (type) {
       case "instagram":

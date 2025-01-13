@@ -189,12 +189,12 @@ class _LoginPageState extends State<LoginPage> {
                           colorText: Colors.white,
                         );
                       } else {
-                        controller.login(
+                        controller.loginRequest(
                           passwordController.text,
                           numberController.text,
                         );
 
-                        userInfo?.setString("number", numberController.text);
+                        // userInfo?.setString("number", numberController.text);
                       }
                     },
                   ),

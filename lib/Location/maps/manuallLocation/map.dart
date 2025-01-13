@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Location/allsetup.dart';
 
@@ -147,7 +148,10 @@ class _MapScreenState extends State<MapScreen> {
                     child: Text("Back".tr),
                   ),
                   TextButton(
-                    onPressed: () => Get.off(const AllSetup()),
+                    onPressed: () {
+                      Get.off(const AllSetup());
+                      Get.find<Model>().editUserLocationRequest();
+                    },
                     child: Text("Set Location".tr),
                   ),
                 ],

@@ -51,6 +51,7 @@ class ProductPage extends StatelessWidget {
       floatingActionButton: ProjectButton(
         //todo Ward what  IS THAT
         function: () async {
+          // ignore: unused_local_variable
           final response =
               http.post(Uri.parse(""), body: {"token": "", "product_id": id});
         },
@@ -163,6 +164,7 @@ class ProductInfoCardPage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ExtraInfo extends StatelessWidget {
   String leading;
   String title;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
-import 'package:mamamia_uniproject/Location/dialogs/location_dialog.dart';
+import 'package:mamamia_uniproject/Location/dialogs/location_method_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_first_name_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_last_name_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_password_dialog.dart';
@@ -65,27 +65,27 @@ class SettingsPage extends StatelessWidget {
                     Get.dialog(const EditFirstNameDialog());
                   },
                   trailing: Text(
-                    userInfo!.getString("name").toString(),
+                    //! madei tchabge when i change
+                    userInfo!.getString("first_name").toString(),
                     style: SettingsTextStyle(context),
                   ),
                 ),
                 SettingsComps(
                   title: "Last Name".tr,
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.person_outline_outlined),
                   destination: () {
                     Get.dialog(const EditLastNameDialog());
                   },
                   trailing: Text(
-                    '',
+                    //! madei tchabge when i change
+                    userInfo!.getString("last_name").toString(),
                     style: SettingsTextStyle(context),
                   ),
                 ),
                 SettingsComps(
                   title: "Phone Number".tr,
                   icon: const Icon(Icons.phone),
-                  destination: () {
-                    // Get.dialog(const EditNumberDialog());
-                  },
+                  destination: () {},
                   trailing: Text(
                     userInfo!.getString("number").toString(),
                     style: SettingsTextStyle(context),
@@ -100,13 +100,12 @@ class SettingsPage extends StatelessWidget {
                   trailing: Directionality(
                     textDirection: TextDirection.ltr,
                     child: Text(
-                      '****** *** ***',
+                      '*** *** ***',
                       style: SettingsTextStyle(context),
                     ),
                   ),
                 ),
                 //! location
-                //! new setting
                 Card(
                   margin: const EdgeInsets.all(0.0),
                   child: ListTile(

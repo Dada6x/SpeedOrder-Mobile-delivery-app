@@ -54,9 +54,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //! the name taken from the signup shit
                 Text(
-                  userInfo!.getString("name").toString(),
+                  userInfo!.getString("first_name").toString(),
                   style: const TextStyle(fontSize: 20),
                 ),
               ],
@@ -105,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              Get.find<Model>().logOut();
+              Get.find<Model>().logOutRequest();
               //! maybe i should delete the token
             },
             label: Text(

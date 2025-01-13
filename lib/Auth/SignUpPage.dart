@@ -19,7 +19,8 @@ class SignupPage extends StatefulWidget {
 
 class SignUpPageState extends State<SignupPage> {
 //$-------------------------Controllers-----------------------
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final numberController = TextEditingController();
   final passwordController = TextEditingController();
 //$-----------------------------------------------------------
@@ -78,13 +79,27 @@ class SignUpPageState extends State<SignupPage> {
                       top: screenHeight(context) * 0.01,
                     ),
                     child: TextField(
-                      controller: nameController,
+                      controller: firstNameController,
                       decoration: inputDecoration(
                           isPassword: false,
                           context: context,
-                          hint: "FullName",
+                          hint: "First name",
                           //make trim
                           icon: const Icon(Icons.person, color: Colors.grey)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: screenHeight(context) * 0.03,
+                    ),
+                    child: TextField(
+                      controller: lastNameController,
+                      decoration: inputDecoration(
+                          isPassword: false,
+                          context: context,
+                          hint: "Last Name",
+                          icon: const Icon(Icons.person_outline,
+                              color: Colors.grey)),
                     ),
                   ),
                   //! phone Number
@@ -149,43 +164,42 @@ class SignUpPageState extends State<SignupPage> {
                             ))),
                   ),
                   //! register button
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-                    child: ProjectButton(
-                      text: 'Next'.tr,
-                      width: screenWidth(context),
-                      function: () {
-                        if (nameController.text.isEmpty ||
-                            passwordController.text.isEmpty ||
-                            numberController.text.isEmpty) {
-                          Get.snackbar(
-                            "Error",
-                            "All fields are required!",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                          return;
-                        } else if (formKey.currentState?.validate() == false) {
-                          Get.snackbar(
-                            "Error",
-                            "Please insert 10 numbers ",
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                          );
-                        } else {
-                          controller.signUp(nameController.text,
-                              passwordController.text, numberController.text);
-                          userInfo?.setString("name", nameController.text);
-                          userInfo?.setString("number", numberController.text);
-                        }
-                      },
-                    ),
+                  ProjectButton(
+                    text: 'Next'.tr,
+                    width: screenWidth(context),
+                    function: () {
+                      if (firstNameController.text.isEmpty ||
+                          lastNameController.text.isEmpty ||
+                          passwordController.text.isEmpty ||
+                          numberController.text.isEmpty) {
+                        Get.snackbar(
+                          "Error",
+                          "All fields are required!",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                        return;
+                      } else if (formKey.currentState?.validate() == false) {
+                        Get.snackbar(
+                          "Error",
+                          "Please insert 10 numbers ",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      } else {
+                        controller.signUpRequest(firstNameController.text,
+                            passwordController.text, numberController.text);
+//! should be removed
+                        // userInfo?.setString(
+                        //     "first_name", firstNameController.text);
+                        // userInfo?.setString(
+                        //     "last_name", firstNameController.text);
+                        // userInfo?.setString("number", numberController.text);
+                      }
+                    },
                   ),
-                  // switch to login
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

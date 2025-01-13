@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Location/maps/CurrentLoaction/network_status_Current_location.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/main.dart';
@@ -42,6 +43,7 @@ class CurrentLocationDialog extends StatelessWidget {
                         width: 100,
                         function: () {
                           Get.back();
+                          Get.find<Model>().editUserLocationRequest();
                           // Get.offAll(const MainPage());
                         },
                       ),
