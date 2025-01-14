@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
+import 'package:mamamia_uniproject/Controllers/userController.dart';
 import 'package:mamamia_uniproject/Location/dialogs/location_method_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_first_name_dialog.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Settings/dialogs/edit_last_name_dialog.dart';
@@ -31,7 +32,7 @@ class SettingsPage extends StatelessWidget {
                 SettingsComps(
                   title: "Language".tr,
                   icon: const Icon(Icons.language_sharp),
-                  destination: () {
+                  destination: () async {
                     Locale currentLocale = Get.locale ?? const Locale("en");
                     Get.updateLocale(currentLocale.languageCode == "en"
                         ? const Locale("ar")
@@ -64,11 +65,10 @@ class SettingsPage extends StatelessWidget {
                   destination: () {
                     Get.dialog(const EditFirstNameDialog());
                   },
-                  trailing: Text(
-                    //! madei tchabge when i change
-                    userInfo!.getString("first_name").toString(),
-                    style: SettingsTextStyle(context),
-                  ),
+                  trailing: Obx(() => Text(
+                        Get.find<UserController>().firstName.value,
+                        style: SettingsTextStyle(context),
+                      )),
                 ),
                 SettingsComps(
                   title: "Last Name".tr,
@@ -76,11 +76,10 @@ class SettingsPage extends StatelessWidget {
                   destination: () {
                     Get.dialog(const EditLastNameDialog());
                   },
-                  trailing: Text(
-                    //! madei tchabge when i change
-                    userInfo!.getString("last_name").toString(),
-                    style: SettingsTextStyle(context),
-                  ),
+                  trailing: Obx(() => Text(
+                        Get.find<UserController>().lastName.value,
+                        style: SettingsTextStyle(context),
+                      )),
                 ),
                 SettingsComps(
                   title: "Phone Number".tr,
@@ -111,10 +110,10 @@ class SettingsPage extends StatelessWidget {
                   child: ListTile(
                     tileColor: Theme.of(context).colorScheme.secondary,
                     onTap: () => Get.dialog(const LocationDialog()),
-                    title: const Expanded(
+                    title: Expanded(
                       child: Text(
-                        "Location",
-                        style: TextStyle(),
+                        "Location".tr,
+                        style: const TextStyle(),
                       ),
                     ),
                     isThreeLine: false,

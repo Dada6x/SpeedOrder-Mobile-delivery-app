@@ -189,9 +189,12 @@ class SignUpPageState extends State<SignupPage> {
                           colorText: Colors.white,
                         );
                       } else {
-                        controller.signUpRequest(firstNameController.text,
-                            passwordController.text, numberController.text);
-//! should be removed
+                        controller.signUpRequest(
+                            firstNameController.text,
+                            lastNameController.text,
+                            passwordController.text,
+                            numberController.text);
+
                         // userInfo?.setString(
                         //     "first_name", firstNameController.text);
                         // userInfo?.setString(

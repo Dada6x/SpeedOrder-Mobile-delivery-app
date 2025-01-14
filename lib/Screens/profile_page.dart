@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Controllers/userController.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
@@ -7,7 +8,6 @@ import 'package:mamamia_uniproject/Screens/profile_screens/Settings/settings_pag
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/image_picker/image_picker.dart';
 import 'package:mamamia_uniproject/main.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,6 +16,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String imggggg = userInfo!.getString("photo").toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +25,10 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Stack(children: [
             CircleAvatar(
-              radius: 80,
-              backgroundImage: Get.find<Model>().pickedImage,
-            ),
+                radius: 80,
+                backgroundImage: AssetImage(
+                    'C:/Users/Dada/Desktop/project17/storage/app/private/$imggggg')),
+            // image form the file that i take from the backend
             Positioned(
                 bottom: 1,
                 right: -10,
@@ -54,10 +56,13 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  userInfo!.getString("first_name").toString(),
-                  style: const TextStyle(fontSize: 20),
-                ),
+                Obx(() {
+                  Get.find<UserController>().updateFirstName();
+                  return Text(
+                    Get.find<UserController>().firstName.value,
+                    style: const TextStyle(fontSize: 20),
+                  );
+                }),
               ],
             ),
           ),

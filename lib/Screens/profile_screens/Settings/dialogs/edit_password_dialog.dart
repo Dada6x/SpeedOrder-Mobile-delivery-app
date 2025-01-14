@@ -30,6 +30,7 @@ class EditPasswordDialog extends StatelessWidget {
     final newPasswordController = TextEditingController();
     final formKey = GlobalKey<FormState>();
 
+    // ignore: unused_local_variable
     String? enteredNumber;
     return Center(
       child: Material(
@@ -167,6 +168,7 @@ class EditPasswordDialog extends StatelessWidget {
                           newPasswordController.text,
                         );
                       }
+                      Get.back();
                     },
                   ),
                 ],

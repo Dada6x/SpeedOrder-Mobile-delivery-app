@@ -37,8 +37,8 @@ class _StoresPageState extends State<StoresPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "Stores",
+          title:  Text(
+            "Stores".tr,
             style: TextStyle(fontSize: 30),
           ),
           actions: [

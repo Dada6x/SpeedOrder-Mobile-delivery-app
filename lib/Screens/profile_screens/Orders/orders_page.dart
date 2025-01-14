@@ -9,7 +9,7 @@ class OrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar("Order's History"),
+      appBar: NormalAppBar("Order's History".tr),
       body: ListView.builder(
         itemCount: Get.find<OrdersController>().orderedCardsList.length,
         itemBuilder: (context, index) {

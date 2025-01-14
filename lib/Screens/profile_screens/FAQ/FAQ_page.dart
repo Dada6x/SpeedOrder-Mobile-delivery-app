@@ -28,21 +28,21 @@ class FAQPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            children: const [
-              FAQPageCategorie(
+            children: [
+              const FAQPageCategorie(
                 category: "Account",
                 icon: Icons.person,
               ),
               FAQPageCategorie(
-                category: "Privacy Policy",
+                category: "Privacy Policy".tr,
                 icon: Icons.security,
               ),
               FAQPageCategorie(
-                category: "Payment",
+                category: "Payment".tr,
                 icon: Icons.sticky_note_2,
               ),
               FAQPageCategorie(
-                category: "Pateron",
+                category: "Pateron".tr,
                 icon: Icons.propane,
               ),
             ],

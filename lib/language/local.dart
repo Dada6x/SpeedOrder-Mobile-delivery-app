@@ -10,7 +10,7 @@ class MyLocal implements Translations {
 
 const Map<String, String> english = {
   "Settings": "Settings",
-  "' Location '": "' Location '",
+  "Location": "Location",
   "Check Out": "Check Out",
   "Success": "Success",
   "added to the cart!": "added to the cart!",
@@ -35,6 +35,7 @@ const Map<String, String> english = {
   "Change language": "Change language",
   "Whats you're looking for?": "Whats you're looking for?",
   "Save": "Save",
+  "Stores": "Stores",
   "Cancel": "Cancel",
   "Light Mode": "Light Mode",
   "Total:": "Total :",
@@ -48,6 +49,7 @@ const Map<String, String> english = {
   "and you can order form ": "and you can order form ",
   "Use Current Location ": "Use Current Location ",
   "Enter manually": "Enter manually",
+  "Order's History": "Order's History",
   "You are all set Up ": "You are all set Up ",
   "  You're Offline :(": "  You're Offline :(",
   "Please Make Sure You're Connected To The Internet":
@@ -60,15 +62,26 @@ const Map<String, String> english = {
   "Edit Location": "Edit Location",
   "Where are you ?": "Where are you ?",
   "Address:": "Address:",
+  "Error": "Error",
   "Done": "Done",
   "Change Theme": "Change Theme",
   "Notifications": "Notifications",
   "Auto": "Auto",
   "Manually": "Manually",
+  "Payment": "Payment",
+  "Privacy Policy": "Privacy Policy",
   "New Number": "New Number",
+  "Welcome Back": "Welcome Back",
   "Edit Phone Number": "Edit Phone Number",
   "Edit Password": "Edit Password",
+  "Signup Successfully": "Signup Successfully",
+  "An Unexpected Error Occurred": "An Unexpected Error Occurred",
+  "Pateron": "Pateron",
+  "Logout successfully we'll miss you": "Logout successfully we'll miss you",
+  "First name updated successfully": "First name updated successfully",
   "New Password": "New Password",
+  "Image uploaded successfully!, Looks Great":
+      "Image uploaded successfully!, Looks Great",
   "Edit UserName": "Edit UserName",
   "Enable notifications to stay updated with order status, special offers, and important updates.":
       "Enable notifications to stay updated with order status, special offers, and important updates.",
@@ -78,10 +91,23 @@ const Map<String, String> english = {
 };
 
 const Map<String, String> arabic = {
+  "Welcome Back": "اهلا بعودتك",
+  "Image uploaded successfully,Looks Great!!":
+      "تم تعديل الصورة بنجاح",
+  "First name updated successfully": "تم تعديل الاسم الاول بنجاح",
+  "Error": "خطأ",
+  "Signup Successfully": "تم تسجيل الدخول بنجاح",
+  "An Unexpected Error Occurred": "حدث خطأ غير متوقع",
   "Settings": "اعدادات",
   "Manually": "يدوي",
   "Auto": "تلقائي",
+  "Pateron": "الباتريون",
+  "Logout successfully we'll miss you": "تسجيل الخروج بنجاح سوف نفتقدك",
   "Where are you ?": "اين انت ؟",
+  "Privacy Policy": "سياسة الخصوصية",
+  "Order's History": "تاريخ الطلبات ",
+  "Location": "الموقع",
+  "Payment": "الدفع",
   "New UserName": "اسم المستخدم الجديد",
   "Edit UserName": "تعديل اسم المستخدم",
   "Success": "تم بنجاح",
@@ -148,7 +174,6 @@ const Map<String, String> arabic = {
   "Already in": "موجود",
   "is already in Your cart!": "موجود في سلة مشترياتك !",
   "Stores": "المتاجر",
-  "Location": "الموقع",
   "Enter": "ادخل",
   "back": "رجوع",
   "fav Page": "المفضلة",
@@ -176,6 +201,4 @@ const Map<String, String> arabic = {
   "Edit Phone Number": "تعديل رقم الهاتف",
   "Edit Password": "تعديل كلمة المرور",
   "New Password": "كلمة المرور الجديدة ",
-
-
 };

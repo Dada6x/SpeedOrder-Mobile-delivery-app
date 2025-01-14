@@ -63,6 +63,7 @@ class EditLastNameDialog extends StatelessWidget {
                     function: () {
                       Get.find<Model>()
                           .editUserLastNameRequest(nameController.text);
+                      Get.back();
                     },
                   ),
                 ],

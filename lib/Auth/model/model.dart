@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
+import 'package:mamamia_uniproject/Controllers/userController.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,7 @@ class Model extends GetxController {
   }
   //or use this tokenPref!.getString('access_token');
 
-//!-#######################################(------Login------)#########################################
+  //!(------Log in------)
   Future<void> loginRequest(String password, String number) async {
     try {
       final response = await http.post(
@@ -36,24 +37,21 @@ class Model extends GetxController {
         tokenPref = await SharedPreferences.getInstance();
         await tokenPref!.setString('access_token', accessToken);
         Get.snackbar(
-          "Success",
-          "Welcome Back",
+          "Success".tr,
+          "Welcome Back".tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        // Navigate to the main page
         Get.off(() => const MainPage());
         middleWarePref!.setString("id", "1");
-        // print('API Response: $decodedResponse');
-        print('Login test');
         print(tokenPref!.getString('access_token'));
       } else {
         // Handle error
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('error')) {
           Get.snackbar(
-            "Error",
+            "Error".tr,
             decodedResponse['error'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
@@ -62,7 +60,7 @@ class Model extends GetxController {
         } else {
           Get.snackbar(
             "Error",
-            "An unexpected error occurred",
+            "An Unexpected Error Occurred".tr,
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
             colorText: Colors.white,
@@ -82,19 +80,15 @@ class Model extends GetxController {
     }
   }
 
-//$-#######################################(------SignUp------)#########################################
+  //$(------Sign Up------)
   Future<void> signUpRequest(
-      String name, String password, String number) async {
+      String name, String lastName, String password, String number) async {
     try {
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/register?name=$name&password=$password&user_phone=$number',
+          'http://10.0.2.2:8000/api/register?name=$name&last_name=$lastName&password=$password&user_phone=$number',
         ),
-        body: {
-          // 'name': name,
-          // 'password': password,
-          // 'user_phone': number,
-        },
+        body: {},
       );
 
       final decodedResponse = jsonDecode(response.body);
@@ -106,8 +100,8 @@ class Model extends GetxController {
         tokenPref = await SharedPreferences.getInstance();
         await tokenPref!.setString('access_token', signUpAccessToken);
         Get.snackbar(
-          "Success",
-          "Signup Successfully",
+          "Success".tr,
+          "Signup Successfully".tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -122,7 +116,7 @@ class Model extends GetxController {
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
           Get.snackbar(
-            "Error",
+            "Error".tr,
             decodedResponse['user_phone'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
@@ -130,8 +124,8 @@ class Model extends GetxController {
           );
         } else {
           Get.snackbar(
-            "Error",
-            "An unexpected error occurred",
+            "Error".tr,
+            "An Unexpected Error Occurred".tr,
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
             colorText: Colors.white,
@@ -150,7 +144,7 @@ class Model extends GetxController {
     }
   }
 
-  //!-#######################################(------LogOut------)#########################################
+  //!(------Log Out------)
   Future<void> logOutRequest() async {
     try {
       String? token = await getToken();
@@ -162,11 +156,9 @@ class Model extends GetxController {
       );
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        // print('logout test');
-        // print(token);
         Get.snackbar(
           "Success",
-          "LogOut successfully",
+          "Logout successfully we'll miss you".tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -176,11 +168,12 @@ class Model extends GetxController {
         userInfo!.remove("first_name");
         userInfo!.remove("last_name");
         userInfo!.remove("number");
+        eraseImage();
       } else {
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
           Get.snackbar(
-            "Error",
+            "Error".tr,
             decodedResponse['user_phone'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
@@ -188,8 +181,8 @@ class Model extends GetxController {
           );
         } else {
           Get.snackbar(
-            "Error",
-            "An unexpected error occurred",
+            "Error".tr,
+            "An Unexpected Error Occurred".tr,
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
             colorText: Colors.white,
@@ -208,50 +201,7 @@ class Model extends GetxController {
     }
   }
 
-//$-#######################################(------Refresh------)#########################################
-  Future<void> refreshRequest() async {
-    //TODO  why the hell refresh give me token ??
-
-    try {
-      String? token = await getToken();
-      final response = await http.post(
-        Uri.parse(
-          'http://10.0.2.2:8000/api/auth/refresh?token=$token',
-        ),
-        body: {},
-      );
-      if (response.statusCode == 200) {
-        print(token);
-        Get.snackbar(
-          "Success",
-          "refresh successfully",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
-      } else {
-        Get.snackbar(
-          "Error",
-          "An unexpected error occurred",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      }
-    } catch (e) {
-      Get.snackbar(
-        "Exception",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-      print('Error: $e');
-    }
-  }
-
-//!-#######################################(------Profile------)#########################################
-
+//!(------Profile--------)
   Future<void> profileRequest() async {
     try {
       String? token = await getToken();
@@ -259,20 +209,20 @@ class Model extends GetxController {
         Uri.parse('http://10.0.2.2:8000/api/auth/me?token=$token'),
         body: {},
       );
-
       final decodedResponse = jsonDecode(response.body);
       print('profile request  test : $decodedResponse');
-
       if (response.statusCode == 200) {
         // String name = decodedResponse['name'];
         // String userPhone = decodedResponse['user_phone'];
         // String lastName = decodedResponse['last_name'];
+
         userInfo?.setString("first_name", decodedResponse['name']);
-        userInfo?.setString("number", decodedResponse['user_phone']);
         userInfo?.setString("last_name", decodedResponse['last_name']);
-        // print('Name: $name');
-        // print('Phone: $userPhone');
-        // print("LastName:$lastName ");
+        userInfo?.setString("number", decodedResponse['user_phone']);
+        userInfo?.setString("photo", decodedResponse['photo_path']);
+
+        Get.find<UserController>().updateFirstName();
+        Get.find<UserController>().updateLastName();
       } else {}
     } catch (e) {
       print('Exception: $e');
@@ -289,7 +239,7 @@ class Model extends GetxController {
     //! file
   */
 
-//$-#######################################(------edit Profile------)###############################################
+//$ ########(------edit Profile------)######
 //@ First Name
   Future<void> editUserFirstNameRequest(String firstName) async {
     try {
@@ -304,17 +254,18 @@ class Model extends GetxController {
       // final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
-          "Success",
-          "First name updated successfully",
+          "Success".tr,
+          "First name updated successfully".tr,
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
         // the user successfully updated the name
         userInfo?.setString("first_name", firstName);
+        Get.find<UserController>().updateFirstName();
       } else {
         Get.snackbar(
-          "Error",
+          "Error".tr,
           'eeee',
           // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
@@ -348,7 +299,7 @@ class Model extends GetxController {
       // final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
-          "Success",
+          "Success".tr,
           "  Last Name Changes updated ",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
@@ -356,10 +307,11 @@ class Model extends GetxController {
         );
         // the user successfully updated the last name
         userInfo?.setString("last_name", lastName);
+        Get.find<UserController>().updateFirstName();
         print('Edit name tst');
       } else {
         Get.snackbar(
-          "Error",
+          "Error".tr,
           'weeeee',
           // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
@@ -398,7 +350,7 @@ class Model extends GetxController {
       final decodedResponse = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar(
-          "Success",
+          "Success".tr,
           " name Changes updated ",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
@@ -407,7 +359,7 @@ class Model extends GetxController {
         print('Edit name tst');
       } else {
         Get.snackbar(
-          "Error",
+          "Error".tr,
           decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
@@ -426,7 +378,7 @@ class Model extends GetxController {
     }
   }
 
-//!-#######################################(------UploadImage------)##############################################
+  //!(------Upload image------)
   Future<void> uploadImageRequest(File image) async {
     try {
       String? tokenImg = await getToken();
@@ -455,7 +407,7 @@ class Model extends GetxController {
       // Check the response status
       if (response.statusCode == 200) {
         Get.snackbar(
-          "Success",
+          "Success".tr,
           "Image uploaded successfully!, Looks Great",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
@@ -463,7 +415,7 @@ class Model extends GetxController {
         );
       } else {
         Get.snackbar(
-          "Error",
+          "Error".tr,
           "An unexpected error occurred: ${response.statusCode}",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
@@ -482,7 +434,7 @@ class Model extends GetxController {
     }
   }
 
-//$-#######################################(------Change Password ------)#########################################
+  //$(------Change Password------)
   Future<void> editUserPasswordRequest(
       String userPhone, String oldPassword, String newPassword) async {
     try {
@@ -496,7 +448,7 @@ class Model extends GetxController {
 
       if (response.statusCode == 200) {
         Get.snackbar(
-          "Success",
+          "Success".tr,
           "Password Changed",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
@@ -504,8 +456,8 @@ class Model extends GetxController {
         );
       } else {
         Get.snackbar(
-          "Error",
-          " Something Went Wrong ",
+          "Error".tr,
+          "An Unexpected Error Occurred".tr,
           // decodedResponse['error'].toString(),
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
@@ -521,6 +473,46 @@ class Model extends GetxController {
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
+    }
+  }
+
+//$(------Refresh------)
+  Future<void> refreshRequest() async {
+    try {
+      String? token = await getToken();
+      final response = await http.post(
+        Uri.parse(
+          'http://10.0.2.2:8000/api/auth/refresh?token=$token',
+        ),
+        body: {},
+      );
+      if (response.statusCode == 200) {
+        print(token);
+        Get.snackbar(
+          "Success",
+          "refresh successfully",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      } else {
+        Get.snackbar(
+          "Error",
+          "An unexpected error occurred",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Exception",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      print('Error: $e');
     }
   }
 
@@ -555,11 +547,19 @@ class Model extends GetxController {
 
   //! image Picker
   bool imageIsPicked = false;
+
   ImageProvider? pickedImage;
   void changeImage(File pickedImage) {
     imageIsPicked = true;
     this.pickedImage = Image(image: FileImage(pickedImage)).image;
     print("Image is picked");
     update();
+  }
+
+  void eraseImage() {
+    imageIsPicked = false;
+    pickedImage = null; // Clear the picked image
+    print("Image is erased");
+    update(); // Notify listeners to refresh the UI
   }
 }

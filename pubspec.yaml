@@ -54,6 +54,7 @@ dependencies:
   pin_code_fields: any
   path: ^1.8.0
   auto_size_text: ^3.0.0
+  # for the telegram theme change effect
   animated_theme_switcher: ^2.0.10
 
 dev_dependencies:
@@ -73,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - C:/Users/Dada/Desktop/project17/storage/app/private/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -16,7 +16,7 @@ class ImagePickingDialog extends StatefulWidget {
 
 class _ImagePickingDialogState extends State<ImagePickingDialog> {
   File? _selectedImage;
-
+  //! image from gallery
   Future<void> pickImageFromGallery() async {
     try {
       final returnedImage =
@@ -37,6 +37,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
     }
   }
 
+  //! image from Camera
   Future<void> pickImageFromCamera() async {
     try {
       final returnedImage =
@@ -45,6 +46,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
       setState(() {
         _selectedImage = File(returnedImage.path);
       });
+
       giveselectedImage(_selectedImage!);
     } catch (e) {
       Get.snackbar(
@@ -58,12 +60,22 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
   }
 
   void giveselectedImage(File img) {
-    // Update the Model with the selected image
     Get.find<Model>().changeImage(img);
-    // Call the upload method
     Get.find<Model>().uploadImageRequest(img);
-    // Close the dialog
     Navigator.pop(context);
+  }
+
+  void deleteSelectedImage() {
+    setState(() {
+      _selectedImage = null;
+    });
+    Get.snackbar(
+      "Image Deleted",
+      "The selected image has been removed.",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
   }
 
   @override
