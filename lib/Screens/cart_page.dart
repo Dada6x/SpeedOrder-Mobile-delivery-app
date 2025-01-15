@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
-import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Screens/payment_page.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
@@ -12,6 +11,7 @@ import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: must_be_immutable
 class CartPage extends StatelessWidget {
   CartPage({super.key});
   var totalPrice = 0.0;

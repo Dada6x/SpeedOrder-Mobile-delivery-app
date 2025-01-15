@@ -1,12 +1,45 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
+import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
+import 'package:http/http.dart' as http;
 
 class OrdersPage extends StatefulWidget {
-  static bool checkboxvisible = false;
+  // static bool checkboxvisible = false;
   const OrdersPage({super.key});
 
   @override
   State<OrdersPage> createState() => _OrdersPageState();
+}
+
+// // //! In case there's a status based request (returns only Pending or Completed)
+// Future<List> GetOrdersSorted(String status) async {
+//   String? token = await Get.find<Model>().getToken();
+//   final response = await http.post(
+//       Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
+//       body: {"token": token});
+//   List<Order> orders = jsonDecode(response.body);
+//   if (status == "Pending") {
+//     Get.find<OrdersController>().addPendingOrdersFromApi(orders);
+//   } else
+//     Get.find<OrdersController>().addPendingOrdersFromApi(orders);
+//   return orders;
+// }
+
+// ! In case We have to sort the orders ourselves
+Future<List> GetOrders() async {
+  String? token = await Get.find<Model>().getToken();
+  final response = await http.post(
+      Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
+      body: {"token": token});
+  List<Order> orders = jsonDecode(response.body);
+  Get.find<OrdersController>().sortOrderLists(orders);
+  return orders;
 }
 
 class _OrdersPageState extends State<OrdersPage>
@@ -23,34 +56,9 @@ class _OrdersPageState extends State<OrdersPage>
 
   @override
   Widget build(BuildContext context) {
-
-    bool deleteVisible = false;
-    tabController.index == 0 ? deleteVisible = true : deleteVisible = false;
+    // bool deleteVisible = false;
+    // tabController.index == 0 ? deleteVisible = true : deleteVisible = false;
     return Scaffold(
-      floatingActionButton: deleteVisible
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        
-                      });
-                    },
-                    icon:const Icon(Icons.delete)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        bool checkBoxVisible = OrdersPage.checkboxvisible;
-                        checkBoxVisible = !checkBoxVisible;
-                        OrdersPage.checkboxvisible = checkBoxVisible;
-                        // OrderCard.
-                      });
-                    },
-                    icon:const Icon(Icons.edit)),
-              ],
-            )
-          : null,
       appBar: AppBar(
         centerTitle: true,
         title: Text(tabController.index == 0 ? "Mail" : "OnGoing"),
@@ -75,26 +83,58 @@ class _OrdersPageState extends State<OrdersPage>
             ]),
       ),
       body: TabBarView(controller: tabController, children: [
-        ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return OrderCard();
+        FutureBuilder(
+          future: GetOrders(),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                List<Order> pending = Get.find<OrdersController>().orders;
+                return ListView.builder(
+                    itemCount: datalength,
+                    itemBuilder: (context, index) {
+                      return OrderCard(
+                        order: pending[index],
+                      );
+                    });
+              }
+            }
           },
         ),
-        ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return OrderCard();
+        FutureBuilder(
+          future: GetOrders(),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                List<Order> completed =
+                    Get.find<OrdersController>().completedOrders;
+                return ListView.builder(
+                    itemCount: datalength,
+                    itemBuilder: (context, index) {
+                      return OrderCard(
+                        order: completed[index],
+                      );
+                    });
+              }
+            }
           },
         ),
       ]),
     );
   }
 }
-
-      // body: ListView.builder(
-      //   itemCount: Get.find<OrdersController>().orderedCardsList.length,
-      //   itemBuilder: (context, index) {
-      //     return Get.find<OrdersController>().orderedCardsList[index];
-      //   },
-      // ),
