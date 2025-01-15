@@ -30,8 +30,8 @@ class _MainPageState extends State<MainPage> {
     //removed the search page from here cuz i think this the list used for navigation bar pages
     //search screen is in search_bar.dart;
     //yahea: Good Job !!
-     const StoresPage(),
-    const CartPage(),
+    const StoresPage(),
+    CartPage(),
     const HomeSliver(), // this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location
     const FavoritePage(),
     const ProfilePage(),
@@ -42,7 +42,6 @@ class _MainPageState extends State<MainPage> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-        
           key: MainPage.scaffoldKey,
           //! notifications drawer
           endDrawer: const Directionality(

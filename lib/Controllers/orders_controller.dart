@@ -36,8 +36,9 @@ class OrdersController extends GetxController {
     for (var element in comingOrders) {
       if (containsOrder(element.date)) {
         comingOrders.remove(element);
-      } else
+      } else {
         orders.add(element);
+      }
     }
   }
 

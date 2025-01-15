@@ -22,7 +22,7 @@ class _StoresPageState extends State<StoresPage> {
   Future<List> getStores() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/auth/get_companies"),
+      Uri.parse("http://192.168.1.110:8000/api/auth/get_companies"),
       body: {
         "token":
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
@@ -113,7 +113,7 @@ class searchStores extends SearchDelegate {
   Future<List> getFilteredList(String search) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/auth/search_in_companies"),
+      Uri.parse("http://192.168.1.110:8000/api/auth/search_in_companies"),
       body: {
         "token": token,
         "search": search,

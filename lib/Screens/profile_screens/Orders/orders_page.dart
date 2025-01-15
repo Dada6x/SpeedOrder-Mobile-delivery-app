@@ -8,6 +8,7 @@ import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
 import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/components/Order_card.dart';
 
 class OrdersPage extends StatefulWidget {
   static bool checkboxvisible = false;

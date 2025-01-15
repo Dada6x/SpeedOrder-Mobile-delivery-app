@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
-import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
 
 class FavoriteController extends GetxController {
-  var favoriteItems = <Product>[].obs;
+  var favoriteItems = [];
   var favoriteCardsList = <FavoriteCard>[].obs;
 
- /* void addToFavorite(Product p) {
+  /* void addToFavorite(Product p) {
     print("listLength is :${favoriteItems.length + 1}");
     bool isFavorite = isAfavoriteAlr(p);
     if (!isFavorite) {

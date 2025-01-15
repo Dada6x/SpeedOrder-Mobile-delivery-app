@@ -4,18 +4,20 @@ import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
+import 'package:mamamia_uniproject/components/favorite_button.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class Product {
   //added a class of products,might add a product id if the backend wants it
   var id;
-  String imageLink;
-  String name;
+  var CartId;
+  String? imageLink;
+  String? name;
   var price;
-  String description;
+  String? description;
   String? category;
-  String company;
+  String? company;
   var count;
   String? purchaseDate;
   bool isFavored = false;
@@ -23,8 +25,17 @@ class Product {
   ProjectProductCartCard? cartCard;
   FavoriteCard? favoriteCard;
   ProjectProductOrdersCard? orderCard;
-  Product(this.id, this.name, this.price, this.description, this.imageLink,
-      this.company, this.count);
+  Product(
+    this.id,
+    this.name,
+    this.price,
+    this.imageLink, [
+    this.description,
+    this.company,
+    this.count,
+  ]);
+  Product.cart(
+    );
 }
 
 /// this is the product card in the [HomePage] it has price and fav button
@@ -35,6 +46,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
   String imageLink;
   String name;
   var price;
+  bool isFavorite;
   String category;
   ProjectProductCartCardHome({
     super.key,
@@ -43,6 +55,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
     required this.price,
     required this.imageLink,
     required this.category,
+    required this.isFavorite,
   });
   Icon? iconType(BuildContext context, String type) {
     if (type == "food") {
@@ -51,7 +64,6 @@ class ProjectProductCartCardHome extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       );
     }
-    //? ??we got jews category before جاتا
     if (type.contains("jew")) {
       return Icon(
         Icons.diamond_outlined,
@@ -144,10 +156,13 @@ class ProjectProductCartCardHome extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            /* Padding(
+                            Padding(
                                 //! the product like button
                                 padding: const EdgeInsets.all(8.0),
-                                child: FavoriteButton(product: product)),*/
+                                child: FavoriteButton(
+                                  id: id,
+                                  isFavorite: isFavorite,
+                                )),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               //! the product price

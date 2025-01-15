@@ -7,6 +7,8 @@ class ApiService extends StatelessWidget {
       "http://127.0.0.1:8000/api/auth/add_to_cart?token=  &product_id=6&count=123456";
   final String apiRequest = "add_to_cart";
 
+  const ApiService({super.key});
+
   @override
   Widget build(BuildContext context) {
   String api = ApiEndpoints.AddToCartAPI("2", "2");

@@ -29,7 +29,7 @@ class ProjectProductOrdersCard extends StatelessWidget {
     return Scaffold(
       floatingActionButton: IconButton(
           onPressed: () {
-            Get.dialog(SubmitDeleteOrder());
+            Get.dialog(const SubmitDeleteOrder());
           },
           icon: const Icon(Icons.delete)),
       body: Directionality(
@@ -44,13 +44,13 @@ class ProjectProductOrdersCard extends StatelessWidget {
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(product.name),
-                        Text(product.price.toString() + "\$"),
+                        Text(product.name!),
+                        Text("${product.price}\$"),
                       ],
                     ),
                     trailing: Text(
                       product.count.toString(),
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ),
                 );

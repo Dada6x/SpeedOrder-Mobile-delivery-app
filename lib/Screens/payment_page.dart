@@ -7,6 +7,7 @@ import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/components/credit_card.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main.dart';
+import 'package:http/http.dart' as http;
 
 // ignore: must_be_immutable
 class PaymentPage extends StatelessWidget {
@@ -15,17 +16,17 @@ class PaymentPage extends StatelessWidget {
   Future<void> ConfirmPurchase(String card_password, String card_number) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://127.0.0.1:8000/api/auth/add_to_confirm"),
+        Uri.parse("http://192.168.1.110:8000/api/auth/add_to_confirm"),
         body: {
           "card_password": card_password,
           "token": token,
           "card_number": card_number,
         });
+    print(response.body);
   }
 
   TextEditingController textEditingController = TextEditingController();
 
-  get http => null;
   @override
   Widget build(BuildContext context) {
     String cardPassword = "";
@@ -150,12 +151,7 @@ class PaymentPage extends StatelessWidget {
                           Get.find<OrdersController>().addOrderFromCart();
                           Get.find<CartController>().removeAllFromCart();
                           Get.back();
-                          Future.delayed(const Duration(seconds: 1), () {
-                            Get.snackbar(
-                              "Success!".tr,
-                              "Congratulations on Your Purchase,Enjoy!".tr,
-                            );
-                          });
+                          Future.delayed(const Duration(seconds: 1), () {});
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(

@@ -4,6 +4,7 @@ import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main.dart';
+import 'package:http/http.dart' as http;
 
 // this is the product card in the cart page it have delete button to delete it
 
@@ -12,12 +13,14 @@ class ProjectProductCartCard extends StatelessWidget {
       product; //all the variables it required before are in the product so why not use it
   const ProjectProductCartCard({super.key, required this.product});
 
-  get http => null;
-  Future<void> deleteCartProduct(int id) async {
+  Future<void> deleteCartProduct(var id) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://127.0.0.1:8000/api/auth/delete_from_cart"),
-        body: {"token": token, "id": id});
+        Uri.parse("http://192.168.1.110:8000/api/auth/delete_from_cart"),
+        body: {"token": token, "id": "$id"});
+    if (response.statusCode == 200) {
+      Get.snackbar("product removed", "");
+    }
     // Get.find<CartController>().;
   }
 
@@ -45,7 +48,7 @@ class ProjectProductCartCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       child: Image(
                         //! the product image @cart
-                        image: AssetImage(product.imageLink),
+                        image: AssetImage(product.imageLink!),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -61,10 +64,9 @@ class ProjectProductCartCard extends StatelessWidget {
                     children: [
                       Text(
                         //! product name @cart
-                        product.name,
+                        product.name!,
                         style: const TextStyle(fontSize: 25),
                       ),
-                      Text(product.description),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -95,8 +97,7 @@ class ProjectProductCartCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           onPressed: () async {
-                            Get.find<CartController>().removeFromCart(product);
-                            deleteCartProduct(product.id);
+                            deleteCartProduct(product.CartId);
                           },
                           icon: const Icon(
                             Icons.delete_outline_outlined,
@@ -116,7 +117,7 @@ class ProjectProductCartCard extends StatelessWidget {
                           child: SizedBox(
                             child: Text(
                               product.count.toString(),
-                              style: TextStyle(fontSize: 20),
+                              style: const TextStyle(fontSize: 20),
                             ),
                           ))
                     ],
@@ -135,15 +136,18 @@ class EditQuantityDialog extends StatelessWidget {
   const EditQuantityDialog({super.key, required this.p});
   final Product p;
 
-  get http => null;
   Future<void> EditProductCartCount(int id, int count) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http
-        .post(Uri.parse("http://127.0.0.1:8000/api/auth/edit_cart"), body: {
+        .post(Uri.parse("http://192.168.1.110:8000/api/auth/edit_cart"), body: {
       "token": token,
-      "id": id,
-      "count": count,
+      "id": "$id",
+      "count": "$count",
     });
+    if (response.statusCode == 200) {
+      Get.snackbar("order Modified",
+          "tip:check every product before placing an order to avoid mistakes!");
+    }
   }
 
   @override
@@ -204,9 +208,9 @@ class EditQuantityDialog extends StatelessWidget {
                 ],
               ),
               TextButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     p.count = chosenCount.value;
-                    EditProductCartCount(p.id, p.count);
+                    EditProductCartCount(p.CartId, p.count);
                     Get.back();
                   },
                   child: const Text(
