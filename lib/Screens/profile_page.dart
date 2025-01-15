@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/FAQ/FAQ_page.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
@@ -105,7 +106,8 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              Get.find<Model>().logOut();
+              Get.to(const LoginPage());
+              //Get.find<Model>().logOut();
               //! maybe i should delete the token
             },
             label: Text(

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:http/http.dart' as http;
@@ -12,14 +13,10 @@ class ProductPage extends StatelessWidget {
   var id;
   ProductPage({super.key, required this.id});
   Future<List> getDetails(var id) async {
+    String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse(
-            "http://192.168.151.48:8000/api/auth/get_details-for-product"),
-        body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4xNTEuNDg6ODAwMC9hcGkvcmVnaXN0ZXIiLCJpYXQiOjE3MzYyNDA5NzksImV4cCI6MTczNjI0NDU3OSwibmJmIjoxNzM2MjQwOTc5LCJqdGkiOiJiTTI1bUNBbjhEZDg4OHRBIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.6tXFc7bEr97OQ0e_Wx2CgOgRBJ-iIgEagW_aI4yzIBA",
-          "id": "$id"
-        });
+        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
+        body: {"token": token, "id": "$id"});
     List product = [];
     product.add(jsonDecode(response.body));
     print(product[0]);

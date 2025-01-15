@@ -4,6 +4,7 @@ import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
+import 'package:mamamia_uniproject/components/favorite_button.dart';
 import 'package:mamamia_uniproject/components/favorite_card.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -35,6 +36,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
   String imageLink;
   String name;
   var price;
+  bool isFavorite;
   String category;
   ProjectProductCartCardHome({
     super.key,
@@ -43,6 +45,8 @@ class ProjectProductCartCardHome extends StatelessWidget {
     required this.price,
     required this.imageLink,
     required this.category,
+    required this.isFavorite,
+
   });
   Icon? iconType(BuildContext context, String type) {
     if (type == "food") {
@@ -143,10 +147,10 @@ class ProjectProductCartCardHome extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            /* Padding(
+                            Padding(
                                 //! the product like button
                                 padding: const EdgeInsets.all(8.0),
-                                child: FavoriteButton(product: product)),*/
+                                child: FavoriteButton(id: id,isFavorite:isFavorite , )),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               //! the product price

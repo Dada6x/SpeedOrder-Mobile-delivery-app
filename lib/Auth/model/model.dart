@@ -23,8 +23,7 @@ class Model extends GetxController {
   Future<void> login(String password, String number) async {
     try {
       final response = await http.post(
-        Uri.parse(
-            'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
+        Uri.parse('http://192.168.1.110:8000/api/auth/login'),
         body: {
           'password': password,
           'user_phone': number,
@@ -88,7 +87,7 @@ class Model extends GetxController {
     try {
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/register?name=$name&password=$password&user_phone=$number',
+          'http://192.168.1.110:8000/api/register?name=$name&password=$password&user_phone=$number',
         ),
         body: {
           'name': name,
@@ -156,7 +155,7 @@ class Model extends GetxController {
       String? token = await getToken();
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/auth/logout?token=$token',
+          'http://192.168.1.110:8000/api/auth/logout?token=$token',
         ),
         body: {},
       );
@@ -216,7 +215,7 @@ class Model extends GetxController {
       String? token = await getToken();
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/auth/refresh?token=$token',
+          'http://192.168.1.110:8000/api/auth/refresh?token=$token',
         ),
         body: {},
       );
@@ -322,7 +321,7 @@ class Model extends GetxController {
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/edit?name$name&last_name=$lastName&user_location=$userLocation&token=$editProfileToken'),
+            'http://192.168.1.110:8000/api/auth/edit?name$name&last_name=$lastName&user_location=$userLocation&token=$editProfileToken'),
         body: {
           'name': name,
           'last_name': lastName,
@@ -369,7 +368,8 @@ class Model extends GetxController {
       // Use your machine's IP address instead of 127.0.0.1
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/api/auth/uploadImage?token=$tokenImg'),
+        Uri.parse(
+            'http://192.168.1.110:8000/api/auth/uploadImage?token=$tokenImg'),
       );
 
       // Add the image file to the request
