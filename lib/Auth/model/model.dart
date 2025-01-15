@@ -26,8 +26,6 @@ class Model extends GetxController {
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
         body: {
-          // 'password': password,
-          // 'user_phone': number,
         },
       );
       final decodedResponse = jsonDecode(response.body);
@@ -502,10 +500,16 @@ Future<void> signUpRequest({
 
       // Log the response status and body
       print('Status Code: ${response.statusCode}');
-      print('Response Body: $responseBody');
-      //! TAKE THE NEW PHOTO PATH AND SETSTRING FOR THE
+      userInfo!.setString("photo", responseBody);
 
       if (response.statusCode == 200) {
+        print('uploaded image path tst: $responseBody');
+
+        eraseImage();
+        userInfo!.remove("photo");
+        profileRequest();
+        userInfo!.setString("photo", responseBody);
+
         Get.snackbar(
           "Success".tr,
           "Image uploaded successfully!, Looks Great",

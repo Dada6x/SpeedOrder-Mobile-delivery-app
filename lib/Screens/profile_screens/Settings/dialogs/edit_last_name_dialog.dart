@@ -33,7 +33,7 @@ class EditLastNameDialog extends StatelessWidget {
                     filled: true,
                     prefixIcon: const Icon(Icons.edit),
                     prefixIconColor: Colors.grey,
-                    hintText: "New LastName".tr,
+                    hintText: "New Last Name".tr,
                     hintStyle: const TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(

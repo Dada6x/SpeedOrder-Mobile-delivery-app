@@ -33,7 +33,7 @@ class EditFirstNameDialog extends StatelessWidget {
                     filled: true,
                     prefixIcon: const Icon(Icons.edit),
                     prefixIconColor: Colors.grey,
-                    hintText: "New UserName".tr,
+                    hintText: "New User Name".tr,
                     hintStyle: const TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(

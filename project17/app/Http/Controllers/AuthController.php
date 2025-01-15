@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -174,7 +175,7 @@ class AuthController extends Controller
         User::find($user->id)->update([
             'photo_path'=>$path,
         ]);
-        return response('added successfully', 200);
+        return response($path, 200);
     }
 
 
@@ -220,4 +221,50 @@ class AuthController extends Controller
     public function getProfileImage() {
         return Storage::download(auth()->user()->photo_path);
     }
+
+
+
+
+
+
+
+    public function sendSms()
+    {
+        $message = 'your activaion code is: ';
+        $phone1 = '+963' . ltrim(request()->user_phone, '0'); //مشان سوريا
+
+
+        $endpoint = "http://192.168.1.6:8082";
+        $token = "f48db991-9bf1-4aa5-bd78-895e17d02723";
+
+        try {
+            // إرسال الطلب
+            $data = [
+                'to' => $phone1,
+                'message' => $message,
+            ];
+
+
+            $response = Http::withHeaders([
+                'Authorization' => $token,
+            ])->post($endpoint, $data);
+
+            // تحقق من نجاح الاستجابة
+            if ($response->successful()) {
+                return 'Message sent successfully';
+            } else {
+
+
+                return 'Failed to send message';
+            }
+        } catch (\Exception $e) {
+
+            return 'Failed to send message';
+        }
+
+
+
+
+    }
+
 }
