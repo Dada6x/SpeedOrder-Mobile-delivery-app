@@ -20,7 +20,11 @@ class CategoriesPage extends StatelessWidget {
         "category": Category,
       },
     );
-    print(response.body);
+    if (response.statusCode == 200) {
+      print("done");
+      print("picked category is :$Category");
+    }
+    //  print(response.body);
     List productList = jsonDecode(response.body);
     return productList;
   }
@@ -45,7 +49,6 @@ class CategoriesPage extends StatelessWidget {
                   child: Text('no data found'),
                 );
               } else {
-                print(data);
                 return ListView.builder(
                     itemCount: datalength,
                     itemBuilder: (context, index) {

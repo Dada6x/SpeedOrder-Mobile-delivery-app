@@ -84,14 +84,14 @@ class ProductPage extends StatelessWidget {
                   child: Text('no data found'),
                 );
               } else {
-                Product product = Product(
-                    data[0]["id"],
-                    data[0]["name"],
-                    data[0]["price"],
-                    data[0]["details"],
-                    data[0]["photo_path"],
-                    data[0]["company_name"],
-                    data[0]["count"]);
+                Product product = Product.cart();
+                product.id = data[0]["id"];
+                product.name = data[0]["name"];
+                product.price = data[0]["price"];
+                product.description = data[0]["details"];
+                product.imageLink = data[0]["photo_path"];
+                product.company = data[0]["company_name"];
+                product.count = data[0]["count"];
                 return Column(
                   children: [
                     Expanded(
