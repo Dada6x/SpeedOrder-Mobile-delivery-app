@@ -59,14 +59,14 @@ class ProductPage extends StatelessWidget {
 
         function: () async {
           String? token = await Get.find<Model>().getToken();
-
-          final response = http.post(
-              Uri.parse("http://127.0.0.1:8000/api/auth/add_to_cart"),
-              body: {
-                "token":
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
-                "product_id": id
-              });
+          final response = await http.post(
+              Uri.parse("http://192.168.1.110:8000/api/auth/add_to_cart"),
+              body: {"token": token, "product_id": "$id", "count": "1"});
+          if (response.statusCode == 200) {
+            Get.snackbar("product added",
+                "You can change its quantity in the Cart Page");
+          }
+          print(response.body);
         },
         text: 'Add to Cart'.tr,
         width: double.infinity,

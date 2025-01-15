@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 
 class CartPage extends StatelessWidget {
   CartPage({super.key});
-  double totalPrice = 0.0;
+  var totalPrice = 0.0;
   Future<List> getCartProducts() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
@@ -22,7 +22,9 @@ class CartPage extends StatelessWidget {
         body: {
           "token": token,
         });
-    getTotalPrice();
+
+    await getTotalPrice();
+
     List cartProducts = jsonDecode(response.body);
     print(cartProducts);
     return cartProducts;
@@ -33,6 +35,8 @@ class CartPage extends StatelessWidget {
     final response = await http.post(
         Uri.parse("http://192.168.1.110:8000/api/auth/get_total_price"),
         body: {"token": token});
+    print("responsebody:${response.body}");
+
     totalPrice = jsonDecode(response.body);
   }
 
