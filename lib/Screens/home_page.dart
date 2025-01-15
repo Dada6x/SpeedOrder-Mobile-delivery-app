@@ -52,8 +52,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                 final model = Get.find<Model>();
                 return model.imageIsPicked.value
                     ? CircleAvatar(
-                        backgroundImage: model
-                            .pickedImage.value, // Dynamically show picked image
+                        backgroundImage: model.pickedImage.value,
                       )
                     : CircleAvatar(
                         backgroundImage: AssetImage(

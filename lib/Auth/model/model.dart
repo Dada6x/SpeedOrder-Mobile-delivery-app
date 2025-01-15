@@ -185,7 +185,6 @@ Future<void> signUpRequest({
         ),
       );
 
-      // If an image is selected, add it to the request
       if (image != null) {
         request.files.add(
           await http.MultipartFile.fromPath(
@@ -317,16 +316,12 @@ Future<void> signUpRequest({
       );
       final decodedResponse = jsonDecode(response.body);
       print('profile request  test : $decodedResponse');
+      print('Saved image path: ${decodedResponse['photo_path']}');
+      userInfo!.setString("photo", decodedResponse['photo_path']);
       if (response.statusCode == 200) {
-        // String name = decodedResponse['name'];
-        // String userPhone = decodedResponse['user_phone'];
-        // String lastName = decodedResponse['last_name'];
-
         userInfo?.setString("first_name", decodedResponse['name']);
         userInfo?.setString("last_name", decodedResponse['last_name']);
         userInfo?.setString("number", decodedResponse['user_phone']);
-        userInfo?.setString("photo", decodedResponse['photo_path']);
-
         Get.find<UserController>().updateFirstName();
         Get.find<UserController>().updateLastName();
       } else {}
@@ -496,10 +491,9 @@ Future<void> signUpRequest({
 
       // Add the image file to the request
       request.files.add(await http.MultipartFile.fromPath(
-        'photo', // This should match the key expected by your server
+        'photo',
         image.path,
       ));
-
       // Send the request
       var response = await request.send();
 
@@ -509,8 +503,8 @@ Future<void> signUpRequest({
       // Log the response status and body
       print('Status Code: ${response.statusCode}');
       print('Response Body: $responseBody');
+      //! TAKE THE NEW PHOTO PATH AND SETSTRING FOR THE
 
-      // Check the response status
       if (response.statusCode == 200) {
         Get.snackbar(
           "Success".tr,
@@ -660,6 +654,7 @@ Future<void> signUpRequest({
   void changeImage(File pickedImageFile) {
     imageIsPicked.value = true;
     pickedImage.value = FileImage(pickedImageFile);
+
     print("Image is picked");
   }
 

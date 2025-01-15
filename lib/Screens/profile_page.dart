@@ -17,6 +17,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String imggggg = userInfo!.getString("photo").toString();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +26,13 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Stack(children: [
             Obx(() {
+              print(imggggg);
               final model = Get.find<Model>();
+              model.profileRequest();
               return model.imageIsPicked.value
                   ? CircleAvatar(
                       radius: 80,
-                      backgroundImage: model
-                          .pickedImage.value, // Dynamically show picked image
+                      backgroundImage: model.pickedImage.value,
                     )
                   : CircleAvatar(
                       radius: 80,
@@ -39,11 +41,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     );
             }),
-
-            // if the user picked an image set it else set the default person image
-            // the person image coming from the flutter
-            // the user image coming from the laravel project
-            // wrap the image with OBX
             Positioned(
                 bottom: 1,
                 right: -10,
@@ -55,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         builder: (context) {
                           return const ImagePickingDialog();
                         });
+                    print(userInfo!.getString("photo").toString());
                   },
                   elevation: 2.0,
                   fillColor: Theme.of(context).colorScheme.secondary,
@@ -165,3 +163,12 @@ class MenuListItem extends StatelessWidget {
     );
   }
 }
+/*
+
+1)
+the image in the signup diff than the inside the profile and the shit 
+2)
+upload image photo path must respond with photo path should be updated 
+
+
+*/

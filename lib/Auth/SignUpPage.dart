@@ -23,7 +23,7 @@ class SignUpPageState extends State<SignupPage> {
   //$-----------------------------------------------------------
   final formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
-  File? img; // Changed from Image? to File?
+  File? img;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class SignUpPageState extends State<SignupPage> {
                     padding: const EdgeInsets.only(top: 20),
                     child: buildTextField(
                       controller: passwordController,
-                      hint: "Password",
+                      hint: " Enter Password",
                       icon: const Icon(Icons.key, color: Colors.grey),
                       isPassword: true,
                     ),
@@ -227,11 +227,18 @@ class SignUpPageState extends State<SignupPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Select Image"),
+          title: Center(
+              child: Text(
+            "Select Image",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          )),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
+                iconColor: Theme.of(context).colorScheme.primary,
                 leading: const Icon(Icons.photo_library),
                 title: const Text("Choose from Gallery"),
                 onTap: () {
@@ -240,6 +247,7 @@ class SignUpPageState extends State<SignupPage> {
                 },
               ),
               ListTile(
+                iconColor: Theme.of(context).colorScheme.primary,
                 leading: const Icon(Icons.camera_alt),
                 title: const Text("Take a Photo"),
                 onTap: () {
@@ -261,7 +269,8 @@ class SignUpPageState extends State<SignupPage> {
       final XFile? pickedFile = await picker.pickImage(source: source);
       if (pickedFile == null) return;
       setState(() {
-        img = File(pickedFile.path); // Store as File
+        img = File(pickedFile.path);
+        Get.find<Model>().changeImage(img!);
       });
     } catch (e) {
       Get.snackbar(
