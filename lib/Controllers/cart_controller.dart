@@ -6,7 +6,7 @@ import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 class CartController extends GetxController {
   var cartItems = <Product>[].obs;
   var cartCardsList = <ProjectProductCartCard>[].obs;
- // double get totalPrice => cartItems.fold(0.0, (sum, item) => sum + item.price);
+  // double get totalPrice => cartItems.fold(0.0, (sum, item) => sum + item.price);
 
   void addToCart(Product p) {
     p.isInCart = inList(p);
@@ -19,6 +19,22 @@ class CartController extends GetxController {
     }
     if (p.isInCart) {
       print("Product Already in ");
+    }
+  }
+
+  void addAllToCart(List<dynamic> p) {
+    for (var element in p) {
+      Product p = Product(
+          element["id"],
+          element["name"],
+          element["price"],
+          element["details"],
+          element["photo_path"],
+          element["company_name"],
+          element["count"]);
+      cartItems.add(p);
+      p.cartCard = ProjectProductCartCard(product: p);
+      cartCardsList.add(p.cartCard!);
     }
   }
 

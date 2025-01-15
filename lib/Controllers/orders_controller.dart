@@ -15,7 +15,7 @@ class OrdersController extends GetxController {
     print("length of order cards list:${orderedCardsList.length}");
     for (var element in cartItems) {
       element.purchaseDate = DateTime.now().toString().split(" ")[0];
-      element.orderCard = ProjectProductOrdersCard(product: element);
+      // element.orderCard = ordercard(product: element);
       orderedCardsList.add(element.orderCard!);
     }
   }

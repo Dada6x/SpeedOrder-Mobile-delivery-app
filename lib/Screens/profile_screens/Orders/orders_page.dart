@@ -1,21 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
-import 'package:mamamia_uniproject/components/normal_appbar.dart';
+import 'package:mamamia_uniproject/components/Order_card.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends StatefulWidget {
+  static bool checkboxvisible = false;
   const OrdersPage({super.key});
 
   @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+  @override
+  void initState() {
+    tabController = TabController(length: 2, vsync: this);
+    tabController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    bool deleteVisible = false;
+    tabController.index == 0 ? deleteVisible = true : deleteVisible = false;
     return Scaffold(
-      appBar: NormalAppBar("Order's History"),
-      body: ListView.builder(
-        itemCount: Get.find<OrdersController>().orderedCardsList.length,
-        itemBuilder: (context, index) {
-          return Get.find<OrdersController>().orderedCardsList[index];
-        },
+      floatingActionButton: deleteVisible
+          ? IconButton(
+              onPressed: () {
+                setState(() {
+                  bool checkBoxVisible = OrdersPage.checkboxvisible;
+                  checkBoxVisible = !checkBoxVisible;
+                  OrdersPage.checkboxvisible = checkBoxVisible;
+                });
+              },
+              icon: Icon(Icons.delete))
+          : null,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(tabController.index == 0 ? "Mail" : "OnGoing"),
+        bottom: TabBar(
+            controller: tabController,
+            indicatorSize: TabBarIndicatorSize.tab,
+            dividerColor: Theme.of(context).colorScheme.secondary,
+            tabs: [
+              Tab(
+                text: "Pending",
+                icon: Icon(
+                  Icons.pending_actions,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              Tab(
+                  text: "AllOrders",
+                  icon: Icon(
+                    Icons.done_all,
+                    color: Theme.of(context).colorScheme.primary,
+                  )),
+            ]),
       ),
+      body: TabBarView(controller: tabController, children: [
+        ListView.builder(
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            return OrderCard();
+          },
+        ),
+        ListView.builder(
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            return OrderCard();
+          },
+        ),
+      ]),
     );
   }
 }
+
+      // body: ListView.builder(
+      //   itemCount: Get.find<OrdersController>().orderedCardsList.length,
+      //   itemBuilder: (context, index) {
+      //     return Get.find<OrdersController>().orderedCardsList[index];
+      //   },
+      // ),
