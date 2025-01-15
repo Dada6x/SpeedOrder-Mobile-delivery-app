@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
+import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 class OrdersPage extends StatefulWidget {
   static bool checkboxvisible = false;
@@ -23,19 +25,33 @@ class _OrdersPageState extends State<OrdersPage>
 
   @override
   Widget build(BuildContext context) {
+
     bool deleteVisible = false;
     tabController.index == 0 ? deleteVisible = true : deleteVisible = false;
     return Scaffold(
       floatingActionButton: deleteVisible
-          ? IconButton(
-              onPressed: () {
-                setState(() {
-                  bool checkBoxVisible = OrdersPage.checkboxvisible;
-                  checkBoxVisible = !checkBoxVisible;
-                  OrdersPage.checkboxvisible = checkBoxVisible;
-                });
-              },
-              icon: Icon(Icons.delete))
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        
+                      });
+                    },
+                    icon:const Icon(Icons.delete)),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        bool checkBoxVisible = OrdersPage.checkboxvisible;
+                        checkBoxVisible = !checkBoxVisible;
+                        OrdersPage.checkboxvisible = checkBoxVisible;
+                        // OrderCard.
+                      });
+                    },
+                    icon:const Icon(Icons.edit)),
+              ],
+            )
           : null,
       appBar: AppBar(
         centerTitle: true,

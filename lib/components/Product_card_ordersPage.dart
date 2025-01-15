@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class ProjectProductOrdersCard extends StatelessWidget {
   // List<Product> products;
@@ -12,6 +15,11 @@ class ProjectProductOrdersCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: IconButton(
+          onPressed: () {
+            Get.dialog(SubmitDeleteOrder());
+          },
+          icon: const Icon(Icons.delete)),
       body: Directionality(
         textDirection: TextDirection.ltr,
         child: Padding(
@@ -36,6 +44,39 @@ class ProjectProductOrdersCard extends StatelessWidget {
                 );
               },
             )),
+      ),
+    );
+  }
+}
+
+class SubmitDeleteOrder extends StatelessWidget {
+  const SubmitDeleteOrder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: SizedBox(
+          width: screenWidth(context) * 0.8,
+          height: screenWidth(context) * 0.5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Choose quantity".tr,
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+              TextButton(
+                  onPressed: () async {},
+                  child: const Text(
+                    "Submit",
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }
