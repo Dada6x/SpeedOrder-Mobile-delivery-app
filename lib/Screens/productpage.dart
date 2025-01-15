@@ -19,7 +19,7 @@ class ProductPage extends StatelessWidget {
         Uri.parse("http://10.0.2.2:8000/api/auth/get_details-for-product"),
         body: {
           "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZ2lzdGVyIiwiaWF0IjoxNzM2ODc0OTA0LCJuYmYiOjE3MzY4NzQ5MDQsImp0aSI6ImpvU0VEZmxFc1JoaUJJcG8iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.84jCkUF4oolURJ0VTJH0NJqvIIqw-5-Hu7w9TYeM2lE",
           "id": "$id"
         });
     List product = [];
@@ -59,16 +59,18 @@ class ProductPage extends StatelessWidget {
       floatingActionButton: ProjectButton(
         //todo Ward what  IS THAT
         //todo he probably forgot it
+
         function: () async {
           String? token = await Get.find<Model>().getToken();
 
           final response = http.post(
-              Uri.parse("http://127.0.0.1:8000/api/auth/add_to_cart"),
+              Uri.parse("http://10.0.2.2:8000/api/auth/add_to_cart"),
               body: {
                 "token":
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZ2lzdGVyIiwiaWF0IjoxNzM2ODc0OTA0LCJuYmYiOjE3MzY4NzQ5MDQsImp0aSI6ImpvU0VEZmxFc1JoaUJJcG8iLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.84jCkUF4oolURJ0VTJH0NJqvIIqw-5-Hu7w9TYeM2lE",
                 "product_id": id
               });
+          print(" add to carttt");
         },
         text: 'Add to Cart'.tr,
         width: double.infinity,

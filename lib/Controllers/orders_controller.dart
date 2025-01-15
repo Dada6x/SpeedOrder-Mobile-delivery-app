@@ -41,9 +41,11 @@ class OrdersController extends GetxController {
     }
   }
 
-  void addOrderFromCart(List<Product> proudcts) {
+  void addOrderFromCart() {
     String Date = DateTime.now().toString().split(" ")[0];
-    Order newOrder = Order(date: Date, products: proudcts);
+      List<Product> currentcartItems = Get.find<CartController>().cartItems;
+
+    Order newOrder = Order(date: Date, products: currentcartItems);
     orders.add(newOrder);
   }
 
