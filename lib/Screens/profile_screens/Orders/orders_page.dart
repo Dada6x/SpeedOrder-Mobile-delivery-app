@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -25,34 +27,33 @@ class _OrdersPageState extends State<OrdersPage>
 
   @override
   Widget build(BuildContext context) {
-
     bool deleteVisible = false;
     tabController.index == 0 ? deleteVisible = true : deleteVisible = false;
     return Scaffold(
-      floatingActionButton: deleteVisible
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        
-                      });
-                    },
-                    icon:const Icon(Icons.delete)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        bool checkBoxVisible = OrdersPage.checkboxvisible;
-                        checkBoxVisible = !checkBoxVisible;
-                        OrdersPage.checkboxvisible = checkBoxVisible;
-                        // OrderCard.
-                      });
-                    },
-                    icon:const Icon(Icons.edit)),
-              ],
-            )
-          : null,
+      // floatingActionButton: deleteVisible
+      //     ? Row(
+      //         mainAxisAlignment: MainAxisAlignment.end,
+      //         children: [
+      //           IconButton(
+      //               onPressed: () {
+      //                 setState(() {
+
+      //                 });
+      //               },
+      //               icon:const Icon(Icons.delete)),
+      //           IconButton(
+      //               onPressed: () {
+      //                 setState(() {
+      //                   bool checkBoxVisible = OrdersPage.checkboxvisible;
+      //                   checkBoxVisible = !checkBoxVisible;
+      //                   OrdersPage.checkboxvisible = checkBoxVisible;
+      //                   // OrderCard.
+      //                 });
+      //               },
+      //               icon:const Icon(Icons.edit)),
+      //         ],
+      //       )
+      //     : null,
       appBar: AppBar(
         centerTitle: true,
         title: Text(tabController.index == 0 ? "Mail" : "OnGoing"),
@@ -77,6 +78,7 @@ class _OrdersPageState extends State<OrdersPage>
             ]),
       ),
       body: TabBarView(controller: tabController, children: [
+
         ListView.builder(
           itemCount: 4,
           itemBuilder: (context, index) {
