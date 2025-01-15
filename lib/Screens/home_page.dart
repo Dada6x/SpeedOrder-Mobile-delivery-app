@@ -7,6 +7,7 @@ import 'package:mamamia_uniproject/components/ads.dart';
 import 'package:mamamia_uniproject/components/categories_icons.dart';
 import 'package:mamamia_uniproject/Location/dialogs/location_method_dialog.dart';
 import 'package:mamamia_uniproject/components/search_bar.dart';
+import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -16,6 +17,7 @@ class HomeNeedToBeSlivered extends StatelessWidget {
   // if image is not picked then the image will be the default image
   @override
   Widget build(BuildContext context) {
+    String imggggg = userInfo!.getString("photo").toString();
     final pageController = PageController();
     return Scaffold(
       extendBody: true,
@@ -46,13 +48,19 @@ class HomeNeedToBeSlivered extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15),
             child: GestureDetector(
               onTap: () => Get.to(const ProfilePage()),
-              child: Get.find<Model>().imageIsPicked
-                  ? CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      backgroundImage: Get.find<Model>().pickedImage,
-                    )
-                  : const CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/Person.png")),
+              child: Obx(() {
+                final model = Get.find<Model>();
+                return model.imageIsPicked.value
+                    ? CircleAvatar(
+                        backgroundImage: model
+                            .pickedImage.value, // Dynamically show picked image
+                      )
+                    : CircleAvatar(
+                        backgroundImage: AssetImage(
+                          'project17/storage/app/private/$imggggg',
+                        ),
+                      );
+              }),
             ),
           ),
           title: Padding(

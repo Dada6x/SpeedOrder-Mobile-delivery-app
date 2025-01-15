@@ -168,6 +168,7 @@ class Model extends GetxController {
         userInfo!.remove("first_name");
         userInfo!.remove("last_name");
         userInfo!.remove("number");
+        userInfo!.remove("photo");
         eraseImage();
       } else {
         if (decodedResponse is Map<String, dynamic> &&
@@ -378,7 +379,7 @@ class Model extends GetxController {
     }
   }
 
-  //!(------Upload image------)
+  //!(------Upload image---------)
   Future<void> uploadImageRequest(File image) async {
     try {
       String? tokenImg = await getToken();
@@ -517,6 +518,7 @@ class Model extends GetxController {
   }
 
 //$-#######################################(------  ------)#########################################
+
 //! url launcher
   Future<void> _openUrl(String url) async {
     final uri = Uri.parse(url.trim());
@@ -546,20 +548,19 @@ class Model extends GetxController {
   }
 
   //! image Picker
-  bool imageIsPicked = false;
 
-  ImageProvider? pickedImage;
-  void changeImage(File pickedImage) {
-    imageIsPicked = true;
-    this.pickedImage = Image(image: FileImage(pickedImage)).image;
+  RxBool imageIsPicked = false.obs;
+  Rx<ImageProvider?> pickedImage = Rx<ImageProvider?>(null);
+
+  void changeImage(File pickedImageFile) {
+    imageIsPicked.value = true;
+    pickedImage.value = FileImage(pickedImageFile);
     print("Image is picked");
-    update();
   }
 
   void eraseImage() {
-    imageIsPicked = false;
-    pickedImage = null; // Clear the picked image
+    imageIsPicked.value = false;
+    pickedImage.value = null;
     print("Image is erased");
-    update(); // Notify listeners to refresh the UI
   }
 }

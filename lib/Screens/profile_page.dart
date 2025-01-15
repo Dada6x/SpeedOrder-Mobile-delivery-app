@@ -24,11 +24,26 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Column(
         children: [
           Stack(children: [
-            CircleAvatar(
-                radius: 80,
-                backgroundImage: AssetImage(
-                    'C:/Users/Dada/Desktop/project17/storage/app/private/$imggggg')),
-            // image form the file that i take from the backend
+            Obx(() {
+              final model = Get.find<Model>();
+              return model.imageIsPicked.value
+                  ? CircleAvatar(
+                      radius: 80,
+                      backgroundImage: model
+                          .pickedImage.value, // Dynamically show picked image
+                    )
+                  : CircleAvatar(
+                      radius: 80,
+                      backgroundImage: AssetImage(
+                        'project17/storage/app/private/$imggggg',
+                      ),
+                    );
+            }),
+
+            // if the user picked an image set it else set the default person image
+            // the person image coming from the flutter
+            // the user image coming from the laravel project
+            // wrap the image with OBX
             Positioned(
                 bottom: 1,
                 right: -10,

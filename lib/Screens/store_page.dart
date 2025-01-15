@@ -39,7 +39,7 @@ class _StoresPageState extends State<StoresPage> {
         appBar: AppBar(
           title:  Text(
             "Stores".tr,
-            style: TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 30),
           ),
           actions: [
             IconButton(

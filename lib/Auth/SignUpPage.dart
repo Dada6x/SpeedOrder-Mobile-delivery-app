@@ -55,21 +55,40 @@ class SignUpPageState extends State<SignupPage> {
                                 return const ImagePickingDialog();
                               });
                         },
-                        child: Get.find<Model>().imageIsPicked
-                            ? CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                backgroundImage: Get.find<Model>().pickedImage,
-                              )
-                            : CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                child: const Icon(
-                                  Icons.add_a_photo,
-                                  size: 40,
-                                  color: Colors.white,
-                                ),
-                              ),
+                        child: Obx(() {
+                          Get.find<Model>().imageIsPicked.value;
+                          final model = Get.find<Model>();
+                          return model.imageIsPicked.value
+                              ? CircleAvatar(
+                                  radius: 80,
+                                  backgroundImage: model.pickedImage
+                                      .value, // Dynamically show picked image
+                                )
+                              : CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  child: const Icon(
+                                    Icons.add_a_photo,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                );
+                        }),
+
+                        // ? CircleAvatar(
+                        //     backgroundColor:
+                        //         Theme.of(context).colorScheme.secondary,
+                        //     backgroundImage: Get.find<Model>().pickedImage,
+                        //   )
+                        // : CircleAvatar(
+                        //     backgroundColor:
+                        //         Theme.of(context).colorScheme.secondary,
+                        //     child: const Icon(
+                        //       Icons.add_a_photo,
+                        //       size: 40,
+                        //       color: Colors.white,
+                        //     ),
+                        //   ),
                       ),
                     ),
                   ),
