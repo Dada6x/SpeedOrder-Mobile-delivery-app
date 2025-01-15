@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
 import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
 import 'package:http/http.dart' as http;
-
-import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 class OrdersPage extends StatefulWidget {
   static bool checkboxvisible = false;
@@ -11,6 +15,18 @@ class OrdersPage extends StatefulWidget {
 
   @override
   State<OrdersPage> createState() => _OrdersPageState();
+}
+
+Future<List> GetOrders(String status) async {
+  String? token = await Get.find<Model>().getToken();
+  final response = await http.post(
+      Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
+      body: {"token": token});
+  List<Order> orders = jsonDecode(response.body);
+  if (status == "Pending") {
+    Get.find<OrdersController>().addOrdersFromApi(orders);
+  }
+  return orders;
 }
 
 class _OrdersPageState extends State<OrdersPage>
@@ -78,27 +94,61 @@ class _OrdersPageState extends State<OrdersPage>
             ]),
       ),
       body: TabBarView(controller: tabController, children: [
-
-        ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return OrderCard();
+        FutureBuilder(
+          future: GetOrders("Pending"),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: datalength,
+                    itemBuilder: (context, index) {
+                      return OrderCard(
+                        order: data[index],
+                      );
+                    });
+              }
+            }
           },
         ),
-        ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return OrderCard();
+        FutureBuilder(
+          future: GetOrders("Completed"),
+          builder: (context, snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              var datalength = data.length;
+              if (datalength == 0) {
+                return const Center(
+                  child: Text('no data found'),
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: datalength,
+                    itemBuilder: (context, index) {
+                      return OrderCard(
+                        order: data[index],
+                      );
+                    });
+              }
+            }
           },
         ),
+        // ListView.builder(
+        //   itemCount: 4,
+        //   itemBuilder: (context, index) {
+        //     return OrderCard();
+        //   },
+        // ),
       ]),
     );
   }
 }
-
-      // body: ListView.builder(
-      //   itemCount: Get.find<OrdersController>().orderedCardsList.length,
-      //   itemBuilder: (context, index) {
-      //     return Get.find<OrdersController>().orderedCardsList[index];
-      //   },
-      // ),

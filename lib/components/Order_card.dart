@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
 
 class OrderCard extends StatefulWidget {
   static bool checkBoxSelected = false;
-  // final Order order;
+  final Order order;
 
-  // OrderCard({required this.order});
+  OrderCard({required this.order});
   @override
   State<OrderCard> createState() => _OrderCardState();
 }
