@@ -10,7 +10,6 @@ class NotificationsDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           'Notifications'.tr,
         ),
@@ -21,12 +20,12 @@ class NotificationsDrawer extends StatelessWidget {
         children: [
           Container(
               child: Lottie.asset("assets/animations/amogus.json",
-                  width: 300, height: 500)),
+                  )),
           Center(
               child: Text(
-            "Coming Soon ",
+            "Coming Soon...",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 35,
               color: Theme.of(context).colorScheme.primary,
             ),
           ))
