@@ -80,25 +80,131 @@ class Model extends GetxController {
     }
   }
 
+/*
+Future<void> signUpRequest({
+  required String firstName,
+  required String lastName,
+  required String password,
+  required String number,
+  File? image,
+}) async {
+  try {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(
+        'http://10.0.2.2:8000/api/register?name=$firstName&last_name=$lastName&password=$password&user_phone=$number', // Your signup URL
+      ),
+    );
+
+    // Add the form fields (user data)
+    request.fields['name'] = firstName;
+    request.fields['last_name'] = lastName;
+    request.fields['password'] = password;
+    request.fields['user_phone'] = number;
+
+    // Add the image to the request if it's not null
+    if (image != null) {
+      request.files.add(
+        await http.MultipartFile.fromPath('photo', image.path),
+      );
+    }
+
+    // Send the request
+    var response = await request.send();
+
+    // Read the response
+    var responseBody = await response.stream.bytesToString();
+
+    // Log the response status and body
+    print('Status Code: ${response.statusCode}');
+    print('Response Body: $responseBody');
+
+    // Decode the response body
+    final decodedResponse = jsonDecode(responseBody);
+
+    // Check the response status
+    if (response.statusCode == 200) {
+      String signUpAccessToken = decodedResponse['access_token'];
+      tokenPref = await SharedPreferences.getInstance();
+      await tokenPref!.setString('access_token', signUpAccessToken);
+
+      Get.snackbar(
+        "Success".tr,
+        "Signup Successfully".tr,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    } else {
+      if (decodedResponse is Map<String, dynamic> &&
+          decodedResponse.containsKey('user_phone')) {
+        Get.snackbar(
+          "Error".tr,
+          decodedResponse['user_phone'].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else {
+        Get.snackbar(
+          "Error".tr,
+          "An Unexpected Error Occurred".tr,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    }
+  } catch (e) {
+    Get.snackbar(
+      "Exception",
+      e.toString(),
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+    print('Error: $e');
+  }
+}
+
+*/
+
   //$(------Sign Up------)
-  Future<void> signUpRequest(
-      String name, String lastName, String password, String number) async {
+  Future<void> signUpRequest({
+    required String firstName,
+    required String lastName,
+    required String password,
+    required String number,
+    File? image,
+  }) async {
     try {
-      final response = await http.post(
+      var request = http.MultipartRequest(
+        'POST',
         Uri.parse(
-          'http://10.0.2.2:8000/api/register?name=$name&last_name=$lastName&password=$password&user_phone=$number',
+          'http://10.0.2.2:8000/api/register?name=$firstName&last_name=$lastName&password=$password&user_phone=$number',
         ),
-        body: {},
       );
 
+      // If an image is selected, add it to the request
+      if (image != null) {
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'photo',
+            image.path,
+          ),
+        );
+      }
+
+      // Send the request
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
       final decodedResponse = jsonDecode(response.body);
-      // print('API Response: $decodedResponse');
 
       if (response.statusCode == 200) {
-        //! if login
         String signUpAccessToken = decodedResponse['access_token'];
-        tokenPref = await SharedPreferences.getInstance();
-        await tokenPref!.setString('access_token', signUpAccessToken);
+        final tokenPref = await SharedPreferences.getInstance();
+        // Setting the token
+        await tokenPref.setString('access_token', signUpAccessToken);
         Get.snackbar(
           "Success".tr,
           "Signup Successfully".tr,
@@ -106,13 +212,12 @@ class Model extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        //! Middleware
         Get.off(() => const MainPage());
-        middleWarePref!.setString("id", "1");
-        // print('API Response: $decodedResponse');
         print('signup test');
-        print(tokenPref!.getString('access_token'));
+        final middleWarePref = await SharedPreferences.getInstance();
+        middleWarePref.setString("id", "1");
       } else {
-        //! Handle error
         if (decodedResponse is Map<String, dynamic> &&
             decodedResponse.containsKey('user_phone')) {
           Get.snackbar(
