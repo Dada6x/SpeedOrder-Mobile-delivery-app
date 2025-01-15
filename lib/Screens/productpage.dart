@@ -177,6 +177,7 @@ class ProductInfoCardPage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ExtraInfo extends StatelessWidget {
   String leading;
   String title;

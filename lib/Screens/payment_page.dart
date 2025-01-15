@@ -147,8 +147,7 @@ class PaymentPage extends StatelessWidget {
                                 Theme.of(context).colorScheme.primary),
                         onPressed: () async {
                           ConfirmPurchase(cardPassword, cardNumber);
-                          Get.find<OrdersController>().addToHistory();
-                          Get.find<OrdersController>().addOrderFromCart();
+                          Get.find<OrdersController>().addPendingOrderFromCart();
                           Get.find<CartController>().removeAllFromCart();
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {});
