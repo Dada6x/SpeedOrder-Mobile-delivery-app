@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Screens/IntroductionScreens/IntroPages.dart';
 import 'package:mamamia_uniproject/main.dart';
@@ -17,7 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    print(tokenPref?.getString("access_token"));
     _initialize();
   }
 
@@ -38,7 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Expanded(child: Lottie.asset("assets/animations/amogus.json")),
+child: Image.asset('assets/animations/ww.gif'),
+        // child: Expanded(child: Lottie.asset("assets/animations/Animation - 1736980520627 (1).json")),
       ),
     );
   }

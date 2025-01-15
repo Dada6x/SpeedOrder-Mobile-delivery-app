@@ -44,7 +44,6 @@ class CurrentLocationDialog extends StatelessWidget {
                         function: () {
                           Get.back();
                           Get.find<Model>().editUserLocationRequest();
-                          // Get.offAll(const MainPage());
                         },
                       ),
                     ],

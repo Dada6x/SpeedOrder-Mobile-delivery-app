@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Controllers/userController.dart';
+import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +18,6 @@ class Model extends GetxController {
     tokenPref = await SharedPreferences.getInstance();
     return tokenPref!.getString('access_token');
   }
-  //or use this tokenPref!.getString('access_token');
 
   //!(------Log in------)
   Future<void> loginRequest(String password, String number) async {
@@ -25,8 +25,7 @@ class Model extends GetxController {
       final response = await http.post(
         Uri.parse(
             'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
-        body: {
-        },
+        body: {},
       );
       final decodedResponse = jsonDecode(response.body);
       // print('API Response: $decodedResponse');
@@ -78,95 +77,6 @@ class Model extends GetxController {
     }
   }
 
-/*
-Future<void> signUpRequest({
-  required String firstName,
-  required String lastName,
-  required String password,
-  required String number,
-  File? image,
-}) async {
-  try {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(
-        'http://10.0.2.2:8000/api/register?name=$firstName&last_name=$lastName&password=$password&user_phone=$number', // Your signup URL
-      ),
-    );
-
-    // Add the form fields (user data)
-    request.fields['name'] = firstName;
-    request.fields['last_name'] = lastName;
-    request.fields['password'] = password;
-    request.fields['user_phone'] = number;
-
-    // Add the image to the request if it's not null
-    if (image != null) {
-      request.files.add(
-        await http.MultipartFile.fromPath('photo', image.path),
-      );
-    }
-
-    // Send the request
-    var response = await request.send();
-
-    // Read the response
-    var responseBody = await response.stream.bytesToString();
-
-    // Log the response status and body
-    print('Status Code: ${response.statusCode}');
-    print('Response Body: $responseBody');
-
-    // Decode the response body
-    final decodedResponse = jsonDecode(responseBody);
-
-    // Check the response status
-    if (response.statusCode == 200) {
-      String signUpAccessToken = decodedResponse['access_token'];
-      tokenPref = await SharedPreferences.getInstance();
-      await tokenPref!.setString('access_token', signUpAccessToken);
-
-      Get.snackbar(
-        "Success".tr,
-        "Signup Successfully".tr,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
-    } else {
-      if (decodedResponse is Map<String, dynamic> &&
-          decodedResponse.containsKey('user_phone')) {
-        Get.snackbar(
-          "Error".tr,
-          decodedResponse['user_phone'].toString(),
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      } else {
-        Get.snackbar(
-          "Error".tr,
-          "An Unexpected Error Occurred".tr,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      }
-    }
-  } catch (e) {
-    Get.snackbar(
-      "Exception",
-      e.toString(),
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.red,
-      colorText: Colors.white,
-    );
-    print('Error: $e');
-  }
-}
-
-*/
-
   //$(------Sign Up------)
   Future<void> signUpRequest({
     required String firstName,
@@ -200,7 +110,7 @@ Future<void> signUpRequest({
       if (response.statusCode == 200) {
         String signUpAccessToken = decodedResponse['access_token'];
         final tokenPref = await SharedPreferences.getInstance();
-        // Setting the token
+        //! Setting the token
         await tokenPref.setString('access_token', signUpAccessToken);
         Get.snackbar(
           "Success".tr,
@@ -210,7 +120,8 @@ Future<void> signUpRequest({
           colorText: Colors.white,
         );
         //! Middleware
-        Get.off(() => const MainPage());
+        Get.off(() => const SettingLocation());
+        //used to be mainpage
         print('signup test');
         final middleWarePref = await SharedPreferences.getInstance();
         middleWarePref.setString("id", "1");
@@ -327,16 +238,6 @@ Future<void> signUpRequest({
       print('Exception: $e');
     }
   }
-
-  //! api response
-  /*
-    "name": "mohammed",
-    "last_name": null,
-    "user_location": null,
-    "user_phone": "0987654321",
-    "photo_path": null,
-    //! file
-  */
 
 //$ ########(------edit Profile------)######
 //@ First Name

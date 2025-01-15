@@ -150,6 +150,7 @@ class _MapScreenState extends State<MapScreen> {
                   TextButton(
                     onPressed: () {
                       Get.off(const AllSetup());
+                      //location request
                       Get.find<Model>().editUserLocationRequest();
                     },
                     child: Text("Set Location".tr),

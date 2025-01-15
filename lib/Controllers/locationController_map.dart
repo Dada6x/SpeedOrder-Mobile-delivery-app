@@ -7,10 +7,9 @@ class LocationController extends GetxController {
   // Method to update the address
   void updateLocation(String supaddress) {
     selectedAddress.value = supaddress;
-    // update();
+    update();
   }
 
-  // Method to fetch the current location (optional utility)
   String getCurrentLocation() {
     return selectedAddress.value;
   }

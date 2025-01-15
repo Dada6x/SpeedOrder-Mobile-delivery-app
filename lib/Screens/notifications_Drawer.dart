@@ -10,25 +10,26 @@ class NotificationsDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Notifications'.tr,
         ),
-        actions: [
-          Container(child: Lottie.asset("assets/animations/Mario.json")),
-        ],
         shape:
             Border(bottom: BorderSide(color: MainPage.orangeColor, width: 1.2)),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          const ListTile(
-            title: Text('notification'),
-          ),
-          const ListTile(title: Text('notification')),
-          const ListTile(title: Text('notification')),
-          const ListTile(title: Text('notification')),
-          const ListTile(title: Text('notification')),
-          TextButton(onPressed: () {}, child: const Text('Clear')),
+          Container(
+              child: Lottie.asset("assets/animations/amogus.json",
+                  width: 300, height: 500)),
+          Center(
+              child: Text(
+            "Coming Soon ",
+            style: TextStyle(
+              fontSize: 20,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ))
         ],
       ),
     );
