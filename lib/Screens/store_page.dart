@@ -24,7 +24,8 @@ class _StoresPageState extends State<StoresPage> {
     final response = await http.post(
       Uri.parse("http://192.168.1.110:8000/api/auth/get_companies"),
       body: {
-        "token": token,
+        "token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
       },
     );
 

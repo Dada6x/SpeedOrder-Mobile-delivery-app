@@ -1,82 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:mamamia_uniproject/main.dart';
 
 class ProjectProductOrdersCard extends StatelessWidget {
-  final Product product;
-  const ProjectProductOrdersCard({super.key, required this.product});
+  // List<Product> products;
+  Product product = Product(1, "Coffee", 100, "Helps you break ankels",
+      "assets/images/product.png", "Store", 1);
+  ProjectProductOrdersCard({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              // the color of the card
-              color: Theme.of(context).colorScheme.secondary),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 100,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image(
-                        //! the product image @cart
-                        image: AssetImage(product.imageLink),
-                        fit: BoxFit.cover,
-                      ),
+    return Scaffold(
+      floatingActionButton: IconButton(
+          onPressed: () {
+            Get.dialog(SubmitDeleteOrder());
+          },
+          icon: const Icon(Icons.delete)),
+      body: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(product.name),
+                        Text(product.price.toString() + "\$"),
+                      ],
+                    ),
+                    trailing: Text(
+                      product.count.toString(),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ),
-                ),
+                );
+              },
+            )),
+      ),
+    );
+  }
+}
+
+class SubmitDeleteOrder extends StatelessWidget {
+  const SubmitDeleteOrder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: SizedBox(
+          width: screenWidth(context) * 0.8,
+          height: screenWidth(context) * 0.5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Choose quantity".tr,
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        //! product name @cart
-                        product.name,
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                      Text(product.description),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              //! product price @cart
-                              '${product.price} \$',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              //! product price @cart
-                              '${product.purchaseDate}',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              //
+              TextButton(
+                  onPressed: () async {},
+                  child: const Text(
+                    "Submit",
+                  )),
             ],
           ),
         ),
