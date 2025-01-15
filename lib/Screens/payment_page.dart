@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Controllers/credit_card_controller.dart';
 import 'package:mamamia_uniproject/Controllers/orders_controller.dart';
@@ -10,9 +11,25 @@ import 'package:mamamia_uniproject/main.dart';
 // ignore: must_be_immutable
 class PaymentPage extends StatelessWidget {
   PaymentPage({super.key});
+
+  Future<void> ConfirmPurchase(String card_password, String card_number) async {
+    String? token = await Get.find<Model>().getToken();
+    final response = await http.post(
+        Uri.parse("http://127.0.0.1:8000/api/auth/add_to_confirm"),
+        body: {
+          "card_password": card_password,
+          "token": token,
+          "card_number": card_number,
+        });
+  }
+
   TextEditingController textEditingController = TextEditingController();
+
+  get http => null;
   @override
   Widget build(BuildContext context) {
+    String cardPassword = "";
+    String cardNumber = "";
     return Scaffold(
       appBar: NormalAppBar("Enter Card info".tr),
       body: GetBuilder(
@@ -78,6 +95,7 @@ class PaymentPage extends StatelessWidget {
                         controller: textEditingController,
                         onChanged: (value) {
                           Get.find<creditCardController>().changenumber(value);
+                          cardNumber = value;
                         },
                         decoration: InputDecoration(
                             filled: true,
@@ -101,6 +119,9 @@ class PaymentPage extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           bottom: 20, left: 20, right: 20),
                       child: TextField(
+                        onChanged: (value) {
+                          cardPassword = value;
+                        },
                         decoration: InputDecoration(
                             filled: true,
                             focusedBorder: OutlineInputBorder(
@@ -123,8 +144,10 @@ class PaymentPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5)),
                             backgroundColor:
                                 Theme.of(context).colorScheme.primary),
-                        onPressed: () {
+                        onPressed: () async {
+                          ConfirmPurchase(cardPassword, cardNumber);
                           Get.find<OrdersController>().addToHistory();
+                          Get.find<OrdersController>().addOrderFromCart();
                           Get.find<CartController>().removeAllFromCart();
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {
