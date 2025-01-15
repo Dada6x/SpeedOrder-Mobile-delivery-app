@@ -8,6 +8,7 @@ import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main.dart';
 
 
+// ignore: must_be_immutable
 class ProjectProductOrdersCard extends StatelessWidget {
   // Order order;
   Product product = Product(1, "Coffee", 100, "Helps you break ankels",
@@ -19,6 +20,7 @@ class ProjectProductOrdersCard extends StatelessWidget {
 
   Future<void> cancelOrder() async {
     String? token = await Get.find<Model>().getToken();
+    // ignore: unused_local_variable
     final response = await http.post(
         Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
         body: {"token": token});

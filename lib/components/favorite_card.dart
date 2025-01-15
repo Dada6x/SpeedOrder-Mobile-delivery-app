@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get.dart';
-// import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
-// import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
-// import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:http/http.dart' as http;
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 
@@ -101,6 +97,7 @@ class FavoriteCard extends StatelessWidget {
                             onPressed: () async {
                               String? token =
                                   await Get.find<Model>().getToken();
+                              // ignore: unused_local_variable
                               final response = http.post(
                                   Uri.parse(
                                       "http://192.168.1.110:8000/api/auth/delete_from_favorite"),
