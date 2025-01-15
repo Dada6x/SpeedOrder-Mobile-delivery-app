@@ -94,7 +94,7 @@ class ProjectProductCartCard extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             Get.find<CartController>().removeFromCart(product);
                             deleteCartProduct(product.id);
                           },
@@ -148,8 +148,9 @@ class EditQuantityDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int chosenCount = p.count;
-
+    var chosenCount = 0.obs;
+    // int chosenCount = p.count;
+    chosenCount.value = p.count;
     return Center(
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -182,8 +183,8 @@ class EditQuantityDialog extends StatelessWidget {
                         color: Theme.of(context).colorScheme.secondary,
                       )),
                   Text(
-                    chosenCount.toString(),
-                    style: TextStyle(
+                    chosenCount.value.toString(),
+                    style: const TextStyle(
                       fontSize: 24,
                     ),
                   ),
@@ -203,8 +204,8 @@ class EditQuantityDialog extends StatelessWidget {
                 ],
               ),
               TextButton(
-                  onPressed: () {
-                    p.count = chosenCount;
+                  onPressed: () async{
+                    p.count = chosenCount.value;
                     EditProductCartCount(p.id, p.count);
                     Get.back();
                   },

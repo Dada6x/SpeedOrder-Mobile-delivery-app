@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:mamamia_uniproject/Auth/Login_Page.dart';
+import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/Screens/profile_screens/Orders/orders_page.dart';
-import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
 
 class OrderCard extends StatefulWidget {
+  static bool checkBoxSelected = false;
+  // final Order order;
+
+  // OrderCard({required this.order});
   @override
   State<OrderCard> createState() => _OrderCardState();
 }
 
+void deleteProductOrder() {}
+
 class _OrderCardState extends State<OrderCard> {
-  bool checkBoxSelected = OrdersPage.checkboxvisible;
-  bool checkBoxVisible = false;
+  bool checkBoxSelected = false;
+  bool checkBoxVisible = OrdersPage.checkboxvisible;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -32,7 +37,7 @@ class _OrderCardState extends State<OrderCard> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     //! product name @cart
@@ -40,7 +45,7 @@ class _OrderCardState extends State<OrderCard> {
                     style: const TextStyle(fontSize: 25),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
@@ -50,7 +55,9 @@ class _OrderCardState extends State<OrderCard> {
                 ),
                 OrdersPage.checkboxvisible
                     ? Checkbox(
-                        value: checkBoxSelected,
+                        value: OrdersPage.checkboxvisible
+                            ? checkBoxSelected
+                            : OrderCard.checkBoxSelected,
                         onChanged: (newValue) {
                           {
                             setState(() {
