@@ -7,6 +7,8 @@ import 'package:mamamia_uniproject/components/Product_card_ordersPage.dart';
 
 class OrderCard extends StatefulWidget {
   static bool checkBoxSelected = false;
+
+  const OrderCard({super.key});
   // final Order order;
 
   // OrderCard({required this.order});
@@ -38,16 +40,16 @@ class _OrderCardState extends State<OrderCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     //! product name @cart
                     "Date",
-                    style: const TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: 25),
                   ),
                 ),
                 const Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: SizedBox(
                       height: 100,
                     ),
@@ -65,7 +67,7 @@ class _OrderCardState extends State<OrderCard> {
                             });
                           }
                         })
-                    : SizedBox(),
+                    : const SizedBox(),
 
                 //         // Padding(
                 //         //   padding: const EdgeInsets.all(8.0),

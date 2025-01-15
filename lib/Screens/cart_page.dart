@@ -7,33 +7,33 @@ import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/cart_controller.dart';
 import 'package:mamamia_uniproject/Screens/payment_page.dart';
 import 'package:mamamia_uniproject/components/Button.dart';
+import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
+import 'package:http/http.dart' as http;
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
-
-  get http => null;
+  CartPage({super.key});
+  double totalPrice = 0.0;
   Future<List> getCartProducts() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://10.0.2.2:8000/api/auth/get_products_in_cart"),
+        Uri.parse("http://192.168.1.110:8000/api/auth/get_products_in_cart"),
         body: {
-          "token":
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA"
+          "token": token,
         });
+    getTotalPrice();
     List cartProducts = jsonDecode(response.body);
-    Get.find<CartController>().addAllToCart(cartProducts);
+    print(cartProducts);
     return cartProducts;
   }
 
-  Future<int> getTotalPrice() async {
+  Future<void> getTotalPrice() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
+        Uri.parse("http://192.168.1.110:8000/api/auth/get_total_price"),
         body: {"token": token});
-    int price = jsonDecode(response.body);
-    return price;
+    totalPrice = jsonDecode(response.body);
   }
 
   @override
@@ -65,11 +65,16 @@ class CartPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ListView.builder(
-                          itemCount:
-                              Get.find<CartController>().cartItems.length,
+                          itemCount: datalength,
                           itemBuilder: (context, index) {
-                            return Get.find<CartController>()
-                                .cartCardsList[index];
+                            Product p = Product.cart();
+                            p.CartId = data[index]["id"];
+                            p.id = data[index]["product_details"]["id"];
+                            p.name = data[index]["product_details"]["name"];
+                            p.price = data[index]["product_details"]["price"];
+                            p.count = data[index]["count"];
+                            p.imageLink = "assets/images/product.png";
+                            return ProjectProductCartCard(product: p);
                           },
                         ),
                       ),
@@ -88,7 +93,7 @@ class CartPage extends StatelessWidget {
                             ),
                             Text(
                               // '\$${Get.find<CartController>().totalPrice.toStringAsFixed(2)}',
-                              getTotalPrice().toString(),
+                              "$totalPrice \$",
                               style: const TextStyle(fontSize: 18),
                             ),
                           ],

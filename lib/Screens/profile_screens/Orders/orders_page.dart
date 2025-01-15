@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mamamia_uniproject/Models/order.dart';
 import 'package:mamamia_uniproject/components/Order_card.dart';
-import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 
 class OrdersPage extends StatefulWidget {
   static bool checkboxvisible = false;

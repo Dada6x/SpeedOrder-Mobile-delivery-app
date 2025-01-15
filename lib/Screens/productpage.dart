@@ -13,6 +13,7 @@ class ProductPage extends StatelessWidget {
   var id;
 
   ProductPage({super.key, required this.id});
+
   Future<List> getDetails(var id) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
@@ -57,14 +58,10 @@ class ProductPage extends StatelessWidget {
         //todo he probably forgot it
         function: () async {
           String? token = await Get.find<Model>().getToken();
-
-          final response = http.post(
-              Uri.parse("http://127.0.0.1:8000/api/auth/add_to_cart"),
-              body: {
-                "token":
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MzY5NTg0NjQsIm5iZiI6MTczNjk1ODQ2NCwianRpIjoiNXNtMXVpVk1qcVJkQTc0MCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.u7mZG1J4IwjWa3w32ErE2LJddK41bofrNCIEsMVXtcA",
-                "product_id": id
-              });
+          final response = await http.post(
+              Uri.parse("http://192.168.1.110:8000/api/auth/add_to_cart"),
+              body: {"token": token, "product_id": "$id","count":"1"});
+          print(response.body);
         },
         text: 'Add to Cart'.tr,
         width: double.infinity,
@@ -146,7 +143,7 @@ class ProductInfoCardPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.name,
+            product.name!,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -159,14 +156,14 @@ class ProductInfoCardPage extends StatelessWidget {
             height: 10,
           ),
           Text(
-            product.description,
+            product.description!,
             overflow: TextOverflow.ellipsis,
             maxLines: 10,
           ),
           const Spacer(
             flex: 1,
           ),
-          ExtraInfo(leading: "Company:", title: product.company),
+          ExtraInfo(leading: "Company:", title: product.company!),
           ExtraInfo(leading: "Available offers:", title: "${product.count}"),
           ExtraInfo(leading: "Price:", title: "${product.price} \$"),
         ],
