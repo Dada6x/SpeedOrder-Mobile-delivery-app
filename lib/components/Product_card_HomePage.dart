@@ -51,6 +51,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       );
     }
+    //? ??we got jews category before جاتا
     if (type.contains("jew")) {
       return Icon(
         Icons.diamond_outlined,

@@ -69,7 +69,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                                 imageLink: "assets/images/product.png",
                                 category: data[index]["category"],
                               );
-                            }),
+                            }), 
                       );
                     }
                   }
