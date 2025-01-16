@@ -79,9 +79,11 @@ use Notifiable;
 
     public function getProductsInCart() {
         $products = User::find(auth()->user()->id)->productsInCart();
+        $productsInCart = [];
         for ($i=0; $i < $products->count(); $i++) {
             $product = Cart::where('is_visible', true)->find($products[$i]->id)->products();
             $productsInCart[$i]['id'] = $products[$i]->id;
+            $productsInCart[$i]['count'] = $products[$i]->count;
             $productsInCart[$i]['product_details'] = $product;
             // return $productsInCart;
             // $productsInCart[$i]['id'] =$product[0]->id;

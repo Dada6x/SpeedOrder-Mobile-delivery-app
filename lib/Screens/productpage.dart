@@ -17,7 +17,7 @@ class ProductPage extends StatelessWidget {
   Future<List> getDetails(var id) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/get_details-for-product"),
         body: {"token": token, "id": "$id"});
     List product = [];
     product.add(jsonDecode(response.body));
@@ -57,7 +57,7 @@ class ProductPage extends StatelessWidget {
         function: () async {
           String? token = await Get.find<Model>().getToken();
           final response = await http.post(
-              Uri.parse("http://192.168.1.110:8000/api/auth/add_to_cart"),
+              Uri.parse("http://10.0.2.2:8000/api/auth/add_to_cart"),
               body: {"token": token, "product_id": "$id", "count": "1"});
           if (response.statusCode == 200) {
             Get.snackbar("product added",

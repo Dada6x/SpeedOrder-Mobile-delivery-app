@@ -8,6 +8,8 @@ use App\Models\Confirm;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -87,20 +89,14 @@ class AdminController extends Controller
     }
 
 
-
     public function import_from_json()
     {
-        // تحقق من تحميل الملف
-        // if (hasFile('json_file') && $request->file('json_file')->isValid()) {
-        // احصل على محتوى الملف
-
-        //  $jsonData = File::get(database_path('data/products.json'));
+        set_time_limit(300);
+        // قراءة محتوى ملف JSON
         $jsonData = file_get_contents(base_path('product.json'), true);
+
         // فك تشفير البيانات من JSON
-        $products = json_decode($jsonData, true); // true لتحويله إلى مصفوفة
-
-
-
+        $products = json_decode($jsonData, true); // تحويله إلى مصفوفة
 
         // تحقق من أن البيانات تم تحميلها بنجاح
         if (!$products) {
@@ -109,25 +105,64 @@ class AdminController extends Controller
 
         // استيراد كل منتج إلى قاعدة البيانات
         foreach ($products as $productData) {
+            // معالجة الصورة إذا كان الرابط متوفرًا
+            $photoPath = null;
 
+            if (!empty($productData['photo_path']) && filter_var($productData['photo_path'], FILTER_VALIDATE_URL)) {
+                try {
+                    // إذا كان الرابط يحتوي على "OIP"، قم بتغيير الامتداد إلى jpg
+                    if (strpos($productData['photo_path'], 'OIP') !== false) {
+                        $extension = 'jpg'; // تغيير الامتداد إلى jpg إذا كان يحتوي على "OIP"
+                    } else {
+                        // إذا كان الرابط لا يحتوي على "OIP"، استخدم الامتداد الفعلي للصورة
+                        $extension = pathinfo(parse_url($productData['photo_path'], PHP_URL_PATH), PATHINFO_EXTENSION);
+                        // التأكد من أن الامتداد ليس فارغًا أو غير صالح
+                        if (empty($extension)) {
+                            $extension = 'jpg'; // تعيين الامتداد إلى jpg في حالة عدم وجود امتداد
+                        }
+                    }
+
+                    // تنزيل الصورة
+                    $response = Http::withOptions([
+                        'verify' => false, // تعطيل التحقق من SSL
+                    ])->get('https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg');
+
+                    if ($response->successful()) {
+                        // إنشاء اسم ملف فريد
+                        $fileName = uniqid() . '.' . $extension;
+
+                        // حفظ الصورة في مجلد التخزين
+                        Storage::put("users/$fileName", $response->body());
+                        // Storage::disk('public')->put("images/$fileName", $response->body());
+
+                        // تعيين المسار للصورة المحفوظة
+                        $photoPath = "users/$fileName";
+                    }
+                } catch (\Exception $e) {
+                    // إذا حدث خطأ في تنزيل الصورة
+                    $photoPath = null;
+                }
+            }
+
+            // حفظ المنتج في قاعدة البيانات
             Product::create([
-                'arabic_name' => $productData['arabic_name'], // استخدام البيانات من $productData
+                'arabic_name' => $productData['arabic_name'],
                 'english_name' => $productData['english_name'],
                 'count' => $productData['count'],
                 'price' => $productData['price'],
                 'arabic_details' => $productData['arabic_details'],
                 'english_details' => $productData['english_details'],
                 'company_id' => $productData['company_id'],
-                'photo_path' => $productData['photo_path'],
+                'photo_path' => $photoPath,
                 'category' => $productData['category'],
             ]);
         }
 
         return response()->json(['message' => 'Products imported successfully'], 200);
-
-
-        // return response()->json(['error' => 'No valid file uploaded'], 400);
     }
+
+
+
     public function addDrivers() {
         $validator = Validator::make(request()->all(), [
             'name'=>'max:100|required|string',
@@ -194,6 +229,7 @@ class AdminController extends Controller
             $temp = array();
         for ($i=0; $i < $products->count(); $i++) {
             $product = Cart::find($products[$i]->id)->products();
+            $product['count'] = $products[$i]->count;
             array_push($temp, $product);
         }
         $orders[$j]['product_details'] = $temp;
@@ -216,6 +252,7 @@ public function getOrdersHistory() {
             $temp = array();
         for ($i=0; $i < $products->count(); $i++) {
             $product = Cart::find($products[$i]->id)->products();
+            $product['count'] = $products[$i]->count;
             array_push($temp, $product);
         }
         $orders[$j]['product_details'] = $temp;

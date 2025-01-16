@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\ProductTrait;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Nette\Utils\Random;
 
 class AuthController extends Controller
 {
+    use ProductTrait;
     /**
      * Create a new AuthController instance.
      *
@@ -132,6 +135,7 @@ class AuthController extends Controller
             'last_name'=>request()->last_name,
             'photo_path'=>$path,
         ]);
+        $this->sendSms(request()->user_phone , 'you are regestered as: '."\n".request()->name."\n".request()->password);
         return $this->login();
     }
 
@@ -224,47 +228,15 @@ class AuthController extends Controller
 
 
 
-
-
-
-
-    public function sendSms()
-    {
-        $message = 'your activaion code is: ';
-        $phone1 = '+963' . ltrim(request()->user_phone, '0'); //مشان سوريا
-
-
-        $endpoint = "http://192.168.1.6:8082";
-        $token = "f48db991-9bf1-4aa5-bd78-895e17d02723";
-
-        try {
-            // إرسال الطلب
-            $data = [
-                'to' => $phone1,
-                'message' => $message,
-            ];
-
-
-            $response = Http::withHeaders([
-                'Authorization' => $token,
-            ])->post($endpoint, $data);
-
-            // تحقق من نجاح الاستجابة
-            if ($response->successful()) {
-                return 'Message sent successfully';
-            } else {
-
-
-                return 'Failed to send message';
-            }
-        } catch (\Exception $e) {
-
-            return 'Failed to send message';
-        }
-
-
-
+    public function resetPassword() {
+        $code = Random::generate(4, '0-9');
+        // $this->sendSms(request()->user_phone, 'your activaion code is: '.$code);
 
     }
+
+
+
+
+
 
 }

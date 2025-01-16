@@ -100,7 +100,7 @@ class FavoriteCard extends StatelessWidget {
                               // ignore: unused_local_variable
                               final response = http.post(
                                   Uri.parse(
-                                      "http://192.168.1.110:8000/api/auth/delete_from_favorite"),
+                                      "http://10.0.2.2:8000/api/auth/delete_from_favorite"),
                                   body: {
                                     "token": token,
                                     "favorite_id": "$Favid"

@@ -68,7 +68,7 @@ class SubmitDeleteOrder extends StatelessWidget {
     String? token = await Get.find<Model>().getToken();
 
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/cancel_order"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/cancel_order"),
         body: {"token": token, "confirm_id": "$id"});
   }
 

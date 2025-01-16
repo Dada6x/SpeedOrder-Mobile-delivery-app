@@ -36,11 +36,7 @@ class _NetworkStatusState extends State<NetworkStatus> {
             isConnectedToInternet = false;
           });
           break;
-        // default:
-        //   setState(() {
-        //     isConnectedToInternet = false;
-        //   });
-        //   break;
+       
       }
     });
   }

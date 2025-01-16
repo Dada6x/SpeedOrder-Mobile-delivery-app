@@ -49,7 +49,7 @@ class Search extends SearchDelegate {
     String? token = await Get.find<Model>().getToken();
     //! i made some changes
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/search_in_products"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/search_in_products"),
         body: {"token": token, "search": search});
     List list = jsonDecode(response.body);
     print(list);

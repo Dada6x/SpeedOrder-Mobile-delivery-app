@@ -15,7 +15,7 @@ class ProjectProductCartCard extends StatelessWidget {
   Future<void> deleteCartProduct(var id) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/delete_from_cart"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/delete_from_cart"),
         body: {"token": token, "id": "$id"});
     if (response.statusCode == 200) {
       Get.snackbar("product removed", "");
@@ -138,7 +138,7 @@ class EditQuantityDialog extends StatelessWidget {
   Future<void> EditProductCartCount(int id, int count) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http
-        .post(Uri.parse("http://192.168.1.110:8000/api/auth/edit_cart"), body: {
+        .post(Uri.parse("http://10.0.2.2:8000/api/auth/edit_cart"), body: {
       "token": token,
       "id": "$id",
       "count": "$count",

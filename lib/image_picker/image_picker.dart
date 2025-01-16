@@ -46,7 +46,6 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
       setState(() {
         _selectedImage = File(returnedImage.path);
       });
-
       giveselectedImage(_selectedImage!);
     } catch (e) {
       Get.snackbar(
@@ -64,7 +63,7 @@ class _ImagePickingDialogState extends State<ImagePickingDialog> {
     Get.find<Model>().uploadImageRequest(img);
     Navigator.pop(context);
   }
-
+  //! Delete image
   void deleteSelectedImage() {
     setState(() {
       _selectedImage = null;

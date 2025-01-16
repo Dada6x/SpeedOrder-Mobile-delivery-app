@@ -28,19 +28,17 @@ class _NetworkStatusState extends State<NetworkStatus2> {
       switch (event) {
         case InternetStatus.connected:
           setState(() {
+            // enternet connected :D
             isConnectedToInternet = true;
           });
           break;
         case InternetStatus.disconnected:
           setState(() {
+            // show error
             isConnectedToInternet = false;
           });
           break;
-        // default:
-        //   setState(() {
-        //     isConnectedToInternet = false;
-        //   });
-        //   break;
+       
       }
     });
   }

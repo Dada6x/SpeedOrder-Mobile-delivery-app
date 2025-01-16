@@ -27,7 +27,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
                 // ignore: unused_local_variable
                 final response = await http.post(
                     Uri.parse(
-                        "http://192.168.1.110:8000/api/auth/add_to_favorite"),
+                        "http://10.0.2.2:8000/api/auth/add_to_favorite"),
                     body: {"product_id": "${widget.id}", "token": token});
                 Get.snackbar(
                     "Product #${widget.id}", "is in your FavoriteList");

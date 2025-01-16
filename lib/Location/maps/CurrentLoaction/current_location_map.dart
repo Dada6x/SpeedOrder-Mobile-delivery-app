@@ -28,12 +28,12 @@ class _CurrentLocationMapState extends State<CurrentLocationMap> {
   }
 
   Future<void> _checkLocationServicesAndPermissions() async {
-    setState(() => errorMessage = null); // Clear any previous error
+    setState(() => errorMessage = null); 
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       setState(() {
         errorMessage =
-            "Location services are disabled. Please enable them to use this feature.";
+            "Location services are disabled. Please enable them to use this feature.".tr;
       });
       return;
     }
@@ -59,7 +59,8 @@ class _CurrentLocationMapState extends State<CurrentLocationMap> {
     }
 
     setState(() {
-      errorMessage = null; // Clear error if all checks pass
+      errorMessage = null; 
+      // no errors :D
     });
 
     _fetchCurrentLocation();
@@ -77,6 +78,7 @@ class _CurrentLocationMapState extends State<CurrentLocationMap> {
       );
 
       String formattedAddress = placemarks.isNotEmpty
+      //latlang then the country then idk 
           ? "${placemarks[0].administrativeArea}, ${placemarks[0].country}"
           : "Unknown Location";
 

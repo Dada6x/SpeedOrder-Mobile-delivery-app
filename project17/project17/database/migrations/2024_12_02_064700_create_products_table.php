@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('arabic_details');
             $table->integer('count');
             $table->float('price');
-            $table->string('photo_path');
+            $table->string('photo_path')->nullable();
             $table->foreignId('company_id')->constrained('companies');
             $table->string('category')->nullable();
             $table->timestamps();

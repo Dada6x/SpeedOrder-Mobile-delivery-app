@@ -69,6 +69,8 @@ Route::group([
     Route::post('get_order_status', [ConfirmController::class, 'getOrderStatus']);
 
     Route::post('get_profile_image', [AuthController::class, 'getProfileImage']);
+    Route::post('get_user_orders', [ConfirmController::class, 'getUserOrders']);
+
 });
 Route::post('add_product', [AdminController::class, 'addProduct'])->middleware(Admin::class, 'api');
 Route::post('add_company', [AdminController::class, 'addCompany'])->middleware(Admin::class, 'api');
@@ -80,3 +82,5 @@ Route::post('get_orders_history', [AdminController::class, 'getOrdersHistory'])-
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::post('import_product', [AdminController::class, 'import_from_json'])->name('import_product');
+
+Route::post('send_sms', [AuthController::class, 'sendSms']);

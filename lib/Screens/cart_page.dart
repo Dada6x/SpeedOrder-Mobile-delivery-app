@@ -18,7 +18,7 @@ class CartPage extends StatelessWidget {
   Future<List> getCartProducts() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_products_in_cart"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/get_products_in_cart"),
         body: {
           "token": token,
         });
@@ -33,7 +33,7 @@ class CartPage extends StatelessWidget {
   Future<void> getTotalPrice() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://192.168.1.110:8000/api/auth/get_total_price"),
+        Uri.parse("http://10.0.2.2:8000/api/auth/get_total_price"),
         body: {"token": token});
     print("responsebody:${response.body}");
 

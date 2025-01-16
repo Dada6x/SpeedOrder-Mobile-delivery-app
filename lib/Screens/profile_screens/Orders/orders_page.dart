@@ -35,7 +35,7 @@ class OrdersPage extends StatefulWidget {
 Future<List> GetPendingOrders() async {
   String? token = await Get.find<Model>().getToken();
   final response = await http.post(
-      Uri.parse("http://192.168.1.110:8000/api/get_orders"),
+      Uri.parse("http://10.0.2.2:8000/api/get_orders"),
       body: {"token": token});
   List orders = jsonDecode(response.body);
   return orders;
@@ -44,7 +44,7 @@ Future<List> GetPendingOrders() async {
 Future<List> GetDelieverdOrders() async {
   String? token = await Get.find<Model>().getToken();
   final response = await http.post(
-      Uri.parse("http://192.168.1.110:8000/api/get_orders_history"),
+      Uri.parse("http://10.0.2.2:8000/api/get_orders_history"),
       body: {"token": token});
   List orders = jsonDecode(response.body);
   return orders;

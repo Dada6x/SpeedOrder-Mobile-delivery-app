@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         Company::factory(10)->create();
-        Product::factory(100)->create();
+        // Product::factory(100)->create();
         User::factory()->create([
             'name' => 'mohammed',
             'user_phone'=>'0912345678',

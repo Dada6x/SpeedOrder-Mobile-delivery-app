@@ -126,19 +126,15 @@ class HomeNeedToBeSlivered extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment
                       .spaceEvenly, // Ensure the Row starts from the left
                   children: [
-                    //TODO WARD ADD MORE CATEGORIES 💋
-                    //NO WE DONT HAVE THE TIME BITCH ASS LIGNLING
                     ProjectCategoriesIcons(
-                        icon: Icons.fastfood_outlined, categorie: 'food'),
+                        icon: Icons.fastfood_outlined, categorie: 'food'.tr),
                     ProjectCategoriesIcons(
                         icon: SolarIconsOutline.tShirt,
                         categorie: 'clothes'.tr),
                     ProjectCategoriesIcons(
-                        icon: Icons.monitor, categorie: 'devices'),
+                        icon: Icons.monitor, categorie: 'devices'.tr),
                     ProjectCategoriesIcons(
-                        icon: SolarIconsOutline.home1, categorie: 'home'),
-
-                    // Add more categories if needed
+                        icon: SolarIconsOutline.home1, categorie: 'home'.tr),
                   ],
                 ),
               ),

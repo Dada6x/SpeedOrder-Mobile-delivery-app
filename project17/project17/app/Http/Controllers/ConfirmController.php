@@ -23,10 +23,11 @@ class ConfirmController extends Controller
         if($cart->get()->isEmpty()){
             return response('cart is empty', 400);
         }
+        $price = $this->getTotalPrice();
         $confirm = Confirm::create([
             'user_id'=>$user->id,
             'user_location'=>$user->user_location,
-            'price'=>$this->getTotalPrice(),
+            'price'=>$price,
             'card_password'=>request()->card_password,
             'status'=>'pending',
             'card_number'=>request()->card_number
@@ -35,6 +36,8 @@ class ConfirmController extends Controller
             'confirm_id'=>$confirm,
                 'is_visible'=>false
         ]);
+        $message = "confirmed successfully \n the totla price is:\n $price $";
+        $this->sendSms($user->user_phone, $message);
         return response('confirmed successfully', 200);
     }
 
@@ -60,6 +63,7 @@ class ConfirmController extends Controller
         else {
             return response("can't cancel the order", 400);
         }
+        $this->sendSms(auth()->user()->user_phone, 'canceld order successfully');
         return response('canceled successfully', 200);
     }
 
@@ -79,10 +83,27 @@ class ConfirmController extends Controller
             $temp = array();
         for ($i=0; $i < $products->count(); $i++) {
             $product = Cart::find($products[$i]->id)->products();
+            $product['count'] = $products[$i]->count;
             array_push($temp, $product);
         }
         $orders[$j]['product_details'] = $temp;
     }
         return response($orders, 200);
     }
+
+
+    public function getUserOrders() {
+        $orders = Confirm::where('user_id', auth()->user()->id)->where('status', 'pending')->get(['id', 'status', 'created_at', 'price', 'user_location']);
+        for ($j=0; $j < $orders->count(); $j++) {
+            $products = Confirm::find($orders[$j]->id)->carts();
+            $temp = array();
+        for ($i=0; $i < $products->count(); $i++) {
+            $product = Cart::find($products[$i]->id)->products();
+            $product['count'] = $products[$i]->count;
+            array_push($temp, $product);
+        }
+        $orders[$j]['product_details'] = $temp;
+    }
+        return response($orders, 200);
+}
 }

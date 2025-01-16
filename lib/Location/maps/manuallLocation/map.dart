@@ -28,9 +28,10 @@ class _MapScreenState extends State<MapScreen> {
   String? selectedAddress;
   List<dynamic> _searchResults = [];
   bool _isSearching = false;
-  bool _isGettingLocation = false; // Track location loading state
+  bool _isGettingLocation = false; 
 
   Future<Position> _determinePosition() async {
+    // prmsin
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -53,7 +54,7 @@ class _MapScreenState extends State<MapScreen> {
 
     return Geolocator.getCurrentPosition();
   }
-
+//! getting address from geo
   Future<void> _getAddressFromLatLng(LatLng position) async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
@@ -85,10 +86,10 @@ class _MapScreenState extends State<MapScreen> {
 
   void showCurrentLocation() async {
     setState(() {
-      _isGettingLocation = true; // Show loading spinner when fetching location
+      _isGettingLocation = true; 
     });
 
-    try {
+    try {//take location from 
       Position position = await _determinePosition();
       LatLng currentLatLng = LatLng(position.latitude, position.longitude);
       _mapController.move(currentLatLng, 15);

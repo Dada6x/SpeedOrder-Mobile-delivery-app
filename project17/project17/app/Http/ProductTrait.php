@@ -4,6 +4,7 @@ namespace App\Http;
 use App\Models\Favorite;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 trait ProductTrait
 {
@@ -16,6 +17,7 @@ trait ProductTrait
 
 
     public function product_name($products, $name) {
+        $newProduct = [];
         for ($i=0; $i < $products->count(); $i++) {
             $newProduct[$i]['name'] = $products[$i][$name];
             $newProduct[$i]['id'] = $products[$i]['id'];
@@ -92,6 +94,53 @@ trait ProductTrait
         }
         return $totalPrice;
         }
+
+
+
+
+        public function sendSms($phone, $message)
+    {
+
+        $phone1 = '+963' . ltrim($phone, '0'); //مشان سوريا
+
+
+        $endpoint = "http://192.168.52.225:8082";
+        $token = "f48db991-9bf1-4aa5-bd78-895e17d02723";
+
+        try {
+            // إرسال الطلب
+            $data = [
+                'to' => $phone1,
+                'message' => $message,
+            ];
+
+
+            $response = Http::withHeaders([
+                'Authorization' => $token,
+            ])->post($endpoint, $data);
+
+            // تحقق من نجاح الاستجابة
+            if ($response->successful()) {
+                return 'Message sent successfully';
+            } else {
+
+
+                return 'Failed to send message';
+            }
+        } catch (\Exception $e) {
+
+            return 'Failed to send message';
+        }
+
+
+
+
+    }
+
+
+
+
+
 }
 
 
