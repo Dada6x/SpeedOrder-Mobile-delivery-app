@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
 import 'package:mamamia_uniproject/Screens/productpage.dart';
 import 'package:mamamia_uniproject/components/Product_card_CartPage.dart';
@@ -56,7 +59,7 @@ Image imgprv(String url) {
 // ignore: must_be_immutable
 class ProjectProductCartCardHome extends StatelessWidget {
   var id;
-  String imageLink;
+  
   String name;
   var price;
   bool isFavorite;
@@ -66,7 +69,6 @@ class ProjectProductCartCardHome extends StatelessWidget {
     required this.id,
     required this.name,
     required this.price,
-    required this.imageLink,
     required this.category,
     required this.isFavorite,
   });
@@ -104,6 +106,12 @@ class ProjectProductCartCardHome extends StatelessWidget {
     return null;
   }
 
+  File getimgFile(String path) {
+    String fullpath = "project17/storage/app/private/$path";
+    File f = new File(fullpath);
+    return f;
+  }
+
   Icon heart = const Icon(Icons.favorite_border);
 
   @override
@@ -135,8 +143,8 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image(
-                                    image:
-                                        AssetImage("assets/images/product.png"),
+                                    image: AssetImage(
+                                        "assets/images/product.png"),
                                     fit: BoxFit.contain,
                                   )),
                             ),

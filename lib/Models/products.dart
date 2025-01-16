@@ -23,6 +23,7 @@ class _ProductsgetterState extends State<Productsgetter> {
       body: {
         "token": token,
       },
+      // print("h");
     );
     print(response.body);
     List productList = jsonDecode(response.body);
@@ -67,7 +68,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                                 name: data[index]["name"],
                                 id: data[index]["id"],
                                 price: data[index]["price"],
-                                imageLink: "assets/images/product.png",
+
                                 category: data[index]["category"],
                                 isFavorite: data[index]["is_favorite"],
                               );
@@ -93,7 +94,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                           .productList[index]["id"],
                       price: Get.find<HomePageProductController>()
                           .productList[index]["price"],
-                      imageLink: "assets/images/product.png",
+                      
                       category: Get.find<HomePageProductController>()
                           .productList[index]["category"],
                       isFavorite: Get.find<HomePageProductController>()

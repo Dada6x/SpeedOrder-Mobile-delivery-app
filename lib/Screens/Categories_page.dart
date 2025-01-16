@@ -56,7 +56,7 @@ class CategoriesPage extends StatelessWidget {
                         name: data[index]["name"],
                         id: data[index]["id"],
                         price: data[index]["price"],
-                        imageLink: "assets/images/product.png",
+
                         category: data[index]["category"],
                         isFavorite: data[index]["is_favorite"],
                       );

@@ -110,7 +110,7 @@ class Search extends SearchDelegate {
                         name: data[index]["name"],
                         id: data[index]["id"],
                         price: data[index]["price"],
-                        imageLink: "assets/images/product.png",
+
                         category: "food",
                         isFavorite: data[index]["is_favorite"],
                       );
