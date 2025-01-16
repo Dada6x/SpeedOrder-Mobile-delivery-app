@@ -1,7 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:mamamia_uniproject/Controllers/userController.dart';
-import 'package:mamamia_uniproject/Location/setLocation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/Auth/Login_Page.dart';
@@ -68,7 +67,8 @@ void main() async {
           GetPage(name: '/login', page: () => const LoginPage()),
           GetPage(name: '/mainPage', page: () => const MainPage()),
         ],
-        home: const SettingLocation(),
+        home: const SplashScreen(),
+        //SettingLocation
       ),
     ),
   );

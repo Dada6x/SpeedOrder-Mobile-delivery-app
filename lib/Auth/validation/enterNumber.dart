@@ -85,7 +85,7 @@ class _enterNumberState extends State<enterNumber> {
             ),
             const Center(
               child: Text(
-                "We\'ll send an code to your phone number to ",
+                "We'll send an code to your phone number to ",
                 style: TextStyle(fontSize: 15, color: Colors.grey),
               ),
             ),

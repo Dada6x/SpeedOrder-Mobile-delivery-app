@@ -183,7 +183,6 @@ class SignUpPageState extends State<SignupPage> {
       ),
     );
   }
-
   //! Input Decoration
   InputDecoration inputDecoration({
     required bool isPassword,

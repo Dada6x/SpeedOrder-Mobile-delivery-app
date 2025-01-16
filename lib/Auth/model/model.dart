@@ -18,13 +18,15 @@ class Model extends GetxController {
     tokenPref = await SharedPreferences.getInstance();
     return tokenPref!.getString('access_token');
   }
+//0996385274
 
+//@ 10.0.2.2 for the localHost
   //!(------Log in------)
   Future<void> loginRequest(String password, String number) async {
     try {
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/login?password=$password&user_phone=$number'),
+            'http://192.168.1.6:8000/api/auth/login?password=$password&user_phone=$number'),
         body: {},
       );
       final decodedResponse = jsonDecode(response.body);
@@ -89,7 +91,7 @@ class Model extends GetxController {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-          'http://10.0.2.2:8000/api/register?name=$firstName&last_name=$lastName&password=$password&user_phone=$number',
+          'http://192.168.1.6:8000/api/register?name=$firstName&last_name=$lastName&password=$password&user_phone=$number',
         ),
       );
 
@@ -163,7 +165,7 @@ class Model extends GetxController {
       String? token = await getToken();
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/auth/logout?token=$token',
+          'http://192.168.1.6:8000/api/auth/logout?token=$token',
         ),
         body: {},
       );
@@ -220,7 +222,7 @@ class Model extends GetxController {
     try {
       String? token = await getToken();
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/auth/me?token=$token'),
+        Uri.parse('http://192.168.1.6:8000/api/auth/me?token=$token'),
         body: {},
       );
       final decodedResponse = jsonDecode(response.body);
@@ -231,6 +233,7 @@ class Model extends GetxController {
         userInfo?.setString("first_name", decodedResponse['name']);
         userInfo?.setString("last_name", decodedResponse['last_name']);
         userInfo?.setString("number", decodedResponse['user_phone']);
+
         Get.find<UserController>().updateFirstName();
         Get.find<UserController>().updateLastName();
       } else {}
@@ -245,7 +248,7 @@ class Model extends GetxController {
     try {
       String? editProfileToken = await getToken();
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/auth/edit'),
+        Uri.parse('http://192.168.1.6:8000/api/auth/edit'),
         body: {
           'name': firstName,
           'token': editProfileToken,
@@ -290,7 +293,7 @@ class Model extends GetxController {
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/edit?last_name=$lastName&token=$editProfileToken'),
+            'http://192.168.1.6:8000/api/auth/edit?last_name=$lastName&token=$editProfileToken'),
         body: {
           'name': userInfo!.getString("first_name").toString(),
           'last_name': lastName
@@ -341,7 +344,7 @@ class Model extends GetxController {
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/edit?user_location=$userLocation&token=$editProfileToken'),
+            'http://192.168.1.6:8000/api/auth/edit?user_location=$userLocation&token=$editProfileToken'),
         body: {
           // i know its false but i🇩🇰
           'name': userInfo!.getString("first_name").toString(),
@@ -385,7 +388,8 @@ class Model extends GetxController {
 
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/api/auth/uploadImage?token=$tokenImg'),
+        Uri.parse(
+            'http://192.168.1.6:8000/api/auth/uploadImage?token=$tokenImg'),
       );
 
       // Add the image file to the request
@@ -406,9 +410,7 @@ class Model extends GetxController {
       if (response.statusCode == 200) {
         print('uploaded image path tst: $responseBody');
 
-        eraseImage();
-        userInfo!.remove("photo");
-        profileRequest();
+        // profileRequest();
         userInfo!.setString("photo", responseBody);
 
         Get.snackbar(
@@ -447,7 +449,7 @@ class Model extends GetxController {
       String? editProfileToken = await getToken();
       final response = await http.post(
         Uri.parse(
-            'http://10.0.2.2:8000/api/auth/change_password?user_phone=$userPhone&password=$oldPassword&new_password=$newPassword&token=$editProfileToken'),
+            'http://192.168.1.6:8000/api/auth/change_password?user_phone=$userPhone&password=$oldPassword&new_password=$newPassword&token=$editProfileToken'),
         body: {},
       );
 
@@ -487,7 +489,7 @@ class Model extends GetxController {
       String? token = await getToken();
       final response = await http.post(
         Uri.parse(
-          'http://10.0.2.2:8000/api/auth/refresh?token=$token',
+          'http://192.168.1.6:8000/api/auth/refresh?token=$token',
         ),
         body: {},
       );
