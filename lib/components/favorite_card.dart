@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:mamamia_uniproject/Controllers/Home_Page_controller.dart';
-// import 'package:mamamia_uniproject/Controllers/favoriteController.dart';
-// import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:mamamia_uniproject/Screens/productpage.dart';
+
+import '../Auth/model/model.dart';
 
 // ignore: must_be_immutable
 class FavoriteCard extends StatelessWidget {
-var id;
+  var id;
+  var Favid;
   String imageLink;
   String name;
   var price;
   String category;
   FavoriteCard({
     super.key,
-  required this.id,
+    required this.Favid,
+    required this.id,
     required this.name,
     required this.price,
     required this.imageLink,
     required this.category,
   }); //default constructor
- //comstructor used for list
+  //comstructor used for list
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //Get.to(ProductPage(product: product));
+        Get.to(ProductPage(
+          id: id,
+        ));
       },
       child: Directionality(
         textDirection: TextDirection.ltr,
@@ -89,14 +94,23 @@ var id;
                     child: Column(
                       children: [
                         IconButton(
-                            onPressed: () {
-                              
+                            onPressed: () async {
+                              String? token =
+                                  await Get.find<Model>().getToken();
+                              // ignore: unused_local_variable
+                              final response = http.post(
+                                  Uri.parse(
+                                      "http://192.168.1.110:8000/api/auth/delete_from_favorite"),
+                                  body: {
+                                    "token": token,
+                                    "favorite_id": "$Favid"
+                                  });
                             },
                             icon: Icon(
                               Icons.close,
                               color: Theme.of(context).colorScheme.primary,
                               size: 30,
-                            ))
+                            )),
                       ],
                     ),
                   ),

@@ -1,82 +1,106 @@
 import 'package:flutter/material.dart';
-import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
+import 'package:http/http.dart' as http;
 
+import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
+import 'package:mamamia_uniproject/main.dart';
+
+// ignore: must_be_immutable
 class ProjectProductOrdersCard extends StatelessWidget {
-  final Product product;
-  const ProjectProductOrdersCard({super.key, required this.product});
+  List products;
+  var id;
+
+  ProjectProductOrdersCard(
+      {super.key, required this.id, required this.products});
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              // the color of the card
-              color: Theme.of(context).colorScheme.secondary),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 100,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image(
-                        //! the product image @cart
-                        image: AssetImage(product.imageLink),
-                        fit: BoxFit.cover,
-                      ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("order #$id"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.dialog(SubmitDeleteOrder(
+                id: id,
+              ));
+            },
+            icon: const Icon(Icons.delete),
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ],
+      ),
+      body: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListView.builder(
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    leading: Text(
+                      "#${products[index]["id"]}",
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    title: Text(products[index]["name"]),
+                    subtitle: Text("${products[index]["price"]}\$"),
+                    trailing: Text(
+                      "x${products[index]["count"]}",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
+                );
+              },
+            )),
+      ),
+    );
+  }
+}
+
+class SubmitDeleteOrder extends StatelessWidget {
+  var id;
+  Future<void> cancelOrder() async {
+    String? token = await Get.find<Model>().getToken();
+
+    final response = await http.post(
+        Uri.parse("http://192.168.1.110:8000/api/auth/cancel_order"),
+        body: {"token": token, "confirm_id": "$id"});
+  }
+
+  SubmitDeleteOrder({
+    super.key,
+    required this.id,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: SizedBox(
+          width: screenWidth(context) * 0.6,
+          height: screenWidth(context) * 0.4,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary),
+                onPressed: () async {
+                  await cancelOrder();
+                  Get.back();
+                  Get.back();
+                },
+                child: Text(
+                  "Cancel Order".tr,
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        //! product name @cart
-                        product.name,
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                      Text(product.description),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              //! product price @cart
-                              '${product.price} \$',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              //! product price @cart
-                              '${product.purchaseDate}',
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              //
             ],
           ),
         ),

@@ -17,8 +17,9 @@ class Productsgetter extends StatefulWidget {
 class _ProductsgetterState extends State<Productsgetter> {
   Future<List> getProducts() async {
     String? token = await Get.find<Model>().getToken();
+    print(token);
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/auth/get_products"),
+      Uri.parse("http://192.168.1.110:8000/api/auth/get_products"),
       body: {
         "token": token,
       },
@@ -68,6 +69,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                                 price: data[index]["price"],
                                 imageLink: "assets/images/product.png",
                                 category: data[index]["category"],
+                                isFavorite: data[index]["is_favorite"],
                               );
                             }),
                       );
@@ -92,7 +94,10 @@ class _ProductsgetterState extends State<Productsgetter> {
                       price: Get.find<HomePageProductController>()
                           .productList[index]["price"],
                       imageLink: "assets/images/product.png",
-                      category: "food",
+                      category: Get.find<HomePageProductController>()
+                          .productList[index]["category"],
+                      isFavorite: Get.find<HomePageProductController>()
+                          .productList[index]["is_favorite"],
                     );
                   }),
             ),

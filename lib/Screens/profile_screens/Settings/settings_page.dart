@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:mamamia_uniproject/Controllers/locationController_map.dart';
 import 'package:mamamia_uniproject/Controllers/userController.dart';
 import 'package:mamamia_uniproject/Location/dialogs/location_method_dialog.dart';
@@ -12,6 +13,7 @@ import 'package:mamamia_uniproject/Screens/profile_screens/Settings/notification
 import 'package:mamamia_uniproject/components/normal_appbar.dart';
 import 'package:mamamia_uniproject/main.dart';
 import 'package:mamamia_uniproject/theme/theme_controller.dart';
+import 'package:http/http.dart' as http;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -33,6 +35,11 @@ class SettingsPage extends StatelessWidget {
                   title: "Language".tr,
                   icon: const Icon(Icons.language_sharp),
                   destination: () async {
+                    String? token = await Get.find<Model>().getToken();
+                    final response = await http.post(
+                        Uri.parse(
+                            "http://192.168.1.110:8000/api/auth/change_language"),
+                        body: {"token": token});
                     Locale currentLocale = Get.locale ?? const Locale("en");
                     Get.updateLocale(currentLocale.languageCode == "en"
                         ? const Locale("ar")

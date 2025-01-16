@@ -29,8 +29,11 @@ class _MainPageState extends State<MainPage> {
   int index = 2;
 
   List<Widget> screens = [
+    //removed the search page from here cuz i think this the list used for navigation bar pages
+    //search screen is in search_bar.dart;
+    //yahea: Good Job !!
     const StoresPage(),
-    const CartPage(),
+    CartPage(),
     const HomeSliver(), // this need to take the string ⟶ then HomeNeedToBeSlivered(), // needs to take the string as well ⟶ the location
     const FavoritePage(),
     const ProfilePage(),

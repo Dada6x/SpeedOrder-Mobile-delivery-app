@@ -14,13 +14,17 @@ class CategoriesPage extends StatelessWidget {
   Future<List> getProductByCategory() async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-      Uri.parse("http://10.0.2.2:8000/api/auth/get_products_by_category"),
+      Uri.parse("http://192.168.1.110:8000/api/auth/get_products_by_category"),
       body: {
         "token": token,
         "category": Category,
       },
     );
-    print(response.body);
+    if (response.statusCode == 200) {
+      print("done");
+      print("picked category is :$Category");
+    }
+    //  print(response.body);
     List productList = jsonDecode(response.body);
     return productList;
   }
@@ -45,7 +49,6 @@ class CategoriesPage extends StatelessWidget {
                   child: Text('no data found'),
                 );
               } else {
-                print(data);
                 return ListView.builder(
                     itemCount: datalength,
                     itemBuilder: (context, index) {
@@ -55,6 +58,7 @@ class CategoriesPage extends StatelessWidget {
                         price: data[index]["price"],
                         imageLink: "assets/images/product.png",
                         category: data[index]["category"],
+                        isFavorite: data[index]["is_favorite"],
                       );
                     });
               }

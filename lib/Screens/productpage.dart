@@ -11,11 +11,13 @@ import 'package:mamamia_uniproject/main_page.dart';
 // ignore: must_be_immutable
 class ProductPage extends StatelessWidget {
   var id;
+
   ProductPage({super.key, required this.id});
+
   Future<List> getDetails(var id) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
-        Uri.parse("http://10.0.2.2:8000/api/auth/get_details-for-product"),
+        Uri.parse("http://192.168.1.110:8000/api/auth/get_details-for-product"),
         body: {"token": token, "id": "$id"});
     List product = [];
     product.add(jsonDecode(response.body));
@@ -50,10 +52,18 @@ class ProductPage extends StatelessWidget {
       ),
       floatingActionButton: ProjectButton(
         //todo Ward what  IS THAT
+        //todo he probably forgot it
+
         function: () async {
-          // ignore: unused_local_variable
-          final response =
-              http.post(Uri.parse(""), body: {"token": "", "product_id": id});
+          String? token = await Get.find<Model>().getToken();
+          final response = await http.post(
+              Uri.parse("http://192.168.1.110:8000/api/auth/add_to_cart"),
+              body: {"token": token, "product_id": "$id", "count": "1"});
+          if (response.statusCode == 200) {
+            Get.snackbar("product added",
+                "You can change its quantity in the Cart Page");
+          }
+          print(response.body);
         },
         text: 'Add to Cart'.tr,
         width: double.infinity,
@@ -71,14 +81,14 @@ class ProductPage extends StatelessWidget {
                   child: Text('no data found'),
                 );
               } else {
-                Product product = Product(
-                    data[0]["id"],
-                    data[0]["name"],
-                    data[0]["price"],
-                    data[0]["details"],
-                    data[0]["photo_path"],
-                    data[0]["company_name"],
-                    data[0]["count"]);
+                Product product = Product.cart();
+                product.id = data[0]["id"];
+                product.name = data[0]["name"];
+                product.price = data[0]["price"];
+                product.description = data[0]["details"];
+                product.imageLink = data[0]["photo_path"];
+                product.company = data[0]["company_name"];
+                product.count = data[0]["count"];
                 return Column(
                   children: [
                     Expanded(
@@ -129,13 +139,13 @@ class ProductInfoCardPage extends StatelessWidget {
           ),
         ],
       ),
-      height: screenHeight / 2,
+      height: screenHeight / 1.5,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.name,
+            product.name!,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -144,18 +154,13 @@ class ProductInfoCardPage extends StatelessWidget {
           ),
           /*  ProjectProductCartCardHome(product: product)
               .iconType(context, product.category)!,*/
-          const SizedBox(
-            height: 10,
-          ),
+
           Text(
-            product.description,
+            product.description!,
             overflow: TextOverflow.ellipsis,
             maxLines: 10,
           ),
-          const Spacer(
-            flex: 1,
-          ),
-          ExtraInfo(leading: "Company:", title: product.company),
+          ExtraInfo(leading: "Company:", title: product.company!),
           ExtraInfo(leading: "Available offers:", title: "${product.count}"),
           ExtraInfo(leading: "Price:", title: "${product.price} \$"),
         ],
