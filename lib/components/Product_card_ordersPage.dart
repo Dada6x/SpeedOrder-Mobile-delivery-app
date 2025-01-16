@@ -27,7 +27,7 @@ class ProjectProductOrdersCard extends StatelessWidget {
                 id: id,
               ));
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             color: Theme.of(context).colorScheme.primary,
           ),
         ],
@@ -43,7 +43,7 @@ class ProjectProductOrdersCard extends StatelessWidget {
                   child: ListTile(
                     leading: Text(
                       "#${products[index]["id"]}",
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                     ),
                     title: Text(products[index]["name"]),
                     subtitle: Text("${products[index]["price"]}\$"),

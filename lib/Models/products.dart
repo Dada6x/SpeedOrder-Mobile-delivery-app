@@ -71,7 +71,7 @@ class _ProductsgetterState extends State<Productsgetter> {
                                 category: data[index]["category"],
                                 isFavorite: data[index]["is_favorite"],
                               );
-                            }), 
+                            }),
                       );
                     }
                   }

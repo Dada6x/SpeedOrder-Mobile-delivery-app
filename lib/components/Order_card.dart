@@ -9,7 +9,7 @@ class OrderCard extends StatelessWidget {
   // static bool checkBoxSelected = false;
   final Order order;
 
-  OrderCard({required this.order});
+  const OrderCard({super.key, required this.order});
 
   // bool checkBoxSelected = false;
 
@@ -29,7 +29,7 @@ class OrderCard extends StatelessWidget {
               child: ListTile(
                 leading: Text(
                   "#${order.id}",
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
                 title: Text("created at :${order.date.substring(0, 10)}"),
                 subtitle: Row(
@@ -43,7 +43,7 @@ class OrderCard extends StatelessWidget {
                 ),
                 trailing: Text(
                   order.status!,
-                  style: TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 15),
                 ),
               ),
             )),

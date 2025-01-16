@@ -34,11 +34,24 @@ class Product {
     this.company,
     this.count,
   ]);
-  Product.cart(
-    );
+  Product.cart();
 }
 
 /// this is the product card in the [HomePage] it has price and fav button
+Image imgprv(String url) {
+  try {
+    print(url);
+    return Image(
+      image: NetworkImage(url),
+      fit: BoxFit.contain,
+    );
+  } catch (e) {
+    return Image(
+      image: AssetImage("assets/images/product.png"),
+      fit: BoxFit.contain,
+    );
+  }
+}
 
 // ignore: must_be_immutable
 class ProjectProductCartCardHome extends StatelessWidget {
@@ -120,14 +133,12 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               height: 100,
                               //! the product image
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image(
-                                  image: AssetImage(
-                                    imageLink,
-                                  ),
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image(
+                                    image:
+                                        AssetImage("assets/images/product.png"),
+                                    fit: BoxFit.contain,
+                                  )),
                             ),
                           ),
                         ),

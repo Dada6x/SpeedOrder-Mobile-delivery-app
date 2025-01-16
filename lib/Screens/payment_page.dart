@@ -13,14 +13,14 @@ import 'package:http/http.dart' as http;
 class PaymentPage extends StatelessWidget {
   PaymentPage({super.key});
 
-  Future<void> ConfirmPurchase(String card_password, String card_number) async {
+  Future<void> ConfirmPurchase(String cardPassword, String cardNumber) async {
     String? token = await Get.find<Model>().getToken();
     final response = await http.post(
         Uri.parse("http://192.168.1.110:8000/api/auth/add_to_confirm"),
         body: {
-          "card_password": card_password,
+          "card_password": cardPassword,
           "token": token,
-          "card_number": card_number,
+          "card_number": cardNumber,
         });
     if (response.statusCode == 200) {
       Get.snackbar("order is set for delievery",

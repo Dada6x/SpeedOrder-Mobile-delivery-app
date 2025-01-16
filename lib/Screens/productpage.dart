@@ -142,7 +142,7 @@ class ProductInfoCardPage extends StatelessWidget {
           ),
         ],
       ),
-      height: screenHeight / 2,
+      height: screenHeight / 1.5,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,16 +157,11 @@ class ProductInfoCardPage extends StatelessWidget {
           ),
           /*  ProjectProductCartCardHome(product: product)
               .iconType(context, product.category)!,*/
-          const SizedBox(
-            height: 10,
-          ),
+
           Text(
             product.description!,
             overflow: TextOverflow.ellipsis,
             maxLines: 10,
-          ),
-          const Spacer(
-            flex: 1,
           ),
           ExtraInfo(leading: "Company:", title: product.company!),
           ExtraInfo(leading: "Available offers:", title: "${product.count}"),

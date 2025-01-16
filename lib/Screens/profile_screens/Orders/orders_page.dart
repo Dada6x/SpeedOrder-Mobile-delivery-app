@@ -146,6 +146,7 @@ class _OrdersPageState extends State<OrdersPage>
                           order: order,
                         );
                       }
+                      return null;
                     });
               }
             }
