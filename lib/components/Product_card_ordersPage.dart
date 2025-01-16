@@ -7,52 +7,51 @@ import 'package:http/http.dart' as http;
 import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main.dart';
 
-
 // ignore: must_be_immutable
 class ProjectProductOrdersCard extends StatelessWidget {
-  // Order order;
-  Product product = Product(1, "Coffee", 100, "Helps you break ankels",
-      "assets/images/product.png", "Store", 1);
-  ProjectProductOrdersCard({
-    super.key,
-  });
+  List products;
+  var id;
 
-
-  Future<void> cancelOrder() async {
-    String? token = await Get.find<Model>().getToken();
-    // ignore: unused_local_variable
-    final response = await http.post(
-        Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
-        body: {"token": token});
-  }
+  ProjectProductOrdersCard(
+      {super.key, required this.id, required this.products});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: IconButton(
-          onPressed: () {
-            Get.dialog(const SubmitDeleteOrder());
-          },
-          icon: const Icon(Icons.delete)),
+      appBar: AppBar(
+        title: Text("order #$id"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.dialog(SubmitDeleteOrder(
+                id: id,
+              ));
+            },
+            icon: Icon(Icons.delete),
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ],
+      ),
       body: Directionality(
         textDirection: TextDirection.ltr,
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: ListView.builder(
-              itemCount: 2,
+              itemCount: products.length,
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(product.name!),
-                        Text("${product.price}\$"),
-                      ],
+                    leading: Text(
+                      "#${products[index]["id"]}",
+                      style: TextStyle(fontSize: 20),
                     ),
+                    title: Text(products[index]["name"]),
+                    subtitle: Text("${products[index]["price"]}\$"),
                     trailing: Text(
-                      product.count.toString(),
-                      style: const TextStyle(fontSize: 18),
+                      "x${products[index]["count"]}",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
                 );
@@ -64,8 +63,18 @@ class ProjectProductOrdersCard extends StatelessWidget {
 }
 
 class SubmitDeleteOrder extends StatelessWidget {
-  const SubmitDeleteOrder({
+  var id;
+  Future<void> cancelOrder() async {
+    String? token = await Get.find<Model>().getToken();
+
+    final response = await http.post(
+        Uri.parse("http://192.168.1.110:8000/api/auth/cancel_order"),
+        body: {"token": token, "confirm_id": "$id"});
+  }
+
+  SubmitDeleteOrder({
     super.key,
+    required this.id,
   });
 
   @override
@@ -74,24 +83,24 @@ class SubmitDeleteOrder extends StatelessWidget {
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: SizedBox(
-          width: screenWidth(context) * 0.8,
-          height: screenWidth(context) * 0.5,
+          width: screenWidth(context) * 0.6,
+          height: screenWidth(context) * 0.4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                "Confirm Delete".tr,
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary),
+                onPressed: () async {
+                  await cancelOrder();
+                  Get.back();
+                  Get.back();
+                },
+                child: Text(
+                  "Cancel Order".tr,
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
-              TextButton(
-                  onPressed: () async {
-                    // Get.find<OrdersController>().deleteOrder(order);
-                    Get.back();
-                    Get.back();
-                  },
-                  child: const Text(
-                    "Confirm",
-                  )),
             ],
           ),
         ),

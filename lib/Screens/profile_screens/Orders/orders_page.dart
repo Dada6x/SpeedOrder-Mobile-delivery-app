@@ -32,13 +32,21 @@ class OrdersPage extends StatefulWidget {
 // }
 
 // ! In case We have to sort the orders ourselves
-Future<List> GetOrders() async {
+Future<List> GetPendingOrders() async {
   String? token = await Get.find<Model>().getToken();
   final response = await http.post(
-      Uri.parse("http://127.0.0.1:8000/api/auth/get_total_price"),
+      Uri.parse("http://192.168.1.110:8000/api/get_orders"),
       body: {"token": token});
-  List<Order> orders = jsonDecode(response.body);
-  Get.find<OrdersController>().sortOrderLists(orders);
+  List orders = jsonDecode(response.body);
+  return orders;
+}
+
+Future<List> GetDelieverdOrders() async {
+  String? token = await Get.find<Model>().getToken();
+  final response = await http.post(
+      Uri.parse("http://192.168.1.110:8000/api/get_orders_history"),
+      body: {"token": token});
+  List orders = jsonDecode(response.body);
   return orders;
 }
 
@@ -48,9 +56,7 @@ class _OrdersPageState extends State<OrdersPage>
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
-    tabController.addListener(() {
-      setState(() {});
-    });
+    tabController.addListener(() {});
     super.initState();
   }
 
@@ -84,7 +90,7 @@ class _OrdersPageState extends State<OrdersPage>
       ),
       body: TabBarView(controller: tabController, children: [
         FutureBuilder(
-          future: GetOrders(),
+          future: GetPendingOrders(),
           builder: (context, snapshot) {
             var data = snapshot.data;
             if (data == null) {
@@ -96,20 +102,23 @@ class _OrdersPageState extends State<OrdersPage>
                   child: Text('no data found'),
                 );
               } else {
-                List<Order> pending = Get.find<OrdersController>().orders;
                 return ListView.builder(
                     itemCount: datalength,
                     itemBuilder: (context, index) {
-                      return OrderCard(
-                        order: pending[index],
-                      );
+                      Order order = Order(
+                          location: data[index]["user_location"],
+                          status: "${data[index]["status"]}...",
+                          id: data[index]["id"],
+                          date: data[index]["created_at"],
+                          products: data[index]["product_details"]);
+                      return OrderCard(order: order);
                     });
               }
             }
           },
         ),
         FutureBuilder(
-          future: GetOrders(),
+          future: GetDelieverdOrders(),
           builder: (context, snapshot) {
             var data = snapshot.data;
             if (data == null) {
@@ -121,14 +130,22 @@ class _OrdersPageState extends State<OrdersPage>
                   child: Text('no data found'),
                 );
               } else {
-                List<Order> completed =
-                    Get.find<OrdersController>().completedOrders;
                 return ListView.builder(
                     itemCount: datalength,
                     itemBuilder: (context, index) {
-                      return OrderCard(
-                        order: completed[index],
-                      );
+                      if (data[index]["status"] == "delivered" ||
+                          data[index]["status"] == "canceled" ||
+                          data[index]["status"] == "canceled by admin") {
+                        Order order = Order(
+                            location: data[index]["user_location"],
+                            status: data[index]["status"],
+                            id: data[index]["id"],
+                            date: data[index]["created_at"],
+                            products: data[index]["product_details"]);
+                        return OrderCard(
+                          order: order,
+                        );
+                      }
                     });
               }
             }

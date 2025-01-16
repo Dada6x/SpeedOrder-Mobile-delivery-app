@@ -22,7 +22,10 @@ class PaymentPage extends StatelessWidget {
           "token": token,
           "card_number": card_number,
         });
-    print(response.body);
+    if (response.statusCode == 200) {
+      Get.snackbar("order is set for delievery",
+          "Thank you for shopping at SpeedOrder <3");
+    }
   }
 
   TextEditingController textEditingController = TextEditingController();
@@ -147,8 +150,6 @@ class PaymentPage extends StatelessWidget {
                                 Theme.of(context).colorScheme.primary),
                         onPressed: () async {
                           ConfirmPurchase(cardPassword, cardNumber);
-                          Get.find<OrdersController>().addPendingOrderFromCart();
-                          Get.find<CartController>().removeAllFromCart();
                           Get.back();
                           Future.delayed(const Duration(seconds: 1), () {});
                         },

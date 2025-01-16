@@ -42,13 +42,13 @@ class OrdersController extends GetxController {
     }
   }
 
-  void addPendingOrderFromCart() {
+ /* void addPendingOrderFromCart() {
     String Date = DateTime.now().toString().split(" ")[0];
     List<Product> currentcartItems = Get.find<CartController>().cartItems;
 
     Order newOrder = Order(date: Date, products: currentcartItems);
     orders.add(newOrder);
-  }
+  }*/
 
   void sortOrderLists(List<Order> Orders) {
     var pending = <Order>[];
