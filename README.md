@@ -73,10 +73,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Team
 
-- [Yahea Dada](https://github.com/Dada6x) FrontEnd Development 
-- [Ward-ikhtiyar](https://github.com/Ward-ikhtiyar) FrontEnd Development
-- [Zain Ahmad](https://github.com/Zain00F) FrontEnd Development
-- 
+- [Yahea Dada](https://github.com/Dada6x) (team leader) :D
+- [Ward-ikhtiyar](https://github.com/Ward-ikhtiyar) 
+- [Zain Ahmad](https://github.com/Zain00F) 
 
 ---
 
