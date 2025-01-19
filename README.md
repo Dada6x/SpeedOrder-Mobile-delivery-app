@@ -48,8 +48,8 @@ We support the following payment options:
 ## Support
 
 If you encounter any issues or have questions, please contact our support team:
-- **Email**: support@deliveryproject.com
-- **Phone**: +1 (123) 456-7890
+- **Email**: SpeedOrderSupport@gmail.com
+- **Phone**: (+963) 988816760
 - **Live Chat**: Available in the app.
 
 ---
