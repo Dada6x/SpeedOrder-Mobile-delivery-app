@@ -1,4 +1,4 @@
-# Delivery Project
+# SpeedOrder ⚡
 
 Welcome to the **SpeedOrder**! This platform allows you to browse, select, and purchase products online, and have them delivered directly to your doorstep. With seamless payment options like PayPal and Visa, shopping has never been easier. Simply choose your products, provide your location, and let us handle the rest!
 
@@ -68,6 +68,15 @@ We welcome contributions! If you'd like to contribute to the project, please fol
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Collaborators
+
+- [Yahea Dada](https://github.com/Dada6x) FrontEnd Development
+- [Ward-ikhtiyar](https://github.com/Ward-ikhtiyar) FrontEnd Development
+- [Zain Ahmad](https://github.com/Zain00F) FrontEnd Development
+- 
 
 ---
 
