@@ -27,10 +27,12 @@ Welcome to the **SpeedOrder**! This platform allows you to browse, select, and p
 ## Payment Methods
 
 We support the following payment options:
+
 - **PayPal**
 - **Visa**
 
 ---
+
 # SpeedOrder ⚡
 
 Welcome to the **SpeedOrder**! This platform allows you to browse, select, and purchase products online, and have them delivered directly to your doorstep. With seamless payment options like PayPal and Visa, shopping has never been easier. Simply choose your products, provide your location, and let us handle the rest!
@@ -60,6 +62,7 @@ Welcome to the **SpeedOrder**! This platform allows you to browse, select, and p
 ## Payment Methods
 
 We support the following payment options:
+
 - **PayPal**
 - **Visa**
 
@@ -68,10 +71,12 @@ We support the following payment options:
 ## Getting Started
 
 ### Prerequisites
+
 - A device with internet access (smartphone, tablet, or computer).
 - A valid PayPal or Visa account for payments.
 
 ### Installation
+
 1. Download the app from the [App Store](#) or [Google Play](#).
 2. Install and open the app.
 3. Sign up or log in to your account.
@@ -81,6 +86,7 @@ We support the following payment options:
 ## Support
 
 If you encounter any issues or have questions, please contact our support team:
+
 - **Email**: SpeedOrderSupport@gmail.com
 - **Phone**: (+963) 988816760
 - **Live Chat**: Available in the app.
@@ -90,6 +96,7 @@ If you encounter any issues or have questions, please contact our support team:
 ## Contributing
 
 We welcome contributions! If you'd like to contribute to the project, please follow these steps:
+
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/YourFeatureName`).
 3. Commit your changes (`git commit -m 'Add some feature'`).
@@ -107,8 +114,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Team
 
 - [Yahea Dada](https://github.com/Dada6x) (team leader) :D
-- [Ward-ikhtiyar](https://github.com/Ward-ikhtiyar) 
-- [Zain Ahmad](https://github.com/Zain00F) 
+- [Ward-ikhtiyar](https://github.com/Ward-ikhtiyar)
+- [Zain Ahmad](https://github.com/Zain00F)
 
 ---
 
@@ -120,4 +127,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Happy Shopping! 🛒🚚
+![images](Readme\Location.png)
+![images](Readme\Location.png)
+![images](Readme\Location.png)
 ![images](Readme\Location.png)
