@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:mamamia_uniproject/Auth/model/model.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:mamamia_uniproject/components/Product_card_HomePage.dart';
 import 'package:mamamia_uniproject/main.dart';
 
 // ignore: must_be_immutable

@@ -49,7 +49,7 @@ Image imgprv(String url) {
       fit: BoxFit.contain,
     );
   } catch (e) {
-    return Image(
+    return const Image(
       image: AssetImage("assets/images/product.png"),
       fit: BoxFit.contain,
     );
@@ -108,7 +108,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
 
   File getimgFile(String path) {
     String fullpath = "project17/storage/app/private/$path";
-    File f = new File(fullpath);
+    File f = File(fullpath);
     return f;
   }
 
@@ -142,7 +142,7 @@ class ProjectProductCartCardHome extends StatelessWidget {
                               //! the product image
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  child: Image(
+                                  child: const Image(
                                     image: AssetImage(
                                         "assets/images/product.png"),
                                     fit: BoxFit.contain,
