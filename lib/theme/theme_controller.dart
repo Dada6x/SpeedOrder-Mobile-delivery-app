@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mamamia_uniproject/theme/themes.dart';
-// import 'package:animated_theme_switcher/animated_theme_switcher.dart'; // Import animated theme switcher package
 
 class ThemeController extends GetxController {
   bool isDarkMode = Get.isDarkMode;
