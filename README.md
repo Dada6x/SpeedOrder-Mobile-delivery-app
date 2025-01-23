@@ -92,11 +92,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Happy Shopping! 🛒🚚
-![images](ReadmeImages/Location.png)
-![images](ReadmeImages/SignUp.png)
-![images](ReadmeImages/login.png)
-![images](ReadmeImages/pincode2.png)
-![images](ReadmeImages/locationDialog.pngpng)
-![images](ReadmeImages/settingsPage_locationDialog.png)
-![images](ReadmeImages/theme.png)
-![images](ReadmeImages/DionNetworkOff.png)
+
+![SetLocation](ReadmeImages/Setlocation.png)
+![SignUp](ReadmeImages/SignUp.png)
+![Login](ReadmeImages/login.png)
+![PinCode](ReadmeImages/pincode2.png)
+![alt text](ReadmeImages/locationDialog.png)
+![Settings](ReadmeImages/settingsPage_locationDialog.png)
+![Theme](ReadmeImages/theme.png)
+![NoInternet](ReadmeImages/DionNetworkOff.png)
+![FAQ](ReadmeImages/FAQ.png)
+![Stores](ReadmeImages/stores.png)
+![Arabic](ReadmeImages/SettingsPagearabic.png)
+![alt text](ReadmeImages/DionNetworkOff.png)
