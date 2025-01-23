@@ -8,6 +8,8 @@ class CreditCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? name = userInfo?.getString("name").toString();
+
     return GetBuilder(
         init: creditCardController(),
         builder: (controller) => Directionality(
@@ -28,12 +30,12 @@ class CreditCard extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 20, left: 20),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 20),
                                   child: Text(
-                                    'Ward Ekhtiar',
-                                    //! should be the user name
-                                    style: TextStyle(
+                                    name!,
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w800,
                                         fontSize: 20),
                                   ),
