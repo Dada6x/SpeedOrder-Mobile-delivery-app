@@ -105,5 +105,5 @@ Happy Shopping! 🛒🚚
 ![Stores](readmeImages/stores.png)
 ![Arabic](readmeImages/SettingsPagearabic.png)
 ![alt text](readmeImages/DionNetworkOff.png)
-![theme changing animation](readmeImages\themechanging.jpg)
+![theme changing animation](readmeImages/themechanging.jpg)
 <img src="readmeImages/DionNetworkOff.png" alt="Alt Text" width="600" height="1000">
