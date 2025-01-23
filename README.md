@@ -93,8 +93,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Happy Shopping! 🛒🚚
 
-![SetLocation](readmeImages/Setlocation.png){height=250px}
-![SetLocation](readmeImages/Setlocation.png){height=250px}
+![SetLocation](readmeImages/Setlocation.png)
 ![SignUp](readmeImages/SignUp.png)
 ![Login](readmeImages/login.png)
 ![PinCode](readmeImages/pincode2.png)
@@ -106,5 +105,5 @@ Happy Shopping! 🛒🚚
 ![Stores](readmeImages/stores.png)
 ![Arabic](readmeImages/SettingsPagearabic.png)
 ![alt text](readmeImages/DionNetworkOff.png)
-![theme changing animation](ReadmeImages\themechanging.jpg)
+![theme changing animation](readmeImages\themechanging.jpg)
 <img src="readmeImages/DionNetworkOff.png" alt="Alt Text" width="600" height="1000">
