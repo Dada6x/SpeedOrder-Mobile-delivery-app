@@ -103,5 +103,5 @@ Happy Shopping! 🛒🚚
 ![NoInternet](ReadmeImages/DionNetworkOff.png)
 ![FAQ](ReadmeImages/FAQ.png)
 ![Stores](ReadmeImages/stores.png)
-![Arabic](ReadmeImages/SettingsPagearabic.png)
+![Arabic](readmeImages/pincode2.png)
 ![alt text](ReadmeImages/DionNetworkOff.png)
