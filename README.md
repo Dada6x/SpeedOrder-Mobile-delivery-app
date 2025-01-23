@@ -94,6 +94,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Happy Shopping! 🛒🚚
 
 ![SetLocation](readmeImages/Setlocation.png){height=250px}
+![SetLocation](readmeImages/Setlocation.png){height=250px}
 ![SignUp](readmeImages/SignUp.png)
 ![Login](readmeImages/login.png)
 ![PinCode](readmeImages/pincode2.png)
